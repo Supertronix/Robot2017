@@ -1,0 +1,23 @@
+package org.usfirst.frc.team5910.robot.RaspCom;
+import java.util.Date;
+
+public class VisionData {
+	Boolean targetSeen;
+	
+	Double x, y,missing;
+	@Override
+	public String toString() {
+		/*return "VisionData [imageHeight=" + imageHeight + ", imageWidth="
+				+ imageWidth + ", seen=" + seen + ", x=" + x + ", y=" + y
+				+ ", xlimit=" + xlimit + ", xLimit=" + xLimit
+				+ ", missing=" + missing + ", when=" + when + "]";*/
+		
+		return "VisionData";
+	}
+	
+	public double getImagex() {
+		return x;
+		}
+
+
+}
