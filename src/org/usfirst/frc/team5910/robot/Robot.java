@@ -9,13 +9,19 @@ import org.opencv.imgproc.Imgproc;
 import org.usfirst.frc.team5910.robot.Libs.ADXRS450_Supertronix;
 import org.usfirst.frc.team5910.robot.RaspCom.UDPReceiver;
 
+import com.ctre.CANTalon;
+
 import edu.wpi.cscore.CvSink;
 import edu.wpi.cscore.CvSource;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Relay;
 import edu.wpi.first.wpilibj.RobotDrive;
+import edu.wpi.first.wpilibj.Servo;
+import edu.wpi.first.wpilibj.TalonSRX;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 enum state {
@@ -33,11 +39,28 @@ public class Robot extends IterativeRobot
 	RobotDrive myRobot = new RobotDrive(0, 1); // class that handles basic drive
 	Joystick stick = new Joystick(0); // set to ID 1 in DriverStation
 	ADXRS450_Supertronix gyro = new ADXRS450_Supertronix();
+	CANTalon turretRot = new CANTalon(RobotMap.kTurretRotTalonId);
+	VictorSP testDrive = new VictorSP(2);
+	Relay ledstrip = new Relay(0);
+	Servo testServo = new Servo(9);
 	
 	@Override
 	public void robotInit() 
 	{
-		
+		turretRot.changeControlMode(CANTalon.TalonControlMode.Position);
+		turretRot.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
+		//turretRot.setControlMode(0);
+		//turretRot.enable();
+		//t
+
+		ledstrip.setDirection(Relay.Direction.kForward);
+		SmartDashboard.putNumber("turretwantedpos", 511.0);
+		SmartDashboard.putNumber("servo", 0.0);
+		SmartDashboard.putNumber("testMot", 0.0);
+		SmartDashboard.putBoolean("ledstrip", false);
+		SmartDashboard.putNumber("P", 50.0);
+		SmartDashboard.putNumber("I", 0.000000001);
+		SmartDashboard.putNumber("D", 0.0);
 		try
 		{
 			System.out.println("Trying to start UDP receiver");
@@ -110,8 +133,23 @@ public class Robot extends IterativeRobot
 	@Override
 	public void teleopPeriodic() 
 	{
+		
+		
+		testServo.set(SmartDashboard.getNumber("servo", 0.0));
+		
+		SmartDashboard.putNumber("Capteur", turretRot.getAnalogInRaw());
+		turretRot.set(SmartDashboard.getNumber("turretwantedpos", 511.0));
+		SmartDashboard.putNumber("Commande", turretRot.getOutputVoltage());
+		turretRot.setPID(SmartDashboard.getNumber("P", 50.0), SmartDashboard.getNumber("I", 0.000000001),SmartDashboard.getNumber("D", 0.0));
+		
+		testDrive.set(SmartDashboard.getNumber("testMot", 0.0));
 		myRobot.arcadeDrive(stick);
 	
+		if (SmartDashboard.getBoolean("ledstrip", false))
+			ledstrip.set(Relay.Value.kOn);
+		else
+			ledstrip.set(Relay.Value.kOff);
+		
 		SmartDashboard.putNumber("GyroAngle", gyro.getAngle()%360);
 	}
 
@@ -121,6 +159,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void testPeriodic() 
 	{
+	
 	}
 }
 

@@ -9,7 +9,7 @@ public class RobotMap {
 	public static final int kDriveRightFront = 3;	
 	
 	// Talon SRX
-	public static final int kTurretRotTalonId = 0;
+	public static final int kTurretRotTalonId = 3;
 	public static final int kTurretShootAngleTalonId = 1;
 	
 
