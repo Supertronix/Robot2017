@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.*;
 
+import org.usfirst.frc.team5910.robot.Robot;
+
 import com.google.gson.Gson;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,13 +37,15 @@ public class UDPReceiver extends Thread
     	
     	while (moreQuotes) {
             try {
- 
+            	SmartDashboard.putString("VisionStatus","Test");
                 // receive request
             	packet.setLength(buf.length);
                 socket.receive(packet);
                 byte[] data = packet.getData();
                 lastDataReceived = new String(data, 0, packet.getLength());
-                SmartDashboard.putString("last Data Received", lastDataReceived);
+                Robot.lastCommandReceived = Double.parseDouble(lastDataReceived);
+                
+                //SmartDashboard.putString("last Data Received", lastDataReceived);
                 System.out.println ("'" + lastDataReceived + "'");
                 // figure out response
                 //visionData = gson.fromJson(lastDataReceived, VisionData.class);

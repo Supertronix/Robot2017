@@ -11,6 +11,8 @@ public class RobotMap {
 	// Talon SRX
 	public static final int kTurretRotTalonId = 3;
 	public static final int kTurretShootAngleTalonId = 1;
+	public static final int kShooter1Id = 4;
+	public static final int kShooter2Id = 5;
 	
 
 }

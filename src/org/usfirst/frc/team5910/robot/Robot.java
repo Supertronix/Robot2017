@@ -40,10 +40,15 @@ public class Robot extends IterativeRobot
 	Joystick stick = new Joystick(0); // set to ID 1 in DriverStation
 	ADXRS450_Supertronix gyro = new ADXRS450_Supertronix();
 	CANTalon turretRot = new CANTalon(RobotMap.kTurretRotTalonId);
+	
+	CANTalon shooter1 = new CANTalon(RobotMap.kShooter1Id);
+	CANTalon shooter2 = new CANTalon(RobotMap.kShooter2Id);
+	
 	VictorSP testDrive = new VictorSP(2);
 	Relay ledstrip = new Relay(0);
 	Servo testServo = new Servo(9);
-	
+	public static double lastCommandReceived = 0.0f;
+	double turretWantedRot = 508;
 	@Override
 	public void robotInit() 
 	{
@@ -61,6 +66,9 @@ public class Robot extends IterativeRobot
 		SmartDashboard.putNumber("P", 50.0);
 		SmartDashboard.putNumber("I", 0.000000001);
 		SmartDashboard.putNumber("D", 0.0);
+		
+		SmartDashboard.putNumber("shooter1Speed", 0.0);
+		SmartDashboard.putNumber("shooter2Speed", 0.0);
 		try
 		{
 			System.out.println("Trying to start UDP receiver");
@@ -133,12 +141,18 @@ public class Robot extends IterativeRobot
 	@Override
 	public void teleopPeriodic() 
 	{
+		SmartDashboard.putNumber("RaspData", lastCommandReceived);
 		
+		shooter1.set(SmartDashboard.getNumber("shooter1Speed", 0.0));
+		shooter2.set(SmartDashboard.getNumber("shooter2Speed", 0.0));
 		
 		testServo.set(SmartDashboard.getNumber("servo", 0.0));
 		
+		turretWantedRot -= lastCommandReceived;
+		turretRot.set(turretWantedRot);
+		
 		SmartDashboard.putNumber("Capteur", turretRot.getAnalogInRaw());
-		turretRot.set(SmartDashboard.getNumber("turretwantedpos", 511.0));
+		//turretRot.set(SmartDashboard.getNumber("turretwantedpos", 511.0));
 		SmartDashboard.putNumber("Commande", turretRot.getOutputVoltage());
 		turretRot.setPID(SmartDashboard.getNumber("P", 50.0), SmartDashboard.getNumber("I", 0.000000001),SmartDashboard.getNumber("D", 0.0));
 		
