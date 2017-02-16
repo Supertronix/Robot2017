@@ -2,55 +2,69 @@ package com.team5910.frc2017.robot;
 
 import java.io.IOException;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
+import com.team5910.frc2017.commands.DepositGearAndPassLine;
 import com.team5910.frc2017.robot.RaspCom.GRIPReceiver;
 import com.team5910.frc2017.robot.Subsystems.Drive;
 import com.team5910.frc2017.robot.Subsystems.Superstructure;
-import com.team5910.frc2017.robot.Utils.Controller;
+import com.team5910.frc2017.robot.Utils.OI;
 import com.team5910.frc2017.robot.Utils.USBCamStreamer;
 import com.team5910.frc2017.robot.Utils.Utilities;
 
 public class Robot extends IterativeRobot 
 {
 	// Subsystems
-    Drive mDrive = Drive.getInstance();
-    Superstructure mSuperstructure = new Superstructure();
-    Controller mController = Controller.getInstance();
+	public static Drive drive;
+	public static Superstructure superstructure;
+	public static OI oi;
 	
+    Command autonomousCommand;
+    
 	//public static double lastCommandReceived = 0.0f;
 	
 	public void stopAll() {
-        mDrive.stop();
-        mSuperstructure.stopAll();
+        drive.stop();
+        superstructure.stopAll();
     }
 	
 	 public void zeroAllSensors() {
-	        mDrive.zeroSensors();
-	        mSuperstructure.zeroSensors();
+	        drive.zeroSensors();
+	        superstructure.zeroSensors();
 	 }
 	
 	@Override
 	public void robotInit() 
 	{
+		drive = new Drive();
+		superstructure = new Superstructure();
+		oi = new OI();
+		
 		// Reset all state
         zeroAllSensors();
         
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
 		try { new GRIPReceiver().start(); } catch (IOException e) { e.printStackTrace(); }
+		autonomousCommand = new DepositGearAndPassLine();
 	}
 
 	@Override
 	public void autonomousInit() 
 	{
+		autonomousCommand.start();
 	}
 
 	@Override
 	public void autonomousPeriodic()
 	{
+		Scheduler.getInstance().run();
 	}
+	
 	@Override
 	public void teleopInit() 
 	{
+		autonomousCommand.cancel();
 	}
 
 	@Override
@@ -63,25 +77,25 @@ public class Robot extends IterativeRobot
 		double y2 = 0;
 		
 		
-		if (Math.abs(mController.getLeftDriveX()) > .2)
-			x1 = mController.getLeftDriveX();
+		if (Math.abs(oi.getLeftDriveX()) > .2)
+			x1 = oi.getLeftDriveX();
        
-        if (Math.abs(mController.getLeftDriveY()) > .2)
-        	y1 = mController.getLeftDriveY();
+        if (Math.abs(oi.getLeftDriveY()) > .2)
+        	y1 = oi.getLeftDriveY();
        
-        if (Math.abs(mController.getRightDriveX()) > .2)
-            x2 = mController.getRightDriveX();
+        if (Math.abs(oi.getRightDriveX()) > .2)
+            x2 = oi.getRightDriveX();
         
-        if (Math.abs(mController.getRightDriveY()) > .2)
-            y2 = mController.getRightDriveY();
+        if (Math.abs(oi.getRightDriveY()) > .2)
+            y2 = oi.getRightDriveY();
         
         double x = (x1 + x2)/ 2;
         
-        mDrive.manualDrive(Utilities.clamp(x + y1, -1, 1), Utilities.clamp(y2 - x, -1, 1), Utilities.clamp(y1 - x, -1, 1), Utilities.clamp(x + y2, -1, 1));
+        drive.manualDrive(Utilities.clamp(x + y1, -1, 1), Utilities.clamp(y2 - x, -1, 1), Utilities.clamp(y1 - x, -1, 1), Utilities.clamp(x + y2, -1, 1));
         
-        if (mController.getIntakeButton()) { mSuperstructure.intakeButtonEnabled(); } else { mSuperstructure.intakeButtonDisabled(); }         
-        if (mController.getClimberButton()) { mSuperstructure.climberButtonEnabled(); } else { mSuperstructure.climberButtonDisabled(); }
-        if (mController.getClampButton()) { mSuperstructure.clampButtonEnabled(); }
+        if (oi.getIntakeButton()) { superstructure.intakeButtonEnabled(); } else { superstructure.intakeButtonDisabled(); }         
+        if (oi.getClimberButton()) { superstructure.climberButtonEnabled(); } else { superstructure.climberButtonDisabled(); }
+        if (oi.getClampButton()) { superstructure.clampButtonEnabled(); }
         	
 	}
 

@@ -4,16 +4,11 @@ import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.Utils.ADXRS450_Supertronix;
 import com.team5910.frc2017.robot.Utils.Utilities;
 
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Drive extends Subsystem {
-	
-	private static Drive instance_ = new Drive();
-	
-	public static Drive getInstance() {
-        return instance_;
-    }
 	
     public enum DriveControlState {
         OPEN_LOOP, PATH_FOLLOWING_CONTROL
@@ -25,16 +20,18 @@ public class Drive extends Subsystem {
 	VictorSP RRDrive; // Rear right
 	
 	ADXRS450_Supertronix gyro;
+	Encoder FLWheelEncoder;
 	
 	private DriveControlState driveControlState_;
 	
-	private Drive() {
+	public Drive() {
 		 FLDrive = new VictorSP(RobotMap.kFLDriveOut);
 		 RLDrive = new VictorSP(RobotMap.kRLDriveOut);
 		 FRDrive = new VictorSP(RobotMap.kFRDriveOut);
 		 RRDrive = new VictorSP(RobotMap.kRRDriveOut);
 		 
 		 gyro = new ADXRS450_Supertronix();
+		 FLWheelEncoder = new Encoder(RobotMap.kFLWheelEncoderA, RobotMap.kFLWheelEncoderB);
 	 }
 	 
 	@Override
@@ -59,6 +56,21 @@ public class Drive extends Subsystem {
 	
 	public void zeroSensors() {
 		gyro.reset();
+	}
+	
+	public void resetGyro() {
+		gyro.reset();
+	}
+	
+	public void resetEncoders() {
+		FLWheelEncoder.reset();
+	}
+
+	public double getEncoderDistance() {
+		return FLWheelEncoder.getDistance();
+	}
+
+	public void driveWithGyro(double Speed) {
 		
 	}
 }

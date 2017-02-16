@@ -28,6 +28,20 @@ public class RobotMap {
 	public static final int kTurretPanDriveId = 4;
 	public static final int kTurretTiltDriveId = 5;
 	
+	// Encoders
+	public static final int kFLWheelEncoderA = 10;
+	public static final int kFLWheelEncoderB = 11;
+	
+	public static final int kRLWheelEncoderA = 12;
+	public static final int kRLWheelEncoderB = 13;
+	
+	public static final int kFRWheelEncoderA = 14;
+	public static final int kFRWheelEncoderB = 15;
+	
+	public static final int kRRWheelEncoderA = 16;
+	public static final int kRRWheelEncoderB = 17;
+	
+	
 	// Joystick MAP
 	// Main 
 	public static final int kMainDriveStickId = 0;

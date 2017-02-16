@@ -1,22 +1,22 @@
 package com.team5910.frc2017.robot.Utils;
 
+import com.team5910.frc2017.commands.Intake;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-public class Controller {
-	private static Controller mInstance = new Controller();
-
-    public static Controller getInstance() {
-        return mInstance;
-    }
+public class OI {
     
     private final Joystick mMainDriveStick;
     private final Joystick mAccessoriesStick;
     
-    private Controller() {
+    public OI() {
     	mMainDriveStick = new Joystick(RobotMap.kMainDriveStickId);
     	mAccessoriesStick = new Joystick(RobotMap.mAccessoriesStickId);
+    	
+    	JoystickButton intakerTrigger = new JoystickButton(mMainDriveStick, RobotMap.kIntakeButton);
+    	intakerTrigger.whenPressed(new Intake());
     }
     
  // DRIVER CONTROLS
@@ -37,9 +37,9 @@ public class Controller {
     }
     
 // ACCESSORIES
-    public boolean getIntakeButton() {
+    /*public boolean getIntakeButton() {
     	return mMainDriveStick.getRawButton(RobotMap.kIntakeButton);
-    }
+    }*/
     
     public boolean getClimberButton() {
     	return mMainDriveStick.getRawButton(RobotMap.kClimberButton);
