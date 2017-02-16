@@ -1,6 +1,7 @@
 package com.team5910.frc2017.robot.Utils;
 
-import com.team5910.frc2017.commands.Intake;
+import com.team5910.frc2017.commands.IntakeMotorStart;
+import com.team5910.frc2017.commands.IntakeMotorStop;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -16,7 +17,8 @@ public class OI {
     	mAccessoriesStick = new Joystick(RobotMap.mAccessoriesStickId);
     	
     	JoystickButton intakerTrigger = new JoystickButton(mMainDriveStick, RobotMap.kIntakeButton);
-    	intakerTrigger.whenPressed(new Intake());
+    	intakerTrigger.whenPressed(new IntakeMotorStart());
+    	intakerTrigger.whenReleased(new IntakeMotorStop());
     }
     
  // DRIVER CONTROLS

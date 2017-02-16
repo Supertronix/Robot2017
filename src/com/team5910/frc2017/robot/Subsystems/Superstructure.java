@@ -4,12 +4,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Superstructure extends Subsystem {
 	
-	private static Superstructure instance_ = new Superstructure();
-	
-	public static Superstructure getInstance() {
-        return instance_;
-    }
-	
 	/**
      * Drives actual state, all outputs should be dictated by this state
      */
@@ -25,17 +19,25 @@ public class Superstructure extends Subsystem {
     public enum WantedState {
     }
     
-    Turret mTurret = new Turret();
-    Intaker mIntaker = new Intaker();
-    Climber mClimber = new Climber();
-    Clamp mClamp = new Clamp();
+    public Turret turret;
+    public Intaker intaker;
+    public Climber climber;
+    public Clamp clamp;
+    
+    public Superstructure()
+    {
+    	 turret = new Turret();
+    	 intaker = new Intaker();
+    	 climber = new Climber();
+    	 clamp = new Clamp();
+    }
     
 	@Override
 	protected void initDefaultCommand() {
 	}
 
 	public void stopAll() {
-		mClimber.stop();
+		climber.stop();
 	}
 	
 	public void zeroSensors() {
@@ -43,25 +45,25 @@ public class Superstructure extends Subsystem {
 	}
 	
 	public void intakeButtonEnabled() {
-		mIntaker.intake();
+		intaker.intake();
 	}
 	
 	public void intakeButtonDisabled() {
-		mIntaker.stop();
+		intaker.stop();
 	}
 
 	public void climberButtonEnabled() {
-		mClimber.climb();
-		mTurret.stop();
-		mIntaker.stop();
+		climber.climb();
+		turret.stop();
+		intaker.stop();
 	}
 	
 	public void climberButtonDisabled() {
-		mClimber.stop();
+		climber.stop();
 	}
 
 	public void clampButtonEnabled() {
-		mClamp.toggleAsked();
+		clamp.toggleAsked();
 		
 	}
 
