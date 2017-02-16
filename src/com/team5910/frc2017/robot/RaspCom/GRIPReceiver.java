@@ -1,16 +1,15 @@
-package org.usfirst.frc.team5910.robot.RaspCom;
+package com.team5910.frc2017.robot.RaspCom;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.*;
 
-import org.usfirst.frc.team5910.robot.Robot;
-
 import com.google.gson.Gson;
+import com.team5910.frc2017.robot.Robot;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class UDPReceiver extends Thread
+public class GRIPReceiver extends Thread
 {
 	public static String lastDataReceived = "";
 	protected DatagramSocket socket = null;
@@ -18,11 +17,11 @@ public class UDPReceiver extends Thread
     protected boolean moreQuotes = true;
     Gson gson = new Gson();
     
-	public UDPReceiver() throws IOException {
+	public GRIPReceiver() throws IOException {
 	    this("udpReciever");
 	    }
 	
-	public UDPReceiver(String name) throws IOException {
+	public GRIPReceiver(String name) throws IOException {
         super(name);
         SmartDashboard.putString("VisionStatus","UDPReceiver constructor called");
         socket = new DatagramSocket(3620);
@@ -43,7 +42,7 @@ public class UDPReceiver extends Thread
                 socket.receive(packet);
                 byte[] data = packet.getData();
                 lastDataReceived = new String(data, 0, packet.getLength());
-                Robot.lastCommandReceived = Double.parseDouble(lastDataReceived);
+                //Robot.lastCommandReceived = Double.parseDouble(lastDataReceived);
                 
                 //SmartDashboard.putString("last Data Received", lastDataReceived);
                 System.out.println ("'" + lastDataReceived + "'");
