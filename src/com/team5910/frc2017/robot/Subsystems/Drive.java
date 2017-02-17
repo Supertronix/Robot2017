@@ -29,7 +29,12 @@ public class Drive extends Subsystem {
 		 RLDrive = new VictorSP(RobotMap.kRLDriveOut);
 		 FRDrive = new VictorSP(RobotMap.kFRDriveOut);
 		 RRDrive = new VictorSP(RobotMap.kRRDriveOut);
-		 
+		 	
+		 FLDrive.setInverted(RobotMap.kRevertFLDrive); // TRUE
+		 RLDrive.setInverted(RobotMap.kRevertRLDrive); // TRUE
+		 FRDrive.setInverted(RobotMap.kRevertFRDrive);
+		 RRDrive.setInverted(RobotMap.kRevertRRDrive);
+			
 		 gyro = new ADXRS450_Supertronix();
 		 FLWheelEncoder = new Encoder(RobotMap.kFLWheelEncoderA, RobotMap.kFLWheelEncoderB);
 	 }
@@ -71,7 +76,10 @@ public class Drive extends Subsystem {
 	}
 
 	public void driveWithGyro(double Speed) {
-		
+		FLDrive.set(Speed);
+		FRDrive.set(Speed);
+	    RLDrive.set(Speed);
+		RRDrive.set(Speed);
 	}
 }
 

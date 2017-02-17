@@ -3,15 +3,20 @@ package com.team5910.frc2017.robot;
 public class RobotMap {
 	
 	// PWM Outputs
-	public static final int kFLDriveOut = 0;
-	public static final int kRLDriveOut = 1;	
-	public static final int kFRDriveOut = 2;	
-	public static final int kRRDriveOut = 3;
+	public static final int kFLDriveOut = 10;
+	public static final int kRLDriveOut = 14;	
+	public static final int kFRDriveOut = 13;	
+	public static final int kRRDriveOut = 17;
+	
+	public static final boolean kRevertFLDrive = true;
+	public static final boolean kRevertRLDrive = true;
+	public static final boolean kRevertFRDrive = false;
+	public static final boolean kRevertRRDrive = false;
 	
 	public static final int kClimbDriveOut = 4;	
 	public static final boolean kRevertClimbDrive = false;
 	
-	public static final int kIntakerDriveOut = 5;
+	public static final int kIntakerDriveOut = 11;
 	public static final boolean kRevertIntakeDrive = true;
 	
 	public static final int kLeftClampServoId = 8; // Servo 1
@@ -29,17 +34,17 @@ public class RobotMap {
 	public static final int kTurretTiltDriveId = 5;
 	
 	// Encoders
-	public static final int kFLWheelEncoderA = 10;
-	public static final int kFLWheelEncoderB = 11;
+	public static final int kFLWheelEncoderA = 0;
+	public static final int kFLWheelEncoderB = 1;
 	
-	public static final int kRLWheelEncoderA = 12;
+	/*public static final int kRLWheelEncoderA = 12;
 	public static final int kRLWheelEncoderB = 13;
 	
 	public static final int kFRWheelEncoderA = 14;
 	public static final int kFRWheelEncoderB = 15;
 	
 	public static final int kRRWheelEncoderA = 16;
-	public static final int kRRWheelEncoderB = 17;
+	public static final int kRRWheelEncoderB = 17;*/
 	
 	
 	// Joystick MAP

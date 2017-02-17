@@ -34,7 +34,7 @@ public class DriveDistance extends Command {
 	@Override
 	protected boolean isFinished() {
 		int myDistance = 0;
-		return (Math.abs(Robot.drive.getEncoderDistance()) >= Math.abs(myDistance));
+		return false; // (Math.abs(Robot.drive.getEncoderDistance()) >= Math.abs(myDistance));
 	}
 	
 	@Override
