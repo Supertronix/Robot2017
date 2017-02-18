@@ -13,14 +13,14 @@ public class RobotMap {
 	public static final boolean kRevertFRDrive = false;
 	public static final boolean kRevertRRDrive = false;
 	
-	public static final int kClimbDriveOut = 4;	
+	public static final int kClimbDriveOut = 12;	
 	public static final boolean kRevertClimbDrive = false;
 	
 	public static final int kIntakerDriveOut = 11;
-	public static final boolean kRevertIntakeDrive = true;
+	public static final boolean kRevertIntakeDrive = false;
 	
-	public static final int kLeftClampServoId = 8; // Servo 1
-	public static final int kRightClampServoId = 9; // Servo 2
+	public static final int kLeftClampServoId = 1; // Servo 1
+	public static final int kRightClampServoId = 0; // Servo 2
 	
 	public static final double kLeftClampClosedPos = 0.0;
 	public static final double kRightClampClosedPos = 0.0;
@@ -34,17 +34,17 @@ public class RobotMap {
 	public static final int kTurretTiltDriveId = 5;
 	
 	// Encoders
-	public static final int kFLWheelEncoderA = 0;
-	public static final int kFLWheelEncoderB = 1;
+	//public static final int kFLWheelEncoderA = 16;
+	//public static final int kFLWheelEncoderB = 17;
+	
+	public static final int kRRWheelEncoderA = 0;
+	public static final int kRRWheelEncoderB = 1;
 	
 	/*public static final int kRLWheelEncoderA = 12;
 	public static final int kRLWheelEncoderB = 13;
 	
 	public static final int kFRWheelEncoderA = 14;
-	public static final int kFRWheelEncoderB = 15;
-	
-	public static final int kRRWheelEncoderA = 16;
-	public static final int kRRWheelEncoderB = 17;*/
+	public static final int kFRWheelEncoderB = 15;*/
 	
 	
 	// Joystick MAP
@@ -67,6 +67,9 @@ public class RobotMap {
 	public static final int kClimberButton = 6;
 	public static final int kIntakeButton = 5;
 	public static final int kClampButton = 10;
+	
+	// Experimentations
+	public static final int kGyroResetButton = 1;
 
 }
 

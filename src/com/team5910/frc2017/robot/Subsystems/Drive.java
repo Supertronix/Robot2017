@@ -7,6 +7,7 @@ import com.team5910.frc2017.robot.Utils.Utilities;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drive extends Subsystem {
 	
@@ -20,7 +21,7 @@ public class Drive extends Subsystem {
 	VictorSP RRDrive; // Rear right
 	
 	ADXRS450_Supertronix gyro;
-	Encoder FLWheelEncoder;
+	Encoder RRWheelEncoder;
 	
 	private DriveControlState driveControlState_;
 	
@@ -36,7 +37,8 @@ public class Drive extends Subsystem {
 		 RRDrive.setInverted(RobotMap.kRevertRRDrive);
 			
 		 gyro = new ADXRS450_Supertronix();
-		 FLWheelEncoder = new Encoder(RobotMap.kFLWheelEncoderA, RobotMap.kFLWheelEncoderB);
+		 RRWheelEncoder = new Encoder(RobotMap.kRRWheelEncoderA, RobotMap.kRRWheelEncoderB);
+		 RRWheelEncoder.setDistancePerPulse(1);
 	 }
 	 
 	@Override
@@ -49,6 +51,7 @@ public class Drive extends Subsystem {
 		FRDrive.set(FRDriveSP);
 	    RLDrive.set(RLDriveSP);
 		RRDrive.set(RRDriveSP);
+		SmartDashboard.putNumber("EncoderValue", RRWheelEncoder.getDistance());
 		
 	}
 
@@ -68,11 +71,11 @@ public class Drive extends Subsystem {
 	}
 	
 	public void resetEncoders() {
-		FLWheelEncoder.reset();
+		RRWheelEncoder.reset();
 	}
 
 	public double getEncoderDistance() {
-		return FLWheelEncoder.getDistance();
+		return RRWheelEncoder.getDistance();
 	}
 
 	public void driveWithGyro(double Speed) {

@@ -93,8 +93,6 @@ public class Robot extends IterativeRobot
         
         drive.manualDrive(Utilities.clamp(x + y1, -1, 1), Utilities.clamp(y2 - x, -1, 1), Utilities.clamp(y1 - x, -1, 1), Utilities.clamp(x + y2, -1, 1));
         
-        //if (oi.getIntakeButton()) { superstructure.intakeButtonEnabled(); } else { superstructure.intakeButtonDisabled(); }         
-        if (oi.getClimberButton()) { superstructure.climberButtonEnabled(); } else { superstructure.climberButtonDisabled(); }
         if (oi.getClampButton()) { superstructure.clampButtonEnabled(); }
         	
 	}

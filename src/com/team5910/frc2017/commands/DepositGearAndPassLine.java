@@ -15,6 +15,7 @@ public DepositGearAndPassLine() {
 	addParallel(new SpinUpShooter()); // Pre-start the shooter so it take its full speed
 	addSequential(new DriveDistance(0.5, 5)); // Drive forward 5 feet speed 0.5
 	addSequential(new Shoot()); // Shoot
+	
 }
 
 }

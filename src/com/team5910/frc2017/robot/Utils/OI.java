@@ -1,5 +1,8 @@
 package com.team5910.frc2017.robot.Utils;
 
+import com.team5910.frc2017.commands.ClimbMotorStart;
+import com.team5910.frc2017.commands.ClimbMotorStop;
+import com.team5910.frc2017.commands.EncoderReset;
 import com.team5910.frc2017.commands.IntakeMotorStart;
 import com.team5910.frc2017.commands.IntakeMotorStop;
 import com.team5910.frc2017.robot.RobotMap;
@@ -19,6 +22,13 @@ public class OI {
     	JoystickButton intakerTrigger = new JoystickButton(mMainDriveStick, RobotMap.kIntakeButton);
     	intakerTrigger.whenPressed(new IntakeMotorStart());
     	intakerTrigger.whenReleased(new IntakeMotorStop());
+    	
+    	JoystickButton climberTrigger = new JoystickButton(mMainDriveStick, RobotMap.kClimberButton);
+    	climberTrigger.whenPressed(new ClimbMotorStart());
+    	climberTrigger.whenReleased(new ClimbMotorStop());
+    	
+    	JoystickButton gyroResetTrigger = new JoystickButton(mMainDriveStick, RobotMap.kGyroResetButton);
+    	gyroResetTrigger.whenPressed(new EncoderReset());
     }
     
  // DRIVER CONTROLS
