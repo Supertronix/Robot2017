@@ -1,4 +1,4 @@
-package com.team5910.frc2017.commands;
+package com.team5910.frc2017.commands.Shooter;
 
 import edu.wpi.first.wpilibj.command.Command;
 

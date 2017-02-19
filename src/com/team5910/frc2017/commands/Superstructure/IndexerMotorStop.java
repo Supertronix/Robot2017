@@ -1,19 +1,19 @@
-package com.team5910.frc2017.commands;
+package com.team5910.frc2017.commands.Superstructure;
 
 import com.team5910.frc2017.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class EncoderReset extends Command {
+public class IndexerMotorStop extends Command {
 
-	public EncoderReset() {
-		requires(Robot.drive);
+	public IndexerMotorStop() {
+		requires(Robot.superstructure.indexer);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.drive.resetEncoders();
+		 Robot.superstructure.indexer.stop();
 	}
 	 
 	@Override

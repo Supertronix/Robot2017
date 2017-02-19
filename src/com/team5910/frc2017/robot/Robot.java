@@ -2,6 +2,7 @@ package com.team5910.frc2017.robot;
 
 import java.io.IOException;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
@@ -93,8 +94,7 @@ public class Robot extends IterativeRobot
         
         drive.manualDrive(Utilities.clamp(x + y1, -1, 1), Utilities.clamp(y2 - x, -1, 1), Utilities.clamp(y1 - x, -1, 1), Utilities.clamp(x + y2, -1, 1));
         
-        if (oi.getClampButton()) { superstructure.clampButtonEnabled(); }
-        	
+        Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
 	}
 
 }

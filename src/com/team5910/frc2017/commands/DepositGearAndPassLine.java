@@ -2,6 +2,8 @@ package com.team5910.frc2017.commands;
 
 import com.team5910.frc2017.commands.Drive.DriveDistance;
 import com.team5910.frc2017.commands.Drive.LateralDriveDistance;
+import com.team5910.frc2017.commands.Shooter.ShooterMotorStart;
+import com.team5910.frc2017.commands.Shooter.SpinUpShooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
@@ -14,7 +16,7 @@ public DepositGearAndPassLine() {
 	addSequential(new LateralDriveDistance(0.5, 5)); // Righ lateral drive 5 feet speed 0.5 
 	addParallel(new SpinUpShooter()); // Pre-start the shooter so it take its full speed
 	addSequential(new DriveDistance(0.5, 5)); // Drive forward 5 feet speed 0.5
-	addSequential(new Shoot()); // Shoot
+	addSequential(new ShooterMotorStart()); // Shoot
 	
 }
 

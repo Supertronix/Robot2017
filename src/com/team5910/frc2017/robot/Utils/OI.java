@@ -1,10 +1,15 @@
 package com.team5910.frc2017.robot.Utils;
 
-import com.team5910.frc2017.commands.ClimbMotorStart;
-import com.team5910.frc2017.commands.ClimbMotorStop;
-import com.team5910.frc2017.commands.EncoderReset;
-import com.team5910.frc2017.commands.IntakeMotorStart;
-import com.team5910.frc2017.commands.IntakeMotorStop;
+import com.team5910.frc2017.commands.Drive.DriveEncoderReset;
+import com.team5910.frc2017.commands.Shooter.ShooterMotorStart;
+import com.team5910.frc2017.commands.Shooter.ShooterMotorStop;
+import com.team5910.frc2017.commands.Superstructure.ClimbMotorStart;
+import com.team5910.frc2017.commands.Superstructure.ClimbMotorStop;
+import com.team5910.frc2017.commands.Superstructure.IndexerMotorStart;
+import com.team5910.frc2017.commands.Superstructure.IndexerMotorStop;
+import com.team5910.frc2017.commands.Superstructure.IntakeMotorStart;
+import com.team5910.frc2017.commands.Superstructure.IntakeMotorStop;
+import com.team5910.frc2017.commands.Superstructure.ToggleClampState;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -19,6 +24,8 @@ public class OI {
     	mMainDriveStick = new Joystick(RobotMap.kMainDriveStickId);
     	mAccessoriesStick = new Joystick(RobotMap.mAccessoriesStickId);
     	
+    	
+    	// MAIN JOYSTICK
     	JoystickButton intakerTrigger = new JoystickButton(mMainDriveStick, RobotMap.kIntakeButton);
     	intakerTrigger.whenPressed(new IntakeMotorStart());
     	intakerTrigger.whenReleased(new IntakeMotorStop());
@@ -27,8 +34,21 @@ public class OI {
     	climberTrigger.whenPressed(new ClimbMotorStart());
     	climberTrigger.whenReleased(new ClimbMotorStop());
     	
+    	JoystickButton clampTrigger = new JoystickButton(mMainDriveStick, RobotMap.kClampButton);
+    	clampTrigger.whenPressed(new ToggleClampState());
+    	
     	JoystickButton gyroResetTrigger = new JoystickButton(mMainDriveStick, RobotMap.kGyroResetButton);
-    	gyroResetTrigger.whenPressed(new EncoderReset());
+    	gyroResetTrigger.whenPressed(new DriveEncoderReset());
+    	
+    	// ACCESSORIES JOYSTICK
+    	JoystickButton indexerTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kIndexerButton);
+    	indexerTrigger.whenPressed(new IndexerMotorStart());
+    	indexerTrigger.whenReleased(new IndexerMotorStop());    	
+    	
+    	JoystickButton shooterTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kShootButton);
+    	indexerTrigger.whenPressed(new ShooterMotorStart());
+    	indexerTrigger.whenReleased(new ShooterMotorStop());    	
+    	
     }
     
  // DRIVER CONTROLS
@@ -49,9 +69,9 @@ public class OI {
     }
     
 // ACCESSORIES
-    /*public boolean getIntakeButton() {
+    public boolean getIntakeButton() {
     	return mMainDriveStick.getRawButton(RobotMap.kIntakeButton);
-    }*/
+    }
     
     public boolean getClimberButton() {
     	return mMainDriveStick.getRawButton(RobotMap.kClimberButton);

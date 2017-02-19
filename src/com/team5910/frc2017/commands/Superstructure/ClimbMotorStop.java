@@ -1,19 +1,19 @@
-package com.team5910.frc2017.commands;
+package com.team5910.frc2017.commands.Superstructure;
 
 import com.team5910.frc2017.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeMotorStart extends Command {
+public class ClimbMotorStop extends Command {
 
-	public IntakeMotorStart() {
-		requires(Robot.superstructure.intaker);
+	public ClimbMotorStop() {
+		requires(Robot.superstructure.climber);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.intaker.intake();
+		 Robot.superstructure.climber.stop();
 	}
 	 
 	@Override

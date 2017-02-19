@@ -19,6 +19,9 @@ public class RobotMap {
 	public static final int kIntakerDriveOut = 11;
 	public static final boolean kRevertIntakeDrive = false;
 	
+	public static final int kIndexerDriveOut = 15;
+	public static final boolean kRevertIndexerDrive = false;
+	
 	public static final int kLeftClampServoId = 1; // Servo 1
 	public static final int kRightClampServoId = 0; // Servo 2
 	
@@ -67,6 +70,11 @@ public class RobotMap {
 	public static final int kClimberButton = 6;
 	public static final int kIntakeButton = 5;
 	public static final int kClampButton = 10;
+	
+	public static final int kIndexerButton = 0;
+	public static final int kTurretPanAxis = 2;
+	public static final int kTurretTiltAxis = 3;
+	public static final int kShootButton = 1;
 	
 	// Experimentations
 	public static final int kGyroResetButton = 1;

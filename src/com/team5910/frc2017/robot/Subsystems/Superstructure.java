@@ -20,16 +20,21 @@ public class Superstructure extends Subsystem {
     }
     
     public Turret turret;
+    public Shooter shooter;
     public Intaker intaker;
     public Climber climber;
     public Clamp clamp;
+    public Indexer indexer;
+
     
     public Superstructure()
     {
     	 turret = new Turret();
+    	 shooter = new Shooter();
     	 intaker = new Intaker();
     	 climber = new Climber();
     	 clamp = new Clamp();
+    	 indexer = new Indexer();
     }
     
 	@Override
@@ -37,11 +42,14 @@ public class Superstructure extends Subsystem {
 	}
 
 	public void stopAll() {
+		turret.stop();
+		shooter.stop();
+		intaker.stop();
 		climber.stop();
+		indexer.stop();
 	}
 	
 	public void zeroSensors() {
-		
 	}
 	
 	public void intakeButtonEnabled() {
