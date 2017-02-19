@@ -7,9 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 import com.team5910.frc2017.commands.DepositGearAndPassLine;
+import com.team5910.frc2017.commands.Turret.TurretSetState;
 import com.team5910.frc2017.robot.RaspCom.GRIPReceiver;
 import com.team5910.frc2017.robot.Subsystems.Drive;
 import com.team5910.frc2017.robot.Subsystems.Superstructure;
+import com.team5910.frc2017.robot.Subsystems.Turret;
 import com.team5910.frc2017.robot.Utils.OI;
 import com.team5910.frc2017.robot.Utils.USBCamStreamer;
 import com.team5910.frc2017.robot.Utils.Utilities;
@@ -66,6 +68,8 @@ public class Robot extends IterativeRobot
 	public void teleopInit() 
 	{
 		autonomousCommand.cancel();
+		new TurretSetState(Turret.SystemState.MANUAL_CONTROL);
+		Scheduler.getInstance().run();
 	}
 
 	@Override

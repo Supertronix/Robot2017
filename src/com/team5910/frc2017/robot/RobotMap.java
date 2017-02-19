@@ -3,24 +3,27 @@ package com.team5910.frc2017.robot;
 public class RobotMap {
 	
 	// PWM Outputs
-	public static final int kFLDriveOut = 10;
-	public static final int kRLDriveOut = 14;	
-	public static final int kFRDriveOut = 13;	
-	public static final int kRRDriveOut = 17;
+	public static final int kFLDriveOut = 10; // SP 1
+	public static final int kRLDriveOut = 14; // SP 2
+	public static final int kFRDriveOut = 13; // SP 3
+	public static final int kRRDriveOut = 17; // SP 4
 	
 	public static final boolean kRevertFLDrive = true;
 	public static final boolean kRevertRLDrive = true;
 	public static final boolean kRevertFRDrive = false;
 	public static final boolean kRevertRRDrive = false;
 	
-	public static final int kClimbDriveOut = 12;	
+	public static final int kClimbDriveOut = 12; // SP 5
 	public static final boolean kRevertClimbDrive = false;
 	
-	public static final int kIntakerDriveOut = 11;
+	public static final int kIntakerDriveOut = 11; // SP 6
 	public static final boolean kRevertIntakeDrive = false;
 	
-	public static final int kIndexerDriveOut = 15;
+	public static final int kIndexerDriveOut = 15; // SP 7
 	public static final boolean kRevertIndexerDrive = false;
+	
+	public static final int kIndexerShuffleDrive1Out = 16; // SP 8
+	public static final boolean kRevertIndexerShuffleDrive1 = false;
 	
 	public static final int kLeftClampServoId = 1; // Servo 1
 	public static final int kRightClampServoId = 0; // Servo 2
@@ -35,6 +38,9 @@ public class RobotMap {
 	public static final int ShooterDriveSlaveId = 1;
 	public static final int kTurretPanDriveId = 4;
 	public static final int kTurretTiltDriveId = 5;
+	
+	public static final int kIndexerShuffleDrive2Id = 6;
+	public static final boolean kRevertIndexerShuffleDrive2 = false;
 	
 	// Encoders
 	//public static final int kFLWheelEncoderA = 16;
@@ -76,8 +82,17 @@ public class RobotMap {
 	public static final int kTurretTiltAxis = 3;
 	public static final int kShootButton = 1;
 	
+	public static final int kTurretToggleAutoMan = 5;
+	
 	// Experimentations
 	public static final int kGyroResetButton = 1;
+	
+	// Turret Settings
+	public static final double kPanLowSPLimit = 0;
+	public static final double kPanHighSPLimit = 1024;
+	
+	public static final double kTiltLowSPLimit = 0;
+	public static final double kTiltHighSPLimit = 1024;
 
 }
 

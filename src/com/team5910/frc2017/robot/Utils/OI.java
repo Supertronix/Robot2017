@@ -10,9 +10,11 @@ import com.team5910.frc2017.commands.Superstructure.IndexerMotorStop;
 import com.team5910.frc2017.commands.Superstructure.IntakeMotorStart;
 import com.team5910.frc2017.commands.Superstructure.IntakeMotorStop;
 import com.team5910.frc2017.commands.Superstructure.ToggleClampState;
+import com.team5910.frc2017.commands.Turret.TurretToggleAutoMan;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.JoystickBase;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
@@ -46,9 +48,12 @@ public class OI {
     	indexerTrigger.whenReleased(new IndexerMotorStop());    	
     	
     	JoystickButton shooterTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kShootButton);
-    	indexerTrigger.whenPressed(new ShooterMotorStart());
-    	indexerTrigger.whenReleased(new ShooterMotorStop());    	
+    	shooterTrigger.whenPressed(new ShooterMotorStart());
+    	shooterTrigger.whenReleased(new ShooterMotorStop());    	
     	
+    	JoystickButton turretToggleModeTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kTurretToggleAutoMan);
+    	turretToggleModeTrigger.whenPressed(new TurretToggleAutoMan());    
+    
     }
     
  // DRIVER CONTROLS
