@@ -7,6 +7,7 @@ import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.Utils.Utilities;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Turret extends Subsystem {
@@ -35,13 +36,14 @@ public class Turret extends Subsystem {
 		actualState = SystemState.DISABLED;
 		
 		//TurretPanDrive.changeControlMode(CANTalon.TalonControlMode.Position);
-		//TurretPanDrive.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
-		//TurretPanDrive.setControlMode(0);
+		//TurretPanDrive.changeControlMode(CANTalon.TalonControlMode.
+		TurretPanDrive.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
+		TurretPanDrive.setControlMode(0);
 		//TurretPanDrive.enable();
 		
 		//TurretTiltDrive.changeControlMode(CANTalon.TalonControlMode.Position);
-		//TurretTiltDrive.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
-		//TurretTiltDrive.setControlMode(0);
+		TurretTiltDrive.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
+		TurretTiltDrive.setControlMode(0);
 		//TurretTiltDrive.enable();		
 		
 	}
@@ -103,10 +105,21 @@ public class Turret extends Subsystem {
 		actualState =  SystemState.DISABLED;
 		
 	}
+	
+	public void manualDrive(double aPanValue, double aTiltValue) {
+		TurretPanDrive.set(aPanValue);
+		TurretTiltDrive.set(aTiltValue);	
+	}
 
 	@Override
 	protected void initDefaultCommand() {
 		
+	}
+	
+	public void updateDashboard()
+	{
+		SmartDashboard.putNumber("tiltPot", TurretTiltDrive.getAnalogInPosition());
+		SmartDashboard.putNumber("panPot", TurretPanDrive.getAnalogInPosition());
 	}
 }
 

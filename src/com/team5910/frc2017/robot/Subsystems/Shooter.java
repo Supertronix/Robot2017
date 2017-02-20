@@ -4,6 +4,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.team5910.frc2017.robot.RobotMap;
+import com.team5910.frc2017.robot.Utils.Utilities;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -42,7 +43,19 @@ public class Shooter extends Subsystem {
 
 	public void stop() {
 		ShooterDriveMain.set(0);
+	}
+	public void toggle() {
+		if (ShooterDriveMain.get() > 0)
+			ShooterDriveMain.set(0);
+		else
+			ShooterDriveMain.set(shooterSpeed);
+	}
+	
+	public void incDecSpeed(double aChangeValue) {
+		shooterSpeed = Utilities.clamp(shooterSpeed + aChangeValue, 0.0, 1.0);
 		
+		if (ShooterDriveMain.get() > 0)
+			ShooterDriveMain.set(shooterSpeed);
 	}
 	
 }

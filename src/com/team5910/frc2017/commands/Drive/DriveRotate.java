@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriveDistance extends Command {
+public class DriveRotate extends Command {
 
-	double mWantedDistance;
+	double mWantedAngle;
 	
-	public DriveDistance(double distance) {
+	public DriveRotate(double angle) {
 		requires(Robot.drive);
-		mWantedDistance = distance; // Distance in feet
+		mWantedAngle = angle; // Distance in feet
 	}
 	
 
@@ -23,20 +23,19 @@ public class DriveDistance extends Command {
 		Robot.drive.resetEncoders();
 		Robot.drive.resetGyro();
 		Robot.drive.resetPIDS();
-		Robot.drive.setGyroPIDStandardValues();
-		Robot.drive.updateDistanceSetpoint(mWantedDistance);
-		Robot.drive.updateGyroSetpoint(0.0);
+		Robot.drive.setGyroPIDRotateValues();
+		Robot.drive.updateGyroSetpoint(-mWantedAngle); // Invert angle so positive is clockwise
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.drive.driveStraightWithGyro();
+		Robot.drive.rotateWithGyro();
 	}
 		
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.drivePIDDone();
+		return Robot.drive.gyroPIDDone();
 	}
 	
 	@Override

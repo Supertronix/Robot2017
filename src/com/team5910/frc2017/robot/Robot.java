@@ -55,13 +55,15 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{
-		//autonomousCommand.start();
+		drive.zeroSensors();
+		autonomousCommand.start();
 	}
 
 	@Override
 	public void autonomousPeriodic()
 	{
 		Scheduler.getInstance().run();
+		drive.updateDashboard();
 	}
 	
 	@Override
@@ -71,7 +73,8 @@ public class Robot extends IterativeRobot
 		new TurretSetState(Turret.SystemState.MANUAL_CONTROL);
 		Scheduler.getInstance().run();
 	}
-
+	
+	
 	@Override
 	public void teleopPeriodic() 
 	{
@@ -98,7 +101,34 @@ public class Robot extends IterativeRobot
         
         drive.manualDrive(Utilities.clamp(x + y1, -1, 1), Utilities.clamp(y2 - x, -1, 1), Utilities.clamp(y1 - x, -1, 1), Utilities.clamp(x + y2, -1, 1));
         
+        double pan = 0.0;
+        double tilt = 0.0;
+     
+        if (Math.abs(oi.getPanAxis()) > .2)
+            pan = oi.getPanAxis();
+        
+        if (Math.abs(oi.getTiltAxis()) > .2)
+            tilt = oi.getTiltAxis();
+        
+        superstructure.turret.manualDrive(pan, tilt);
+        superstructure.turret.updateDashboard();
+        
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
+	}
+	
+	@Override
+	public void disabledInit() 
+	{	
+	}
+	
+	@Override
+	public void disabledPeriodic() 
+	{	
+	}
+	
+	@Override
+	public void robotPeriodic() 
+	{	
 	}
 
 }

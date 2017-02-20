@@ -7,14 +7,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class LateralDriveDistance extends Command {
 
-	double mSpeed;
-	double mDistance;
+	double mWantedDistance;
 
-	
-	public LateralDriveDistance(double speed, double distance) {
-		mSpeed = speed;
-		mDistance = distance; // Distance in feet
+	public LateralDriveDistance(double distance) {
 		requires(Robot.drive);
+		mWantedDistance = distance; // Distance in feet
 	}
 	
 
@@ -22,24 +19,26 @@ public class LateralDriveDistance extends Command {
 	protected void initialize() {
 		Robot.drive.resetEncoders();
 		Robot.drive.resetGyro();
+		Robot.drive.resetPIDS();
+		Robot.drive.reverseEncoder();
+		Robot.drive.updateDistanceSetpoint(mWantedDistance);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		SmartDashboard.putNumber("Encoder Distance", Robot.drive.getEncoderDistance());
-		Robot.drive.driveWithGyro(mSpeed);
+		Robot.drive.driveLateralWithGyro();
 	}
 		
 	@Override
 	protected boolean isFinished() {
-		int myDistance = 0;
-		return (Math.abs(Robot.drive.getEncoderDistance()) >= Math.abs(myDistance));
+		return Robot.drive.drivePIDDone();
 	}
 	
 	@Override
 	protected void end() {
 		Robot.drive.stop();
+		Robot.drive.undoReverseEncoder();
 	}
 
 }

@@ -1,14 +1,18 @@
 package com.team5910.frc2017.robot.Utils;
 
 import com.team5910.frc2017.commands.Drive.DriveEncoderReset;
+import com.team5910.frc2017.commands.Shooter.ShooterMotorSpeedIncDec;
 import com.team5910.frc2017.commands.Shooter.ShooterMotorStart;
 import com.team5910.frc2017.commands.Shooter.ShooterMotorStop;
+import com.team5910.frc2017.commands.Shooter.ShooterMotorToggle;
 import com.team5910.frc2017.commands.Superstructure.ClimbMotorStart;
 import com.team5910.frc2017.commands.Superstructure.ClimbMotorStop;
 import com.team5910.frc2017.commands.Superstructure.IndexerMotorStart;
 import com.team5910.frc2017.commands.Superstructure.IndexerMotorStop;
 import com.team5910.frc2017.commands.Superstructure.IntakeMotorStart;
 import com.team5910.frc2017.commands.Superstructure.IntakeMotorStop;
+import com.team5910.frc2017.commands.Superstructure.ShufflerMotorStart;
+import com.team5910.frc2017.commands.Superstructure.ShufflerMotorStop;
 import com.team5910.frc2017.commands.Superstructure.ToggleClampState;
 import com.team5910.frc2017.commands.Turret.TurretToggleAutoMan;
 import com.team5910.frc2017.robot.RobotMap;
@@ -30,7 +34,9 @@ public class OI {
     	// MAIN JOYSTICK
     	JoystickButton intakerTrigger = new JoystickButton(mMainDriveStick, RobotMap.kIntakeButton);
     	intakerTrigger.whenPressed(new IntakeMotorStart());
+    	intakerTrigger.whenPressed(new ShufflerMotorStart());
     	intakerTrigger.whenReleased(new IntakeMotorStop());
+    	intakerTrigger.whenReleased(new ShufflerMotorStop());
     	
     	JoystickButton climberTrigger = new JoystickButton(mMainDriveStick, RobotMap.kClimberButton);
     	climberTrigger.whenPressed(new ClimbMotorStart());
@@ -45,14 +51,23 @@ public class OI {
     	// ACCESSORIES JOYSTICK
     	JoystickButton indexerTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kIndexerButton);
     	indexerTrigger.whenPressed(new IndexerMotorStart());
+    	indexerTrigger.whenPressed(new ShufflerMotorStart());
+    	
     	indexerTrigger.whenReleased(new IndexerMotorStop());    	
+    	indexerTrigger.whenReleased(new ShufflerMotorStop());
     	
     	JoystickButton shooterTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kShootButton);
     	shooterTrigger.whenPressed(new ShooterMotorStart());
-    	shooterTrigger.whenReleased(new ShooterMotorStop());    	
+    	shooterTrigger.whenReleased(new ShooterMotorStop());    
     	
-    	JoystickButton turretToggleModeTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kTurretToggleAutoMan);
-    	turretToggleModeTrigger.whenPressed(new TurretToggleAutoMan());    
+    	JoystickButton shooterSpeedInc = new JoystickButton(mAccessoriesStick, RobotMap.kShooterSpeedIncButton);
+    	shooterSpeedInc.whenPressed(new ShooterMotorSpeedIncDec(RobotMap.kShooterSpeedIncDecValue));
+    	
+    	JoystickButton shooterSpeedDec = new JoystickButton(mAccessoriesStick, RobotMap.kShooterSpeedDecButton);
+    	shooterSpeedDec.whenPressed(new ShooterMotorSpeedIncDec(-RobotMap.kShooterSpeedIncDecValue));
+
+    	/*JoystickButton turretToggleModeTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kTurretToggleAutoMan);
+    	turretToggleModeTrigger.whenPressed(new TurretToggleAutoMan()); */   
     
     }
     
@@ -84,6 +99,12 @@ public class OI {
     
     public boolean getClampButton() {
     	return mMainDriveStick.getRawButton(RobotMap.kClampButton);
+    }
+    public double getPanAxis() {
+        return RobotMap.kRevertTurretPanAxis ? -mAccessoriesStick.getRawAxis(RobotMap.kTurretPanAxis): mAccessoriesStick.getRawAxis(RobotMap.kTurretPanAxis);
+    }
+    public double getTiltAxis() {
+        return RobotMap.kRevertTurretTiltAxis ? -mAccessoriesStick.getRawAxis(RobotMap.kTurretTiltAxis): mAccessoriesStick.getRawAxis(RobotMap.kTurretTiltAxis);
     }
     
 }

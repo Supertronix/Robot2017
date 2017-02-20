@@ -20,10 +20,10 @@ public class RobotMap {
 	public static final boolean kRevertIntakeDrive = false;
 	
 	public static final int kIndexerDriveOut = 15; // SP 7
-	public static final boolean kRevertIndexerDrive = false;
+	public static final boolean kRevertIndexerDrive = true;
 	
-	public static final int kIndexerShuffleDrive1Out = 16; // SP 8
-	public static final boolean kRevertIndexerShuffleDrive1 = false;
+	public static final int kIndexerShuffleLeftDriveOut = 16; // SP 8
+	public static final boolean kRevertIndexerShuffleLeftDrive = false;
 	
 	public static final int kLeftClampServoId = 1; // Servo 1
 	public static final int kRightClampServoId = 0; // Servo 2
@@ -34,13 +34,13 @@ public class RobotMap {
 	public static final double kRightClampOpenPos = 1.0;
 	
 	// CAN Bus
-	public static final int kShooterDriveMainId = 0;
-	public static final int ShooterDriveSlaveId = 1;
-	public static final int kTurretPanDriveId = 4;
-	public static final int kTurretTiltDriveId = 5;
+	public static final int kShooterDriveMainId = 3;
+	public static final int ShooterDriveSlaveId = 0;
+	public static final int kTurretPanDriveId = 2;
+	public static final int kTurretTiltDriveId = 1;
 	
-	public static final int kIndexerShuffleDrive2Id = 6;
-	public static final boolean kRevertIndexerShuffleDrive2 = false;
+	public static final int kIndexerShuffleRightDriveId = 4;
+	public static final boolean kRevertIndexerShuffleRightDrive = true;
 	
 	// Encoders
 	//public static final int kFLWheelEncoderA = 16;
@@ -48,6 +48,8 @@ public class RobotMap {
 	
 	public static final int kRRWheelEncoderA = 0;
 	public static final int kRRWheelEncoderB = 1;
+	
+	public static final boolean kRevertRRWheelEncoder = true;
 	
 	/*public static final int kRLWheelEncoderA = 12;
 	public static final int kRLWheelEncoderB = 13;
@@ -77,12 +79,20 @@ public class RobotMap {
 	public static final int kIntakeButton = 5;
 	public static final int kClampButton = 10;
 	
-	public static final int kIndexerButton = 0;
+	public static final int kIndexerButton = 1;
 	public static final int kTurretPanAxis = 2;
-	public static final int kTurretTiltAxis = 3;
-	public static final int kShootButton = 1;
+	public static final boolean kRevertTurretPanAxis = false;
+	
+	public static final int kTurretTiltAxis = 1;
+	public static final boolean kRevertTurretTiltAxis = false;
+	public static final int kShootButton = 2;
 	
 	public static final int kTurretToggleAutoMan = 5;
+	
+	public static final int kShooterSpeedDecButton = 11;
+	public static final int kShooterSpeedIncButton = 12;
+	
+	public static final double kShooterSpeedIncDecValue = 0.1;
 	
 	// Experimentations
 	public static final int kGyroResetButton = 1;
@@ -93,6 +103,17 @@ public class RobotMap {
 	
 	public static final double kTiltLowSPLimit = 0;
 	public static final double kTiltHighSPLimit = 1024;
+	
+	// DRIVE AUTO PID
+	public static final double kGyroKp = 0.03;
+	public static final double kGyroKi = 0.0;
+	
+	public static final double kGyroFullRotateKp = 0.0005; // + haut = plus aggressif
+	public static final double kGyroFullRotateKi = 0.000085; // + bas = plus aggressif
+	
+	public static final double kDistanceKp = 0.11;
+	public static final double kDistanceKi = 0.00045;
+
 
 }
 

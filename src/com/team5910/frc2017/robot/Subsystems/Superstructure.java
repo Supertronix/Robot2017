@@ -10,7 +10,7 @@ public class Superstructure extends Subsystem {
     public Climber climber;
     public Clamp clamp;
     public Indexer indexer;
-
+    public Shuffler shuffler;
     
     public Superstructure()
     {
@@ -20,6 +20,7 @@ public class Superstructure extends Subsystem {
     	 climber = new Climber();
     	 clamp = new Clamp();
     	 indexer = new Indexer();
+    	 shuffler = new Shuffler();
     }
     
 	@Override

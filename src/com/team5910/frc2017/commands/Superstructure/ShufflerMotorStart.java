@@ -4,17 +4,16 @@ import com.team5910.frc2017.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IntakeMotorStart extends Command {
+public class ShufflerMotorStart extends Command {
 
-	public IntakeMotorStart() {
-		requires(Robot.superstructure.intaker);
+	public ShufflerMotorStart() {
+		requires(Robot.superstructure.shuffler);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.intaker.intake();
-		 new ShufflerMotorStart();
+		 Robot.superstructure.shuffler.shuffle();
 	}
 	 
 	@Override

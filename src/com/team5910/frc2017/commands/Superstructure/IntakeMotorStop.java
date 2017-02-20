@@ -14,6 +14,7 @@ public class IntakeMotorStop extends Command {
 	 @Override
 	protected void initialize() {
 		 Robot.superstructure.intaker.stop();
+		 new ShufflerMotorStop();
 	}
 	 
 	@Override
