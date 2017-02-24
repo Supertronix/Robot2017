@@ -46,10 +46,11 @@ public interface RobotMap {
 	//public static final int kFLWheelEncoderA = 16;
 	//public static final int kFLWheelEncoderB = 17;
 	
-	public static final int kRRWheelEncoderA = 0;
-	public static final int kRRWheelEncoderB = 1;
+	public static final int ROUE_ENCODEUR_A = 0;
+	public static final int ROUE_ENCODEUR_B = 1;
 	
-	public static final boolean kRevertRRWheelEncoder = true;
+	public static final boolean INVERSION_ROUE_ENCODEUR = true;
+	public static final float ENCODEUR_ROUE_DISTANCE_PULSION = 0.0085f;
 	
 	/*public static final int kRLWheelEncoderA = 12;
 	public static final int kRLWheelEncoderB = 13;
@@ -105,14 +106,15 @@ public interface RobotMap {
 	public static final double kTiltHighSPLimit = 1024;
 	
 	// DRIVE AUTO PID
-	public static final double kGyroKp = 0.03;
-	public static final double kGyroKi = 0.0;
+	public static final double GYRO_KP = 0.03;
+	public static final double GYRO_KI = 0.0;
 	
-	public static final double kGyroFullRotateKp = 0.0005; // + haut = plus aggressif
-	public static final double kGyroFullRotateKi = 0.000085; // + bas = plus aggressif
+	public static final double GYRO_KP_AGRESSIF = 0.0005; // + haut = plus aggressif
+	public static final double GYRO_KI_AGRESSIF = 0.000085; // + bas = plus aggressif
 	
-	public static final double kDistanceKp = 0.11;
-	public static final double kDistanceKi = 0.00045;
+	public static final double DISTANCE_KP = 0.11;
+	public static final double DISTANCE_KI = 0.00045;
+	public static final float DISTANCE_TOLERANCE = 0.083f;
 
 
 }

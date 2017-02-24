@@ -24,7 +24,7 @@ public class Drive extends Subsystem {
 	VictorSP roueArriereDroite; // Rear right
 	
 	ADXRS450_Supertronix gyro;
-	Encoder RRWheelEncoder;
+	Encoder encodeurRoues;
 	
 	PIDController pidGyro;
 	CustomPIDOutput gyroPIDOut;
@@ -45,21 +45,22 @@ public class Drive extends Subsystem {
 		 roueAvantDroite.setInverted(RobotMap.INVERSION_DRIVE_AVANT_DROIT);
 		 roueArriereDroite.setInverted(RobotMap.INVERSION_DRIVE_ARRIERE_DROIT);
 			
-		 RRWheelEncoder = new Encoder(RobotMap.kRRWheelEncoderA, RobotMap.kRRWheelEncoderB);
-		 RRWheelEncoder.setReverseDirection(RobotMap.kRevertRRWheelEncoder);
-		 RRWheelEncoder.setDistancePerPulse(0.0085);
-		 RRWheelEncoder.setPIDSourceType(PIDSourceType.kDisplacement);
+		 encodeurRoues = new Encoder(RobotMap.ROUE_ENCODEUR_A, RobotMap.ROUE_ENCODEUR_B);
+		 encodeurRoues.setReverseDirection(RobotMap.INVERSION_ROUE_ENCODEUR);
+		 encodeurRoues.setDistancePerPulse(RobotMap.ENCODEUR_ROUE_DISTANCE_PULSION);
+		 encodeurRoues.setPIDSourceType(PIDSourceType.kDisplacement);
+		 
 		 distancePIDOut = new CustomPIDOutput();
-		 pidDistance = new PIDController(RobotMap.kDistanceKp, RobotMap.kDistanceKi, 0, RRWheelEncoder, distancePIDOut);
+		 pidDistance = new PIDController(RobotMap.DISTANCE_KP, RobotMap.DISTANCE_KI, 0, encodeurRoues, distancePIDOut);
 		 pidDistance.setSetpoint(0);
-		 pidDistance.setAbsoluteTolerance(0.083);
+		 pidDistance.setAbsoluteTolerance(RobotMap.DISTANCE_TOLERANCE);
 		 pidDistance.enable();
 
 		 gyro = new ADXRS450_Supertronix();
 		 gyro.setPIDSourceType(PIDSourceType.kDisplacement);
 		 gyroPIDOut = new CustomPIDOutput();
 		 
-		 pidGyro = new PIDController(-RobotMap.kGyroKp, RobotMap.kGyroFullRotateKi, 0, gyro, gyroPIDOut);
+		 pidGyro = new PIDController(-RobotMap.GYRO_KP, RobotMap.GYRO_KI_AGRESSIF, 0, gyro, gyroPIDOut);
 		 pidGyro.setSetpoint(0.0f);
 		 pidGyro.setAbsoluteTolerance(3);
 		 pidGyro.enable();
@@ -87,7 +88,7 @@ public class Drive extends Subsystem {
 	
 	public void zeroSensors() {
 		gyro.reset();
-		RRWheelEncoder.reset();
+		encodeurRoues.reset();
 	}
 	
 	public void resetGyro() {
@@ -99,7 +100,7 @@ public class Drive extends Subsystem {
 	}
 	
 	public void resetEncoders() {
-		RRWheelEncoder.reset();
+		encodeurRoues.reset();
 	}
 
 	public void resetPIDS() {
@@ -110,7 +111,7 @@ public class Drive extends Subsystem {
 	}
 
 	public double getEncoderDistance() {
-		return RRWheelEncoder.getDistance();
+		return encodeurRoues.getDistance();
 	}
 
 	public void driveStraightWithGyro() {
@@ -148,11 +149,11 @@ public class Drive extends Subsystem {
 	}
 	
 	public void reverseEncoder() {
-		 RRWheelEncoder.setReverseDirection(!RobotMap.kRevertRRWheelEncoder);
+		 encodeurRoues.setReverseDirection(!RobotMap.INVERSION_ROUE_ENCODEUR);
 	}
 	
 	public void undoReverseEncoder() {
-		 RRWheelEncoder.setReverseDirection(RobotMap.kRevertRRWheelEncoder);
+		 encodeurRoues.setReverseDirection(RobotMap.INVERSION_ROUE_ENCODEUR);
 	}
 	
 	public boolean drivePIDDone()
@@ -166,17 +167,17 @@ public class Drive extends Subsystem {
 	
 	public void setGyroPIDStandardValues()
 	{
-		pidGyro.setPID(-RobotMap.kGyroKp, RobotMap.kGyroKi, 0);
+		pidGyro.setPID(-RobotMap.GYRO_KP, RobotMap.GYRO_KI, 0);
 	}
 	
 	public void setGyroPIDRotateValues()
 	{
-		pidGyro.setPID(RobotMap.kGyroFullRotateKp, RobotMap.kGyroFullRotateKi, 0);
+		pidGyro.setPID(RobotMap.GYRO_KP_AGRESSIF, RobotMap.GYRO_KI_AGRESSIF, 0);
 	}
 	
 	public void updateDashboard()
 	{
-		SmartDashboard.putNumber("Encoder distance", RRWheelEncoder.getDistance());
+		SmartDashboard.putNumber("Encoder distance", encodeurRoues.getDistance());
 		SmartDashboard.putNumber("Gyro", gyro.getAngle());
 		
 		SmartDashboard.putNumber("Gyro PID", gyroPIDOut.getPIDOut());
