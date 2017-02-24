@@ -18,10 +18,10 @@ public class Drive extends Subsystem {
         OPEN_LOOP, PATH_FOLLOWING_CONTROL
     }
     
-    VictorSP FLDrive; // Front left
-	VictorSP RLDrive; // Rear Left
-	VictorSP FRDrive; // Front right
-	VictorSP RRDrive; // Rear right
+    VictorSP roueAvantGauche; // Front left
+	VictorSP roueArriereGauche; // Rear Left
+	VictorSP roueAvantDroite; // Front right
+	VictorSP roueArriereDroite; // Rear right
 	
 	ADXRS450_Supertronix gyro;
 	Encoder RRWheelEncoder;
@@ -35,17 +35,16 @@ public class Drive extends Subsystem {
 	private DriveControlState driveControlState_;
 	
 	public Drive() {
-		 FLDrive = new VictorSP(RobotMap.kFLDriveOut);
-		 RLDrive = new VictorSP(RobotMap.kRLDriveOut);
-		 FRDrive = new VictorSP(RobotMap.kFRDriveOut);
-		 RRDrive = new VictorSP(RobotMap.kRRDriveOut);
+		 roueAvantGauche = new VictorSP(RobotMap.DRIVE_AVANT_GAUCHE);
+		 roueArriereGauche = new VictorSP(RobotMap.DRIVE_ARRIERE_GAUCHE);
+		 roueAvantDroite = new VictorSP(RobotMap.DRIVE_AVANT_DROIT);
+		 roueArriereDroite = new VictorSP(RobotMap.DRIVE_ARRIERE_DROIT);
 		 	
-		 FLDrive.setInverted(RobotMap.kRevertFLDrive); // TRUE
-		 RLDrive.setInverted(RobotMap.kRevertRLDrive); // TRUE
-		 FRDrive.setInverted(RobotMap.kRevertFRDrive);
-		 RRDrive.setInverted(RobotMap.kRevertRRDrive);
+		 roueAvantGauche.setInverted(RobotMap.kRevertFLDrive); // TRUE
+		 roueArriereGauche.setInverted(RobotMap.kRevertRLDrive); // TRUE
+		 roueAvantDroite.setInverted(RobotMap.kRevertFRDrive);
+		 roueArriereDroite.setInverted(RobotMap.kRevertRRDrive);
 			
-		 
 		 RRWheelEncoder = new Encoder(RobotMap.kRRWheelEncoderA, RobotMap.kRRWheelEncoderB);
 		 RRWheelEncoder.setReverseDirection(RobotMap.kRevertRRWheelEncoder);
 		 RRWheelEncoder.setDistancePerPulse(0.0085);
@@ -73,17 +72,17 @@ public class Drive extends Subsystem {
 	}
 	
 	public void manualDrive(double FLDriveSP, double FRDriveSP, double RLDriveSP, double RRDriveSP) {
-		FLDrive.set(FLDriveSP);
-		FRDrive.set(FRDriveSP);
-	    RLDrive.set(RLDriveSP);
-		RRDrive.set(RRDriveSP);		
+		roueAvantGauche.set(FLDriveSP);
+		roueAvantDroite.set(FRDriveSP);
+	    roueArriereGauche.set(RLDriveSP);
+		roueArriereDroite.set(RRDriveSP);		
 	}
 
-	public void stop() {
-		FLDrive.set(0);
-		FRDrive.set(0);
-	    RLDrive.set(0);
-		RRDrive.set(0);
+	public void arreter() {
+		roueAvantGauche.set(0);
+		roueAvantDroite.set(0);
+	    roueArriereGauche.set(0);
+		roueArriereDroite.set(0);
 	}
 	
 	public void zeroSensors() {
@@ -120,24 +119,24 @@ public class Drive extends Subsystem {
 	    RLDrive.set(distancePIDOut.getPIDOut() +  gyroPIDOut.getPIDOut());
 		RRDrive.set(distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());*/
 		
-		FLDrive.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  + gyroPIDOut.getPIDOut());
-		FRDrive.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   - gyroPIDOut.getPIDOut());
-	    RLDrive.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   +  gyroPIDOut.getPIDOut());
-		RRDrive.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  - gyroPIDOut.getPIDOut());
+		roueAvantGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  + gyroPIDOut.getPIDOut());
+		roueAvantDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   - gyroPIDOut.getPIDOut());
+	    roueArriereGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   +  gyroPIDOut.getPIDOut());
+		roueArriereDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  - gyroPIDOut.getPIDOut());
 	}
 	
 	public void driveLateralWithGyro() {
-		FLDrive.set(-distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());
-		FRDrive.set(distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());
-	    RLDrive.set(distancePIDOut.getPIDOut() +  gyroPIDOut.getPIDOut());
-		RRDrive.set(-distancePIDOut.getPIDOut() + gyroPIDOut.getPIDOut());
+		roueAvantGauche.set(-distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());
+		roueAvantDroite.set(distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());
+	    roueArriereGauche.set(distancePIDOut.getPIDOut() +  gyroPIDOut.getPIDOut());
+		roueArriereDroite.set(-distancePIDOut.getPIDOut() + gyroPIDOut.getPIDOut());
 	}
 	
 	public void rotateWithGyro() {
-		FLDrive.set(-gyroPIDOut.getPIDOut());
-		FRDrive.set(gyroPIDOut.getPIDOut());
-	    RLDrive.set(-gyroPIDOut.getPIDOut());
-		RRDrive.set(gyroPIDOut.getPIDOut());
+		roueAvantGauche.set(-gyroPIDOut.getPIDOut());
+		roueAvantDroite.set(gyroPIDOut.getPIDOut());
+	    roueArriereGauche.set(-gyroPIDOut.getPIDOut());
+		roueArriereDroite.set(gyroPIDOut.getPIDOut());
 	}
 	
 	public void updateDistanceSetpoint(double setPoint) {

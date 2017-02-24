@@ -28,7 +28,7 @@ public class Robot extends IterativeRobot
 	//public static double lastCommandReceived = 0.0f;
 	
 	public void stopAll() {
-        drive.stop();
+        drive.arreter();
         superstructure.stopAll();
     }
 	

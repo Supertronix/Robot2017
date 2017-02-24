@@ -37,7 +37,7 @@ public class LateralDriveDistance extends Command {
 	
 	@Override
 	protected void end() {
-		Robot.drive.stop();
+		Robot.drive.arreter();
 		Robot.drive.undoReverseEncoder();
 	}
 

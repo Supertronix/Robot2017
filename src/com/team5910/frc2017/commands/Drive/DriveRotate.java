@@ -40,7 +40,7 @@ public class DriveRotate extends Command {
 	
 	@Override
 	protected void end() {
-		Robot.drive.stop();
+		Robot.drive.arreter();
 	}
 
 }

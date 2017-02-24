@@ -1,12 +1,12 @@
 package com.team5910.frc2017.robot;
 
-public class RobotMap {
+public interface RobotMap {
 	
 	// PWM Outputs
-	public static final int kFLDriveOut = 10; // SP 1
-	public static final int kRLDriveOut = 14; // SP 2
-	public static final int kFRDriveOut = 13; // SP 3
-	public static final int kRRDriveOut = 17; // SP 4
+	public static final int DRIVE_AVANT_GAUCHE = 10; // SP 1
+	public static final int DRIVE_ARRIERE_GAUCHE = 14; // SP 2
+	public static final int DRIVE_AVANT_DROIT= 13; // SP 3
+	public static final int DRIVE_ARRIERE_DROIT = 17; // SP 4
 	
 	public static final boolean kRevertFLDrive = true;
 	public static final boolean kRevertRLDrive = true;
