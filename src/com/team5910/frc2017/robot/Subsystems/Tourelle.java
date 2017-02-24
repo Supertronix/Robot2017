@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
-public class Turret extends Subsystem {
+public class Tourelle extends Subsystem {
 	
 	public enum SystemState {
         DISABLED,
@@ -32,7 +32,7 @@ public class Turret extends Subsystem {
 	double panSP = 0.0;
 	double tiltSP = 0.0;
 
-	Turret() {
+	Tourelle() {
 		actualState = SystemState.DISABLED;
 		
 		//TurretPanDrive.changeControlMode(CANTalon.TalonControlMode.Position);

@@ -6,11 +6,11 @@ import com.team5910.frc2017.robot.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Indexer extends Subsystem {
+public class Indexeur extends Subsystem {
 	
 	VictorSP IndexerDrive;
     
-	Indexer() {
+	Indexeur() {
 		IndexerDrive = new VictorSP(RobotMap.kIndexerDriveOut);
 		IndexerDrive.setInverted(RobotMap.kRevertIndexerDrive);		
 	}

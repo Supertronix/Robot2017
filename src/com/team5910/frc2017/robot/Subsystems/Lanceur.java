@@ -9,14 +9,14 @@ import com.team5910.frc2017.robot.Utils.Utilities;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
-public class Shooter extends Subsystem {
+public class Lanceur extends Subsystem {
 	
 	CANTalon ShooterDriveMain = new CANTalon(RobotMap.kShooterDriveMainId);
 	CANTalon ShooterDriveSlave = new CANTalon(RobotMap.ShooterDriveSlaveId);
 	
 	double shooterSpeed = 1.0;
 	
-	Shooter() {
+	Lanceur() {
 		ShooterDriveSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		ShooterDriveSlave.set(ShooterDriveMain.getDeviceID());
 		

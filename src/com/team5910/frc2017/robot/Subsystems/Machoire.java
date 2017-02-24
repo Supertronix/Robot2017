@@ -6,7 +6,7 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Clamp extends Subsystem {
+public class Machoire extends Subsystem {
 	
 	Servo LeftClampServo;
 	Servo RightClampServo;
@@ -19,7 +19,7 @@ public class Clamp extends Subsystem {
     
     ClampState clampState;
     
-	Clamp() {
+	Machoire() {
 		LeftClampServo = new Servo(RobotMap.kLeftClampServoId);
 		RightClampServo = new Servo(RobotMap.kRightClampServoId);
 		clampState = ClampState.CLOSED;

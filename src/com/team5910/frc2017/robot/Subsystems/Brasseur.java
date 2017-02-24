@@ -6,7 +6,7 @@ import com.team5910.frc2017.robot.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Shuffler extends Subsystem {
+public class Brasseur extends Subsystem {
 	
 	VictorSP IndexerShuffleDrive1;
 	CANTalon IndexerShuffleDrive2;
@@ -14,7 +14,7 @@ public class Shuffler extends Subsystem {
 	boolean reverseEachTime = true;
 	boolean lastClockwise = true;
     
-	Shuffler() {
+	Brasseur() {
 		IndexerShuffleDrive1 = new VictorSP(RobotMap.kIndexerShuffleLeftDriveOut);
 		IndexerShuffleDrive1.setInverted(RobotMap.kRevertIndexerShuffleLeftDrive);
 		

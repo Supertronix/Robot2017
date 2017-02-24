@@ -4,23 +4,23 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Superstructure extends Subsystem {
 	    
-    public Turret turret;
-    public Shooter shooter;
+    public Tourelle turret;
+    public Lanceur shooter;
     public Intaker intaker;
-    public Climber climber;
-    public Clamp clamp;
-    public Indexer indexer;
-    public Shuffler shuffler;
+    public Grimpeur climber;
+    public Machoire clamp;
+    public Indexeur indexer;
+    public Brasseur shuffler;
     
     public Superstructure()
     {
-    	 turret = new Turret();
-    	 shooter = new Shooter();
+    	 turret = new Tourelle();
+    	 shooter = new Lanceur();
     	 intaker = new Intaker();
-    	 climber = new Climber();
-    	 clamp = new Clamp();
-    	 indexer = new Indexer();
-    	 shuffler = new Shuffler();
+    	 climber = new Grimpeur();
+    	 clamp = new Machoire();
+    	 indexer = new Indexeur();
+    	 shuffler = new Brasseur();
     }
     
 	@Override

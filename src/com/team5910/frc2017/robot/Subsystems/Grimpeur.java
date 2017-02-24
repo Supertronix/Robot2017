@@ -5,11 +5,11 @@ import com.team5910.frc2017.robot.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Climber extends Subsystem {
+public class Grimpeur extends Subsystem {
 	
 	VictorSP Climbdrive;
     
-	Climber() {
+	Grimpeur() {
 		Climbdrive = new VictorSP(RobotMap.kClimbDriveOut);
 	}
 	
