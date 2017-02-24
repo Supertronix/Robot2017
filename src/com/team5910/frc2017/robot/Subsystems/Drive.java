@@ -18,6 +18,8 @@ public class Drive extends Subsystem {
         OPEN_LOOP, PATH_FOLLOWING_CONTROL
     }
     
+    // SP pour Speed Controller
+    // http://wpilib.screenstepslive.com/s/4485/m/13809/l/599702-driving-motors-with-speed-controller-objects-victors-talons-and-jaguars 
     VictorSP roueAvantGauche; // Front left
 	VictorSP roueArriereGauche; // Rear Left
 	VictorSP roueAvantDroite; // Front right
@@ -71,12 +73,15 @@ public class Drive extends Subsystem {
 	protected void initDefaultCommand() {
 		
 	}
-	
-	public void manualDrive(double FLDriveSP, double FRDriveSP, double RLDriveSP, double RRDriveSP) {
-		roueAvantGauche.set(FLDriveSP);
-		roueAvantDroite.set(FRDriveSP);
-	    roueArriereGauche.set(RLDriveSP);
-		roueArriereDroite.set(RRDriveSP);		
+
+	public void manualDrive(double vitesseAvantGauche, double vitesseAvantDroite, double vitesseArriereGauche, double vitesseArriereDroite) {
+		// PWMSpeedController.set 
+		// https://team2168.org/javadoc/edu/wpi/first/wpilibj/PWMSpeedController.html
+		// The PWM value is set using a range of -1.0 to 1.0, appropriately scaling the value for the FPGA
+		roueAvantGauche.set(vitesseAvantGauche);
+		roueAvantDroite.set(vitesseAvantDroite);
+	    roueArriereGauche.set(vitesseArriereGauche);
+		roueArriereDroite.set(vitesseArriereDroite);
 	}
 
 	public void arreter() {
