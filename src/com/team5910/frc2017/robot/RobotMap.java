@@ -8,10 +8,10 @@ public interface RobotMap {
 	public static final int DRIVE_AVANT_DROIT= 13; // SP 3
 	public static final int DRIVE_ARRIERE_DROIT = 17; // SP 4
 	
-	public static final boolean kRevertFLDrive = true;
-	public static final boolean kRevertRLDrive = true;
-	public static final boolean kRevertFRDrive = false;
-	public static final boolean kRevertRRDrive = false;
+	public static final boolean INVERSION_DRIVE_AVANT_GAUCHE = true;
+	public static final boolean INVERSION_DRIVE_ARRIERE_GAUCHE = true;
+	public static final boolean INVERSION_DRIVE_AVANT_DROIT = false;
+	public static final boolean INVERSION_DRIVE_ARRIERE_DROIT= false;
 	
 	public static final int kClimbDriveOut = 12; // SP 5
 	public static final boolean kRevertClimbDrive = false;

@@ -40,10 +40,10 @@ public class Drive extends Subsystem {
 		 roueAvantDroite = new VictorSP(RobotMap.DRIVE_AVANT_DROIT);
 		 roueArriereDroite = new VictorSP(RobotMap.DRIVE_ARRIERE_DROIT);
 		 	
-		 roueAvantGauche.setInverted(RobotMap.kRevertFLDrive); // TRUE
-		 roueArriereGauche.setInverted(RobotMap.kRevertRLDrive); // TRUE
-		 roueAvantDroite.setInverted(RobotMap.kRevertFRDrive);
-		 roueArriereDroite.setInverted(RobotMap.kRevertRRDrive);
+		 roueAvantGauche.setInverted(RobotMap.INVERSION_DRIVE_AVANT_GAUCHE); // TRUE
+		 roueArriereGauche.setInverted(RobotMap.INVERSION_DRIVE_ARRIERE_GAUCHE); // TRUE
+		 roueAvantDroite.setInverted(RobotMap.INVERSION_DRIVE_AVANT_DROIT);
+		 roueArriereDroite.setInverted(RobotMap.INVERSION_DRIVE_ARRIERE_DROIT);
 			
 		 RRWheelEncoder = new Encoder(RobotMap.kRRWheelEncoderA, RobotMap.kRRWheelEncoderB);
 		 RRWheelEncoder.setReverseDirection(RobotMap.kRevertRRWheelEncoder);
