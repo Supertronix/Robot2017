@@ -48,7 +48,7 @@ public class Robot extends IterativeRobot
         zeroAllSensors();
         
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
-		try { new GRIPReceiver().start(); } catch (IOException e) { e.printStackTrace(); }
+		try { new GRIPReceiver(superstructure.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		autonomousCommand = new DepositGearAndPassLine();
 	}
 

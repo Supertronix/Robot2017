@@ -115,6 +115,8 @@ public interface RobotMap {
 	public static final double DISTANCE_KP = 0.11;
 	public static final double DISTANCE_KI = 0.00045;
 	public static final float DISTANCE_TOLERANCE = 0.083f;
+	
+	public static final int RASPBERRY_PORT = 3620;
 
 
 }

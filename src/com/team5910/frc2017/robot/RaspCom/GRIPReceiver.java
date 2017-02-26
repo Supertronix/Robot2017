@@ -6,6 +6,8 @@ import java.net.*;
 
 import com.google.gson.Gson;
 import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.RobotMap;
+import com.team5910.frc2017.robot.Subsystems.Tourelle;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -15,18 +17,21 @@ public class GRIPReceiver extends Thread
 	protected DatagramSocket socket = null;
 	protected BufferedReader in = null;
     protected boolean moreQuotes = true;
+    protected Tourelle tourelle = null;
     Gson gson = new Gson();
     
-	public GRIPReceiver() throws IOException {
+	public GRIPReceiver(Tourelle tourelle) throws IOException {
 	    this("udpReciever");
+	    this.tourelle = tourelle; // TODO - voir s'il faut gerer une synchronisation
 	    }
 	
 	public GRIPReceiver(String name) throws IOException {
         super(name);
         SmartDashboard.putString("VisionStatus","UDPReceiver constructor called");
-        socket = new DatagramSocket(3620);
+        socket = new DatagramSocket(RobotMap.RASPBERRY_PORT);
         SmartDashboard.putString("VisionStatus","UDPReceiver datagram binding");
     }
+	
 	
 	public void run() {
 		SmartDashboard.putString("VisionStatus","UDPReceiver running");
@@ -46,6 +51,9 @@ public class GRIPReceiver extends Thread
                 
                 //SmartDashboard.putString("last Data Received", lastDataReceived);
                 System.out.println ("'" + lastDataReceived + "'");
+                
+                //tourelle.setPanSetpoint(Double.parseDouble(lastDataReceived));
+                tourelle.TurretPanDrive.set(Double.parseDouble(lastDataReceived)*5);
                 // figure out response
                 //visionData = gson.fromJson(lastDataReceived, VisionData.class);
                 //visionData.whenRecieved = System.currentTimeMillis();
