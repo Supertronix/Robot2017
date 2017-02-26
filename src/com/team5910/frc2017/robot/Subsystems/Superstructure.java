@@ -4,23 +4,23 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Superstructure extends Subsystem {
 	    
-    public Tourelle turret;
-    public Lanceur shooter;
+    public Tourelle tourelle;
+    public Lanceur lanceur;
     public Intaker intaker;
-    public Grimpeur climber;
-    public Machoire clamp;
+    public Grimpeur grimpeur;
+    public Machoire machoire;
     public Indexeur indexer;
-    public Brasseur shuffler;
+    public Brasseur brasseur;
     
     public Superstructure()
     {
-    	 turret = new Tourelle();
-    	 shooter = new Lanceur();
+    	 tourelle = new Tourelle();
+    	 lanceur = new Lanceur();
     	 intaker = new Intaker();
-    	 climber = new Grimpeur();
-    	 clamp = new Machoire();
+    	 grimpeur = new Grimpeur();
+    	 machoire = new Machoire();
     	 indexer = new Indexeur();
-    	 shuffler = new Brasseur();
+    	 brasseur = new Brasseur();
     }
     
 	@Override
@@ -28,10 +28,10 @@ public class Superstructure extends Subsystem {
 	}
 
 	public void stopAll() {
-		turret.stop();
-		shooter.stop();
+		tourelle.stop();
+		lanceur.stop();
 		intaker.stop();
-		climber.stop();
+		grimpeur.stop();
 		indexer.stop();
 	}
 	
@@ -47,17 +47,17 @@ public class Superstructure extends Subsystem {
 	}
 
 	public void climberButtonEnabled() {
-		climber.climb();
-		turret.stop();
+		grimpeur.climb();
+		tourelle.stop();
 		intaker.stop();
 	}
 	
 	public void climberButtonDisabled() {
-		climber.stop();
+		grimpeur.stop();
 	}
 
 	public void clampButtonEnabled() {
-		clamp.toggleAsked();
+		machoire.toggleAsked();
 		
 	}
 

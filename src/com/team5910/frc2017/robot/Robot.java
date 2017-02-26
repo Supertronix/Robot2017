@@ -110,8 +110,8 @@ public class Robot extends IterativeRobot
         if (Math.abs(oi.getTiltAxis()) > .2)
             tilt = oi.getTiltAxis();
         
-        superstructure.turret.manualDrive(pan, tilt);
-        superstructure.turret.updateDashboard();
+        superstructure.tourelle.manualDrive(pan, tilt);
+        superstructure.tourelle.updateDashboard();
         
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
 	}

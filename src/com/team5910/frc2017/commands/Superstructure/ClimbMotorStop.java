@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ClimbMotorStop extends Command {
 
 	public ClimbMotorStop() {
-		requires(Robot.superstructure.climber);
+		requires(Robot.superstructure.grimpeur);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.climber.stop();
+		 Robot.superstructure.grimpeur.stop();
 	}
 	 
 	@Override

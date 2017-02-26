@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ToggleClampState extends Command {
 
 	public ToggleClampState() {
-		requires(Robot.superstructure.clamp);
+		requires(Robot.superstructure.machoire);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.clamp.toggleAsked();
+		 Robot.superstructure.machoire.toggleAsked();
 	}
 	 
 	@Override

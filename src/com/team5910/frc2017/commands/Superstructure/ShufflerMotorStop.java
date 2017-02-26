@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShufflerMotorStop extends Command {
 
 	public ShufflerMotorStop() {
-		requires(Robot.superstructure.shuffler);
+		requires(Robot.superstructure.brasseur);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.shuffler.stop();
+		 Robot.superstructure.brasseur.stop();
 	}
 	 
 	@Override

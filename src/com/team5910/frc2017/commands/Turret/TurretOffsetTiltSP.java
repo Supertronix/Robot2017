@@ -8,13 +8,13 @@ public class TurretOffsetTiltSP extends Command {
 
 	double tiltOffset = 0.0;
 	public TurretOffsetTiltSP(double aTiltOffset) {
-		requires(Robot.superstructure.turret);
+		requires(Robot.superstructure.tourelle);
 		tiltOffset = aTiltOffset;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.turret.offsetTiltSP(tiltOffset);
+		 Robot.superstructure.tourelle.offsetTiltSP(tiltOffset);
 	}
 	 
 	@Override
