@@ -74,12 +74,12 @@
     <mkdir dir="${build.dir}"/>
 	<path id="classpath.path">
 		<!--fileset dir="${userLibs.dir}" includes="*.jar"/-->
-		<fileset file="lib/wpilib/java/lib/CTRLib.jar"/>
+		<fileset file="lib/ctrlib/CTRLib.jar"/>
 
-		<fileset file="lib/wpilib/java/current/lib/WPILib.jar"/>
-		<fileset file="lib/wpilib/java/current/lib/NetworkTables.jar"/>
-		<fileset file="lib/wpilib/java/current/lib/opencv.jar"/>
-		<fileset file="lib/wpilib/java/current/lib/cscore.jar"/>
+		<fileset file="lib/wpilib/WPILib.jar"/>
+		<fileset file="lib/wpilib/NetworkTables.jar"/>
+		<fileset file="lib/wpilib/opencv.jar"/>
+		<fileset file="lib/wpilib/cscore.jar"/>
 		<fileset dir="${userLibs}" erroronmissingdir="false"/>
 	</path>
 
