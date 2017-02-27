@@ -1,19 +1,19 @@
-package com.team5910.frc2017.commands.Shooter;
+package com.team5910.frc2017.commands.lanceur;
 
 import com.team5910.frc2017.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShooterMotorToggle extends Command {
+public class ShooterMotorStart extends Command {
 
-	public ShooterMotorToggle() {
+	public ShooterMotorStart() {
 		requires(Robot.superstructure.lanceur);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.lanceur.toggle();
+		 Robot.superstructure.lanceur.shoot();
 	}
 	 
 	@Override

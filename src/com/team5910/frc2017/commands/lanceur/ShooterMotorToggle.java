@@ -1,19 +1,19 @@
-package com.team5910.frc2017.commands.superstructure;
+package com.team5910.frc2017.commands.lanceur;
 
 import com.team5910.frc2017.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class IndexerMotorStop extends Command {
+public class ShooterMotorToggle extends Command {
 
-	public IndexerMotorStop() {
-		requires(Robot.superstructure.indexer);
+	public ShooterMotorToggle() {
+		requires(Robot.superstructure.lanceur);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.indexer.stop();
+		 Robot.superstructure.lanceur.toggle();
 	}
 	 
 	@Override

@@ -1,20 +1,20 @@
-package com.team5910.frc2017.robot.Utils;
+package com.team5910.frc2017.robot.outils;
 
-import com.team5910.frc2017.commands.Drive.DriveEncoderReset;
-import com.team5910.frc2017.commands.Shooter.ShooterMotorSpeedIncDec;
-import com.team5910.frc2017.commands.Shooter.ShooterMotorStart;
-import com.team5910.frc2017.commands.Shooter.ShooterMotorStop;
-import com.team5910.frc2017.commands.Shooter.ShooterMotorToggle;
-import com.team5910.frc2017.commands.Superstructure.ClimbMotorStart;
-import com.team5910.frc2017.commands.Superstructure.ClimbMotorStop;
-import com.team5910.frc2017.commands.Superstructure.IndexerMotorStart;
-import com.team5910.frc2017.commands.Superstructure.IndexerMotorStop;
-import com.team5910.frc2017.commands.Superstructure.IntakeMotorStart;
-import com.team5910.frc2017.commands.Superstructure.IntakeMotorStop;
-import com.team5910.frc2017.commands.Superstructure.ShufflerMotorStart;
-import com.team5910.frc2017.commands.Superstructure.ShufflerMotorStop;
-import com.team5910.frc2017.commands.Superstructure.ToggleClampState;
-import com.team5910.frc2017.commands.Turret.TurretToggleAutoMan;
+import com.team5910.frc2017.commands.drive.DriveEncoderReset;
+import com.team5910.frc2017.commands.lanceur.ShooterMotorSpeedIncDec;
+import com.team5910.frc2017.commands.lanceur.ShooterMotorStart;
+import com.team5910.frc2017.commands.lanceur.ShooterMotorStop;
+import com.team5910.frc2017.commands.lanceur.ShooterMotorToggle;
+import com.team5910.frc2017.commands.superstructure.ClimbMotorStart;
+import com.team5910.frc2017.commands.superstructure.ClimbMotorStop;
+import com.team5910.frc2017.commands.superstructure.IndexerMotorStart;
+import com.team5910.frc2017.commands.superstructure.IndexerMotorStop;
+import com.team5910.frc2017.commands.superstructure.IntakeMotorStart;
+import com.team5910.frc2017.commands.superstructure.IntakeMotorStop;
+import com.team5910.frc2017.commands.superstructure.ShufflerMotorStart;
+import com.team5910.frc2017.commands.superstructure.ShufflerMotorStop;
+import com.team5910.frc2017.commands.superstructure.ToggleClampState;
+import com.team5910.frc2017.commands.tourelle.TurretToggleAutoMan;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;

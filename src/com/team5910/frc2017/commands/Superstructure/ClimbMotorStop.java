@@ -1,4 +1,4 @@
-package com.team5910.frc2017.commands.Superstructure;
+package com.team5910.frc2017.commands.superstructure;
 
 import com.team5910.frc2017.robot.Robot;
 

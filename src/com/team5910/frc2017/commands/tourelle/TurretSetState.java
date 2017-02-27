@@ -1,7 +1,7 @@
-package com.team5910.frc2017.commands.Turret;
+package com.team5910.frc2017.commands.tourelle;
 
 import com.team5910.frc2017.robot.Robot;
-import com.team5910.frc2017.robot.Subsystems.Tourelle;
+import com.team5910.frc2017.robot.subsystems.Tourelle;
 
 import edu.wpi.first.wpilibj.command.Command;
 

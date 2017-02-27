@@ -1,24 +1,25 @@
-package com.team5910.frc2017.commands.Shooter;
+package com.team5910.frc2017.commands.tourelle;
 
 import com.team5910.frc2017.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class ShooterMotorStart extends Command {
+public class FindTargetAndLock extends Command {
 
-	public ShooterMotorStart() {
-		requires(Robot.superstructure.lanceur);
+	public FindTargetAndLock() {
+		requires(Robot.superstructure.tourelle);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.lanceur.shoot();
 	}
 	 
 	@Override
 	protected boolean isFinished() {
 		return true;
 	}
+
+	
 
 }

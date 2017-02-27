@@ -1,4 +1,4 @@
-package com.team5910.frc2017.robot.Utils;
+package com.team5910.frc2017.robot.outils;
 
 public class Utilities {
 	public static double clamp(double val, double min, double max) 

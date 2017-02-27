@@ -7,14 +7,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 
 import com.team5910.frc2017.commands.DepositGearAndPassLine;
-import com.team5910.frc2017.commands.Turret.TurretSetState;
-import com.team5910.frc2017.robot.RaspCom.GRIPReceiver;
-import com.team5910.frc2017.robot.Subsystems.Drive;
-import com.team5910.frc2017.robot.Subsystems.Superstructure;
-import com.team5910.frc2017.robot.Subsystems.Tourelle;
-import com.team5910.frc2017.robot.Utils.OI;
-import com.team5910.frc2017.robot.Utils.USBCamStreamer;
-import com.team5910.frc2017.robot.Utils.Utilities;
+import com.team5910.frc2017.commands.tourelle.TurretSetState;
+import com.team5910.frc2017.robot.outils.OI;
+import com.team5910.frc2017.robot.outils.USBCamStreamer;
+import com.team5910.frc2017.robot.outils.Utilities;
+import com.team5910.frc2017.robot.raspberry.GRIPReceiver;
+import com.team5910.frc2017.robot.subsystems.Drive;
+import com.team5910.frc2017.robot.subsystems.Superstructure;
+import com.team5910.frc2017.robot.subsystems.Tourelle;
 
 public class Robot extends IterativeRobot 
 {

@@ -1,8 +1,8 @@
-package com.team5910.frc2017.robot.Subsystems;
+package com.team5910.frc2017.robot.subsystems;
 
 import com.team5910.frc2017.robot.RobotMap;
-import com.team5910.frc2017.robot.Utils.ADXRS450_Supertronix;
-import com.team5910.frc2017.robot.Utils.Utilities;
+import com.team5910.frc2017.robot.outils.ADXRS450_Supertronix;
+import com.team5910.frc2017.robot.outils.Utilities;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;

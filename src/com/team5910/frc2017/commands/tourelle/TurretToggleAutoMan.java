@@ -1,20 +1,19 @@
-package com.team5910.frc2017.commands.Turret;
+package com.team5910.frc2017.commands.tourelle;
 
 import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.subsystems.Tourelle;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TurretOffsetPanSP extends Command {
+public class TurretToggleAutoMan extends Command {
 
-	double panOffset = 0.0;
-	public TurretOffsetPanSP(double aPanOffset) {
+	public TurretToggleAutoMan() {
 		requires(Robot.superstructure.tourelle);
-		panOffset = aPanOffset;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.tourelle.offsetPanSP(panOffset);
+		 Robot.superstructure.tourelle.toggleAutoMan();
 	}
 	 
 	@Override
