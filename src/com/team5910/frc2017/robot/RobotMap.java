@@ -25,13 +25,13 @@ public interface RobotMap {
 	public static final int kIndexerShuffleLeftDriveOut = 16; // SP 8
 	public static final boolean kRevertIndexerShuffleLeftDrive = false;
 	
-	public static final int kLeftClampServoId = 1; // Servo 1
-	public static final int kRightClampServoId = 0; // Servo 2
+	public static final int MACHOIRE_GAUCHE_SERVO = 1; // Servo 1
+	public static final int MACHOIRE_DROITE_SERVO = 0; // Servo 2
 	
-	public static final double kLeftClampClosedPos = 0.0;
-	public static final double kRightClampClosedPos = 0.0;
-	public static final double kLeftClampOpenPos = 1.0;
-	public static final double kRightClampOpenPos = 1.0;
+	public static final double MACHOIRE_GAUCHE_FERMEE = 0.0;
+	public static final double MACHOIRE_DROITE_FERMEE = 0.0;
+	public static final double MACHOIRE_GAUCHE_OUVERTE = 1.0;
+	public static final double MACHOIRE_DROITE_OUVERTE = 1.0;
 	
 	// CAN Bus
 	public static final int kShooterDriveMainId = 3;

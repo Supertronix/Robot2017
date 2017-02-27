@@ -20,8 +20,8 @@ public class Machoire extends Subsystem {
     ClampState clampState;
     
 	Machoire() {
-		LeftClampServo = new Servo(RobotMap.kLeftClampServoId);
-		RightClampServo = new Servo(RobotMap.kRightClampServoId);
+		LeftClampServo = new Servo(RobotMap.MACHOIRE_GAUCHE_SERVO);
+		RightClampServo = new Servo(RobotMap.MACHOIRE_DROITE_SERVO);
 		clampState = ClampState.CLOSED;
 		lastToggleTime = 0.0;
 	}
@@ -53,16 +53,16 @@ public class Machoire extends Subsystem {
 	
 	private void closeClamp()
 	{
-		LeftClampServo.set(RobotMap.kLeftClampClosedPos);
-		RightClampServo.set(RobotMap.kRightClampClosedPos);
+		LeftClampServo.set(RobotMap.MACHOIRE_GAUCHE_FERMEE);
+		RightClampServo.set(RobotMap.MACHOIRE_DROITE_FERMEE);
 		clampState = ClampState.CLOSED;
 		
 	}
 	
 	private void openClamp()
 	{
-		LeftClampServo.set(RobotMap.kLeftClampOpenPos);
-		RightClampServo.set(RobotMap.kRightClampOpenPos);
+		LeftClampServo.set(RobotMap.MACHOIRE_GAUCHE_OUVERTE);
+		RightClampServo.set(RobotMap.MACHOIRE_DROITE_OUVERTE);
 		clampState = ClampState.OPEN;
 	}
 	
