@@ -1,4 +1,6 @@
 *.class
+FRCUserProgram.jar
+sysProps.xml
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
