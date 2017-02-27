@@ -1,20 +1,20 @@
 package com.team5910.frc2017.robot.outils;
 
-import com.team5910.frc2017.commands.driverenamedouble.DriveEncoderReset;
+import com.team5910.frc2017.commands.drive.DriveEncoderReset;
 import com.team5910.frc2017.commands.lanceur.ShooterMotorSpeedIncDec;
 import com.team5910.frc2017.commands.lanceur.ShooterMotorStart;
 import com.team5910.frc2017.commands.lanceur.ShooterMotorStop;
 import com.team5910.frc2017.commands.lanceur.ShooterMotorToggle;
-import com.team5910.frc2017.commands.superstructurerenamedouble.ClimbMotorStart;
-import com.team5910.frc2017.commands.superstructurerenamedouble.ClimbMotorStop;
-import com.team5910.frc2017.commands.superstructurerenamedouble.IndexerMotorStart;
-import com.team5910.frc2017.commands.superstructurerenamedouble.IndexerMotorStop;
-import com.team5910.frc2017.commands.superstructurerenamedouble.IntakeMotorStart;
-import com.team5910.frc2017.commands.superstructurerenamedouble.IntakeMotorStop;
-import com.team5910.frc2017.commands.superstructurerenamedouble.ShufflerMotorStart;
-import com.team5910.frc2017.commands.superstructurerenamedouble.ShufflerMotorStop;
-import com.team5910.frc2017.commands.superstructurerenamedouble.ToggleClampState;
-import com.team5910.frc2017.commands.tourellerenamedouble.TurretToggleAutoMan;
+import com.team5910.frc2017.commands.superstructure.ClimbMotorStart;
+import com.team5910.frc2017.commands.superstructure.ClimbMotorStop;
+import com.team5910.frc2017.commands.superstructure.IndexerMotorStart;
+import com.team5910.frc2017.commands.superstructure.IndexerMotorStop;
+import com.team5910.frc2017.commands.superstructure.IntakeMotorStart;
+import com.team5910.frc2017.commands.superstructure.IntakeMotorStop;
+import com.team5910.frc2017.commands.superstructure.ShufflerMotorStart;
+import com.team5910.frc2017.commands.superstructure.ShufflerMotorStop;
+import com.team5910.frc2017.commands.superstructure.ToggleClampState;
+import com.team5910.frc2017.commands.tourelle.TurretToggleAutoMan;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;

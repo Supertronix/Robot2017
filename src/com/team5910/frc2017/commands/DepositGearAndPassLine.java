@@ -1,11 +1,11 @@
 package com.team5910.frc2017.commands;
 
-import com.team5910.frc2017.commands.driverenamedouble.DriveDistance;
-import com.team5910.frc2017.commands.driverenamedouble.DriveRotate;
-import com.team5910.frc2017.commands.driverenamedouble.LateralDriveDistance;
+import com.team5910.frc2017.commands.drive.DriveDistance;
+import com.team5910.frc2017.commands.drive.DriveRotate;
+import com.team5910.frc2017.commands.drive.LateralDriveDistance;
 import com.team5910.frc2017.commands.lanceur.ShooterMotorStart;
 import com.team5910.frc2017.commands.lanceur.SpinUpShooter;
-import com.team5910.frc2017.commands.tourellerenamedouble.FindTargetAndLock;
+import com.team5910.frc2017.commands.tourelle.FindTargetAndLock;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
