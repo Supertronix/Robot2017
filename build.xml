@@ -74,8 +74,8 @@
     <mkdir dir="${build.dir}"/>
 	<path id="classpath.path">
 		<!--fileset dir="${userLibs.dir}" includes="*.jar"/-->
+		<fileset file="lib/gson/gson.jar"/>
 		<fileset file="lib/ctrlib/CTRLib.jar"/>
-
 		<fileset file="lib/wpilib/WPILib.jar"/>
 		<fileset file="lib/wpilib/NetworkTables.jar"/>
 		<fileset file="lib/wpilib/opencv.jar"/>
