@@ -2,10 +2,11 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="lib/wpilib/java/current/lib/cscore.jar"/>
-	<classpathentry kind="lib" path="lib/wpilib/java/current/lib/NetworkTables.jar"/>
-	<classpathentry kind="lib" path="lib/wpilib/java/current/lib/opencv.jar"/>
-	<classpathentry kind="lib" path="lib/wpilib/java/current/lib/WPILib.jar"/>
-	<classpathentry kind="lib" path="lib/wpilib/java/lib/CTRLib.jar"/>
+	<classpathentry kind="lib" path="lib/wpilib/cscore.jar"/>
+	<classpathentry kind="lib" path="lib/wpilib/NetworkTables.jar"/>
+	<classpathentry kind="lib" path="lib/wpilib/opencv.jar"/>
+	<classpathentry kind="lib" path="lib/wpilib/WPILib.jar"/>
+	<classpathentry kind="lib" path="lib/ctrlib/CTRLib.jar"/>
+	<classpathentry kind="lib" path="lib/gson/gson.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
