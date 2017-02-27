@@ -117,6 +117,7 @@ public interface RobotMap {
 	public static final float DISTANCE_TOLERANCE = 0.083f;
 	
 	public static final int RASPBERRY_PORT = 3620;
+	public static final int RAYON_VERT_DIO = 12;
 
 
 }
