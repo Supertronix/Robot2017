@@ -26,8 +26,8 @@ public class Tourelle extends Subsystem {
 		actualState = aWantedState;
 	}
 	
-	public CANTalon TurretPanDrive = new CANTalon(RobotMap.TOURELLE_PAN_MOTEUR);
-	public CANTalon TurretTiltDrive = new CANTalon(RobotMap.TOURELLE_TILT_MOTEUR);
+	public CANTalon tourellePan = new CANTalon(RobotMap.TOURELLE_PAN_MOTEUR);
+	public CANTalon tourelleTilt = new CANTalon(RobotMap.TOURELLE_TILT_MOTEUR);
 	
 	double panSP = 0.0;
 	double tiltSP = 0.0;
@@ -39,13 +39,13 @@ public class Tourelle extends Subsystem {
 		
 		//TurretPanDrive.changeControlMode(CANTalon.TalonControlMode.Position);
 		//TurretPanDrive.changeControlMode(CANTalon.TalonControlMode.
-		TurretPanDrive.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
-		TurretPanDrive.setControlMode(0);
+		tourellePan.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
+		tourellePan.setControlMode(0);
 		//TurretPanDrive.enable();
 		
 		//TurretTiltDrive.changeControlMode(CANTalon.TalonControlMode.Position);
-		TurretTiltDrive.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
-		TurretTiltDrive.setControlMode(0);
+		tourelleTilt.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
+		tourelleTilt.setControlMode(0);
 		//TurretTiltDrive.enable();		
 		
 	}
@@ -102,15 +102,15 @@ public class Tourelle extends Subsystem {
 	    }
 
 	public void stop() {
-		TurretPanDrive.disable();
-		TurretTiltDrive.disable();
+		tourellePan.disable();
+		tourelleTilt.disable();
 		actualState =  SystemState.DISABLED;
 		
 	}
 	
 	public void manualDrive(double aPanValue, double aTiltValue) {
-		TurretPanDrive.set(aPanValue);
-		TurretTiltDrive.set(aTiltValue);	
+		tourellePan.set(aPanValue);
+		tourelleTilt.set(aTiltValue);	
 	}
 
 	@Override
@@ -120,8 +120,8 @@ public class Tourelle extends Subsystem {
 	
 	public void updateDashboard()
 	{
-		SmartDashboard.putNumber("tiltPot", TurretTiltDrive.getAnalogInPosition());
-		SmartDashboard.putNumber("panPot", TurretPanDrive.getAnalogInPosition());
+		SmartDashboard.putNumber("tiltPot", tourelleTilt.getAnalogInPosition());
+		SmartDashboard.putNumber("panPot", tourellePan.getAnalogInPosition());
 	}
 	
 	public void gripUpdatePan(double aSPUpdateValue)
