@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Lanceur extends Subsystem {
 	
-	CANTalon ShooterDriveMain = new CANTalon(RobotMap.kShooterDriveMainId);
-	CANTalon ShooterDriveSlave = new CANTalon(RobotMap.ShooterDriveSlaveId);
+	CANTalon ShooterDriveMain = new CANTalon(RobotMap.LANCEUR_MOTEUR_PRINCIPAL);
+	CANTalon ShooterDriveSlave = new CANTalon(RobotMap.LANCEUR_MOTEUR_ESCLAVE);
 	
 	double shooterSpeed = 1.0;
 	

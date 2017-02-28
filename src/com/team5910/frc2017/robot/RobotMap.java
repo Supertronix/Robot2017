@@ -36,10 +36,10 @@ public interface RobotMap {
 	public static final double MACHOIRE_DROITE_OUVERTE = 1.0;
 	
 	// CAN Bus
-	public static final int kShooterDriveMainId = 3;
-	public static final int ShooterDriveSlaveId = 0;
-	public static final int TOURELLE_PAN_DRIVE = 2;
-	public static final int kTurretTiltDriveId = 1;
+	public static final int LANCEUR_MOTEUR_PRINCIPAL = 3;
+	public static final int LANCEUR_MOTEUR_ESCLAVE = 0;
+	public static final int TOURELLE_PAN_MOTEUR = 2;
+	public static final int TOURELLE_TILT_MOTEUR = 1;
 		
 	// Encoders
 	//public static final int kFLWheelEncoderA = 16;

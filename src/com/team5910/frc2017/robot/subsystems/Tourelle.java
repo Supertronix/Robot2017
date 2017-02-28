@@ -26,8 +26,8 @@ public class Tourelle extends Subsystem {
 		actualState = aWantedState;
 	}
 	
-	public CANTalon TurretPanDrive = new CANTalon(RobotMap.TOURELLE_PAN_DRIVE);
-	public CANTalon TurretTiltDrive = new CANTalon(RobotMap.kTurretTiltDriveId);
+	public CANTalon TurretPanDrive = new CANTalon(RobotMap.TOURELLE_PAN_MOTEUR);
+	public CANTalon TurretTiltDrive = new CANTalon(RobotMap.TOURELLE_TILT_MOTEUR);
 	
 	double panSP = 0.0;
 	double tiltSP = 0.0;
