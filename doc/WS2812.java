@@ -20,6 +20,7 @@ import java.nio.file.Files;
  *
  * @author Florian Frankenberger
  */
+
 public final class WS2812 {
 
     private static WS2812 INSTANCE;
