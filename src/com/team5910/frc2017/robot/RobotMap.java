@@ -36,7 +36,7 @@ public interface RobotMap {
 	// CAN Bus
 	public static final int kShooterDriveMainId = 3;
 	public static final int ShooterDriveSlaveId = 0;
-	public static final int kTurretPanDriveId = 2;
+	public static final int TOURELLE_PAN_DRIVE = 2;
 	public static final int kTurretTiltDriveId = 1;
 	
 	public static final int kIndexerShuffleRightDriveId = 4;
@@ -61,42 +61,40 @@ public interface RobotMap {
 	
 	// Joystick MAP
 	// Main 
-	public static final int kMainDriveStickId = 0;
-	public static final int kLeftDriveXAxis = 0;
-	public static final int kLeftDriveYAxis = 1;
-	public static final int kRightDriveXAxis = 4;
-	public static final int kRightDriveYAxis = 5;
+	public static final int MANETTE_CONDUITE_PRINCIPALE = 0;
+	public static final int CONDUITE_X_GAUCHE = 0;
+	public static final int CONDUITE_Y_GAUCHE = 1;
+	public static final int CONDUITE_X_DROITE = 4;
+	public static final int CONDUITE_Y_DROITE = 5;
 	
-	public static final boolean kRevertLeftDriveXAxis = false;
-	public static final boolean kRevertLeftDriveYAxis = true;
-	public static final boolean kRevertRightDriveXAxis = false;
-	public static final boolean kRevertRightDriveYAxis = true;
+	public static final boolean INVERSION_CONDUITE_X_GAUCHE = false;
+	public static final boolean INVERSION_CONDUITE_Y_GAUCHE = true;
+	public static final boolean INVERSION_CONDUITE_X_DROITE = false;
+	public static final boolean INVERSION_CONDUITE_Y_DROITE = true;
 	
 	
 	// Accessories
-	public static final int mAccessoriesStickId = 1;
+	public static final int MANETTE_ACCESSOIRE = 1;
 	
-	public static final int kClimberButton = 6;
-	public static final int kIntakeButton = 5;
-	public static final int kClampButton = 10;
+	public static final int BOUTON_GRIMPEUR = 6;
+	public static final int BOUTON_INTAKE = 5;
+	public static final int BOUTON_MACHOIRE = 10;
+	public static final int BOUTON_INDEXEUR = 1;
 	
-	public static final int kIndexerButton = 1;
-	public static final int kTurretPanAxis = 2;
-	public static final boolean kRevertTurretPanAxis = false;
+	public static final int TOURELLE_PAN_AXE = 2;
+	public static final boolean INVERSION_TOURELLE_PAN_AXE = false;	
+	public static final int TOURELLE_TILT_AXE = 1;
+	public static final boolean INVERSION_TOURELLE_TILT_AXE = false;
+	public static final int TOURELLE_TOGGLE_AUTO_MANUEL = 5;
 	
-	public static final int kTurretTiltAxis = 1;
-	public static final boolean kRevertTurretTiltAxis = false;
-	public static final int kShootButton = 2;
+	public static final int BOUTON_LANCEUR = 2;	
+	public static final int BOUTON_LANCEUR_VITESSE_DECREMENTE = 11;
+	public static final int BOUTON_LANCEUR_VITESSE_INCREMENTE= 12;
 	
-	public static final int kTurretToggleAutoMan = 5;
-	
-	public static final int kShooterSpeedDecButton = 11;
-	public static final int kShooterSpeedIncButton = 12;
-	
-	public static final double kShooterSpeedIncDecValue = 0.1;
+	public static final double LANCEUR_VITESSE_DELTA = 0.1;
 	
 	// Experimentations
-	public static final int kGyroResetButton = 1;
+	public static final int BOUTON_GYRO_RESET = 1;
 	
 	// Turret Settings
 	public static final double kPanLowSPLimit = 0;
