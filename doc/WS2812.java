@@ -23,6 +23,15 @@ import java.nio.file.Files;
 
 public final class WS2812 {
 
+	public class Color_t {
+		
+	    public byte r;
+	    public byte g;
+	    public byte b;
+
+
+	}	
+	
     private static WS2812 INSTANCE;
     private final WS2812Interface iface;
 
