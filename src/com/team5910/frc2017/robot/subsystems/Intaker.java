@@ -10,7 +10,7 @@ public class Intaker extends Subsystem {
 	VictorSP IntakerDrive;
     
 	Intaker() {
-		IntakerDrive = new VictorSP(RobotMap.kIntakerDriveOut);
+		IntakerDrive = new VictorSP(RobotMap.INTAKER_MOTEUR);
 	}
 	
 	@Override
@@ -19,7 +19,7 @@ public class Intaker extends Subsystem {
 	
 	public void intake()
 	{
-		if (RobotMap.kRevertIntakeDrive) 
+		if (RobotMap.INVERSION_INTAKER_MOTEUR) 
 			IntakerDrive.set(-1);
 		else
 			IntakerDrive.set(1);

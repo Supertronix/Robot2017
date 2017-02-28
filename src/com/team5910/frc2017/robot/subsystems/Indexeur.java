@@ -11,8 +11,8 @@ public class Indexeur extends Subsystem {
 	VictorSP IndexerDrive;
     
 	Indexeur() {
-		IndexerDrive = new VictorSP(RobotMap.kIndexerDriveOut);
-		IndexerDrive.setInverted(RobotMap.kRevertIndexerDrive);		
+		IndexerDrive = new VictorSP(RobotMap.INDEXEUR_MOTEUR);
+		IndexerDrive.setInverted(RobotMap.INVERSION_INDEXEUR_MOTEUR);		
 	}
 	
 	@Override

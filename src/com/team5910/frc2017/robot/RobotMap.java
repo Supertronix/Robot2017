@@ -13,17 +13,19 @@ public interface RobotMap {
 	public static final boolean INVERSION_DRIVE_AVANT_DROIT = false;
 	public static final boolean INVERSION_DRIVE_ARRIERE_DROIT= false;
 	
-	public static final int kClimbDriveOut = 12; // SP 5
-	public static final boolean kRevertClimbDrive = false;
+	public static final int GRIMPEUR_MOTEUR = 12; // SP 5
+	public static final boolean INVERSION_GRIMPEUR_MOTEUR = false;
 	
-	public static final int kIntakerDriveOut = 11; // SP 6
-	public static final boolean kRevertIntakeDrive = false;
+	public static final int INTAKER_MOTEUR = 11; // SP 6
+	public static final boolean INVERSION_INTAKER_MOTEUR = false;
 	
-	public static final int kIndexerDriveOut = 15; // SP 7
-	public static final boolean kRevertIndexerDrive = true;
+	public static final int INDEXEUR_MOTEUR = 15; // SP 7
+	public static final boolean INVERSION_INDEXEUR_MOTEUR = true;
 	
-	public static final int kIndexerShuffleLeftDriveOut = 16; // SP 8
-	public static final boolean kRevertIndexerShuffleLeftDrive = false;
+	public static final int BRASSEUR_GAUCHE = 16; // SP 8
+	public static final boolean INVERSION_BRASSEUR_GAUCHE = false;
+	public static final int BRASSEUR_DROIT = 4;
+	public static final boolean INVERSION_BRASSEUR_DROIT = true;
 	
 	public static final int MACHOIRE_GAUCHE_SERVO = 1; // Servo 1
 	public static final int MACHOIRE_DROITE_SERVO = 0; // Servo 2
@@ -38,10 +40,7 @@ public interface RobotMap {
 	public static final int ShooterDriveSlaveId = 0;
 	public static final int TOURELLE_PAN_DRIVE = 2;
 	public static final int kTurretTiltDriveId = 1;
-	
-	public static final int kIndexerShuffleRightDriveId = 4;
-	public static final boolean kRevertIndexerShuffleRightDrive = true;
-	
+		
 	// Encoders
 	//public static final int kFLWheelEncoderA = 16;
 	//public static final int kFLWheelEncoderB = 17;
@@ -97,11 +96,10 @@ public interface RobotMap {
 	public static final int BOUTON_GYRO_RESET = 1;
 	
 	// Turret Settings
-	public static final double kPanLowSPLimit = 0;
-	public static final double kPanHighSPLimit = 1024;
-	
-	public static final double kTiltLowSPLimit = 0;
-	public static final double kTiltHighSPLimit = 1024;
+	public static final double TOURELLE_PAN_LIMITE_MINIMUM = 0;
+	public static final double TOURELLE_PAN_LIMITE_MAXIMUM = 1024;
+	public static final double TOURELLE_TILT_LIMITE_MINIMUM = 0;
+	public static final double TOURELLE_TILT_LIMITE_MAXIMUM = 1024;
 	
 	// DRIVE AUTO PID
 	public static final double GYRO_KP = 0.03;

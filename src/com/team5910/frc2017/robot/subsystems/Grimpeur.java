@@ -10,7 +10,7 @@ public class Grimpeur extends Subsystem {
 	VictorSP Climbdrive;
     
 	Grimpeur() {
-		Climbdrive = new VictorSP(RobotMap.kClimbDriveOut);
+		Climbdrive = new VictorSP(RobotMap.GRIMPEUR_MOTEUR);
 	}
 	
 	@Override
@@ -19,7 +19,7 @@ public class Grimpeur extends Subsystem {
 	
 	public void climb()
 	{
-		if (RobotMap.kRevertClimbDrive) 
+		if (RobotMap.INVERSION_GRIMPEUR_MOTEUR) 
 			Climbdrive.set(-1);
 		else
 			Climbdrive.set(1);

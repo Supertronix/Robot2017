@@ -15,11 +15,11 @@ public class Brasseur extends Subsystem {
 	boolean lastClockwise = true;
     
 	Brasseur() {
-		IndexerShuffleDrive1 = new VictorSP(RobotMap.kIndexerShuffleLeftDriveOut);
-		IndexerShuffleDrive1.setInverted(RobotMap.kRevertIndexerShuffleLeftDrive);
+		IndexerShuffleDrive1 = new VictorSP(RobotMap.BRASSEUR_GAUCHE);
+		IndexerShuffleDrive1.setInverted(RobotMap.INVERSION_BRASSEUR_GAUCHE);
 		
-		IndexerShuffleDrive2 = new CANTalon(RobotMap.kIndexerShuffleRightDriveId);
-		IndexerShuffleDrive2.setInverted(RobotMap.kRevertIndexerShuffleRightDrive);
+		IndexerShuffleDrive2 = new CANTalon(RobotMap.BRASSEUR_DROIT);
+		IndexerShuffleDrive2.setInverted(RobotMap.INVERSION_BRASSEUR_DROIT);
 		
 	}
 	
