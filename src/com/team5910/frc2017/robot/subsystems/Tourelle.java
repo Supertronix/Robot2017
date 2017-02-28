@@ -31,6 +31,8 @@ public class Tourelle extends Subsystem {
 	
 	double panSP = 0.0;
 	double tiltSP = 0.0;
+	
+	double autoSPupdate = 0.0;
 
 	Tourelle() {
 		actualState = SystemState.DISABLED;
@@ -120,6 +122,15 @@ public class Tourelle extends Subsystem {
 	{
 		SmartDashboard.putNumber("tiltPot", TurretTiltDrive.getAnalogInPosition());
 		SmartDashboard.putNumber("panPot", TurretPanDrive.getAnalogInPosition());
+	}
+	
+	public void gripUpdatePan(double aSPUpdateValue)
+	{
+		if (actualState == SystemState.AUTO_LOCK)
+		{
+			autoSPupdate = aSPUpdateValue;
+		}
+			
 	}
 }
 

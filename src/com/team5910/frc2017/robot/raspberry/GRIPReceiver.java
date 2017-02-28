@@ -53,7 +53,8 @@ public class GRIPReceiver extends Thread
                 System.out.println ("'" + lastDataReceived + "'");
                 
                 //tourelle.setPanSetpoint(Double.parseDouble(lastDataReceived));
-                tourelle.TurretPanDrive.set(Double.parseDouble(lastDataReceived)*5);
+                //tourelle.TurretPanDrive.set(Double.parseDouble(lastDataReceived)*5);
+                tourelle.gripUpdatePan(Double.parseDouble(lastDataReceived)*5);
                 // figure out response
                 //visionData = gson.fromJson(lastDataReceived, VisionData.class);
                 //visionData.whenRecieved = System.currentTimeMillis();
