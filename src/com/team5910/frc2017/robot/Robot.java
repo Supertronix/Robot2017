@@ -116,6 +116,8 @@ public class Robot extends IterativeRobot
         superstructure.tourelle.updateDashboard();
         
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
+        
+        superstructure.tourelle.TeleopPeriodic();
 	}
 	
 	@Override
@@ -132,6 +134,7 @@ public class Robot extends IterativeRobot
 	public void robotPeriodic() 
 	{	
 	}
+	
 
 }
 

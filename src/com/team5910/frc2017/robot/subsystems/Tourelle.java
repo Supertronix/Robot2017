@@ -38,15 +38,26 @@ public class Tourelle extends Subsystem {
 		actualState = SystemState.DISABLED;
 		
 		//TurretPanDrive.changeControlMode(CANTalon.TalonControlMode.Position);
-		//TurretPanDrive.changeControlMode(CANTalon.TalonControlMode.
+		//tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
 		tourellePan.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
 		tourellePan.setControlMode(0);
-		//TurretPanDrive.enable();
+		tourellePan.setPosition(0);
+		tourellePan.enable();
 		
-		//TurretTiltDrive.changeControlMode(CANTalon.TalonControlMode.Position);
-		tourelleTilt.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
+		//tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
 		tourelleTilt.setControlMode(0);
-		//TurretTiltDrive.enable();		
+		tourelleTilt.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
+		tourelleTilt.setPosition(0);
+		tourelleTilt.setForwardSoftLimit(-30);
+		tourelleTilt.enableForwardSoftLimit(true);
+		
+		tourelleTilt.setReverseSoftLimit(-170);
+		tourelleTilt.enableReverseSoftLimit(true);
+		
+		tourelleTilt.reverseSensor(true);
+		tourelleTilt.setP(0.1);
+		tourelleTilt.enable();	
+		SmartDashboard.putNumber("TILTSP", 130);
 		
 	}
 	
@@ -131,6 +142,11 @@ public class Tourelle extends Subsystem {
 			autoSPupdate = aSPUpdateValue;
 		}
 			
+	}
+	
+	public void TeleopPeriodic()
+	{
+		//tourelleTilt.set(SmartDashboard.getNumber("TILTSP", 130));
 	}
 }
 

@@ -77,7 +77,7 @@ public class OI {
     }
     
     public double getLeftDriveY() {
-        return RobotMap.INVERSION_CONDUITE_X_GAUCHE ? -mMainDriveStick.getRawAxis(RobotMap.CONDUITE_Y_GAUCHE): mMainDriveStick.getRawAxis(RobotMap.CONDUITE_Y_GAUCHE);
+        return RobotMap.INVERSION_CONDUITE_Y_GAUCHE ? -mMainDriveStick.getRawAxis(RobotMap.CONDUITE_Y_GAUCHE): mMainDriveStick.getRawAxis(RobotMap.CONDUITE_Y_GAUCHE);
     }
     
     public double getRightDriveX() {

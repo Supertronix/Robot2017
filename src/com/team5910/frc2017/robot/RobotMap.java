@@ -24,8 +24,6 @@ public interface RobotMap {
 	
 	public static final int BRASSEUR_GAUCHE = 16; // SP 8
 	public static final boolean INVERSION_BRASSEUR_GAUCHE = false;
-	public static final int BRASSEUR_DROIT = 4;
-	public static final boolean INVERSION_BRASSEUR_DROIT = true;
 	
 	public static final int MACHOIRE_GAUCHE_SERVO = 1; // Servo 1
 	public static final int MACHOIRE_DROITE_SERVO = 0; // Servo 2
@@ -39,7 +37,10 @@ public interface RobotMap {
 	public static final int LANCEUR_MOTEUR_PRINCIPAL = 3;
 	public static final int LANCEUR_MOTEUR_ESCLAVE = 0;
 	public static final int TOURELLE_PAN_MOTEUR = 2;
-	public static final int TOURELLE_TILT_MOTEUR = 1;
+	public static final int TOURELLE_TILT_MOTEUR = 5;
+	public static final int BRASSEUR_DROIT = 4;
+	
+	public static final boolean INVERSION_BRASSEUR_DROIT = true;
 		
 	// Encoders
 	//public static final int kFLWheelEncoderA = 16;
