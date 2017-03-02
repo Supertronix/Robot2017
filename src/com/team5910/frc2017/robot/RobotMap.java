@@ -46,8 +46,8 @@ public interface RobotMap {
 	//public static final int kFLWheelEncoderA = 16;
 	//public static final int kFLWheelEncoderB = 17;
 	
-	public static final int ROUE_ENCODEUR_A = 0;
-	public static final int ROUE_ENCODEUR_B = 1;
+	public static final int ROUE_ENCODEUR_A = 0;  // bleu
+	public static final int ROUE_ENCODEUR_B = 1;  // jaune
 	
 	public static final boolean INVERSION_ROUE_ENCODEUR = true;
 	public static final float ENCODEUR_ROUE_DISTANCE_PULSION = 0.0085f;
