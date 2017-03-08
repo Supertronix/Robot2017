@@ -1,6 +1,7 @@
 package com.team5910.frc2017.commands.drive;
 
 import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
@@ -11,10 +12,32 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class DriveRotate extends Command {
 
 	double mWantedAngle;
+	double mP;
+	double mI;
+	double mD;
 	
 	public DriveRotate(double angle) {
 		requires(Robot.drive);
 		mWantedAngle = angle; // Distance in feet
+		mP = RobotMap.GYRO_KP_ROTATEONLY;
+		mI = RobotMap.GYRO_KI_ROTATEONLY;
+		mD = 0.0;
+	}
+	
+	public DriveRotate(double angle, double P, double I) {
+		requires(Robot.drive);
+		mWantedAngle = angle; // Distance in feet
+		mP = P;
+		mI = I;
+		mD = 0.0;
+	}
+	
+	public DriveRotate(double angle, double P, double I, double D) {
+		requires(Robot.drive);
+		mWantedAngle = angle; // Distance in feet
+		mP = P;
+		mI = I;
+		mD = D;
 	}
 	
 
@@ -23,7 +46,7 @@ public class DriveRotate extends Command {
 		Robot.drive.resetEncoders();
 		Robot.drive.resetGyro();
 		Robot.drive.resetPIDS();
-		Robot.drive.setGyroPIDRotateValues();
+		Robot.drive.setRotatePIDValues(mP, mI, mD);
 		Robot.drive.updateGyroSetpoint(-mWantedAngle); // Invert angle so positive is clockwise
 	}
 	

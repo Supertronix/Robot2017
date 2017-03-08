@@ -6,8 +6,13 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.team5910.frc2017.commands.DepositGearAndPassLine;
+import com.team5910.frc2017.commands.R2Commands;
+import com.team5910.frc2017.commands.NoMoveCommands;
+import com.team5910.frc2017.commands.R1Commands;
+import com.team5910.frc2017.commands.drive.DriveDistance;
 import com.team5910.frc2017.commands.tourelle.TurretSetState;
 import com.team5910.frc2017.robot.outils.OI;
 import com.team5910.frc2017.robot.outils.USBCamStreamer;
@@ -25,6 +30,7 @@ public class Robot extends IterativeRobot
 	public static OI oi;
 	
     Command autonomousCommand;
+    SendableChooser autoChooser;
     
 	//public static double lastCommandReceived = 0.0f;
 	
@@ -40,8 +46,7 @@ public class Robot extends IterativeRobot
 	
 	@Override
 	public void robotInit() 
-	{
-
+	{		
 		drive = new Drive();
 		superstructure = new Superstructure();
 		oi = new OI();
@@ -51,12 +56,18 @@ public class Robot extends IterativeRobot
         
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
 		try { new GRIPReceiver(superstructure.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
-		autonomousCommand = new DepositGearAndPassLine();
+		
+		autoChooser = new SendableChooser();
+		autoChooser.addDefault("No move", new NoMoveCommands());
+		autoChooser.addObject("R1", new R1Commands());
+		autoChooser.addObject("R2", new R2Commands());
+		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 	}
 
 	@Override
 	public void autonomousInit() 
 	{
+		autonomousCommand = (Command) autoChooser.getSelected();
 		drive.zeroSensors();
 		autonomousCommand.start();
 	}
@@ -71,7 +82,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void teleopInit() 
 	{
-		autonomousCommand.cancel();
+		if (autonomousCommand != null) { autonomousCommand.cancel(); }
 		new TurretSetState(Tourelle.SystemState.MANUAL_CONTROL);
 		Scheduler.getInstance().run();
 	}
@@ -114,6 +125,7 @@ public class Robot extends IterativeRobot
         
         superstructure.tourelle.manualDrive(pan, tilt);
         superstructure.tourelle.updateDashboard();
+        drive.updateDashboard();
         
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
         

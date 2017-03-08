@@ -62,7 +62,7 @@ public class Drive extends Subsystem {
 		 gyro.setPIDSourceType(PIDSourceType.kDisplacement);
 		 gyroPIDOut = new CustomPIDOutput();
 		 
-		 pidGyro = new PIDController(-RobotMap.GYRO_KP, RobotMap.GYRO_KI_AGRESSIF, 0, gyro, gyroPIDOut);
+		 pidGyro = new PIDController(-RobotMap.GYRO_KP, RobotMap.GYRO_KI_ROTATEONLY, 0, gyro, gyroPIDOut);
 		 pidGyro.setSetpoint(0.0f);
 		 pidGyro.setAbsoluteTolerance(3);
 		 pidGyro.enable();
@@ -94,6 +94,7 @@ public class Drive extends Subsystem {
 	public void zeroSensors() {
 		gyro.reset();
 		encodeurRoues.reset();
+		resetPIDS();
 	}
 	
 	public void resetGyro() {
@@ -120,15 +121,25 @@ public class Drive extends Subsystem {
 	}
 
 	public void driveStraightWithGyro() {
-		/*FLDrive.set(distancePIDOut.getPIDOut() + gyroPIDOut.getPIDOut());
-		FRDrive.set(distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());
-	    RLDrive.set(distancePIDOut.getPIDOut() +  gyroPIDOut.getPIDOut());
-		RRDrive.set(distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());*/
+		if (RobotMap.GYRO_UPSIDEDOWN == true)
+		{
+			roueAvantGauche.set(distancePIDOut.getPIDOut() + gyroPIDOut.getPIDOut());
+			roueAvantDroite.set(distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());
+			roueArriereGauche.set(distancePIDOut.getPIDOut() +  gyroPIDOut.getPIDOut());
+			roueArriereDroite.set(distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());
+		}
+		else
+		{
+			roueAvantGauche.set(distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());
+			roueAvantDroite.set(distancePIDOut.getPIDOut() + gyroPIDOut.getPIDOut());
+			roueArriereGauche.set(distancePIDOut.getPIDOut() -  gyroPIDOut.getPIDOut());
+			roueArriereDroite.set(distancePIDOut.getPIDOut() + gyroPIDOut.getPIDOut());
+		}
 		
-		roueAvantGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  + gyroPIDOut.getPIDOut());
+		/*roueAvantGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  + gyroPIDOut.getPIDOut());
 		roueAvantDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   - gyroPIDOut.getPIDOut());
 	    roueArriereGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   +  gyroPIDOut.getPIDOut());
-		roueArriereDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  - gyroPIDOut.getPIDOut());
+		roueArriereDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  - gyroPIDOut.getPIDOut());*/
 	}
 	
 	public void driveLateralWithGyro() {
@@ -139,10 +150,20 @@ public class Drive extends Subsystem {
 	}
 	
 	public void rotateWithGyro() {
-		roueAvantGauche.set(-gyroPIDOut.getPIDOut());
-		roueAvantDroite.set(gyroPIDOut.getPIDOut());
-	    roueArriereGauche.set(-gyroPIDOut.getPIDOut());
-		roueArriereDroite.set(gyroPIDOut.getPIDOut());
+		if (RobotMap.GYRO_UPSIDEDOWN == true)
+		{
+			roueAvantGauche.set(-gyroPIDOut.getPIDOut());
+			roueAvantDroite.set(gyroPIDOut.getPIDOut());
+		    roueArriereGauche.set(-gyroPIDOut.getPIDOut());
+			roueArriereDroite.set(gyroPIDOut.getPIDOut());
+		}
+		else
+		{
+			roueAvantGauche.set(gyroPIDOut.getPIDOut());
+			roueAvantDroite.set(-gyroPIDOut.getPIDOut());
+		    roueArriereGauche.set(gyroPIDOut.getPIDOut());
+			roueArriereDroite.set(-gyroPIDOut.getPIDOut());
+		}
 	}
 	
 	public void updateDistanceSetpoint(double setPoint) {
@@ -169,17 +190,42 @@ public class Drive extends Subsystem {
 	public boolean gyroPIDDone() {
 		return pidGyro.onTarget();
 	}
+	public void setDistancePIDNormalValues()
+	{
+		pidDistance.setPID(RobotMap.DISTANCE_KP, RobotMap.DISTANCE_KI, 0);
+	}
 	
+	public void setDistancePIDPrecisionValues()
+	{
+		pidDistance.setPID(RobotMap.DISTANCE_KP/2, RobotMap.DISTANCE_KI, 0);
+	}
 	public void setGyroPIDStandardValues()
 	{
 		pidGyro.setPID(-RobotMap.GYRO_KP, RobotMap.GYRO_KI, 0);
 	}
 	
-	public void setGyroPIDRotateValues()
+	public void setGyroDefaultPIDRotateValues()
 	{
-		pidGyro.setPID(RobotMap.GYRO_KP_AGRESSIF, RobotMap.GYRO_KI_AGRESSIF, 0);
+		pidGyro.setPID(RobotMap.GYRO_KP_ROTATEONLY, RobotMap.GYRO_KI_ROTATEONLY, 0);
 	}
 	
+	public void setDistancePIDValues(double P, double I)
+	{
+		pidDistance.setPID(P, I, 0);
+	}
+	public void setDistancePIDValues(double P, double I, double D)
+	{
+		pidDistance.setPID(P, I, D);
+	}
+	
+	public void setRotatePIDValues(double P, double I)
+	{
+		pidGyro.setPID(P, I, 0);
+	}
+	public void setRotatePIDValues(double P, double I, double D)
+	{
+		pidGyro.setPID(P, I, D);
+	}
 	public void updateDashboard()
 	{
 		SmartDashboard.putNumber("Encoder distance", encodeurRoues.getDistance());

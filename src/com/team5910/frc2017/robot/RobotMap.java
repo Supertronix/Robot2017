@@ -106,15 +106,17 @@ public interface RobotMap {
 	public static final double GYRO_KP = 0.03;
 	public static final double GYRO_KI = 0.0;
 	
-	public static final double GYRO_KP_AGRESSIF = 0.0005; // + haut = plus aggressif
-	public static final double GYRO_KI_AGRESSIF = 0.000085; // + bas = plus aggressif
+	public static final double GYRO_KP_ROTATEONLY = 0.00075; // + haut = plus aggressif
+	public static final double GYRO_KI_ROTATEONLY = 0.000085; // + bas = plus aggressif
 	
-	public static final double DISTANCE_KP = 0.11;
-	public static final double DISTANCE_KI = 0.00045;
+	public static final double DISTANCE_KP = 0.18; //0.11;
+	public static final double DISTANCE_KI = 0.00045; //0.00045;
 	public static final float DISTANCE_TOLERANCE = 0.083f;
 	
 	public static final int RASPBERRY_PORT = 3620;
 	public static final int RAYON_VERT_DIO = 12;
+	
+	public static final boolean GYRO_UPSIDEDOWN = false;
 
 
 }
