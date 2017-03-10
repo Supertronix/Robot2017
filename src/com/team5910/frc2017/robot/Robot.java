@@ -10,6 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.team5910.frc2017.commands.R2Commands;
+import com.team5910.frc2017.commands.R3Commands;
 import com.team5910.frc2017.commands.NoMoveCommands;
 import com.team5910.frc2017.commands.R1Commands;
 import com.team5910.frc2017.commands.drive.DriveDistance;
@@ -61,6 +62,7 @@ public class Robot extends IterativeRobot
 		autoChooser.addDefault("No move", new NoMoveCommands());
 		autoChooser.addObject("R1", new R1Commands());
 		autoChooser.addObject("R2", new R2Commands());
+		autoChooser.addObject("R3", new R3Commands());
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 	}
 
@@ -135,6 +137,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit() 
 	{	
+		if (autonomousCommand != null) { autonomousCommand.cancel(); }
 	}
 	
 	@Override

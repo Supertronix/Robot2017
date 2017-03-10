@@ -13,10 +13,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class R2Commands extends CommandGroup {
 
 public R2Commands() {
-	
+	//addParallel(new ShooterMotorStart());
 	addSequential(new DriveDistance(6.6, 0.09, 0.00045));
 	addSequential(new DriveDistance(-2, 0.18, 0.00045));
-	addSequential(new DriveRotate(90, 0.008, 0.0002));
+	addSequential(new DriveRotate(-90, 0.008, 0.0002));
 }
 
 }

@@ -116,7 +116,7 @@ public interface RobotMap {
 	public static final int RASPBERRY_PORT = 3620;
 	public static final int RAYON_VERT_DIO = 12;
 	
-	public static final boolean GYRO_UPSIDEDOWN = false;
+	public static final boolean GYRO_UPSIDEDOWN = true;
 
 
 }

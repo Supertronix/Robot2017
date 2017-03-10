@@ -10,16 +10,13 @@ import com.team5910.frc2017.commands.tourelle.FindTargetAndLock;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class R1Commands extends CommandGroup {
+public class R3Commands extends CommandGroup {
 
-public R1Commands() {
-	addSequential(new DriveDistance(5.5, 0.08, 0.00058));
-	addSequential(new DriveRotate(-60, 0.008, 0.0002));
-	addSequential(new DriveDistance(6.5, 0.08, 0.00045));
-	addSequential(new DriveDistance(-2, 0.18, 0.00045));
-	addSequential(new DriveRotate(150, 0.005, 0.00011));
-	addSequential(new DriveDistance(6.5, 0.08, 0.00058));
+public R3Commands() {
 	
+	addSequential(new DriveDistance(6.6, 0.09, 0.00045));
+	//addSequential(new DriveDistance(-2, 0.18, 0.00045));
+	//addSequential(new DriveRotate(-90, 0.008, 0.0002));
 }
 
 }
