@@ -23,47 +23,47 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class OI {
     
-    private final Joystick mMainDriveStick;
-    private final Joystick mAccessoriesStick;
+    private final Joystick manetteConduitePrincipale;
+    private final Joystick manetteAccessoire;
     
     public OI() {
-    	mMainDriveStick = new Joystick(RobotMap.MANETTE_CONDUITE_PRINCIPALE);
-    	mAccessoriesStick = new Joystick(RobotMap.MANETTE_ACCESSOIRE);
+    	manetteConduitePrincipale = new Joystick(RobotMap.MANETTE_CONDUITE_PRINCIPALE);
+    	manetteAccessoire = new Joystick(RobotMap.MANETTE_ACCESSOIRE);
     	
     	
     	// MAIN JOYSTICK
-    	JoystickButton intakerTrigger = new JoystickButton(mMainDriveStick, RobotMap.BOUTON_INTAKE);
+    	JoystickButton intakerTrigger = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_INTAKE);
     	intakerTrigger.whenPressed(new IntakeMotorStart());
     	intakerTrigger.whenPressed(new ShufflerMotorStart());
     	intakerTrigger.whenReleased(new IntakeMotorStop());
     	intakerTrigger.whenReleased(new ShufflerMotorStop());
     	
-    	JoystickButton climberTrigger = new JoystickButton(mMainDriveStick, RobotMap.BOUTON_GRIMPEUR);
+    	JoystickButton climberTrigger = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GRIMPEUR);
     	climberTrigger.whenPressed(new ClimbMotorStart());
     	climberTrigger.whenReleased(new ClimbMotorStop());
     	
-    	JoystickButton clampTrigger = new JoystickButton(mMainDriveStick, RobotMap.BOUTON_MACHOIRE);
+    	JoystickButton clampTrigger = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_MACHOIRE);
     	clampTrigger.whenPressed(new ToggleClampState());
     	
-    	JoystickButton gyroResetTrigger = new JoystickButton(mMainDriveStick, RobotMap.BOUTON_GYRO_RESET);
+    	JoystickButton gyroResetTrigger = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GYRO_RESET);
     	gyroResetTrigger.whenPressed(new DriveEncoderReset());
     	
     	// ACCESSORIES JOYSTICK
-    	JoystickButton indexerTrigger = new JoystickButton(mAccessoriesStick, RobotMap.BOUTON_INDEXEUR);
+    	JoystickButton indexerTrigger = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_INDEXEUR);
     	indexerTrigger.whenPressed(new IndexerMotorStart());
     	indexerTrigger.whenPressed(new ShufflerMotorStart());
     	
     	indexerTrigger.whenReleased(new IndexerMotorStop());    	
     	indexerTrigger.whenReleased(new ShufflerMotorStop());
     	
-    	JoystickButton shooterTrigger = new JoystickButton(mAccessoriesStick, RobotMap.BOUTON_LANCEUR);
+    	JoystickButton shooterTrigger = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR);
     	shooterTrigger.whenPressed(new ShooterMotorStart());
     	shooterTrigger.whenReleased(new ShooterMotorStop());    
     	
-    	JoystickButton shooterSpeedInc = new JoystickButton(mAccessoriesStick, RobotMap.BOUTON_LANCEUR_VITESSE_INCREMENTE);
+    	JoystickButton shooterSpeedInc = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_INCREMENTE);
     	shooterSpeedInc.whenPressed(new ShooterMotorSpeedIncDec(RobotMap.LANCEUR_VITESSE_DELTA));
     	
-    	JoystickButton shooterSpeedDec = new JoystickButton(mAccessoriesStick, RobotMap.BOUTON_LANCEUR_VITESSE_DECREMENTE);
+    	JoystickButton shooterSpeedDec = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_DECREMENTE);
     	shooterSpeedDec.whenPressed(new ShooterMotorSpeedIncDec(-RobotMap.LANCEUR_VITESSE_DELTA));
 
     	/*JoystickButton turretToggleModeTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kTurretToggleAutoMan);
@@ -72,39 +72,39 @@ public class OI {
     }
     
  // DRIVER CONTROLS
-    public double getLeftDriveX() {
-        return RobotMap.INVERSION_CONDUITE_X_GAUCHE ? -mMainDriveStick.getRawAxis(RobotMap.CONDUITE_X_GAUCHE): mMainDriveStick.getRawAxis(RobotMap.CONDUITE_X_GAUCHE);
+    public double getConduiteGaucheX() {
+        return RobotMap.INVERSION_CONDUITE_X_GAUCHE ? -manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_X_GAUCHE): manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_X_GAUCHE);
     }
     
-    public double getLeftDriveY() {
-        return RobotMap.INVERSION_CONDUITE_Y_GAUCHE ? -mMainDriveStick.getRawAxis(RobotMap.CONDUITE_Y_GAUCHE): mMainDriveStick.getRawAxis(RobotMap.CONDUITE_Y_GAUCHE);
+    public double getConduiteGaucheY() {
+        return RobotMap.INVERSION_CONDUITE_Y_GAUCHE ? -manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_Y_GAUCHE): manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_Y_GAUCHE);
     }
     
-    public double getRightDriveX() {
-        return RobotMap.INVERSION_CONDUITE_X_DROITE ? -mMainDriveStick.getRawAxis(RobotMap.CONDUITE_X_DROITE): mMainDriveStick.getRawAxis(RobotMap.CONDUITE_X_DROITE);
+    public double getConduiteDroiteX() {
+        return RobotMap.INVERSION_CONDUITE_X_DROITE ? -manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_X_DROITE): manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_X_DROITE);
     }
     
-    public double getRightDriveY() {
-        return RobotMap.INVERSION_CONDUITE_Y_DROITE ? -mMainDriveStick.getRawAxis(RobotMap.CONDUITE_Y_DROITE): mMainDriveStick.getRawAxis(RobotMap.CONDUITE_Y_DROITE);
+    public double getConduiteDroiteY() {
+        return RobotMap.INVERSION_CONDUITE_Y_DROITE ? -manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_Y_DROITE): manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_Y_DROITE);
     }
     
 // ACCESSORIES
     public boolean getIntakeButton() {
-    	return mMainDriveStick.getRawButton(RobotMap.BOUTON_INTAKE);
+    	return manetteConduitePrincipale.getRawButton(RobotMap.BOUTON_INTAKE);
     }
     
     public boolean getClimberButton() {
-    	return mMainDriveStick.getRawButton(RobotMap.BOUTON_GRIMPEUR);
+    	return manetteConduitePrincipale.getRawButton(RobotMap.BOUTON_GRIMPEUR);
     }
     
     public boolean getClampButton() {
-    	return mMainDriveStick.getRawButton(RobotMap.BOUTON_MACHOIRE);
+    	return manetteConduitePrincipale.getRawButton(RobotMap.BOUTON_MACHOIRE);
     }
-    public double getPanAxis() {
-        return RobotMap.INVERSION_TOURELLE_PAN_AXE ? -mAccessoriesStick.getRawAxis(RobotMap.TOURELLE_PAN_AXE): mAccessoriesStick.getRawAxis(RobotMap.TOURELLE_PAN_AXE);
+    public double getPanAxe() {
+        return RobotMap.INVERSION_TOURELLE_PAN_AXE ? -manetteAccessoire.getRawAxis(RobotMap.TOURELLE_PAN_AXE): manetteAccessoire.getRawAxis(RobotMap.TOURELLE_PAN_AXE);
     }
-    public double getTiltAxis() {
-        return RobotMap.INVERSION_TOURELLE_TILT_AXE ? -mAccessoriesStick.getRawAxis(RobotMap.TOURELLE_TILT_AXE): mAccessoriesStick.getRawAxis(RobotMap.TOURELLE_TILT_AXE);
+    public double getTiltAxe() {
+        return RobotMap.INVERSION_TOURELLE_TILT_AXE ? -manetteAccessoire.getRawAxis(RobotMap.TOURELLE_TILT_AXE): manetteAccessoire.getRawAxis(RobotMap.TOURELLE_TILT_AXE);
     }
     
 }

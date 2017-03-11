@@ -100,17 +100,17 @@ public class Robot extends IterativeRobot
 		double y2 = 0;
 		
 		
-		if (Math.abs(oi.getLeftDriveX()) > .2)
-			x1 = oi.getLeftDriveX();
+		if (Math.abs(oi.getConduiteGaucheX()) > .2)
+			x1 = oi.getConduiteGaucheX();
        
-        if (Math.abs(oi.getLeftDriveY()) > .2)
-        	y1 = oi.getLeftDriveY();
+        if (Math.abs(oi.getConduiteGaucheY()) > .2)
+        	y1 = oi.getConduiteGaucheY();
        
-        if (Math.abs(oi.getRightDriveX()) > .2)
-            x2 = oi.getRightDriveX();
+        if (Math.abs(oi.getConduiteDroiteX()) > .2)
+            x2 = oi.getConduiteDroiteX();
         
-        if (Math.abs(oi.getRightDriveY()) > .2)
-            y2 = oi.getRightDriveY();
+        if (Math.abs(oi.getConduiteDroiteY()) > .2)
+            y2 = oi.getConduiteDroiteY();
         
         double x = (x1 + x2)/ 2;
         
@@ -119,11 +119,11 @@ public class Robot extends IterativeRobot
         double pan = 0.0;
         double tilt = 0.0;
      
-        if (Math.abs(oi.getPanAxis()) > .2)
-            pan = oi.getPanAxis();
+        if (Math.abs(oi.getPanAxe()) > .2)
+            pan = oi.getPanAxe();
         
-        if (Math.abs(oi.getTiltAxis()) > .2)
-            tilt = oi.getTiltAxis();
+        if (Math.abs(oi.getTiltAxe()) > .2)
+            tilt = oi.getTiltAxe();
         
         superstructure.tourelle.manualDrive(pan, tilt);
         superstructure.tourelle.updateDashboard();
