@@ -32,39 +32,39 @@ public class OI {
     	
     	
     	// MAIN JOYSTICK
-    	JoystickButton intakerTrigger = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_INTAKE);
-    	intakerTrigger.whenPressed(new IntakeMotorStart());
-    	intakerTrigger.whenPressed(new ShufflerMotorStart());
-    	intakerTrigger.whenReleased(new IntakeMotorStop());
-    	intakerTrigger.whenReleased(new ShufflerMotorStop());
+    	JoystickButton actionIntaker = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_INTAKE);
+    	actionIntaker.whenPressed(new IntakeMotorStart());
+    	actionIntaker.whenPressed(new ShufflerMotorStart());
+    	actionIntaker.whenReleased(new IntakeMotorStop());
+    	actionIntaker.whenReleased(new ShufflerMotorStop());
     	
-    	JoystickButton climberTrigger = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GRIMPEUR);
-    	climberTrigger.whenPressed(new ClimbMotorStart());
-    	climberTrigger.whenReleased(new ClimbMotorStop());
+    	JoystickButton actionGrimpeur = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GRIMPEUR);
+    	actionGrimpeur.whenPressed(new ClimbMotorStart());
+    	actionGrimpeur.whenReleased(new ClimbMotorStop());
     	
-    	JoystickButton clampTrigger = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_MACHOIRE);
-    	clampTrigger.whenPressed(new ToggleClampState());
+    	JoystickButton actionMachoire = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_MACHOIRE);
+    	actionMachoire.whenPressed(new ToggleClampState());
     	
-    	JoystickButton gyroResetTrigger = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GYRO_RESET);
-    	gyroResetTrigger.whenPressed(new DriveEncoderReset());
+    	JoystickButton actionGyroReset = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GYRO_RESET);
+    	actionGyroReset.whenPressed(new DriveEncoderReset());
     	
     	// ACCESSORIES JOYSTICK
-    	JoystickButton indexerTrigger = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_INDEXEUR);
-    	indexerTrigger.whenPressed(new IndexerMotorStart());
-    	indexerTrigger.whenPressed(new ShufflerMotorStart());
+    	JoystickButton actionIndexeur = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_INDEXEUR);
+    	actionIndexeur.whenPressed(new IndexerMotorStart());
+    	actionIndexeur.whenPressed(new ShufflerMotorStart());
     	
-    	indexerTrigger.whenReleased(new IndexerMotorStop());    	
-    	indexerTrigger.whenReleased(new ShufflerMotorStop());
+    	actionIndexeur.whenReleased(new IndexerMotorStop());    	
+    	actionIndexeur.whenReleased(new ShufflerMotorStop());
     	
-    	JoystickButton shooterTrigger = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR);
-    	shooterTrigger.whenPressed(new ShooterMotorStart());
-    	shooterTrigger.whenReleased(new ShooterMotorStop());    
+    	JoystickButton actionLanceur = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR);
+    	actionLanceur.whenPressed(new ShooterMotorStart());
+    	actionLanceur.whenReleased(new ShooterMotorStop());    
     	
-    	JoystickButton shooterSpeedInc = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_INCREMENTE);
-    	shooterSpeedInc.whenPressed(new ShooterMotorSpeedIncDec(RobotMap.LANCEUR_VITESSE_DELTA));
+    	JoystickButton actionLanceurAcceleration = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_INCREMENTE);
+    	actionLanceurAcceleration.whenPressed(new ShooterMotorSpeedIncDec(RobotMap.LANCEUR_VITESSE_DELTA));
     	
-    	JoystickButton shooterSpeedDec = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_DECREMENTE);
-    	shooterSpeedDec.whenPressed(new ShooterMotorSpeedIncDec(-RobotMap.LANCEUR_VITESSE_DELTA));
+    	JoystickButton actionLanceurDeceleration = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_DECREMENTE);
+    	actionLanceurDeceleration.whenPressed(new ShooterMotorSpeedIncDec(-RobotMap.LANCEUR_VITESSE_DELTA));
 
     	/*JoystickButton turretToggleModeTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kTurretToggleAutoMan);
     	turretToggleModeTrigger.whenPressed(new TurretToggleAutoMan()); */   
