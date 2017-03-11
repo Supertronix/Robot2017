@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.team5910.frc2017.commands.CommandeR2;
 import com.team5910.frc2017.commands.CommandeR3;
 import com.team5910.frc2017.commands.CommandeImmobile;
+import com.team5910.frc2017.commands.CommandeLigneDroite;
 import com.team5910.frc2017.commands.CommandeR1;
 import com.team5910.frc2017.commands.drive.CommandeConduiteDistance;
 import com.team5910.frc2017.commands.tourelle.TurretSetState;
@@ -58,13 +59,20 @@ public class Robot extends IterativeRobot
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
 		try { new GRIPReceiver(superstructure.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
+		SmartDashboard.putNumber("DISTANCE", 0);
+		SmartDashboard.putNumber("P", 0);
+		SmartDashboard.putNumber("I", 0);
+		
+		
 		// http://wpilib.screenstepslive.com/s/3120/m/7932/l/81109-choosing-an-autonomous-program-from-smartdashboard
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No move", new CommandeImmobile());
 		autoChooser.addObject("R1", new CommandeR1());
 		autoChooser.addObject("R2", new CommandeR2());
-		autoChooser.addObject("R3", new CommandeR3());
+		autoChooser.addObject("R3", new CommandeR3());		
+		autoChooser.addObject("LigneDroit", new CommandeLigneDroite());
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		
 	}
 
 	@Override
