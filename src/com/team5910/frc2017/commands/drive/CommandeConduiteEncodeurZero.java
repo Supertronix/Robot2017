@@ -4,9 +4,9 @@ import com.team5910.frc2017.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class DriveEncoderReset extends Command {
+public class CommandeConduiteEncodeurZero extends Command {
 
-	public DriveEncoderReset() {
+	public CommandeConduiteEncodeurZero() {
 		requires(Robot.drive);
 		 
 	 }

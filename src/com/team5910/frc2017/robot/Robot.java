@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.team5910.frc2017.commands.R2Commands;
-import com.team5910.frc2017.commands.R3Commands;
-import com.team5910.frc2017.commands.NoMoveCommands;
-import com.team5910.frc2017.commands.R1Commands;
-import com.team5910.frc2017.commands.drive.DriveDistance;
+import com.team5910.frc2017.commands.CommandeR2;
+import com.team5910.frc2017.commands.CommandeR3;
+import com.team5910.frc2017.commands.CommandeImmobile;
+import com.team5910.frc2017.commands.CommandeR1;
+import com.team5910.frc2017.commands.drive.CommandeConduiteDistance;
 import com.team5910.frc2017.commands.tourelle.TurretSetState;
 import com.team5910.frc2017.robot.outils.OI;
 import com.team5910.frc2017.robot.outils.USBCamStreamer;
@@ -59,10 +59,10 @@ public class Robot extends IterativeRobot
 		try { new GRIPReceiver(superstructure.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
 		autoChooser = new SendableChooser();
-		autoChooser.addDefault("No move", new NoMoveCommands());
-		autoChooser.addObject("R1", new R1Commands());
-		autoChooser.addObject("R2", new R2Commands());
-		autoChooser.addObject("R3", new R3Commands());
+		autoChooser.addDefault("No move", new CommandeImmobile());
+		autoChooser.addObject("R1", new CommandeR1());
+		autoChooser.addObject("R2", new CommandeR2());
+		autoChooser.addObject("R3", new CommandeR3());
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 	}
 

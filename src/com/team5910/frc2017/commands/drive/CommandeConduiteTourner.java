@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class DriveRotate extends Command {
+public class CommandeConduiteTourner extends Command {
 
 	double mWantedAngle;
 	double mP;
 	double mI;
 	double mD;
 	
-	public DriveRotate(double angle) {
+	public CommandeConduiteTourner(double angle) {
 		requires(Robot.drive);
 		mWantedAngle = angle; // Distance in feet
 		mP = RobotMap.GYRO_KP_ROTATEONLY;
@@ -24,7 +24,7 @@ public class DriveRotate extends Command {
 		mD = 0.0;
 	}
 	
-	public DriveRotate(double angle, double P, double I) {
+	public CommandeConduiteTourner(double angle, double P, double I) {
 		requires(Robot.drive);
 		mWantedAngle = angle; // Distance in feet
 		mP = P;
@@ -32,7 +32,7 @@ public class DriveRotate extends Command {
 		mD = 0.0;
 	}
 	
-	public DriveRotate(double angle, double P, double I, double D) {
+	public CommandeConduiteTourner(double angle, double P, double I, double D) {
 		requires(Robot.drive);
 		mWantedAngle = angle; // Distance in feet
 		mP = P;

@@ -1,6 +1,6 @@
 package com.team5910.frc2017.robot.outils;
 
-import com.team5910.frc2017.commands.drive.DriveEncoderReset;
+import com.team5910.frc2017.commands.drive.CommandeConduiteEncodeurZero;
 import com.team5910.frc2017.commands.lanceur.ShooterMotorSpeedIncDec;
 import com.team5910.frc2017.commands.lanceur.ShooterMotorStart;
 import com.team5910.frc2017.commands.lanceur.ShooterMotorStop;
@@ -46,7 +46,7 @@ public class OI {
     	actionMachoire.whenPressed(new ToggleClampState());
     	
     	JoystickButton actionGyroReset = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GYRO_RESET);
-    	actionGyroReset.whenPressed(new DriveEncoderReset());
+    	actionGyroReset.whenPressed(new CommandeConduiteEncodeurZero());
     	
     	// ACCESSORIES JOYSTICK
     	JoystickButton actionIndexeur = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_INDEXEUR);

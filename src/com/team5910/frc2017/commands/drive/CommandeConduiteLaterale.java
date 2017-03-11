@@ -5,11 +5,11 @@ import com.team5910.frc2017.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class LateralDriveDistance extends Command {
+public class CommandeConduiteLaterale extends Command {
 
 	double mWantedDistance;
 
-	public LateralDriveDistance(double distance) {
+	public CommandeConduiteLaterale(double distance) {
 		requires(Robot.drive);
 		mWantedDistance = distance; // Distance in feet
 	}
