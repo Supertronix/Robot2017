@@ -11,31 +11,31 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CommandeConduiteDistance extends Command {
 
-	double mWantedDistance;
-	double mP;
-	double mI;
-	double mD;
+	protected double distanceDesiree;
+	protected double p;
+	protected double i;
+	protected double d;
 	
 	public CommandeConduiteDistance(double distance) {
 		requires(Robot.drive);
-		mWantedDistance = distance; // Distance in feet
-		mP = RobotMap.DISTANCE_KP;
-		mI = RobotMap.DISTANCE_KI;
-		mD = 0.0;
+		distanceDesiree = distance; // Distance in feet
+		this.p = RobotMap.DISTANCE_KP;
+		this.i = RobotMap.DISTANCE_KI;
+		this.d = 0.0;
 	}
 	public CommandeConduiteDistance(double distance, double driveP, double driveI) {
 		requires(Robot.drive);
-		mWantedDistance = distance; // Distance in feet
-		mP = driveP;
-		mI = driveI;
-		mD = 0.0;
+		distanceDesiree = distance; // Distance in feet
+		this.p = driveP;
+		this.i = driveI;
+		this.d = 0.0;
 	}
 	public CommandeConduiteDistance(double distance, double driveP, double driveI, double driveD) {
 		requires(Robot.drive);
-		mWantedDistance = distance; // Distance in feet
-		mP = driveP;
-		mI = driveI;
-		mD = driveD;
+		distanceDesiree = distance; // Distance in feet
+		this.p = driveP;
+		this.i = driveI;
+		this.d = driveD;
 	}
 	
 
@@ -45,8 +45,8 @@ public class CommandeConduiteDistance extends Command {
 		Robot.drive.resetGyro();
 		Robot.drive.resetPIDS();
 		Robot.drive.setGyroPIDStandardValues();
-		Robot.drive.setDistancePIDValues(mP, mI, mD);
-		Robot.drive.updateDistanceSetpoint(Robot.drive.getEncoderDistance() + mWantedDistance);
+		Robot.drive.setDistancePIDValues(this.p, this.i, this.d);
+		Robot.drive.updateDistanceSetpoint(Robot.drive.getEncoderDistance() + distanceDesiree);
 		Robot.drive.updateGyroSetpoint(0.0);
 	}
 	
@@ -65,5 +65,4 @@ public class CommandeConduiteDistance extends Command {
 	protected void end() {
 		Robot.drive.arreter();
 	}
-
 }

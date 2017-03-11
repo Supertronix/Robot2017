@@ -11,33 +11,33 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CommandeConduiteTourner extends Command {
 
-	double mWantedAngle;
-	double mP;
-	double mI;
-	double mD;
+	protected double angleDesire;
+	protected double p;
+	protected double i;
+	protected double d;
 	
 	public CommandeConduiteTourner(double angle) {
 		requires(Robot.drive);
-		mWantedAngle = angle; // Distance in feet
-		mP = RobotMap.GYRO_KP_ROTATEONLY;
-		mI = RobotMap.GYRO_KI_ROTATEONLY;
-		mD = 0.0;
+		angleDesire = angle; // Distance in feet
+		this.p = RobotMap.GYRO_KP_ROTATEONLY;
+		this.i = RobotMap.GYRO_KI_ROTATEONLY;
+		this.d = 0.0;
 	}
 	
 	public CommandeConduiteTourner(double angle, double P, double I) {
 		requires(Robot.drive);
-		mWantedAngle = angle; // Distance in feet
-		mP = P;
-		mI = I;
-		mD = 0.0;
+		angleDesire = angle; // Distance in feet
+		this.p = P;
+		this.i = I;
+		this.d = 0.0;
 	}
 	
 	public CommandeConduiteTourner(double angle, double P, double I, double D) {
 		requires(Robot.drive);
-		mWantedAngle = angle; // Distance in feet
-		mP = P;
-		mI = I;
-		mD = D;
+		angleDesire = angle; // Distance in feet
+		this.p = P;
+		this.i = I;
+		this.d = D;
 	}
 	
 
@@ -46,8 +46,8 @@ public class CommandeConduiteTourner extends Command {
 		Robot.drive.resetEncoders();
 		Robot.drive.resetGyro();
 		Robot.drive.resetPIDS();
-		Robot.drive.setRotatePIDValues(mP, mI, mD);
-		Robot.drive.updateGyroSetpoint(-mWantedAngle); // Invert angle so positive is clockwise
+		Robot.drive.setRotatePIDValues(this.p, this.i, this.d);
+		Robot.drive.updateGyroSetpoint(-angleDesire); // Invert angle so positive is clockwise
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
