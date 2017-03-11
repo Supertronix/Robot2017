@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CommandeR1 extends CommandGroup {
 
 public CommandeR1() {
+	// public CommandeConduiteDistance(double distance, double driveP, double driveI)
+	// public CommandeConduiteTourner(double angle, double P, double I)
 	addSequential(new CommandeConduiteDistance(5.5, 0.08, 0.00058));
 	addSequential(new CommandeConduiteTourner(-60, 0.008, 0.0002));
 	addSequential(new CommandeConduiteDistance(6.5, 0.08, 0.00045));

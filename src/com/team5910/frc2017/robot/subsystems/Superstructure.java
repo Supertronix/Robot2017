@@ -9,7 +9,7 @@ public class Superstructure extends Subsystem {
     public Intaker intaker;
     public Grimpeur grimpeur;
     public Machoire machoire;
-    public Indexeur indexer;
+    public Indexeur indexeur;
     public Brasseur brasseur;
     
     public Superstructure()
@@ -19,7 +19,7 @@ public class Superstructure extends Subsystem {
     	 intaker = new Intaker();
     	 grimpeur = new Grimpeur();
     	 machoire = new Machoire();
-    	 indexer = new Indexeur();
+    	 indexeur = new Indexeur();
     	 brasseur = new Brasseur();
     }
     
@@ -32,7 +32,7 @@ public class Superstructure extends Subsystem {
 		lanceur.stop();
 		intaker.stop();
 		grimpeur.stop();
-		indexer.stop();
+		indexeur.stop();
 	}
 	
 	public void zeroSensors() {

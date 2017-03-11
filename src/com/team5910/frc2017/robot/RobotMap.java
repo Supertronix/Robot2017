@@ -109,6 +109,9 @@ public interface RobotMap {
 	public static final double GYRO_KP_ROTATEONLY = 0.00075; // + haut = plus aggressif
 	public static final double GYRO_KI_ROTATEONLY = 0.000085; // + bas = plus aggressif
 	
+	// Kp = Proportional gain
+	// Ki = Integral gain
+	// Kd = Derivative gain
 	public static final double DISTANCE_KP = 0.18; //0.11;
 	public static final double DISTANCE_KI = 0.00045; //0.00045;
 	public static final float DISTANCE_TOLERANCE = 0.083f;

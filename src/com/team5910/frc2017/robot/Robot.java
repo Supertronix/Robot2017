@@ -58,6 +58,7 @@ public class Robot extends IterativeRobot
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
 		try { new GRIPReceiver(superstructure.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
+		// http://wpilib.screenstepslive.com/s/3120/m/7932/l/81109-choosing-an-autonomous-program-from-smartdashboard
 		autoChooser = new SendableChooser();
 		autoChooser.addDefault("No move", new CommandeImmobile());
 		autoChooser.addObject("R1", new CommandeR1());
