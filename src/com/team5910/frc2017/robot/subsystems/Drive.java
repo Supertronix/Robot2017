@@ -122,7 +122,7 @@ public class Drive extends Subsystem {
 	}
 
 	public void driveStraightWithGyro() {
-		if (RobotMap.GYRO_UPSIDEDOWN == true)
+		if (RobotMap.GYRO_UPSIDEDOWN)
 		{
 			roueAvantGauche.set(distancePIDOut.getPIDOut() + gyroPIDOut.getPIDOut());
 			roueAvantDroite.set(distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());
@@ -144,7 +144,7 @@ public class Drive extends Subsystem {
 	}
 	
 	public void driveStraight() {
-		if (RobotMap.GYRO_UPSIDEDOWN == true)
+		if (RobotMap.GYRO_UPSIDEDOWN)
 		{
 			roueAvantGauche.set(distancePIDOut.getPIDOut());
 			roueAvantDroite.set(distancePIDOut.getPIDOut());
@@ -173,7 +173,7 @@ public class Drive extends Subsystem {
 	}
 	
 	public void rotateWithGyro() {
-		if (RobotMap.GYRO_UPSIDEDOWN == true)
+		if (RobotMap.GYRO_UPSIDEDOWN)
 		{
 			roueAvantGauche.set(-gyroPIDOut.getPIDOut());
 			roueAvantDroite.set(gyroPIDOut.getPIDOut());
