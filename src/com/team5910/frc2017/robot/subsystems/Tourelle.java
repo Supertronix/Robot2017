@@ -4,6 +4,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.ctre.CANTalon.TalonControlMode;
 import com.team5910.frc2017.robot.RobotMap;
+import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.outils.Utilities;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -57,7 +58,7 @@ public class Tourelle extends Subsystem {
 		tourelleTilt.reverseSensor(true);
 		tourelleTilt.setP(0.1);
 		tourelleTilt.enable();	
-		SmartDashboard.putNumber("TILTSP", 130);
+		SmartDashboard.putNumber(AffichageStation.TOURELLE_TILT_TSP, 130);
 		
 	}
 	
@@ -131,8 +132,8 @@ public class Tourelle extends Subsystem {
 	
 	public void updateDashboard()
 	{
-		SmartDashboard.putNumber("tiltPot", tourelleTilt.getAnalogInPosition());
-		SmartDashboard.putNumber("panPot", tourellePan.getAnalogInPosition());
+		SmartDashboard.putNumber(AffichageStation.TOURELLE_TILT_POT, tourelleTilt.getAnalogInPosition());
+		SmartDashboard.putNumber(AffichageStation.TOURELLE_PAN_POT, tourellePan.getAnalogInPosition());
 	}
 	
 	public void gripUpdatePan(double aSPUpdateValue)
@@ -146,7 +147,7 @@ public class Tourelle extends Subsystem {
 	
 	public void TeleopPeriodic()
 	{
-		//tourelleTilt.set(SmartDashboard.getNumber("TILTSP", 130));
+		//tourelleTilt.set(SmartDashboard.getNumber(AffichageStation.TOURELLE_TILT_TSP, 130));
 	}
 }
 

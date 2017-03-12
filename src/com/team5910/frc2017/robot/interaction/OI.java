@@ -1,4 +1,4 @@
-package com.team5910.frc2017.robot.outils;
+package com.team5910.frc2017.robot.interaction;
 
 import com.team5910.frc2017.commands.drive.CommandeConduiteEncodeurZero;
 import com.team5910.frc2017.commands.lanceur.ShooterMotorSpeedIncDec;
@@ -29,7 +29,6 @@ public class OI {
     public OI() {
     	manetteConduitePrincipale = new Joystick(RobotMap.MANETTE_CONDUITE_PRINCIPALE);
     	manetteAccessoire = new Joystick(RobotMap.MANETTE_ACCESSOIRE);
-    	
     	
     	// MAIN JOYSTICK
     	JoystickButton actionIntaker = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_INTAKE);

@@ -16,7 +16,8 @@ import com.team5910.frc2017.commands.CommandeLigneDroite;
 import com.team5910.frc2017.commands.CommandeR1;
 import com.team5910.frc2017.commands.drive.CommandeConduiteDistance;
 import com.team5910.frc2017.commands.tourelle.TurretSetState;
-import com.team5910.frc2017.robot.outils.OI;
+import com.team5910.frc2017.robot.interaction.AffichageStation;
+import com.team5910.frc2017.robot.interaction.OI;
 import com.team5910.frc2017.robot.outils.USBCamStreamer;
 import com.team5910.frc2017.robot.outils.Utilities;
 import com.team5910.frc2017.robot.raspberry.GRIPReceiver;
@@ -58,9 +59,9 @@ public class RobotControleur extends IterativeRobot
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
 		try { new GRIPReceiver(robot.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
-		SmartDashboard.putNumber("DISTANCE", 0);
-		SmartDashboard.putNumber("P", 0);
-		SmartDashboard.putNumber("I", 0);
+		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE, 0);
+		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE_P, 0);
+		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE_I, 0);
 		
 		
 		// http://wpilib.screenstepslive.com/s/3120/m/7932/l/81109-choosing-an-autonomous-program-from-smartdashboard

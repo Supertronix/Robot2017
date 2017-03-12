@@ -7,6 +7,7 @@ import java.net.*;
 import com.google.gson.Gson;
 import com.team5910.frc2017.robot.RobotControleur;
 import com.team5910.frc2017.robot.RobotMap;
+import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.subsystems.Tourelle;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -27,21 +28,21 @@ public class GRIPReceiver extends Thread
 	
 	public GRIPReceiver(String name) throws IOException {
         super(name);
-        SmartDashboard.putString("VisionStatus","UDPReceiver constructor called");
+        SmartDashboard.putString(AffichageStation.VISION_STATUT,"UDPReceiver constructor called");
         socket = new DatagramSocket(RobotMap.RASPBERRY_PORT);
-        SmartDashboard.putString("VisionStatus","UDPReceiver datagram binding");
+        SmartDashboard.putString(AffichageStation.VISION_STATUT,"UDPReceiver datagram binding");
     }
 	
 	
 	public void run() {
-		SmartDashboard.putString("VisionStatus","UDPReceiver running");
+		SmartDashboard.putString(AffichageStation.VISION_STATUT,"UDPReceiver running");
     	System.out.println("thread start");
     	byte[] buf = new byte[256];
     	DatagramPacket packet = new DatagramPacket(buf, buf.length);
     	
     	while (moreQuotes) {
             try {
-            	SmartDashboard.putString("VisionStatus","Test");
+            	SmartDashboard.putString(AffichageStation.VISION_STATUT,"Test");
                 // receive request
             	packet.setLength(buf.length);
                 socket.receive(packet);
@@ -61,7 +62,7 @@ public class GRIPReceiver extends Thread
         		//System.out.println(visionData);
             } catch (IOException e) {
                 e.printStackTrace();
-                SmartDashboard.putString("VisionStatus","Exception in receiving data");
+                SmartDashboard.putString(AffichageStation.VISION_STATUT,"Exception in receiving data");
                 moreQuotes = false;
             }
         }

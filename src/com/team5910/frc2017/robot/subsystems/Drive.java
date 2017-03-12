@@ -1,6 +1,7 @@
 package com.team5910.frc2017.robot.subsystems;
 
 import com.team5910.frc2017.robot.RobotMap;
+import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.outils.ADXRS450_Supertronix;
 import com.team5910.frc2017.robot.outils.Utilities;
 
@@ -250,11 +251,10 @@ public class Drive extends Subsystem {
 	}
 	public void updateDashboard()
 	{
-		SmartDashboard.putNumber("Encoder distance", encodeurRoues.getDistance());
-		SmartDashboard.putNumber("Gyro", gyro.getAngle());
-		
-		SmartDashboard.putNumber("Gyro PID", gyroPIDOut.getPIDOut());
-		SmartDashboard.putNumber("Distance PID", distancePIDOut.getPIDOut());
+		SmartDashboard.putNumber(AffichageStation.DRIVE_ENCODEUR_DISTANCE, encodeurRoues.getDistance());
+		SmartDashboard.putNumber(AffichageStation.DRIVE_GYRO, gyro.getAngle());
+		SmartDashboard.putNumber(AffichageStation.DRIVE_GYRO_PID, gyroPIDOut.getPIDOut());
+		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE_PID, distancePIDOut.getPIDOut());
 	}
 }
 

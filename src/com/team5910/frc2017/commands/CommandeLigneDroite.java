@@ -7,6 +7,7 @@ import com.team5910.frc2017.commands.drive.CommandeConduiteLaterale;
 import com.team5910.frc2017.commands.lanceur.ShooterMotorStart;
 import com.team5910.frc2017.commands.lanceur.SpinUpShooter;
 import com.team5910.frc2017.commands.tourelle.FindTargetAndLock;
+import com.team5910.frc2017.robot.interaction.AffichageStation;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -16,8 +17,7 @@ public class CommandeLigneDroite extends CommandGroup {
 public CommandeLigneDroite() {
 	// public CommandeConduiteDistance(double distance, double driveP, double driveI)
 	// public CommandeConduiteTourner(double angle, double P, double I)
-	addSequential(new CommandeConduiteDistance(SmartDashboard.getNumber("DISTANCE"), SmartDashboard.getNumber("P"), SmartDashboard.getNumber("I")));
-	
+	addSequential(new CommandeConduiteDistance(SmartDashboard.getNumber(AffichageStation.DRIVE_DISTANCE), SmartDashboard.getNumber(AffichageStation.DRIVE_DISTANCE_P), SmartDashboard.getNumber(AffichageStation.DRIVE_DISTANCE_I)));	
 }
 
 }
