@@ -8,13 +8,13 @@ public class ShooterMotorSpeedIncDec extends Command {
 	double changeValue;
 	
 	public ShooterMotorSpeedIncDec(double aChangeValue) {
-		requires(RobotControleur.superstructure.lanceur);
+		requires(RobotControleur.robot.lanceur);
 		changeValue = aChangeValue;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.lanceur.incDecSpeed(changeValue);
+		 RobotControleur.robot.lanceur.incDecSpeed(changeValue);
 	}
 	 
 	@Override

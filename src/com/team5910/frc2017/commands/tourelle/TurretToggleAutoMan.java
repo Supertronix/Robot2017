@@ -8,12 +8,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class TurretToggleAutoMan extends Command {
 
 	public TurretToggleAutoMan() {
-		requires(RobotControleur.superstructure.tourelle);
+		requires(RobotControleur.robot.tourelle);
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.tourelle.toggleAutoMan();
+		 RobotControleur.robot.tourelle.toggleAutoMan();
 	}
 	 
 	@Override

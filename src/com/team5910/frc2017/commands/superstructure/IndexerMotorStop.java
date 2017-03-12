@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class IndexerMotorStop extends Command {
 
 	public IndexerMotorStop() {
-		requires(RobotControleur.superstructure.indexeur);
+		requires(RobotControleur.robot.indexeur);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.indexeur.stop();
+		 RobotControleur.robot.indexeur.stop();
 	}
 	 
 	@Override

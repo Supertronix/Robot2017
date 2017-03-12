@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class IntakeMotorStop extends Command {
 
 	public IntakeMotorStop() {
-		requires(RobotControleur.superstructure.intaker);
+		requires(RobotControleur.robot.intaker);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.intaker.stop();
+		 RobotControleur.robot.intaker.stop();
 		 new ShufflerMotorStop();
 	}
 	 

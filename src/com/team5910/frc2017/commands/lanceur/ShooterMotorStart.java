@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShooterMotorStart extends Command {
 
 	public ShooterMotorStart() {
-		requires(RobotControleur.superstructure.lanceur);
+		requires(RobotControleur.robot.lanceur);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.lanceur.shoot();
+		 RobotControleur.robot.lanceur.shoot();
 	}
 	 
 	@Override

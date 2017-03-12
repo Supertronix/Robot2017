@@ -8,13 +8,13 @@ public class TurretOffsetPanSP extends Command {
 
 	double panOffset = 0.0;
 	public TurretOffsetPanSP(double aPanOffset) {
-		requires(RobotControleur.superstructure.tourelle);
+		requires(RobotControleur.robot.tourelle);
 		panOffset = aPanOffset;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.tourelle.offsetPanSP(panOffset);
+		 RobotControleur.robot.tourelle.offsetPanSP(panOffset);
 	}
 	 
 	@Override

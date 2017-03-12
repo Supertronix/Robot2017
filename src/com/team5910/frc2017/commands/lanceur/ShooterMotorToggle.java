@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShooterMotorToggle extends Command {
 
 	public ShooterMotorToggle() {
-		requires(RobotControleur.superstructure.lanceur);
+		requires(RobotControleur.robot.lanceur);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.lanceur.toggle();
+		 RobotControleur.robot.lanceur.toggle();
 	}
 	 
 	@Override

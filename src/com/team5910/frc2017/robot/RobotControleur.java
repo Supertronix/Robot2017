@@ -27,7 +27,7 @@ public class RobotControleur extends IterativeRobot
 {
 	// Subsystems
 	public static Drive drive;
-	public static Robot superstructure;
+	public static Robot robot;
 	public static OI oi;
 	
     Command commandeAutonome;
@@ -37,26 +37,26 @@ public class RobotControleur extends IterativeRobot
 	
 	public void stopAll() {
         drive.arreter();
-        superstructure.stopAll();
+        robot.stopAll();
     }
 	
 	 public void zeroAllSensors() {
 	        drive.zeroSensors();
-	        superstructure.zeroSensors();
+	        robot.zeroSensors();
 	 }
 	
 	@Override
 	public void robotInit() 
 	{		
 		drive = new Drive();
-		superstructure = new Robot();
+		robot = new Robot();
 		oi = new OI();
 		
 		// Reset all state
         zeroAllSensors();
         
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
-		try { new GRIPReceiver(superstructure.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
+		try { new GRIPReceiver(robot.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
 		SmartDashboard.putNumber("DISTANCE", 0);
 		SmartDashboard.putNumber("P", 0);
@@ -135,13 +135,13 @@ public class RobotControleur extends IterativeRobot
         if (Math.abs(oi.getTiltAxe()) > .2)
             tilt = oi.getTiltAxe();
         
-        superstructure.tourelle.manualDrive(pan, tilt);
-        superstructure.tourelle.updateDashboard();
+        robot.tourelle.manualDrive(pan, tilt);
+        robot.tourelle.updateDashboard();
         drive.updateDashboard();
         
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
         
-        superstructure.tourelle.TeleopPeriodic();
+        robot.tourelle.TeleopPeriodic();
 	}
 	
 	@Override

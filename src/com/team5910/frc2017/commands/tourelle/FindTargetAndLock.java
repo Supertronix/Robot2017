@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class FindTargetAndLock extends Command {
 
 	public FindTargetAndLock() {
-		requires(RobotControleur.superstructure.tourelle);
+		requires(RobotControleur.robot.tourelle);
 		 
 	 }
 	 

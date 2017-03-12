@@ -8,13 +8,13 @@ public class TurretUpdateTiltSP extends Command {
 
 	double tiltSP = 0.0;
 	public TurretUpdateTiltSP(double aTiltSP) {
-		requires(RobotControleur.superstructure.tourelle);
+		requires(RobotControleur.robot.tourelle);
 		tiltSP = aTiltSP;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.tourelle.setPanSetpoint(tiltSP);
+		 RobotControleur.robot.tourelle.setPanSetpoint(tiltSP);
 	}
 	 
 	@Override

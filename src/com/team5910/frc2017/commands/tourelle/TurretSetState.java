@@ -9,13 +9,13 @@ public class TurretSetState extends Command {
 
 	Tourelle.SystemState state;
 	public TurretSetState(Tourelle.SystemState aState) {
-		requires(RobotControleur.superstructure.tourelle);
+		requires(RobotControleur.robot.tourelle);
 		state = aState;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.tourelle.setState(state);
+		 RobotControleur.robot.tourelle.setState(state);
 	}
 	 
 	@Override

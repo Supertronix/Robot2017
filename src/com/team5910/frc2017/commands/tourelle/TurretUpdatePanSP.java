@@ -8,13 +8,13 @@ public class TurretUpdatePanSP extends Command {
 
 	double panSP = 0.0;
 	public TurretUpdatePanSP(double aPanSP) {
-		requires(RobotControleur.superstructure.tourelle);
+		requires(RobotControleur.robot.tourelle);
 		panSP = aPanSP;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.tourelle.setPanSetpoint(panSP);
+		 RobotControleur.robot.tourelle.setPanSetpoint(panSP);
 	}
 	 
 	@Override

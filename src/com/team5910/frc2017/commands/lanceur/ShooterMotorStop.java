@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ShooterMotorStop extends Command {
 
 	public ShooterMotorStop() {
-		requires(RobotControleur.superstructure.lanceur);
+		requires(RobotControleur.robot.lanceur);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.superstructure.lanceur.stop();
+		 RobotControleur.robot.lanceur.stop();
 	}
 	 
 	@Override
