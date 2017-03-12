@@ -9,20 +9,20 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.team5910.frc2017.commands.CommandeR2;
-import com.team5910.frc2017.commands.CommandeR3;
-import com.team5910.frc2017.commands.CommandeImmobile;
-import com.team5910.frc2017.commands.CommandeLigneDroite;
-import com.team5910.frc2017.commands.CommandeR1;
-import com.team5910.frc2017.commands.drive.CommandeConduiteDistance;
-import com.team5910.frc2017.commands.tourelle.TurretSetState;
+import com.team5910.frc2017.commande.drive.CommandeConduiteAvancer;
+import com.team5910.frc2017.commande.tourelle.TurretSetState;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
 import com.team5910.frc2017.robot.interaction.vision.VisionEcouteur;
 import com.team5910.frc2017.robot.outils.USBCamStreamer;
 import com.team5910.frc2017.robot.outils.Utilities;
-import com.team5910.frc2017.robot.subsystems.Drive;
-import com.team5910.frc2017.robot.subsystems.Tourelle;
+import com.team5910.frc2017.robot.soussysteme.Drive;
+import com.team5910.frc2017.robot.soussysteme.Tourelle;
+import com.team5910.frc2017.robot.trajet.CommandeImmobile;
+import com.team5910.frc2017.robot.trajet.CommandeLigneDroite;
+import com.team5910.frc2017.robot.trajet.CommandeR1;
+import com.team5910.frc2017.robot.trajet.CommandeR2;
+import com.team5910.frc2017.robot.trajet.CommandeR3;
 
 public class RobotControleur extends IterativeRobot 
 {

@@ -1,20 +1,20 @@
 package com.team5910.frc2017.robot.interaction;
 
-import com.team5910.frc2017.commands.drive.CommandeConduiteEncodeurZero;
-import com.team5910.frc2017.commands.lanceur.ShooterMotorSpeedIncDec;
-import com.team5910.frc2017.commands.lanceur.ShooterMotorStart;
-import com.team5910.frc2017.commands.lanceur.ShooterMotorStop;
-import com.team5910.frc2017.commands.lanceur.ShooterMotorToggle;
-import com.team5910.frc2017.commands.superstructure.ClimbMotorStart;
-import com.team5910.frc2017.commands.superstructure.ClimbMotorStop;
-import com.team5910.frc2017.commands.superstructure.IndexerMotorStart;
-import com.team5910.frc2017.commands.superstructure.IndexerMotorStop;
-import com.team5910.frc2017.commands.superstructure.IntakeMotorStart;
-import com.team5910.frc2017.commands.superstructure.IntakeMotorStop;
-import com.team5910.frc2017.commands.superstructure.ShufflerMotorStart;
-import com.team5910.frc2017.commands.superstructure.ShufflerMotorStop;
-import com.team5910.frc2017.commands.superstructure.ToggleClampState;
-import com.team5910.frc2017.commands.tourelle.TurretToggleAutoMan;
+import com.team5910.frc2017.commande.CommandeBrasseurArreter;
+import com.team5910.frc2017.commande.CommandeBrasseurDemarrer;
+import com.team5910.frc2017.commande.CommandeGrimpeurArreter;
+import com.team5910.frc2017.commande.CommandeGrimpeurDemarrer;
+import com.team5910.frc2017.commande.CommandeIndexeurArreter;
+import com.team5910.frc2017.commande.CommandeIndexeurDemarrer;
+import com.team5910.frc2017.commande.CommandeIntakerArreter;
+import com.team5910.frc2017.commande.CommandeIntakerDemarrer;
+import com.team5910.frc2017.commande.CommandeMachoireToggle;
+import com.team5910.frc2017.commande.drive.CommandeConduiteEncodeurZero;
+import com.team5910.frc2017.commande.lanceur.CommandeLanceurAccelerer;
+import com.team5910.frc2017.commande.lanceur.CommandeLanceurArreter;
+import com.team5910.frc2017.commande.lanceur.CommandeLanceurDemarrer;
+import com.team5910.frc2017.commande.lanceur.CommandeLanceurToggle;
+import com.team5910.frc2017.commande.tourelle.TurretToggleAutoMan;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -32,38 +32,38 @@ public class Manette {
     	
     	// MAIN JOYSTICK
     	JoystickButton actionIntaker = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_INTAKE);
-    	actionIntaker.whenPressed(new IntakeMotorStart());
-    	actionIntaker.whenPressed(new ShufflerMotorStart());
-    	actionIntaker.whenReleased(new IntakeMotorStop());
-    	actionIntaker.whenReleased(new ShufflerMotorStop());
+    	actionIntaker.whenPressed(new CommandeIntakerDemarrer());
+    	actionIntaker.whenPressed(new CommandeBrasseurDemarrer());
+    	actionIntaker.whenReleased(new CommandeIntakerArreter());
+    	actionIntaker.whenReleased(new CommandeBrasseurArreter());
     	
     	JoystickButton actionGrimpeur = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GRIMPEUR);
-    	actionGrimpeur.whenPressed(new ClimbMotorStart());
-    	actionGrimpeur.whenReleased(new ClimbMotorStop());
+    	actionGrimpeur.whenPressed(new CommandeGrimpeurDemarrer());
+    	actionGrimpeur.whenReleased(new CommandeGrimpeurArreter());
     	
     	JoystickButton actionMachoire = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_MACHOIRE);
-    	actionMachoire.whenPressed(new ToggleClampState());
+    	actionMachoire.whenPressed(new CommandeMachoireToggle());
     	
     	JoystickButton actionGyroReset = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GYRO_RESET);
     	actionGyroReset.whenPressed(new CommandeConduiteEncodeurZero());
     	
     	// ACCESSORIES JOYSTICK
     	JoystickButton actionIndexeur = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_INDEXEUR);
-    	actionIndexeur.whenPressed(new IndexerMotorStart());
-    	actionIndexeur.whenPressed(new ShufflerMotorStart());
+    	actionIndexeur.whenPressed(new CommandeIndexeurDemarrer());
+    	actionIndexeur.whenPressed(new CommandeBrasseurDemarrer());
     	
-    	actionIndexeur.whenReleased(new IndexerMotorStop());    	
-    	actionIndexeur.whenReleased(new ShufflerMotorStop());
+    	actionIndexeur.whenReleased(new CommandeIndexeurArreter());    	
+    	actionIndexeur.whenReleased(new CommandeBrasseurArreter());
     	
     	JoystickButton actionLanceur = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR);
-    	actionLanceur.whenPressed(new ShooterMotorStart());
-    	actionLanceur.whenReleased(new ShooterMotorStop());    
+    	actionLanceur.whenPressed(new CommandeLanceurDemarrer());
+    	actionLanceur.whenReleased(new CommandeLanceurArreter());    
     	
     	JoystickButton actionLanceurAcceleration = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_INCREMENTE);
-    	actionLanceurAcceleration.whenPressed(new ShooterMotorSpeedIncDec(RobotMap.LANCEUR_VITESSE_DELTA));
+    	actionLanceurAcceleration.whenPressed(new CommandeLanceurAccelerer(RobotMap.LANCEUR_VITESSE_DELTA));
     	
     	JoystickButton actionLanceurDeceleration = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_DECREMENTE);
-    	actionLanceurDeceleration.whenPressed(new ShooterMotorSpeedIncDec(-RobotMap.LANCEUR_VITESSE_DELTA));
+    	actionLanceurDeceleration.whenPressed(new CommandeLanceurAccelerer(-RobotMap.LANCEUR_VITESSE_DELTA));
 
     	/*JoystickButton turretToggleModeTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kTurretToggleAutoMan);
     	turretToggleModeTrigger.whenPressed(new TurretToggleAutoMan()); */   

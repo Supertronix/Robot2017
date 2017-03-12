@@ -1,12 +1,12 @@
 package com.team5910.frc2017.robot;
 
-import com.team5910.frc2017.robot.subsystems.Brasseur;
-import com.team5910.frc2017.robot.subsystems.Grimpeur;
-import com.team5910.frc2017.robot.subsystems.Indexeur;
-import com.team5910.frc2017.robot.subsystems.Intaker;
-import com.team5910.frc2017.robot.subsystems.Lanceur;
-import com.team5910.frc2017.robot.subsystems.Machoire;
-import com.team5910.frc2017.robot.subsystems.Tourelle;
+import com.team5910.frc2017.robot.soussysteme.Brasseur;
+import com.team5910.frc2017.robot.soussysteme.Grimpeur;
+import com.team5910.frc2017.robot.soussysteme.Indexeur;
+import com.team5910.frc2017.robot.soussysteme.Intaker;
+import com.team5910.frc2017.robot.soussysteme.Lanceur;
+import com.team5910.frc2017.robot.soussysteme.Machoire;
+import com.team5910.frc2017.robot.soussysteme.Tourelle;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
