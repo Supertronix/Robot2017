@@ -13,9 +13,9 @@ import com.team5910.frc2017.commande.drive.CommandeConduiteAvancer;
 import com.team5910.frc2017.commande.tourelle.TurretSetState;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
+import com.team5910.frc2017.robot.interaction.vision.USBCamStreamer;
 import com.team5910.frc2017.robot.interaction.vision.VisionEcouteur;
-import com.team5910.frc2017.robot.outils.USBCamStreamer;
-import com.team5910.frc2017.robot.outils.Utilities;
+import com.team5910.frc2017.robot.outils.Calculateur;
 import com.team5910.frc2017.robot.soussysteme.Drive;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
 import com.team5910.frc2017.robot.trajet.CommandeImmobile;
@@ -125,7 +125,7 @@ public class RobotControleur extends IterativeRobot
         
         double x = (x1 + x2)/ 2;
         
-        drive.manualDrive(Utilities.clamp(x + y1, -1, 1), Utilities.clamp(y2 - x, -1, 1), Utilities.clamp(y1 - x, -1, 1), Utilities.clamp(x + y2, -1, 1));
+        drive.manualDrive(Calculateur.clamp(x + y1, -1, 1), Calculateur.clamp(y2 - x, -1, 1), Calculateur.clamp(y1 - x, -1, 1), Calculateur.clamp(x + y2, -1, 1));
         
         double pan = 0.0;
         double tilt = 0.0;
