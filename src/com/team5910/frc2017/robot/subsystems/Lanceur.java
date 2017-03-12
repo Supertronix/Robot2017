@@ -16,7 +16,7 @@ public class Lanceur extends Subsystem {
 	
 	double shooterSpeed = 1.0;
 	
-	Lanceur() {
+	public Lanceur() {
 		ShooterDriveSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		ShooterDriveSlave.set(ShooterDriveMain.getDeviceID());
 		

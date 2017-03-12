@@ -34,7 +34,7 @@ public class Tourelle extends Subsystem {
 	
 	double autoSPupdate = 0.0;
 
-	Tourelle() {
+	public Tourelle() {
 		actualState = SystemState.DISABLED;
 		
 		//TurretPanDrive.changeControlMode(CANTalon.TalonControlMode.Position);

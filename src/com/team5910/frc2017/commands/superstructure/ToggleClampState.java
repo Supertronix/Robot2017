@@ -1,19 +1,19 @@
 package com.team5910.frc2017.commands.superstructure;
 
-import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.RobotControleur;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ToggleClampState extends Command {
 
 	public ToggleClampState() {
-		requires(Robot.superstructure.machoire);
+		requires(RobotControleur.superstructure.machoire);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.machoire.toggleAsked();
+		 RobotControleur.superstructure.machoire.toggleAsked();
 	}
 	 
 	@Override

@@ -1,19 +1,19 @@
 package com.team5910.frc2017.commands.lanceur;
 
-import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.RobotControleur;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class ShooterMotorStop extends Command {
 
 	public ShooterMotorStop() {
-		requires(Robot.superstructure.lanceur);
+		requires(RobotControleur.superstructure.lanceur);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.lanceur.stop();
+		 RobotControleur.superstructure.lanceur.stop();
 	}
 	 
 	@Override

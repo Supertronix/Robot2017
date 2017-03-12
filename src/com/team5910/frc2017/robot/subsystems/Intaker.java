@@ -9,7 +9,7 @@ public class Intaker extends Subsystem {
 	
 	VictorSP IntakerDrive;
     
-	Intaker() {
+	public Intaker() {
 		IntakerDrive = new VictorSP(RobotMap.INTAKER_MOTEUR);
 	}
 	

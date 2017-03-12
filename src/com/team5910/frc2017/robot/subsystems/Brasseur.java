@@ -14,7 +14,7 @@ public class Brasseur extends Subsystem {
 	boolean reverseEachTime = true;
 	boolean lastClockwise = true;
     
-	Brasseur() {
+	public Brasseur() {
 		IndexerShuffleDrive1 = new VictorSP(RobotMap.BRASSEUR_GAUCHE);
 		IndexerShuffleDrive1.setInverted(RobotMap.INVERSION_BRASSEUR_GAUCHE);
 		

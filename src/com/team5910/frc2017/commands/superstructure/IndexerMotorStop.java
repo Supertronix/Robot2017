@@ -1,19 +1,19 @@
 package com.team5910.frc2017.commands.superstructure;
 
-import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.RobotControleur;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class IndexerMotorStop extends Command {
 
 	public IndexerMotorStop() {
-		requires(Robot.superstructure.indexeur);
+		requires(RobotControleur.superstructure.indexeur);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.indexeur.stop();
+		 RobotControleur.superstructure.indexeur.stop();
 	}
 	 
 	@Override

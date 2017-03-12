@@ -1,6 +1,6 @@
 package com.team5910.frc2017.commands.lanceur;
 
-import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.RobotControleur;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -8,13 +8,13 @@ public class ShooterMotorSpeedIncDec extends Command {
 	double changeValue;
 	
 	public ShooterMotorSpeedIncDec(double aChangeValue) {
-		requires(Robot.superstructure.lanceur);
+		requires(RobotControleur.superstructure.lanceur);
 		changeValue = aChangeValue;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.lanceur.incDecSpeed(changeValue);
+		 RobotControleur.superstructure.lanceur.incDecSpeed(changeValue);
 	}
 	 
 	@Override

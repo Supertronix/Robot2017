@@ -1,6 +1,6 @@
 package com.team5910.frc2017.commands.tourelle;
 
-import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.RobotControleur;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -8,13 +8,13 @@ public class TurretUpdatePanSP extends Command {
 
 	double panSP = 0.0;
 	public TurretUpdatePanSP(double aPanSP) {
-		requires(Robot.superstructure.tourelle);
+		requires(RobotControleur.superstructure.tourelle);
 		panSP = aPanSP;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.superstructure.tourelle.setPanSetpoint(panSP);
+		 RobotControleur.superstructure.tourelle.setPanSetpoint(panSP);
 	}
 	 
 	@Override

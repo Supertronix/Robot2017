@@ -1,19 +1,19 @@
 package com.team5910.frc2017.commands.drive;
 
-import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.RobotControleur;
 
 import edu.wpi.first.wpilibj.command.Command;
 
 public class CommandeConduiteEncodeurZero extends Command {
 
 	public CommandeConduiteEncodeurZero() {
-		requires(Robot.drive);
+		requires(RobotControleur.drive);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.drive.resetEncoders();
+		 RobotControleur.drive.resetEncoders();
 	}
 	 
 	@Override

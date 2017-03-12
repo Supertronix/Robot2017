@@ -1,6 +1,6 @@
 package com.team5910.frc2017.commands.drive;
 
-import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.RobotControleur;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -10,35 +10,35 @@ public class CommandeConduiteLaterale extends Command {
 	double mWantedDistance;
 
 	public CommandeConduiteLaterale(double distance) {
-		requires(Robot.drive);
+		requires(RobotControleur.drive);
 		mWantedDistance = distance; // Distance in feet
 	}
 	
 
 	@Override
 	protected void initialize() {
-		Robot.drive.resetEncoders();
-		Robot.drive.resetGyro();
-		Robot.drive.resetPIDS();
-		Robot.drive.reverseEncoder();
-		Robot.drive.updateDistanceSetpoint(mWantedDistance);
+		RobotControleur.drive.resetEncoders();
+		RobotControleur.drive.resetGyro();
+		RobotControleur.drive.resetPIDS();
+		RobotControleur.drive.reverseEncoder();
+		RobotControleur.drive.updateDistanceSetpoint(mWantedDistance);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.drive.driveLateralWithGyro();
+		RobotControleur.drive.driveLateralWithGyro();
 	}
 		
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.drivePIDDone();
+		return RobotControleur.drive.drivePIDDone();
 	}
 	
 	@Override
 	protected void end() {
-		Robot.drive.arreter();
-		Robot.drive.undoReverseEncoder();
+		RobotControleur.drive.arreter();
+		RobotControleur.drive.undoReverseEncoder();
 	}
 
 }

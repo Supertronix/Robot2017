@@ -1,6 +1,6 @@
 package com.team5910.frc2017.commands.drive;
 
-import com.team5910.frc2017.robot.Robot;
+import com.team5910.frc2017.robot.RobotControleur;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.PIDController;
@@ -17,21 +17,21 @@ public class CommandeConduiteDistance extends Command {
 	protected double d;
 	
 	public CommandeConduiteDistance(double distance) {
-		requires(Robot.drive);
+		requires(RobotControleur.drive);
 		distanceDesiree = distance; // Distance in feet
 		this.p = RobotMap.DISTANCE_KP;
 		this.i = RobotMap.DISTANCE_KI;
 		this.d = 0.0;
 	}
 	public CommandeConduiteDistance(double distance, double driveP, double driveI) {
-		requires(Robot.drive);
+		requires(RobotControleur.drive);
 		distanceDesiree = distance; // Distance in feet
 		this.p = driveP;
 		this.i = driveI;
 		this.d = 0.0;
 	}
 	public CommandeConduiteDistance(double distance, double driveP, double driveI, double driveD) {
-		requires(Robot.drive);
+		requires(RobotControleur.drive);
 		distanceDesiree = distance; // Distance in feet
 		this.p = driveP;
 		this.i = driveI;
@@ -41,30 +41,30 @@ public class CommandeConduiteDistance extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.drive.resetEncoders();
-		Robot.drive.resetGyro();
-		Robot.drive.resetPIDS();
-		Robot.drive.setGyroPIDStandardValues();
-		Robot.drive.setDistancePIDValues(this.p, this.i, this.d);
-		Robot.drive.updateDistanceSetpoint(Robot.drive.getEncoderDistance() + distanceDesiree);
-		System.out.println("Valeur encodeur" + Robot.drive.getEncoderDistance());
-		Robot.drive.updateGyroSetpoint(0.0);
+		RobotControleur.drive.resetEncoders();
+		RobotControleur.drive.resetGyro();
+		RobotControleur.drive.resetPIDS();
+		RobotControleur.drive.setGyroPIDStandardValues();
+		RobotControleur.drive.setDistancePIDValues(this.p, this.i, this.d);
+		RobotControleur.drive.updateDistanceSetpoint(RobotControleur.drive.getEncoderDistance() + distanceDesiree);
+		System.out.println("Valeur encodeur" + RobotControleur.drive.getEncoderDistance());
+		RobotControleur.drive.updateGyroSetpoint(0.0);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 		//Robot.drive.driveStraightWithGyro();
-		Robot.drive.driveStraight(); // Test
+		RobotControleur.drive.driveStraight(); // Test
 	}
 		
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.drivePIDDone();
+		return RobotControleur.drive.drivePIDDone();
 	}
 	
 	@Override
 	protected void end() {
-		Robot.drive.arreter();
+		RobotControleur.drive.arreter();
 	}
 }

@@ -19,7 +19,7 @@ public class Machoire extends Subsystem {
     
     ClampState clampState;
     
-	Machoire() {
+	public Machoire() {
 		LeftClampServo = new Servo(RobotMap.MACHOIRE_GAUCHE_SERVO);
 		RightClampServo = new Servo(RobotMap.MACHOIRE_DROITE_SERVO);
 		clampState = ClampState.CLOSED;

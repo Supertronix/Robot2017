@@ -9,7 +9,7 @@ public class Grimpeur extends Subsystem {
 	
 	VictorSP Climbdrive;
     
-	Grimpeur() {
+	public Grimpeur() {
 		Climbdrive = new VictorSP(RobotMap.GRIMPEUR_MOTEUR);
 	}
 	
