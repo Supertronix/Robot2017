@@ -33,7 +33,7 @@ public class Drive extends Subsystem {
 	PIDController pidDistance;
 	CustomPIDOutput distancePIDOut;
 	
-	private DriveControlState driveControlState_;
+	//private DriveControlState driveControlState;
 	
 	public Drive() {
 		 roueAvantGauche = new VictorSP(RobotMap.DRIVE_AVANT_GAUCHE);
