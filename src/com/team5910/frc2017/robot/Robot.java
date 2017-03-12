@@ -10,7 +10,7 @@ import com.team5910.frc2017.robot.soussysteme.Tourelle;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Robot extends Subsystem {
+public class Robot {
 	    
     public Tourelle tourelle;
     public Lanceur lanceur;
@@ -30,10 +30,6 @@ public class Robot extends Subsystem {
     	 indexeur = new Indexeur();
     	 brasseur = new Brasseur();
     }
-    
-	@Override
-	protected void initDefaultCommand() {
-	}
 
 	public void stopAll() {
 		tourelle.stop();
