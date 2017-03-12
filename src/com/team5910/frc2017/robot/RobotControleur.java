@@ -1,15 +1,7 @@
 package com.team5910.frc2017.robot;
 
 import java.io.IOException;
-import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.team5910.frc2017.commande.drive.CommandeConduiteAvancer;
 import com.team5910.frc2017.commande.tourelle.CommandeTourelleChangerEtat;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
@@ -23,6 +15,13 @@ import com.team5910.frc2017.robot.trajet.CommandeLigneDroite;
 import com.team5910.frc2017.robot.trajet.CommandeR1;
 import com.team5910.frc2017.robot.trajet.CommandeR2;
 import com.team5910.frc2017.robot.trajet.CommandeR3;
+
+import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotControleur extends IterativeRobot 
 {

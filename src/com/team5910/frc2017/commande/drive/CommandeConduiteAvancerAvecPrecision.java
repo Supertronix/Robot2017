@@ -2,11 +2,7 @@ package com.team5910.frc2017.commande.drive;
 
 import com.team5910.frc2017.robot.RobotControleur;
 
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CommandeConduiteAvancerAvecPrecision extends Command {
 

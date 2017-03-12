@@ -2,10 +2,10 @@ package com.team5910.frc2017.robot.interaction.vision;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.*;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 
 import com.google.gson.Gson;
-import com.team5910.frc2017.robot.RobotControleur;
 import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;

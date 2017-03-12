@@ -3,11 +3,9 @@ package com.team5910.frc2017.robot.soussysteme;
 import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.outils.ADXRS450_Supertronix;
-import com.team5910.frc2017.robot.outils.Calculateur;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;

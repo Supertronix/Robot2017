@@ -1,11 +1,8 @@
 package com.team5910.frc2017.robot.soussysteme;
 
 import com.ctre.CANTalon;
-import com.ctre.CANTalon.FeedbackDevice;
-import com.ctre.CANTalon.TalonControlMode;
 import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
-import com.team5910.frc2017.robot.outils.Calculateur;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

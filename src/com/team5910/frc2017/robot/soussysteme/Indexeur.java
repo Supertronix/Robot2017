@@ -1,6 +1,5 @@
 package com.team5910.frc2017.robot.soussysteme;
 
-import com.ctre.CANTalon;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.VictorSP;

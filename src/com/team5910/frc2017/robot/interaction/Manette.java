@@ -13,12 +13,9 @@ import com.team5910.frc2017.commande.drive.CommandeConduiteEncodeurZero;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurAccelerer;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurArreter;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurDemarrer;
-import com.team5910.frc2017.commande.lanceur.CommandeLanceurToggle;
-import com.team5910.frc2017.commande.tourelle.CommandeTourelleToggleAutoMan;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.JoystickBase;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 public class Manette {

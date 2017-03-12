@@ -3,7 +3,6 @@ package com.team5910.frc2017.commande.drive;
 import com.team5910.frc2017.robot.RobotControleur;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CommandeConduiteLaterale extends Command {
 
