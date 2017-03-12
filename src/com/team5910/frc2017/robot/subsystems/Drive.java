@@ -142,6 +142,28 @@ public class Drive extends Subsystem {
 		roueArriereDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  - gyroPIDOut.getPIDOut());*/
 	}
 	
+	public void driveStraight() {
+		if (RobotMap.GYRO_UPSIDEDOWN == true)
+		{
+			roueAvantGauche.set(distancePIDOut.getPIDOut());
+			roueAvantDroite.set(distancePIDOut.getPIDOut());
+			roueArriereGauche.set(distancePIDOut.getPIDOut());
+			roueArriereDroite.set(distancePIDOut.getPIDOut());
+		}
+		else
+		{
+			roueAvantGauche.set(distancePIDOut.getPIDOut());
+			roueAvantDroite.set(distancePIDOut.getPIDOut());
+			roueArriereGauche.set(distancePIDOut.getPIDOut());
+			roueArriereDroite.set(distancePIDOut.getPIDOut());
+		}
+		
+		/*roueAvantGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  + gyroPIDOut.getPIDOut());
+		roueAvantDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   - gyroPIDOut.getPIDOut());
+	    roueArriereGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   +  gyroPIDOut.getPIDOut());
+		roueArriereDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  - gyroPIDOut.getPIDOut());*/
+	}
+	
 	public void driveLateralWithGyro() {
 		roueAvantGauche.set(-distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());
 		roueAvantDroite.set(distancePIDOut.getPIDOut() - gyroPIDOut.getPIDOut());

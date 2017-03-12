@@ -31,7 +31,7 @@ public class Robot extends IterativeRobot
 	public static Superstructure superstructure;
 	public static OI oi;
 	
-    Command autonomousCommand;
+    Command commandeAutonome;
     SendableChooser autoChooser;
     
 	//public static double lastCommandReceived = 0.0f;
@@ -78,9 +78,11 @@ public class Robot extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{
-		autonomousCommand = (Command) autoChooser.getSelected();
+		//autonomousCommand = (Command) autoChooser.getSelected();
 		drive.zeroSensors();
-		autonomousCommand.start();
+		//autonomousCommand.start();
+		commandeAutonome = new CommandeLigneDroite();
+		commandeAutonome.start();
 	}
 
 	@Override
@@ -93,7 +95,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void teleopInit() 
 	{
-		if (autonomousCommand != null) { autonomousCommand.cancel(); }
+		if (commandeAutonome != null) { commandeAutonome.cancel(); }
 		new TurretSetState(Tourelle.SystemState.MANUAL_CONTROL);
 		Scheduler.getInstance().run();
 	}
@@ -146,7 +148,7 @@ public class Robot extends IterativeRobot
 	@Override
 	public void disabledInit() 
 	{	
-		if (autonomousCommand != null) { autonomousCommand.cancel(); }
+		if (commandeAutonome != null) { commandeAutonome.cancel(); }
 	}
 	
 	@Override

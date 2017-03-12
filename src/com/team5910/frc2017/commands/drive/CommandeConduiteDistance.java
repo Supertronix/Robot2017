@@ -47,13 +47,15 @@ public class CommandeConduiteDistance extends Command {
 		Robot.drive.setGyroPIDStandardValues();
 		Robot.drive.setDistancePIDValues(this.p, this.i, this.d);
 		Robot.drive.updateDistanceSetpoint(Robot.drive.getEncoderDistance() + distanceDesiree);
+		System.out.println("Valeur encodeur" + Robot.drive.getEncoderDistance());
 		Robot.drive.updateGyroSetpoint(0.0);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.drive.driveStraightWithGyro();
+		//Robot.drive.driveStraightWithGyro();
+		Robot.drive.driveStraight(); // Test
 	}
 		
 	@Override
