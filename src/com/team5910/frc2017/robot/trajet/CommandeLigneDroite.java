@@ -6,7 +6,7 @@ import com.team5910.frc2017.commande.drive.CommandeConduiteLaterale;
 import com.team5910.frc2017.commande.drive.CommandeConduiteTourner;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurDemarrer;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurSpinUp;
-import com.team5910.frc2017.commande.tourelle.FindTargetAndLock;
+import com.team5910.frc2017.commande.tourelle.CommandeTourelleChercherCible;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;

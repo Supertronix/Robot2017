@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.team5910.frc2017.commande.drive.CommandeConduiteAvancer;
-import com.team5910.frc2017.commande.tourelle.TurretSetState;
+import com.team5910.frc2017.commande.tourelle.CommandeTourelleChangerEtat;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
 import com.team5910.frc2017.robot.interaction.vision.USBCamStreamer;
@@ -96,7 +96,7 @@ public class RobotControleur extends IterativeRobot
 	public void teleopInit() 
 	{
 		if (commandeAutonome != null) { commandeAutonome.cancel(); }
-		new TurretSetState(Tourelle.SystemState.MANUAL_CONTROL);
+		new CommandeTourelleChangerEtat(Tourelle.SystemState.MANUAL_CONTROL);
 		Scheduler.getInstance().run();
 	}
 	

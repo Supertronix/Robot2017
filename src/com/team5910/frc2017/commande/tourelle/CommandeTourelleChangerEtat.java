@@ -5,10 +5,10 @@ import com.team5910.frc2017.robot.soussysteme.Tourelle;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TurretSetState extends Command {
+public class CommandeTourelleChangerEtat extends Command {
 
 	Tourelle.SystemState state;
-	public TurretSetState(Tourelle.SystemState aState) {
+	public CommandeTourelleChangerEtat(Tourelle.SystemState aState) {
 		requires(RobotControleur.robot.tourelle);
 		state = aState;
 	 }

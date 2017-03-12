@@ -4,17 +4,17 @@ import com.team5910.frc2017.robot.RobotControleur;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TurretOffsetPanSP extends Command {
+public class CommandeTourelleInclinerTilt extends Command {
 
-	double panOffset = 0.0;
-	public TurretOffsetPanSP(double aPanOffset) {
+	double tiltOffset = 0.0;
+	public CommandeTourelleInclinerTilt(double aTiltOffset) {
 		requires(RobotControleur.robot.tourelle);
-		panOffset = aPanOffset;
+		tiltOffset = aTiltOffset;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.tourelle.offsetPanSP(panOffset);
+		 RobotControleur.robot.tourelle.offsetTiltSP(tiltOffset);
 	}
 	 
 	@Override

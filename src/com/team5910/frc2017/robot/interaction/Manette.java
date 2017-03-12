@@ -14,7 +14,7 @@ import com.team5910.frc2017.commande.lanceur.CommandeLanceurAccelerer;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurArreter;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurDemarrer;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurToggle;
-import com.team5910.frc2017.commande.tourelle.TurretToggleAutoMan;
+import com.team5910.frc2017.commande.tourelle.CommandeTourelleToggleAutoMan;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.Joystick;

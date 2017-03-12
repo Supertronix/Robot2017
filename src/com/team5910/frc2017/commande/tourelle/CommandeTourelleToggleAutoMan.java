@@ -1,26 +1,24 @@
 package com.team5910.frc2017.commande.tourelle;
 
 import com.team5910.frc2017.robot.RobotControleur;
+import com.team5910.frc2017.robot.soussysteme.Tourelle;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class TurretUpdateTiltSP extends Command {
+public class CommandeTourelleToggleAutoMan extends Command {
 
-	double tiltSP = 0.0;
-	public TurretUpdateTiltSP(double aTiltSP) {
+	public CommandeTourelleToggleAutoMan() {
 		requires(RobotControleur.robot.tourelle);
-		tiltSP = aTiltSP;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.tourelle.setPanSetpoint(tiltSP);
+		 RobotControleur.robot.tourelle.toggleAutoMan();
 	}
 	 
 	@Override
 	protected boolean isFinished() {
 		return true;
 	}
-
 
 }
