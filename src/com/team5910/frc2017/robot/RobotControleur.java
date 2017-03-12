@@ -7,7 +7,7 @@ import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
 import com.team5910.frc2017.robot.interaction.vision.USBCamStreamer;
 import com.team5910.frc2017.robot.interaction.vision.VisionEcouteur;
-import com.team5910.frc2017.robot.outils.Calculateur;
+import com.team5910.frc2017.robot.outil.Calculateur;
 import com.team5910.frc2017.robot.soussysteme.Drive;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
 import com.team5910.frc2017.robot.trajet.CommandeImmobile;

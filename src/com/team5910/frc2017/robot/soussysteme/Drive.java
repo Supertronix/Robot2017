@@ -2,7 +2,7 @@ package com.team5910.frc2017.robot.soussysteme;
 
 import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
-import com.team5910.frc2017.robot.outils.ADXRS450_Supertronix;
+import com.team5910.frc2017.robot.outil.ADXRS450;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
@@ -24,7 +24,7 @@ public class Drive extends Subsystem {
 	VictorSP roueAvantDroite; // Front right
 	VictorSP roueArriereDroite; // Rear right
 	
-	ADXRS450_Supertronix gyro;
+	ADXRS450 gyro;
 	Encoder encodeurRoues;
 	
 	PIDController pidGyro;
@@ -57,7 +57,7 @@ public class Drive extends Subsystem {
 		 pidDistance.setAbsoluteTolerance(RobotMap.DISTANCE_TOLERANCE);
 		 pidDistance.enable();
 
-		 gyro = new ADXRS450_Supertronix();
+		 gyro = new ADXRS450();
 		 gyro.setPIDSourceType(PIDSourceType.kDisplacement);
 		 gyroPIDOut = new CustomPIDOutput();
 		 

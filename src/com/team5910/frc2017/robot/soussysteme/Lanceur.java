@@ -2,7 +2,7 @@ package com.team5910.frc2017.robot.soussysteme;
 
 import com.ctre.CANTalon;
 import com.team5910.frc2017.robot.RobotMap;
-import com.team5910.frc2017.robot.outils.Calculateur;
+import com.team5910.frc2017.robot.outil.Calculateur;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 

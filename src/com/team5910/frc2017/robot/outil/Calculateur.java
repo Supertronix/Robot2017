@@ -1,4 +1,4 @@
-package com.team5910.frc2017.robot.outils;
+package com.team5910.frc2017.robot.outil;
 
 public class Calculateur {
 	public static double clamp(double val, double min, double max) 
