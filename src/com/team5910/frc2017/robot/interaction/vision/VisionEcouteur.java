@@ -1,4 +1,4 @@
-package com.team5910.frc2017.robot.raspberry;
+package com.team5910.frc2017.robot.interaction.vision;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,7 +12,7 @@ import com.team5910.frc2017.robot.subsystems.Tourelle;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class GRIPReceiver extends Thread
+public class VisionEcouteur extends Thread
 {
 	public static String lastDataReceived = "";
 	protected DatagramSocket socket = null;
@@ -21,12 +21,12 @@ public class GRIPReceiver extends Thread
     protected Tourelle tourelle = null;
     Gson gson = new Gson();
     
-	public GRIPReceiver(Tourelle tourelle) throws IOException {
+	public VisionEcouteur(Tourelle tourelle) throws IOException {
 	    this("udpReciever");
 	    this.tourelle = tourelle; // TODO - voir s'il faut gerer une synchronisation
 	    }
 	
-	public GRIPReceiver(String name) throws IOException {
+	public VisionEcouteur(String name) throws IOException {
         super(name);
         SmartDashboard.putString(AffichageStation.VISION_STATUT,"UDPReceiver constructor called");
         socket = new DatagramSocket(RobotMap.RASPBERRY_PORT);

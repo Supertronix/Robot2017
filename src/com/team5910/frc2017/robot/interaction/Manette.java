@@ -21,12 +21,12 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.JoystickBase;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-public class OI {
+public class Manette {
     
     private final Joystick manetteConduitePrincipale;
     private final Joystick manetteAccessoire;
     
-    public OI() {
+    public Manette() {
     	manetteConduitePrincipale = new Joystick(RobotMap.MANETTE_CONDUITE_PRINCIPALE);
     	manetteAccessoire = new Joystick(RobotMap.MANETTE_ACCESSOIRE);
     	

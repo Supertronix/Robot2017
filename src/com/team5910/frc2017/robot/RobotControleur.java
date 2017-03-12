@@ -17,10 +17,10 @@ import com.team5910.frc2017.commands.CommandeR1;
 import com.team5910.frc2017.commands.drive.CommandeConduiteDistance;
 import com.team5910.frc2017.commands.tourelle.TurretSetState;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
-import com.team5910.frc2017.robot.interaction.OI;
+import com.team5910.frc2017.robot.interaction.Manette;
+import com.team5910.frc2017.robot.interaction.vision.VisionEcouteur;
 import com.team5910.frc2017.robot.outils.USBCamStreamer;
 import com.team5910.frc2017.robot.outils.Utilities;
-import com.team5910.frc2017.robot.raspberry.GRIPReceiver;
 import com.team5910.frc2017.robot.subsystems.Drive;
 import com.team5910.frc2017.robot.subsystems.Tourelle;
 
@@ -29,7 +29,7 @@ public class RobotControleur extends IterativeRobot
 	// Subsystems
 	public static Drive drive;
 	public static Robot robot;
-	public static OI oi;
+	public static Manette oi;
 	
     Command commandeAutonome;
     SendableChooser autoChooser;
@@ -51,13 +51,13 @@ public class RobotControleur extends IterativeRobot
 	{		
 		drive = new Drive();
 		robot = new Robot();
-		oi = new OI();
+		oi = new Manette();
 		
 		// Reset all state
         zeroAllSensors();
         
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
-		try { new GRIPReceiver(robot.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
+		try { new VisionEcouteur(robot.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
 		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE, 0);
 		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE_P, 0);

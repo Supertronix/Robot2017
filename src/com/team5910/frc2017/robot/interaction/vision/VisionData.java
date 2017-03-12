@@ -1,4 +1,4 @@
-package com.team5910.frc2017.robot.raspberry;
+package com.team5910.frc2017.robot.interaction.vision;
 import java.util.Date;
 
 public class VisionData {
