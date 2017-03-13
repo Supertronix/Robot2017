@@ -25,8 +25,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotControleur extends IterativeRobot 
 {
-	// Subsystems
-	public static Drive drive;
 	public static Robot robot;
 	public static Manette oi;
 	
@@ -36,19 +34,18 @@ public class RobotControleur extends IterativeRobot
 	//public static double lastCommandReceived = 0.0f;
 	
 	public void stopAll() {
-        drive.arreter();
+        Robot.drive.arreter();
         robot.stopAll();
     }
 	
 	 public void zeroAllSensors() {
-	        drive.zeroSensors();
+	        Robot.drive.zeroSensors();
 	        robot.zeroSensors();
 	 }
 	
 	@Override
 	public void robotInit() 
 	{		
-		drive = new Drive();
 		robot = new Robot();
 		oi = new Manette();
 		
@@ -78,7 +75,7 @@ public class RobotControleur extends IterativeRobot
 	public void autonomousInit() 
 	{
 		//autonomousCommand = (Command) autoChooser.getSelected();
-		drive.zeroSensors();
+		Robot.drive.zeroSensors();
 		//autonomousCommand.start();
 		commandeAutonome = new CommandeLigneDroite();
 		commandeAutonome.start();
@@ -88,7 +85,7 @@ public class RobotControleur extends IterativeRobot
 	public void autonomousPeriodic()
 	{
 		Scheduler.getInstance().run();
-		drive.updateDashboard();
+		Robot.drive.updateDashboard();
 	}
 	
 	@Override
@@ -124,7 +121,7 @@ public class RobotControleur extends IterativeRobot
         
         double x = (x1 + x2)/ 2;
         
-        drive.manualDrive(Calculateur.clamp(x + y1, -1, 1), Calculateur.clamp(y2 - x, -1, 1), Calculateur.clamp(y1 - x, -1, 1), Calculateur.clamp(x + y2, -1, 1));
+        Robot.drive.manualDrive(Calculateur.clamp(x + y1, -1, 1), Calculateur.clamp(y2 - x, -1, 1), Calculateur.clamp(y1 - x, -1, 1), Calculateur.clamp(x + y2, -1, 1));
         
         double pan = 0.0;
         double tilt = 0.0;
@@ -137,7 +134,7 @@ public class RobotControleur extends IterativeRobot
         
         robot.tourelle.manualDrive(pan, tilt);
         robot.tourelle.updateDashboard();
-        drive.updateDashboard();
+        Robot.drive.updateDashboard();
         
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
         

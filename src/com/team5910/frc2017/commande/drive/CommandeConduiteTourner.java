@@ -1,6 +1,6 @@
 package com.team5910.frc2017.commande.drive;
 
-import com.team5910.frc2017.robot.RobotControleur;
+import com.team5910.frc2017.robot.Robot;
 import com.team5910.frc2017.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -13,7 +13,7 @@ public class CommandeConduiteTourner extends Command {
 	protected double d;
 	
 	public CommandeConduiteTourner(double angle) {
-		requires(RobotControleur.drive);
+		requires(Robot.drive);
 		angleDesire = angle; // Distance in feet
 		this.p = RobotMap.GYRO_KP_ROTATEONLY;
 		this.i = RobotMap.GYRO_KI_ROTATEONLY;
@@ -21,7 +21,7 @@ public class CommandeConduiteTourner extends Command {
 	}
 	
 	public CommandeConduiteTourner(double angle, double P, double I) {
-		requires(RobotControleur.drive);
+		requires(Robot.drive);
 		angleDesire = angle; // Distance in feet
 		this.p = P;
 		this.i = I;
@@ -29,7 +29,7 @@ public class CommandeConduiteTourner extends Command {
 	}
 	
 	public CommandeConduiteTourner(double angle, double P, double I, double D) {
-		requires(RobotControleur.drive);
+		requires(Robot.drive);
 		angleDesire = angle; // Distance in feet
 		this.p = P;
 		this.i = I;
@@ -39,27 +39,27 @@ public class CommandeConduiteTourner extends Command {
 
 	@Override
 	protected void initialize() {
-		RobotControleur.drive.resetEncoders();
-		RobotControleur.drive.resetGyro();
-		RobotControleur.drive.resetPIDS();
-		RobotControleur.drive.setRotatePIDValues(this.p, this.i, this.d);
-		RobotControleur.drive.updateGyroSetpoint(-angleDesire); // Invert angle so positive is clockwise
+		Robot.drive.resetEncoders();
+		Robot.drive.resetGyro();
+		Robot.drive.resetPIDS();
+		Robot.drive.setRotatePIDValues(this.p, this.i, this.d);
+		Robot.drive.updateGyroSetpoint(-angleDesire); // Invert angle so positive is clockwise
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		RobotControleur.drive.rotateWithGyro();
+		Robot.drive.rotateWithGyro();
 	}
 		
 	@Override
 	protected boolean isFinished() {
-		return RobotControleur.drive.gyroPIDDone();
+		return Robot.drive.gyroPIDDone();
 	}
 	
 	@Override
 	protected void end() {
-		RobotControleur.drive.arreter();
+		Robot.drive.arreter();
 	}
 
 }

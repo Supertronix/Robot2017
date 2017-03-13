@@ -1,6 +1,7 @@
 package com.team5910.frc2017.robot;
 
 import com.team5910.frc2017.robot.soussysteme.Brasseur;
+import com.team5910.frc2017.robot.soussysteme.Drive;
 import com.team5910.frc2017.robot.soussysteme.Grimpeur;
 import com.team5910.frc2017.robot.soussysteme.Indexeur;
 import com.team5910.frc2017.robot.soussysteme.Intaker;
@@ -19,16 +20,19 @@ public class Robot {
     public Machoire machoire;
     public Indexeur indexeur;
     public Brasseur brasseur;
+	// Subsystems
+	public static Drive drive;
     
     public Robot()
     {
-    	 tourelle = new Tourelle();
-    	 lanceur = new Lanceur();
-    	 intaker = new Intaker();
-    	 grimpeur = new Grimpeur();
-    	 machoire = new Machoire();
-    	 indexeur = new Indexeur();
-    	 brasseur = new Brasseur();
+		this.drive = new Drive();    	
+		this.tourelle = new Tourelle();
+		this.lanceur = new Lanceur();
+		this.intaker = new Intaker();
+		this.grimpeur = new Grimpeur();
+		this.machoire = new Machoire();
+		this.indexeur = new Indexeur();
+		this.brasseur = new Brasseur();
     }
 
 	public void stopAll() {

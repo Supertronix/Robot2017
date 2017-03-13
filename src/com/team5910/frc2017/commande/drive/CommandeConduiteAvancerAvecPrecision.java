@@ -1,6 +1,6 @@
 package com.team5910.frc2017.commande.drive;
 
-import com.team5910.frc2017.robot.RobotControleur;
+import com.team5910.frc2017.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -9,35 +9,35 @@ public class CommandeConduiteAvancerAvecPrecision extends Command {
 	double mWantedDistance;
 	
 	public CommandeConduiteAvancerAvecPrecision(double distance) {
-		requires(RobotControleur.drive);
+		requires(Robot.drive);
 		mWantedDistance = distance; // Distance in feet
 	}
 	
 
 	@Override
 	protected void initialize() {
-		RobotControleur.drive.resetEncoders();
-		RobotControleur.drive.resetGyro();
-		RobotControleur.drive.resetPIDS();
-		RobotControleur.drive.setDistancePIDPrecisionValues();
-		RobotControleur.drive.updateDistanceSetpoint(RobotControleur.drive.getEncoderDistance() + mWantedDistance);
-		RobotControleur.drive.updateGyroSetpoint(0.0);
+		Robot.drive.resetEncoders();
+		Robot.drive.resetGyro();
+		Robot.drive.resetPIDS();
+		Robot.drive.setDistancePIDPrecisionValues();
+		Robot.drive.updateDistanceSetpoint(Robot.drive.getEncoderDistance() + mWantedDistance);
+		Robot.drive.updateGyroSetpoint(0.0);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		RobotControleur.drive.driveStraightWithGyro();
+		Robot.drive.driveStraightWithGyro();
 	}
 		
 	@Override
 	protected boolean isFinished() {
-		return RobotControleur.drive.drivePIDDone();
+		return Robot.drive.drivePIDDone();
 	}
 	
 	@Override
 	protected void end() {
-		RobotControleur.drive.arreter();
+		Robot.drive.arreter();
 	}
 
 }
