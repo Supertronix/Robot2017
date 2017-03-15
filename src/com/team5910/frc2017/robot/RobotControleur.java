@@ -74,11 +74,11 @@ public class RobotControleur extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{
-		//autonomousCommand = (Command) autoChooser.getSelected();
 		Robot.drive.zeroSensors();
-		//autonomousCommand.start();
-		commandeAutonome = new CommandeLigneDroite();
+		commandeAutonome = (Command) autoChooser.getSelected();
 		commandeAutonome.start();
+		//commandeAutonome = new CommandeLigneDroite();
+		//commandeAutonome.start();
 	}
 
 	@Override
@@ -150,6 +150,8 @@ public class RobotControleur extends IterativeRobot
 	@Override
 	public void disabledPeriodic() 
 	{	
+		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		Timer.delay(0.02);
 	}
 	
 	@Override

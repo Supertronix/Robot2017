@@ -46,11 +46,11 @@ public class Tourelle extends Subsystem {
 		tourelleTilt.setControlMode(0);
 		tourelleTilt.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
 		tourelleTilt.setPosition(0);
-		tourelleTilt.setForwardSoftLimit(-30);
-		tourelleTilt.enableForwardSoftLimit(true);
+		//tourelleTilt.setForwardSoftLimit(-30);
+		//tourelleTilt.enableForwardSoftLimit(true);
 		
-		tourelleTilt.setReverseSoftLimit(-170);
-		tourelleTilt.enableReverseSoftLimit(true);
+		//tourelleTilt.setReverseSoftLimit(-170);
+		//tourelleTilt.enableReverseSoftLimit(true);
 		
 		tourelleTilt.reverseSensor(true);
 		tourelleTilt.setP(0.1);
