@@ -10,6 +10,7 @@ import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
 
+import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class VisionEcouteur extends Thread
@@ -19,6 +20,8 @@ public class VisionEcouteur extends Thread
 	protected BufferedReader in = null;
     protected boolean moreQuotes = true;
     protected Tourelle tourelle = null;
+    public VisionData visionData;
+    
     Gson gson = new Gson();
     
 	public VisionEcouteur(Tourelle tourelle) throws IOException {
@@ -42,24 +45,26 @@ public class VisionEcouteur extends Thread
     	
     	while (moreQuotes) {
             try {
-            	SmartDashboard.putString(AffichageStation.VISION_STATUT,"Test");
+            	SmartDashboard.putString(AffichageStation.VISION_STATUT, Utility.getFPGATime() + "Receiving data");
                 // receive request
             	packet.setLength(buf.length);
                 socket.receive(packet);
                 byte[] data = packet.getData();
                 lastDataReceived = new String(data, 0, packet.getLength());
+                SmartDashboard.putString("last Data Received", lastDataReceived);
                 //Robot.lastCommandReceived = Double.parseDouble(lastDataReceived);
-                
-                //SmartDashboard.putString("last Data Received", lastDataReceived);
-                System.out.println ("'" + lastDataReceived + "'");
+                //System.out.println ("'" + lastDataReceived + "'");
                 
                 //tourelle.setPanSetpoint(Double.parseDouble(lastDataReceived));
                 //tourelle.TurretPanDrive.set(Double.parseDouble(lastDataReceived)*5);
-                tourelle.gripUpdatePan(Double.parseDouble(lastDataReceived)*5);
-                // figure out response
-                //visionData = gson.fromJson(lastDataReceived, VisionData.class);
-                //visionData.whenRecieved = System.currentTimeMillis();
-        		//System.out.println(visionData);
+                //tourelle.gripUpdatePan(Double.parseDouble(lastDataReceived)*5);
+                
+                visionData = gson.fromJson(lastDataReceived, VisionData.class);
+                visionData.whenRecieved = System.currentTimeMillis();
+                tourelle.gripUpdateState(visionData.trouvee);
+                tourelle.gripUpdatePan(visionData.positionX*5);
+                //SmartDashboard.putNumber("Width", visionData.positionX);
+               
             } catch (IOException e) {
                 e.printStackTrace();
                 SmartDashboard.putString(AffichageStation.VISION_STATUT,"Exception in receiving data");
@@ -68,9 +73,5 @@ public class VisionEcouteur extends Thread
         }
         socket.close();
 	}
-	
-	 /*public String toHex(String arg) {
-	        return String.format("%040x", new BigInteger(1, arg.getBytes()));
-	    }*/
 	
 }

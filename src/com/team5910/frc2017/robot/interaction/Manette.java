@@ -13,7 +13,12 @@ import com.team5910.frc2017.commande.drive.CommandeConduiteEncodeurZero;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurAccelerer;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurArreter;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurDemarrer;
+import com.team5910.frc2017.commande.tourelle.CommandeTourelleChangerEtat;
+import com.team5910.frc2017.commande.tourelle.CommandeTourelleToggleAutoMan;
+import com.team5910.frc2017.robot.RobotControleur;
 import com.team5910.frc2017.robot.RobotMap;
+import com.team5910.frc2017.robot.soussysteme.Tourelle;
+import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -62,8 +67,9 @@ public class Manette {
     	JoystickButton actionLanceurDeceleration = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_DECREMENTE);
     	actionLanceurDeceleration.whenPressed(new CommandeLanceurAccelerer(-RobotMap.LANCEUR_VITESSE_DELTA));
 
-    	/*JoystickButton turretToggleModeTrigger = new JoystickButton(mAccessoriesStick, RobotMap.kTurretToggleAutoMan);
-    	turretToggleModeTrigger.whenPressed(new TurretToggleAutoMan()); */   
+    	JoystickButton turretToggleModeEnable = new JoystickButton(manetteAccessoire, RobotMap.TOURELLE_TOGGLE_AUTO_MANUEL);
+    	turretToggleModeEnable.whenPressed(new CommandeTourelleChangerEtat(SystemState.AUTO_SCAN));  
+    	turretToggleModeEnable.whenReleased(new CommandeTourelleChangerEtat(SystemState.MANUAL_CONTROL)); 
     
     }
     

@@ -2,6 +2,8 @@ package com.team5910.frc2017.robot;
 
 import java.io.IOException;
 
+import com.team5910.frc2017.commande.CommandeIndexeurArreter;
+import com.team5910.frc2017.commande.lanceur.CommandeLanceurArreter;
 import com.team5910.frc2017.commande.tourelle.CommandeTourelleChangerEtat;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
@@ -14,12 +16,15 @@ import com.team5910.frc2017.robot.trajet.CommandeImmobile;
 import com.team5910.frc2017.robot.trajet.CommandeLigneDroite;
 import com.team5910.frc2017.robot.trajet.CommandeR1;
 import com.team5910.frc2017.robot.trajet.CommandeR2;
+import com.team5910.frc2017.robot.trajet.CommandeR2Inverse;
 import com.team5910.frc2017.robot.trajet.CommandeR3;
 
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -30,6 +35,8 @@ public class RobotControleur extends IterativeRobot
 	
     Command commandeAutonome;
     SendableChooser autoChooser;
+    DigitalOutput RaspberryVisionMode = new DigitalOutput(25);
+     
     
 	//public static double lastCommandReceived = 0.0f;
 	
@@ -52,13 +59,16 @@ public class RobotControleur extends IterativeRobot
 		// Reset all state
         zeroAllSensors();
         
-		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
+		//try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
 		try { new VisionEcouteur(robot.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
-		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE, 0);
+		/*SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE, 0);
 		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE_P, 0);
 		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE_I, 0);
 		
+		SmartDashboard.putBoolean("VisionMode", true);*/
+		RaspberryVisionMode.disablePWM();
+		RaspberryVisionMode.set(false);
 		
 		// http://wpilib.screenstepslive.com/s/3120/m/7932/l/81109-choosing-an-autonomous-program-from-smartdashboard
 		autoChooser = new SendableChooser();
@@ -66,9 +76,9 @@ public class RobotControleur extends IterativeRobot
 		autoChooser.addObject("R1", new CommandeR1());
 		autoChooser.addObject("R2", new CommandeR2());
 		autoChooser.addObject("R3", new CommandeR3());		
-		autoChooser.addObject("LigneDroit", new CommandeLigneDroite());
+		autoChooser.addObject("R2Inverse",new CommandeR2Inverse());
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
-		
+	
 	}
 
 	@Override
@@ -85,7 +95,7 @@ public class RobotControleur extends IterativeRobot
 	public void autonomousPeriodic()
 	{
 		Scheduler.getInstance().run();
-		Robot.drive.updateDashboard();
+		//Robot.drive.updateDashboard();
 	}
 	
 	@Override
@@ -94,12 +104,15 @@ public class RobotControleur extends IterativeRobot
 		if (commandeAutonome != null) { commandeAutonome.cancel(); }
 		new CommandeTourelleChangerEtat(Tourelle.SystemState.MANUAL_CONTROL);
 		Scheduler.getInstance().run();
+		
+		//robot.tourelle.debuginit();
+		
 	}
 	
 	
 	@Override
 	public void teleopPeriodic() 
-	{
+	{		
 		Scheduler.getInstance().run();
 		double x1 = 0;
 		double y1 = 0;
@@ -132,13 +145,14 @@ public class RobotControleur extends IterativeRobot
         if (Math.abs(oi.getTiltAxe()) > .2)
             tilt = oi.getTiltAxe();
         
-        robot.tourelle.manualDrive(pan, tilt);
-        robot.tourelle.updateDashboard();
-        Robot.drive.updateDashboard();
+       // robot.tourelle.manualDrive(pan, tilt);
+       // Robot.drive.updateDashboard();
+       //robot.tourelle.debugPeriodic();
+        robot.tourelle.manualDrive(pan*5, tilt);
+        robot.tourelle.tourellePeriodic();
         
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
-        
-        robot.tourelle.TeleopPeriodic();
+        //RaspberryVisionMode.set(SmartDashboard.getBoolean("VisionMode", false));
 	}
 	
 	@Override
@@ -151,14 +165,11 @@ public class RobotControleur extends IterativeRobot
 	public void disabledPeriodic() 
 	{	
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
-		Timer.delay(0.02);
+		Timer.delay(0.2);
 	}
 	
-	@Override
-	public void robotPeriodic() 
-	{	
-	}
 	
+
 
 }
 

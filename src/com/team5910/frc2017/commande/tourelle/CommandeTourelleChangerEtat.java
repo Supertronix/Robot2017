@@ -16,6 +16,7 @@ public class CommandeTourelleChangerEtat extends Command {
 	 @Override
 	protected void initialize() {
 		 RobotControleur.robot.tourelle.setState(state);
+		 System.out.println ("Commande tourelle changer etat"); 
 	}
 	 
 	@Override

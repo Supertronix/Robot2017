@@ -50,8 +50,8 @@ public class CommandeConduiteAvancer extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		//Robot.drive.driveStraightWithGyro();
-		Robot.drive.driveStraight(); // Test
+		Robot.drive.driveStraightWithGyro();
+		//Robot.drive.driveStraight(); // Test
 	}
 		
 	@Override
