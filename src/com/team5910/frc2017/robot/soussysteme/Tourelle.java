@@ -1,5 +1,8 @@
 package com.team5910.frc2017.robot.soussysteme;
 
+import java.awt.print.Printable;
+import java.io.Console;
+
 import com.ctre.CANTalon;
 import com.team5910.frc2017.commande.tourelle.CommandeTourelleChercherCible;
 import com.team5910.frc2017.robot.RobotMap;
@@ -24,24 +27,35 @@ public class Tourelle extends Subsystem {
 	
 	public void setState(SystemState aWantedState)
 	{
+		if (commandeChercherCible == null) { commandeChercherCible = new CommandeTourelleChercherCible(); } 
+		
 		actualState = aWantedState;
 		if (aWantedState == SystemState.AUTO_SCAN)
 		{
-			commandeChercherCible = new CommandeTourelleChercherCible();
+			tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
+			tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
 			commandeChercherCible.start();
 		}
-		else
+		else if (aWantedState == SystemState.AUTO_LOCK)
 		{
+			tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
 			commandeChercherCible.cancel();
 			setPanSetpoint(tourellePan.getPosition());
+			tourellePan.setControlMode(0); // DIRECT MOTOR DRIVE
+		}
+		else if (aWantedState == SystemState.MANUAL_CONTROL)
+		{
+			commandeChercherCible.cancel();
+			tourellePan.setControlMode(0);
+			tourelleTilt.setControlMode(0);
 		}
 	}
 	
 	public CANTalon tourellePan = new CANTalon(RobotMap.TOURELLE_PAN_MOTEUR);
 	public CANTalon tourelleTilt = new CANTalon(RobotMap.TOURELLE_TILT_MOTEUR);
 	
-	double panSP = -500;
-	double tiltSP = 0.0;
+	double panSP = RobotMap.TOURELLE_PAN_DEFAUT;
+	double tiltSP = RobotMap.TOURELLE_TILT_DEFAUT;
 	
 	double autoSPupdate = 0.0;
 
@@ -62,9 +76,10 @@ public class Tourelle extends Subsystem {
 		
 		tourellePan.reverseSensor(true);
 		
-		//tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
-		tourelleTilt.setControlMode(0);
+		tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
+		//tourelleTilt.setControlMode(0);
 		tourelleTilt.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
+		tourelleTilt.setPID(RobotMap.TILT_KP, RobotMap.TILT_KI, 0);
 		tourelleTilt.setPosition(0);
 		tourelleTilt.setForwardSoftLimit(RobotMap.TOURELLE_TILT_LIMITE_MAXIMUM);
 		tourelleTilt.enableForwardSoftLimit(true);
@@ -72,9 +87,7 @@ public class Tourelle extends Subsystem {
 		tourelleTilt.setReverseSoftLimit(RobotMap.TOURELLE_TILT_LIMITE_MINIMUM);
 		tourelleTilt.enableReverseSoftLimit(true);
 		tourelleTilt.reverseSensor(true);
-		tourelleTilt.setP(0.1);
 		tourelleTilt.enable();	
-		SmartDashboard.putNumber(AffichageStation.TOURELLE_TILT_TSP, 130);
 		
 	}
 	
@@ -90,8 +103,8 @@ public class Tourelle extends Subsystem {
 		 if (actualState == SystemState.DISABLED)
 			 return;
 		 tiltSP = aTiltSP;
-		 //Utilities.clamp(tiltSP, RobotMap.kTiltLowSPLimit, RobotMap.kTiltHighSPLimit);
-		 //TurretTiltDrive.set(tiltSP);
+		 Calculateur.clamp(tiltSP, RobotMap.TOURELLE_TILT_LIMITE_MINIMUM, RobotMap.TOURELLE_TILT_LIMITE_MAXIMUM);
+		 tourelleTilt.set(tiltSP);
 	    }
 	 
 	 public void offsetPanSP(double aPanOffset) {
@@ -139,8 +152,9 @@ public class Tourelle extends Subsystem {
 		if (actualState == SystemState.DISABLED)
 			 return;
 		else if (actualState == SystemState.MANUAL_CONTROL)
-			offsetPanSP(aPanValue);
-			//tourelleTilt.set(aTiltValue);	
+			//offsetPanSP(aPanValue);
+			tourellePan.set(aPanValue);
+			tourelleTilt.set(aTiltValue);	
 	}
 
 	@Override
@@ -148,21 +162,39 @@ public class Tourelle extends Subsystem {
 		
 	}
 	
-	public void tourellePeriodic()
-	{
-		if (actualState == SystemState.DISABLED)
-			 return;
-		else if (actualState == SystemState.AUTO_SCAN)
-		{
-			//tourellePan.set(panSP);
-		}
-	}
-	
 	public void gripUpdatePan(double aTargetX)
 	{
 		if (actualState == SystemState.AUTO_LOCK)
 		{
-			offsetPanSP(aTargetX);
+			tourellePan.set(aTargetX); // DIrect drive
+		}
+			
+	}
+	
+	public void gripUpdateTilt(double aDistance)
+	{
+		SmartDashboard.putNumber("DISTANCE DETECTED", aDistance);
+		
+		// SP 650 - 730
+		
+		// distance // SP
+		// OLD 20 // -658
+		
+		// 20.6 - 656 pot
+		// 19.75 - 644 pot
+		// 19.3 - 629 pot
+		// 18.68 - 622
+		
+		// FORMULE : y=ax+b 
+		double a = 15.625;
+		double b = 158.13;
+		
+		// Distance
+		if (actualState == SystemState.AUTO_LOCK)
+		{
+			double result = -(a*aDistance + b);
+			setTiltSetpoint(result);
+			System.out.println ("UPDATE TILT SET POINT TO" + result);
 		}
 			
 	}
@@ -185,6 +217,11 @@ public class Tourelle extends Subsystem {
 		return (Math.abs(tourellePan.getClosedLoopError()) <= 5);
 	}
 	
+	public boolean tiltSPdone()
+	{
+		return (Math.abs(tourelleTilt.getClosedLoopError()) <= 5);
+	}
+	
 	public void gotoPanOppositeSP()
 	{
 		if (panSP == RobotMap.TOURELLE_PAN_LIMITE_MINIMUM)
@@ -200,18 +237,18 @@ public class Tourelle extends Subsystem {
 	
 	public void debuginit()
 	{
-		SmartDashboard.putNumber("PAN P", tourellePan.getP());
-		SmartDashboard.putNumber("PAN I", tourellePan.getI());
+		SmartDashboard.putNumber("TILT P", tourelleTilt.getP());
+		SmartDashboard.putNumber("TILT I", tourelleTilt.getI());
 		
-		SmartDashboard.putNumber("PAN SP", 0.0);
+		SmartDashboard.putNumber("TILT SP", tiltSP);
 	}
 	
 	public void debugPeriodic()
 	{
-		tourellePan.setP(SmartDashboard.getNumber("PAN P", tourellePan.getP()));
-		tourellePan.setI(SmartDashboard.getNumber("PAN I", tourellePan.getI()));
+		tourelleTilt.setP(SmartDashboard.getNumber("TILT P", tourelleTilt.getP()));
+		tourelleTilt.setI(SmartDashboard.getNumber("TILT I", tourelleTilt.getI()));
 		
-		tourellePan.set(SmartDashboard.getNumber("PAN SP", 0.0));
+		setTiltSetpoint(SmartDashboard.getNumber("TILT SP", 0.0));
 	}
 	
 

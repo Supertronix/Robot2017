@@ -5,6 +5,8 @@ import java.io.IOException;
 import com.team5910.frc2017.commande.CommandeIndexeurArreter;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurArreter;
 import com.team5910.frc2017.commande.tourelle.CommandeTourelleChangerEtat;
+import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerPan;
+import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerTilt;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
 import com.team5910.frc2017.robot.interaction.vision.USBCamStreamer;
@@ -59,7 +61,7 @@ public class RobotControleur extends IterativeRobot
 		// Reset all state
         zeroAllSensors();
         
-		//try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
+		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
 		try { new VisionEcouteur(robot.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
 		/*SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE, 0);
@@ -106,7 +108,8 @@ public class RobotControleur extends IterativeRobot
 		Scheduler.getInstance().run();
 		
 		//robot.tourelle.debuginit();
-		
+		//new CommandeTourellePositionnerPan(RobotMap.TOURELLE_PAN_DEFAUT);
+		//new CommandeTourellePositionnerTilt(RobotMap.TOURELLE_TILT_DEFAUT);
 	}
 	
 	
@@ -145,14 +148,11 @@ public class RobotControleur extends IterativeRobot
         if (Math.abs(oi.getTiltAxe()) > .2)
             tilt = oi.getTiltAxe();
         
-       // robot.tourelle.manualDrive(pan, tilt);
        // Robot.drive.updateDashboard();
-       //robot.tourelle.debugPeriodic();
+        //robot.tourelle.debugPeriodic();
         robot.tourelle.manualDrive(pan*5, tilt);
-        robot.tourelle.tourellePeriodic();
         
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
-        //RaspberryVisionMode.set(SmartDashboard.getBoolean("VisionMode", false));
 	}
 	
 	@Override

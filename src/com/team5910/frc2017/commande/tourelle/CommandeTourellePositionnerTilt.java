@@ -19,7 +19,7 @@ public class CommandeTourellePositionnerTilt extends Command {
 	 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return RobotControleur.robot.tourelle.tiltSPdone();
 	}
 
 

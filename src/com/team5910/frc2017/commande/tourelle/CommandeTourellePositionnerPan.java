@@ -19,7 +19,7 @@ public class CommandeTourellePositionnerPan extends Command {
 	 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return RobotControleur.robot.tourelle.panSPdone();
 	}
 
 }

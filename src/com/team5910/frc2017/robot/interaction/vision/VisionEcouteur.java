@@ -62,8 +62,8 @@ public class VisionEcouteur extends Thread
                 visionData = gson.fromJson(lastDataReceived, VisionData.class);
                 visionData.whenRecieved = System.currentTimeMillis();
                 tourelle.gripUpdateState(visionData.trouvee);
-                tourelle.gripUpdatePan(visionData.positionX*5);
-                //SmartDashboard.putNumber("Width", visionData.positionX);
+                tourelle.gripUpdatePan(visionData.positionX*0.75); //15
+                tourelle.gripUpdateTilt(visionData.distanceAvecRobot);
                
             } catch (IOException e) {
                 e.printStackTrace();

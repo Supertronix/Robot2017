@@ -11,7 +11,7 @@ public class Brasseur extends Subsystem {
 	VictorSP IndexerShuffleDrive1;
 	CANTalon IndexerShuffleDrive2;
 	
-	boolean reverseEachTime = true;
+	boolean reverseEachTime = false;
 	boolean lastClockwise = true;
     
 	public Brasseur() {

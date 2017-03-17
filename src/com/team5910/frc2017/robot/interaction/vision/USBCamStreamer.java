@@ -28,17 +28,17 @@ public class USBCamStreamer extends Thread
      	camera.setResolution(640, 480);
 
      	// Get a CvSink. This will capture Mats from the camera
-     	cvSink = CameraServer.getInstance().getVideo();
+     	/*cvSink = CameraServer.getInstance().getVideo();
      	
 		// Setup a CvSource. This will send images back to the Dashboard
 		outputStream = CameraServer.getInstance().putVideo("Rectangle", 640, 480);
 		
 		// Mats are very memory expensive. Lets reuse this Mat.
-		mat = new Mat();
+		mat = new Mat();*/
     }
 	
 	public void run() {
-		while (!Thread.interrupted()) {
+		/*while (!Thread.interrupted()) {
 		if (cvSink.grabFrame(mat) == 0) {
 			// Send the output the error.
 			outputStream.notifyError(cvSink.getError());
@@ -47,7 +47,7 @@ public class USBCamStreamer extends Thread
 		}
 		// Give the output stream a new image to display
 		outputStream.putFrame(mat);
-		}
+		}*/
 
 	}
 }

@@ -23,7 +23,7 @@ public interface RobotMap {
 	public static final boolean INVERSION_INDEXEUR_MOTEUR = true;
 	
 	public static final int BRASSEUR_GAUCHE = 16; // SP 8
-	public static final boolean INVERSION_BRASSEUR_GAUCHE = false;
+	public static final boolean INVERSION_BRASSEUR_GAUCHE = true;
 	
 	public static final int MACHOIRE_GAUCHE_SERVO = 1; // Servo 1
 	public static final int MACHOIRE_DROITE_SERVO = 0; // Servo 2
@@ -39,8 +39,7 @@ public interface RobotMap {
 	public static final int TOURELLE_PAN_MOTEUR = 2;
 	public static final int TOURELLE_TILT_MOTEUR = 5;
 	public static final int BRASSEUR_DROIT = 4;
-	
-	public static final boolean INVERSION_BRASSEUR_DROIT = true;
+	public static final boolean INVERSION_BRASSEUR_DROIT = false;
 		
 	// Encoders
 	//public static final int kFLWheelEncoderA = 16;
@@ -83,13 +82,14 @@ public interface RobotMap {
 	
 	public static final int TOURELLE_PAN_AXE = 2;
 	public static final boolean INVERSION_TOURELLE_PAN_AXE = false;	
+	
 	public static final int TOURELLE_TILT_AXE = 1;
 	public static final boolean INVERSION_TOURELLE_TILT_AXE = false;
-	public static final int TOURELLE_TOGGLE_AUTO_MANUEL = 3;
+	public static final int TOURELLE_TOGGLE_AUTO_MANUEL = 11;
 	
 	public static final int BOUTON_LANCEUR = 2;	
-	public static final int BOUTON_LANCEUR_VITESSE_DECREMENTE = 11;
-	public static final int BOUTON_LANCEUR_VITESSE_INCREMENTE= 12;
+	public static final int BOUTON_LANCEUR_VITESSE_DECREMENTE = 7;
+	public static final int BOUTON_LANCEUR_VITESSE_INCREMENTE= 8;
 	
 	public static final double LANCEUR_VITESSE_DELTA = 0.1;
 	
@@ -99,11 +99,17 @@ public interface RobotMap {
 	// Turret Settings
 	public static final double TOURELLE_PAN_LIMITE_MINIMUM = -995;
 	public static final double TOURELLE_PAN_LIMITE_MAXIMUM = -30;
-	public static final double TOURELLE_TILT_LIMITE_MINIMUM = -700;
-	public static final double TOURELLE_TILT_LIMITE_MAXIMUM = -630;
+	public static final double TOURELLE_TILT_LIMITE_MINIMUM = -680;
+	public static final double TOURELLE_TILT_LIMITE_MAXIMUM = -450;
+	
+	public static final double TOURELLE_PAN_DEFAUT = -500;
+	public static final double TOURELLE_TILT_DEFAUT = -720;
 	
 	public static final double PAN_KP = 50;
 	public static final double PAN_KI = 0.0008;
+	
+	public static final double TILT_KP = 20;
+	public static final double TILT_KI = 0;
 	
 	
 	// DRIVE AUTO PID
