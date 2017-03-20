@@ -62,11 +62,11 @@ public class Tourelle extends Subsystem {
 	public Tourelle() {
 		actualState = SystemState.MANUAL_CONTROL;
 		
-		tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
+		//tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
 		tourellePan.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
 		tourellePan.setPID(RobotMap.PAN_KP, RobotMap.PAN_KI, 0);
 		
-		//tourellePan.setControlMode(0);
+		tourellePan.setControlMode(0);
 		tourellePan.setPosition(0);
 		tourellePan.enable();
 		tourellePan.setForwardSoftLimit(RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
@@ -76,8 +76,8 @@ public class Tourelle extends Subsystem {
 		
 		tourellePan.reverseSensor(true);
 		
-		tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
-		//tourelleTilt.setControlMode(0);
+		//tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
+		tourelleTilt.setControlMode(0);
 		tourelleTilt.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
 		tourelleTilt.setPID(RobotMap.TILT_KP, RobotMap.TILT_KI, 0);
 		tourelleTilt.setPosition(0);
