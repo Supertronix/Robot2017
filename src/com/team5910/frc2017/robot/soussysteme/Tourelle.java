@@ -5,6 +5,7 @@ import java.io.Console;
 
 import com.ctre.CANTalon;
 import com.team5910.frc2017.commande.tourelle.CommandeTourelleChercherCible;
+import com.team5910.frc2017.commande.tourelle.CommandeTourelleChercherCibleAuto;
 import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.vision.VisionData;
@@ -54,6 +55,18 @@ public class Tourelle extends Subsystem {
 		}
 	}
 	
+	public void setTiltPositionMode()
+	{
+		tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
+	}
+
+	public void setAutoState()
+	{
+		actualState = SystemState.AUTO_SCAN;
+		tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
+		tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
+		
+	}
 	public CANTalon tourellePan = new CANTalon(RobotMap.TOURELLE_PAN_MOTEUR);
 	public CANTalon tourelleTilt = new CANTalon(RobotMap.TOURELLE_TILT_MOTEUR);
 	
@@ -83,7 +96,7 @@ public class Tourelle extends Subsystem {
 		tourelleTilt.setControlMode(0);
 		tourelleTilt.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
 		tourelleTilt.setPID(RobotMap.TILT_KP, RobotMap.TILT_KI, 0);
-		tourelleTilt.setPosition(0);
+		//tourelleTilt.setPosition(0);
 		tourelleTilt.setForwardSoftLimit(RobotMap.TOURELLE_TILT_LIMITE_MAXIMUM);
 		tourelleTilt.enableForwardSoftLimit(true);
 		
@@ -176,7 +189,7 @@ public class Tourelle extends Subsystem {
 	
 	public void gripUpdateTilt(double aDistance)
 	{
-		SmartDashboard.putNumber("DISTANCE DETECTED", aDistance);
+		/*SmartDashboard.putNumber("DISTANCE DETECTED", aDistance);
 		
 		// SP 650 - 730
 		
@@ -198,7 +211,7 @@ public class Tourelle extends Subsystem {
 			double result = -(a*aDistance + b);
 			setTiltSetpoint(result);
 			System.out.println ("UPDATE TILT SET POINT TO" + result);
-		}
+		}*/
 			
 	}
 	
@@ -223,6 +236,10 @@ public class Tourelle extends Subsystem {
 	public boolean tiltSPdone()
 	{
 		return (Math.abs(tourelleTilt.getClosedLoopError()) <= 5);
+	}
+	public boolean isPanMotorDone()
+	{
+		return (Math.abs(tourellePan.get()) <= 0.2);
 	}
 	
 	public void gotoPanOppositeSP()

@@ -14,7 +14,8 @@ public class CommandeTourellePositionnerTilt extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.tourelle.setPanSetpoint(tiltSP);
+		 RobotControleur.robot.tourelle.setTiltPositionMode();
+		 RobotControleur.robot.tourelle.setTiltSetpoint(tiltSP);
 	}
 	 
 	@Override

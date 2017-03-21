@@ -28,11 +28,11 @@ public class Machoire extends Subsystem {
 	
 	@Override
 	protected void initDefaultCommand() {
-		
+		closeClamp();
 	}
 
 	public void toggleAsked() {
-		if (Timer.getFPGATimestamp() > lastToggleTime + 1)
+		if (Timer.getFPGATimestamp() > (lastToggleTime + 1))
 		{
 			toggle();
 			lastToggleTime = Timer.getFPGATimestamp();

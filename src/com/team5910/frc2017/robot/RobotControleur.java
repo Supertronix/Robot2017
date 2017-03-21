@@ -2,6 +2,7 @@ package com.team5910.frc2017.robot;
 
 import java.io.IOException;
 
+import com.team5910.frc2017.commande.CommandeArreterBrasseurIndexeurLanceur;
 import com.team5910.frc2017.commande.CommandeIndexeurArreter;
 import com.team5910.frc2017.commande.lanceur.CommandeLanceurArreter;
 import com.team5910.frc2017.commande.tourelle.CommandeTourelleChangerEtat;
@@ -14,6 +15,7 @@ import com.team5910.frc2017.robot.interaction.vision.VisionEcouteur;
 import com.team5910.frc2017.robot.outil.Calculateur;
 import com.team5910.frc2017.robot.soussysteme.Drive;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
+import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
 import com.team5910.frc2017.robot.trajet.CommandeImmobile;
 import com.team5910.frc2017.robot.trajet.CommandeLigneDroite;
 import com.team5910.frc2017.robot.trajet.CommandeR1;
@@ -80,17 +82,18 @@ public class RobotControleur extends IterativeRobot
 		autoChooser.addObject("R3", new CommandeR3());		
 		autoChooser.addObject("R2Inverse",new CommandeR2Inverse());
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
-	
+		SmartDashboard.putNumber("TILTSP", 0);
 	}
 
 	@Override
 	public void autonomousInit() 
 	{
 		Robot.drive.zeroSensors();
+		Command stopMotors = new CommandeArreterBrasseurIndexeurLanceur();
+		stopMotors.start();
+		
 		commandeAutonome = (Command) autoChooser.getSelected();
 		commandeAutonome.start();
-		//commandeAutonome = new CommandeLigneDroite();
-		//commandeAutonome.start();
 	}
 
 	@Override
@@ -98,18 +101,18 @@ public class RobotControleur extends IterativeRobot
 	{
 		Scheduler.getInstance().run();
 		//Robot.drive.updateDashboard();
+
 	}
 	
 	@Override
 	public void teleopInit() 
 	{
 		if (commandeAutonome != null) { commandeAutonome.cancel(); }
-		new CommandeTourelleChangerEtat(Tourelle.SystemState.MANUAL_CONTROL);
-		Scheduler.getInstance().run();
+		Command stopMotors = new CommandeArreterBrasseurIndexeurLanceur();
+		stopMotors.start();
 		
-		//robot.tourelle.debuginit();
-		//new CommandeTourellePositionnerPan(RobotMap.TOURELLE_PAN_DEFAUT);
-		//new CommandeTourellePositionnerTilt(RobotMap.TOURELLE_TILT_DEFAUT);
+		RobotControleur.robot.tourelle.setState(SystemState.MANUAL_CONTROL);
+		Scheduler.getInstance().run();
 	}
 	
 	
