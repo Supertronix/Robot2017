@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class VisionEcouteur extends Thread
 {
-	public static String lastDataReceived = "";
+	public static String donneeRecue = "";
 	protected DatagramSocket socket = null;
 	protected BufferedReader in = null;
     protected boolean moreQuotes = true;
@@ -50,21 +50,23 @@ public class VisionEcouteur extends Thread
             	packet.setLength(buf.length);
                 socket.receive(packet);
                 byte[] data = packet.getData();
-                lastDataReceived = new String(data, 0, packet.getLength());
-                SmartDashboard.putString("last Data Received", lastDataReceived);
+                donneeRecue = new String(data, 0, packet.getLength());
+                SmartDashboard.putString("last Data Received", donneeRecue);
                 //Robot.lastCommandReceived = Double.parseDouble(lastDataReceived);
-                //System.out.println ("'" + lastDataReceived + "'");
+                System.out.println ("'" + donneeRecue + "'");
                 
                 //tourelle.setPanSetpoint(Double.parseDouble(lastDataReceived));
                 //tourelle.TurretPanDrive.set(Double.parseDouble(lastDataReceived)*5);
                 //tourelle.gripUpdatePan(Double.parseDouble(lastDataReceived)*5);
                 
-                tourelle.visionData = gson.fromJson(lastDataReceived, VisionData.class);
+                tourelle.visionData = gson.fromJson(donneeRecue, VisionData.class);
                 tourelle.visionData.whenRecieved = System.currentTimeMillis();
                 tourelle.gripUpdateState(tourelle.visionData.trouvee);
-                tourelle.gripUpdatePan(tourelle.visionData.positionX*0.75); //15
-                tourelle.gripUpdateTilt(tourelle.visionData.distanceAvecRobot);
-               
+                if(!tourelle.visionData.trouvee)
+                {
+                	tourelle.gripUpdatePan(tourelle.visionData.positionX*0.75); //15
+                	tourelle.gripUpdateTilt(tourelle.visionData.distanceAvecRobot);
+                }               
             } catch (IOException e) {
                 e.printStackTrace();
                 SmartDashboard.putString(AffichageStation.VISION_STATUT,"Exception in receiving data");
