@@ -20,7 +20,7 @@ public class VisionEcouteur extends Thread
 	protected BufferedReader in = null;
     protected boolean moreQuotes = true;
     protected Tourelle tourelle = null;
-    public VisionData visionData;
+    //public VisionData visionData;
     
     Gson gson = new Gson();
     
@@ -59,11 +59,11 @@ public class VisionEcouteur extends Thread
                 //tourelle.TurretPanDrive.set(Double.parseDouble(lastDataReceived)*5);
                 //tourelle.gripUpdatePan(Double.parseDouble(lastDataReceived)*5);
                 
-                visionData = gson.fromJson(lastDataReceived, VisionData.class);
-                visionData.whenRecieved = System.currentTimeMillis();
-                tourelle.gripUpdateState(visionData.trouvee);
-                tourelle.gripUpdatePan(visionData.positionX*0.75); //15
-                tourelle.gripUpdateTilt(visionData.distanceAvecRobot);
+                tourelle.visionData = gson.fromJson(lastDataReceived, VisionData.class);
+                tourelle.visionData.whenRecieved = System.currentTimeMillis();
+                tourelle.gripUpdateState(tourelle.visionData.trouvee);
+                tourelle.gripUpdatePan(tourelle.visionData.positionX*0.75); //15
+                tourelle.gripUpdateTilt(tourelle.visionData.distanceAvecRobot);
                
             } catch (IOException e) {
                 e.printStackTrace();

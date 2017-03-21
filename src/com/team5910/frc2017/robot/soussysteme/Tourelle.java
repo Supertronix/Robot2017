@@ -7,6 +7,7 @@ import com.ctre.CANTalon;
 import com.team5910.frc2017.commande.tourelle.CommandeTourelleChercherCible;
 import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
+import com.team5910.frc2017.robot.interaction.vision.VisionData;
 import com.team5910.frc2017.robot.outil.Calculateur;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -14,6 +15,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class Tourelle extends Subsystem {
+	
+    public VisionData visionData;	// TODO verifier concurrence
 	
 	public enum SystemState {
         DISABLED,

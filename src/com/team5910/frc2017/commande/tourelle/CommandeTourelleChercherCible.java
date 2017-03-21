@@ -16,12 +16,15 @@ public class CommandeTourelleChercherCible extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.tourelle.gotoPanOppositeSP();
+		 if(!RobotControleur.robot.tourelle.visionData.trouvee)
+			 RobotControleur.robot.tourelle.gotoPanOppositeSP();
 	}
 	 
 	 @Override
 	protected void execute() {
-		 double pan = RobotControleur.oi.getPanAxe();
+		if(RobotControleur.robot.tourelle.visionData.trouvee) return;
+		
+		double pan = RobotControleur.oi.getPanAxe();
 		if (Math.abs(pan) > 0.2)
 		{
 			if (pan > 0)

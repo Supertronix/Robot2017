@@ -1,9 +1,9 @@
 package com.team5910.frc2017.robot.interaction.vision;
 
 public class VisionData {
-	boolean trouvee;
-	double positionX;
-	double distanceAvecRobot;
+	public boolean trouvee;
+	public double positionX;
+	public double distanceAvecRobot;
 	
 	long whenRecieved;
 	/*Boolean seen;
