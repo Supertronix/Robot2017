@@ -23,7 +23,7 @@ public interface RobotMap {
 	public static final boolean INVERSION_INDEXEUR_MOTEUR = true;
 	
 	public static final int BRASSEUR_GAUCHE = 16; // SP 8
-	public static final boolean INVERSION_BRASSEUR_GAUCHE = true;
+	public static final boolean INVERSION_BRASSEUR_GAUCHE = false;
 	
 	public static final int MACHOIRE_GAUCHE_SERVO = 1; // Servo 1
 	public static final int MACHOIRE_DROITE_SERVO = 0; // Servo 2
@@ -113,7 +113,7 @@ public interface RobotMap {
 	
 	
 	// DRIVE AUTO PID
-	public static final double GYRO_KP = 0.03;
+	public static final double GYRO_KP = 0.02; //0.03
 	public static final double GYRO_KI = 0.0;
 	
 	public static final double GYRO_KP_ROTATEONLY = 0.00075; // + haut = plus aggressif
@@ -130,6 +130,8 @@ public interface RobotMap {
 	public static final int RAYON_VERT_DIO = 12;
 	
 	public static final boolean GYRO_UPSIDEDOWN = true;
+	
+	public static final double VISION_THS = 0.1;
 
 
 }

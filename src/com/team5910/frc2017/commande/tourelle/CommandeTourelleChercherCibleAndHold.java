@@ -24,34 +24,30 @@ public class CommandeTourelleChercherCibleAndHold extends Command {
 	 @Override
 	protected void initialize() {
 		RobotControleur.robot.tourelle.setAutoState();
-		if(!RobotControleur.robot.tourelle.visionData.trouvee && RobotControleur.robot.tourelle.visionData.positionX <= 0.1)
+		if(!RobotControleur.robot.tourelle.visionData.trouvee && RobotControleur.robot.tourelle.visionData.positionX <= RobotMap.VISION_THS)
 			 RobotControleur.robot.tourelle.gotoPanOppositeSP();
 	}
 	 
 	 @Override
 	protected void execute() {
 
-		if(RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) <= 0.1 && !isHolding)
+		if(RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) <= RobotMap.VISION_THS && !isHolding)
 		{
 			isHolding = true;
 			startDetectedTime = Utility.getFPGATime();
-			SmartDashboard.putString("AUTOSTATE", "EXECUTE START HOLDING");
 			return;
 		}
-		else if (RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) <= 0.1 && isHolding)
+		else if (RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) <= RobotMap.VISION_THS && isHolding)
 		{
-			SmartDashboard.putString("AUTOSTATE", "EXECUTE IS HOLDING");
 			return;
 		}
-		else if (RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) > 0.1 && isHolding)
+		else if (RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) > RobotMap.VISION_THS && isHolding)
 		{
-			SmartDashboard.putString("AUTOSTATE", "EXECUTE STOP HOLDING");
 			isHolding = false;
 			startDetectedTime = Double.MAX_VALUE;
 			return;
 		}
 			
-		SmartDashboard.putString("AUTOSTATE", "SCANNING");
 		if (RobotControleur.robot.tourelle.panSPdone())
 		{
 			RobotControleur.robot.tourelle.gotoPanOppositeSP();
@@ -61,10 +57,9 @@ public class CommandeTourelleChercherCibleAndHold extends Command {
 	 
 	@Override
 	protected boolean isFinished() {
-		if(RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) <= 0.1 && (Utility.getFPGATime() >= startDetectedTime + dureeMicroseconde))
+		if(RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) <= RobotMap.VISION_THS && (Utility.getFPGATime() >= startDetectedTime + dureeMicroseconde))
 		{
-			SmartDashboard.putString("AUTOSTATE", "FINISH");
-			RobotControleur.robot.tourelle.setState(SystemState.AUTO_LOCK);
+			RobotControleur.robot.tourelle.setState(SystemState.DISABLED);
 			return true;
 
 		}

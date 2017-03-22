@@ -29,6 +29,10 @@ public class Tourelle extends Subsystem {
 	private SystemState actualState;
 	private CommandeTourelleChercherCible commandeChercherCible;
 	
+	public SystemState getState()
+	{
+		return actualState;
+	}
 	public void setState(SystemState aWantedState)
 	{
 		if (commandeChercherCible == null) { commandeChercherCible = new CommandeTourelleChercherCible(); } 
@@ -36,13 +40,15 @@ public class Tourelle extends Subsystem {
 		actualState = aWantedState;
 		if (aWantedState == SystemState.AUTO_SCAN)
 		{
-			tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
+			//tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
+			tourelleTilt.setControlMode(0);
 			tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
 			commandeChercherCible.start();
 		}
 		else if (aWantedState == SystemState.AUTO_LOCK)
 		{
-			tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
+			//tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
+			tourelleTilt.setControlMode(0);
 			commandeChercherCible.cancel();
 			setPanSetpoint(tourellePan.getPosition());
 			tourellePan.setControlMode(0); // DIRECT MOTOR DRIVE

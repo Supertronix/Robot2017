@@ -6,6 +6,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 
 import com.google.gson.Gson;
+import com.team5910.frc2017.robot.RobotControleur;
 import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
@@ -51,9 +52,9 @@ public class VisionEcouteur extends Thread
                 socket.receive(packet);
                 byte[] data = packet.getData();
                 donneeRecue = new String(data, 0, packet.getLength());
-                SmartDashboard.putString("last Data Received", donneeRecue);
+                //SmartDashboard.putString("last Data Received", donneeRecue);
                 //Robot.lastCommandReceived = Double.parseDouble(lastDataReceived);
-                System.out.println ("'" + donneeRecue + "'");
+                //System.out.println ("'" + donneeRecue + "'");
                 
                 //tourelle.setPanSetpoint(Double.parseDouble(lastDataReceived));
                 //tourelle.TurretPanDrive.set(Double.parseDouble(lastDataReceived)*5);
@@ -62,11 +63,11 @@ public class VisionEcouteur extends Thread
                 tourelle.visionData = gson.fromJson(donneeRecue, VisionData.class);
                 tourelle.visionData.whenRecieved = System.currentTimeMillis();
                 tourelle.gripUpdateState(tourelle.visionData.trouvee);
-                if(!tourelle.visionData.trouvee)
-                {
-                	tourelle.gripUpdatePan(tourelle.visionData.positionX*0.75); //15
-                	tourelle.gripUpdateTilt(tourelle.visionData.distanceAvecRobot);
-                }               
+                //if(!tourelle.visionData.trouvee && Math.abs(tourelle.visionData.positionX) >= 0.1)
+               // {
+            	tourelle.gripUpdatePan(tourelle.visionData.positionX*0.75); //15
+            	tourelle.gripUpdateTilt(tourelle.visionData.distanceAvecRobot);
+                //}               
             } catch (IOException e) {
                 e.printStackTrace();
                 SmartDashboard.putString(AffichageStation.VISION_STATUT,"Exception in receiving data");

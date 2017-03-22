@@ -22,6 +22,7 @@ import com.team5910.frc2017.robot.trajet.CommandeR1;
 import com.team5910.frc2017.robot.trajet.CommandeR2;
 import com.team5910.frc2017.robot.trajet.CommandeR2Inverse;
 import com.team5910.frc2017.robot.trajet.CommandeR3;
+import com.team5910.frc2017.robot.trajet.CommandeWTF;
 
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -80,7 +81,7 @@ public class RobotControleur extends IterativeRobot
 		autoChooser.addObject("R1", new CommandeR1());
 		autoChooser.addObject("R2", new CommandeR2());
 		autoChooser.addObject("R3", new CommandeR3());		
-		autoChooser.addObject("R2Inverse",new CommandeR2Inverse());
+		autoChooser.addObject("WTF",new CommandeWTF());
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 		SmartDashboard.putNumber("TILTSP", 0);
 	}
@@ -153,7 +154,10 @@ public class RobotControleur extends IterativeRobot
         
        // Robot.drive.updateDashboard();
         //robot.tourelle.debugPeriodic();
-        robot.tourelle.manualDrive(pan*5, tilt);
+        if (robot.tourelle.getState() == SystemState.AUTO_LOCK || robot.tourelle.getState() == SystemState.AUTO_SCAN)
+        	robot.tourelle.manualDrive(pan*5, tilt*0.5);
+        else
+        	robot.tourelle.manualDrive(pan*5, tilt);
         
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
 	}

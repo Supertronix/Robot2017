@@ -19,12 +19,12 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class CommandeR2 extends CommandGroup {
 
 public CommandeR2() {
-	addSequential(new CommandeConduiteAvancer(6.9, 0.075, 0.00065));
+	addSequential(new CommandeConduiteAvancer(7.0, 0.070, 0.00065)); //0.075
 	addSequential(new CommandeConduiteAvancer(-2, 0.18, 0.00045));
 	addSequential(new CommandeConduiteTourner(-90, 0.008, 0.0002));
 	addSequential(new CommandeConduiteAvancer(-5, 0.17, 0.00045));
-	addSequential(new CommandeTourellePositionnerTilt(-520));
-	addSequential(new CommandeTourelleChercherCibleAndHold(1.5));
+	addSequential(new CommandeTourellePositionnerTilt(-500)); // negative on top old 520
+	addSequential(new CommandeTourelleChercherCibleAndHold(1));
 	addParallel(new CommandeLanceurDuree(10));
 	addParallel(new CommandeBrasseurDuree(10));
 	addParallel(new CommandeIndexeurDuree(10));
