@@ -16,11 +16,12 @@ import com.team5910.frc2017.robot.outil.Calculateur;
 import com.team5910.frc2017.robot.soussysteme.Drive;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
 import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
+import com.team5910.frc2017.robot.trajet.CommandeB1;
+import com.team5910.frc2017.robot.trajet.CommandeB2;
+import com.team5910.frc2017.robot.trajet.CommandeB3;
 import com.team5910.frc2017.robot.trajet.CommandeImmobile;
-import com.team5910.frc2017.robot.trajet.CommandeLigneDroite;
 import com.team5910.frc2017.robot.trajet.CommandeR1;
 import com.team5910.frc2017.robot.trajet.CommandeR2;
-import com.team5910.frc2017.robot.trajet.CommandeR2Inverse;
 import com.team5910.frc2017.robot.trajet.CommandeR3;
 import com.team5910.frc2017.robot.trajet.CommandeWTF;
 
@@ -67,11 +68,6 @@ public class RobotControleur extends IterativeRobot
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
 		try { new VisionEcouteur(robot.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
-		/*SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE, 0);
-		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE_P, 0);
-		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE_I, 0);
-		
-		SmartDashboard.putBoolean("VisionMode", true);*/
 		RaspberryVisionMode.disablePWM();
 		RaspberryVisionMode.set(false);
 		
@@ -80,10 +76,12 @@ public class RobotControleur extends IterativeRobot
 		autoChooser.addDefault("No move", new CommandeImmobile());
 		autoChooser.addObject("R1", new CommandeR1());
 		autoChooser.addObject("R2", new CommandeR2());
-		autoChooser.addObject("R3", new CommandeR3());		
+		autoChooser.addObject("R3", new CommandeR3());	
+		autoChooser.addObject("B1", new CommandeB1());
+		autoChooser.addObject("B2", new CommandeB2());
+		autoChooser.addObject("B3", new CommandeB3());	
 		autoChooser.addObject("WTF",new CommandeWTF());
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
-		SmartDashboard.putNumber("TILTSP", 0);
 	}
 
 	@Override
