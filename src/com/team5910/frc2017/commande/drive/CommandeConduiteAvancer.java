@@ -3,6 +3,7 @@ package com.team5910.frc2017.commande.drive;
 import com.team5910.frc2017.robot.Robot;
 import com.team5910.frc2017.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class CommandeConduiteAvancer extends Command {
@@ -11,6 +12,7 @@ public class CommandeConduiteAvancer extends Command {
 	protected double p;
 	protected double i;
 	protected double d;
+	private double startTime;
 	
 	public CommandeConduiteAvancer(double distance) {
 		requires(Robot.drive);
@@ -45,18 +47,17 @@ public class CommandeConduiteAvancer extends Command {
 		Robot.drive.updateDistanceSetpoint(Robot.drive.getEncoderDistance() + distanceDesiree);
 		System.out.println("Valeur encodeur" + Robot.drive.getEncoderDistance());
 		Robot.drive.updateGyroSetpoint(0.0);
+		startTime = Utility.getFPGATime();
 	}
 	
-	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
 		Robot.drive.driveStraightWithGyro();
-		//Robot.drive.driveStraight(); // Test
 	}
 		
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.drivePIDDone();
+		return (Robot.drive.drivePIDDone() || (Utility.getFPGATime() >= startTime + RobotMap.AUTO_EXPIRE * 1000000));
 	}
 	
 	@Override

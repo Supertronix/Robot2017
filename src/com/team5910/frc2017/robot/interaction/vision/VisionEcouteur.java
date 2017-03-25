@@ -52,7 +52,7 @@ public class VisionEcouteur extends Thread
                 socket.receive(packet);
                 byte[] data = packet.getData();
                 donneeRecue = new String(data, 0, packet.getLength());
-                //SmartDashboard.putString("last Data Received", donneeRecue);
+                SmartDashboard.putString("last Data Received", donneeRecue);
                 //Robot.lastCommandReceived = Double.parseDouble(lastDataReceived);
                 //System.out.println ("'" + donneeRecue + "'");
                 

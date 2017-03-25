@@ -25,6 +25,7 @@ import com.team5910.frc2017.robot.trajet.CommandeR2;
 import com.team5910.frc2017.robot.trajet.CommandeR3;
 import com.team5910.frc2017.robot.trajet.CommandeWTF;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.Timer;
@@ -42,7 +43,11 @@ public class RobotControleur extends IterativeRobot
     Command commandeAutonome;
     SendableChooser autoChooser;
     DigitalOutput RaspberryVisionMode = new DigitalOutput(25);
-     
+    
+    DigitalInput autoSW0 = new DigitalInput(RobotMap.AUTO_DIP0);
+    DigitalInput autoSW1 = new DigitalInput(RobotMap.AUTO_DIP1);
+    DigitalInput autoSW2 = new DigitalInput(RobotMap.AUTO_DIP2);
+    DigitalInput autoSW3 = new DigitalInput(RobotMap.AUTO_DIP3);
     
 	//public static double lastCommandReceived = 0.0f;
 	
@@ -87,11 +92,59 @@ public class RobotControleur extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{
+		if (autoSW0.get() == true) //RED
+		{
+			if (autoSW1.get() == true && autoSW2.get() == true && autoSW3.get() == true) //WTF
+			{
+				commandeAutonome = new CommandeWTF();
+			}
+			else if (autoSW1.get() == false && autoSW2.get() == false && autoSW3.get() == false) // No move
+			{
+				commandeAutonome = new CommandeImmobile();
+			}
+			else if (autoSW1.get() == true) //R1
+			{
+				commandeAutonome = new CommandeR1();
+			}
+			else if (autoSW2.get() == true) //R2
+			{
+				commandeAutonome = new CommandeR2();
+			}
+			else if (autoSW3.get() == true) //R3
+			{
+				commandeAutonome = new CommandeR3();
+			}
+		}
+		else // Blue
+		{
+			if (autoSW1.get() == true && autoSW2.get() == true && autoSW3.get() == true) //WTF
+			{
+				commandeAutonome = new CommandeWTF();
+			}
+			else if (autoSW1.get() == false && autoSW2.get() == false && autoSW3.get() == false) // No move
+			{
+				commandeAutonome = new CommandeImmobile();
+			}
+			else if (autoSW1.get() == true) //B1
+			{
+				commandeAutonome = new CommandeB1();
+			}
+			else if (autoSW2.get() == true) //B2
+			{
+				commandeAutonome = new CommandeB2();
+			}
+			else if (autoSW3.get() == true) //B3
+			{
+				commandeAutonome = new CommandeB3();
+			}
+			
+		}
+		
 		Robot.drive.zeroSensors();
 		Command stopMotors = new CommandeArreterBrasseurIndexeurLanceur();
 		stopMotors.start();
 		
-		commandeAutonome = (Command) autoChooser.getSelected();
+		//commandeAutonome = (Command) autoChooser.getSelected();
 		commandeAutonome.start();
 	}
 
@@ -169,6 +222,55 @@ public class RobotControleur extends IterativeRobot
 	@Override
 	public void disabledPeriodic() 
 	{	
+		String autoSelect = "no Command selected";
+		if (autoSW0.get() == true) //RED
+		{
+			if (autoSW1.get() == true && autoSW2.get() == true && autoSW3.get() == true) //WTF
+			{
+				autoSelect = " WTF";
+			}
+			else if (autoSW1.get() == false && autoSW2.get() == false && autoSW3.get() == false) // No move
+			{
+				autoSelect = " No move";
+			}
+			else if (autoSW1.get() == true) //R1
+			{
+				autoSelect = " R1";
+			}
+			else if (autoSW2.get() == true) //R2
+			{
+				autoSelect = " R2";
+			}
+			else if (autoSW3.get() == true) //R3
+			{
+				autoSelect = " R3";
+			}
+		}
+		else // Blue
+		{
+			if (autoSW1.get() == true && autoSW2.get() == true && autoSW3.get() == true) //WTF
+			{
+				autoSelect = " WTF";
+			}
+			else if (autoSW1.get() == false && autoSW2.get() == false && autoSW3.get() == false) // No move
+			{
+				autoSelect = " No move";
+			}
+			else if (autoSW1.get() == true) //B1
+			{
+				autoSelect = " B1";
+			}
+			else if (autoSW2.get() == true) //B2
+			{
+				autoSelect = "B2";
+			}
+			else if (autoSW3.get() == true) //B3
+			{
+				autoSelect = " B3";	
+			}
+			
+		}
+		SmartDashboard.putString("AUTO SELECTED", autoSelect);
 		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
 		Timer.delay(0.2);
 	}

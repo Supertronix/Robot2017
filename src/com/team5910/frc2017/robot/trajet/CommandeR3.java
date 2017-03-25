@@ -15,7 +15,7 @@ public class CommandeR3 extends CommandGroup {
 public CommandeR3() {
 	// public CommandeConduiteDistance(double distance, double driveP, double driveI)
 	// public CommandeConduiteTourner(double angle, double P, double I)
-	addSequential(new CommandeConduiteAvancer(5.5, 0.08, 0.00065));
+	addSequential(new CommandeConduiteAvancer(6.0, 0.08, 0.00065)); //5.7
 	addSequential(new CommandeConduiteTourner(60, 0.008, 0.0002));
 	addSequential(new CommandeConduiteAvancer(6.7, 0.08, 0.00065));
 	addSequential(new CommandeConduiteAvancer(-5, 0.10, 0.00065));

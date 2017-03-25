@@ -134,7 +134,7 @@ public class Drive extends Subsystem {
 			roueArriereGauche.set(distancePIDOut.getPIDOut() -  gyroPIDOut.getPIDOut());
 			roueArriereDroite.set(distancePIDOut.getPIDOut() + gyroPIDOut.getPIDOut());
 		}
-		
+		SmartDashboard.putNumber("ENCODER VALUE", encodeurRoues.getDistance());
 		/*roueAvantGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  + gyroPIDOut.getPIDOut());
 		roueAvantDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   - gyroPIDOut.getPIDOut());
 	    roueArriereGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   +  gyroPIDOut.getPIDOut());
@@ -156,7 +156,6 @@ public class Drive extends Subsystem {
 			roueArriereGauche.set(distancePIDOut.getPIDOut());
 			roueArriereDroite.set(distancePIDOut.getPIDOut());
 		}
-		
 		/*roueAvantGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  + gyroPIDOut.getPIDOut());
 		roueAvantDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   - gyroPIDOut.getPIDOut());
 	    roueArriereGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)   +  gyroPIDOut.getPIDOut());

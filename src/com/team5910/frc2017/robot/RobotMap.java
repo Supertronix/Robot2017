@@ -28,10 +28,10 @@ public interface RobotMap {
 	public static final int MACHOIRE_GAUCHE_SERVO = 1; // Servo 1
 	public static final int MACHOIRE_DROITE_SERVO = 0; // Servo 2
 	
-	public static final double MACHOIRE_GAUCHE_FERMEE = 1.0;
-	public static final double MACHOIRE_DROITE_FERMEE = 1.0;
-	public static final double MACHOIRE_GAUCHE_OUVERTE = 0.0;
-	public static final double MACHOIRE_DROITE_OUVERTE = 0.0;
+	public static final double MACHOIRE_GAUCHE_FERMEE = 0.0;
+	public static final double MACHOIRE_DROITE_FERMEE = 0.0;
+	public static final double MACHOIRE_GAUCHE_OUVERTE = 1.0;
+	public static final double MACHOIRE_DROITE_OUVERTE = 1.0;
 	
 	// CAN Bus
 	public static final int LANCEUR_MOTEUR_PRINCIPAL = 3;
@@ -126,12 +126,19 @@ public interface RobotMap {
 	public static final double DISTANCE_KI = 0.00045; //0.00045;
 	public static final float DISTANCE_TOLERANCE = 0.083f;
 	
-	public static final int RASPBERRY_PORT = 5910;
+	public static final int RASPBERRY_PORT = 5808;
 	public static final int RAYON_VERT_DIO = 12;
 	
 	public static final boolean GYRO_UPSIDEDOWN = true;
 	
-	public static final double VISION_THS = 0.1;
+	public static final double VISION_THS = 0.13;
+	
+	public static final int AUTO_DIP0 = 2;
+	public static final int AUTO_DIP1 = 3;
+	public static final int AUTO_DIP2 = 4;
+	public static final int AUTO_DIP3 = 5;
+	
+	public static final int AUTO_EXPIRE = 5; // in seconds
 
 
 }
