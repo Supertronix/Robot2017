@@ -16,9 +16,9 @@ public class CommandeConduiteLaterale extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.drive.resetEncoders();
-		Robot.drive.resetGyro();
-		Robot.drive.resetPIDS();
+		Robot.drive.initialiserEncodeur();
+		Robot.drive.initialiserGyro();
+		Robot.drive.initialiserPID();
 		Robot.drive.inverserEncodeur();
 		Robot.drive.programmerDistance(mWantedDistance);
 	}
@@ -26,7 +26,7 @@ public class CommandeConduiteLaterale extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.drive.driveLateralWithGyro();
+		Robot.drive.conduireLateralementAvecGyro();
 	}
 		
 	@Override

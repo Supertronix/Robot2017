@@ -39,20 +39,20 @@ public class CommandeConduiteAvancer extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.drive.resetEncoders();
-		Robot.drive.resetGyro();
-		Robot.drive.resetPIDS();
+		Robot.drive.initialiserEncodeur();
+		Robot.drive.initialiserGyro();
+		Robot.drive.initialiserPID();
 		Robot.drive.setGyroPIDStandard();
 		Robot.drive.setDistancePID(this.p, this.i, this.d);
-		Robot.drive.programmerDistance(Robot.drive.getEncoderDistance() + distanceDesiree);
-		System.out.println("Valeur encodeur" + Robot.drive.getEncoderDistance());
+		Robot.drive.programmerDistance(Robot.drive.getDistanceSelonEncodeur() + distanceDesiree);
+		System.out.println("Valeur encodeur" + Robot.drive.getDistanceSelonEncodeur());
 		Robot.drive.programmerCibleGyro(0.0);
 		startTime = Utility.getFPGATime();
 	}
 	
 	@Override
 	protected void execute() {
-		Robot.drive.driveStraightWithGyro();
+		Robot.drive.conduireDroitAvecGyro();
 	}
 		
 	@Override

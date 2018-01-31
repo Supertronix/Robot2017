@@ -1,4 +1,4 @@
-package com.team5910.frc2017.robot.outil;
+package com.team5910.frc2017.robot.soussysteme.materiel;
 /*----------------------------------------------------------------------------*/
 /* Copyright (c) FIRST 2015-2017. All Rights Reserved.                        */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
@@ -30,7 +30,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindowSendable;
  * <p>This class is for the digital ADXRS450 gyro sensor that connects via SPI.
  */
 @SuppressWarnings("unused")
-public class ADXRS450Supertronix extends GyroBase implements Gyro, PIDSource, LiveWindowSendable {
+public class GyroADXRS450 extends GyroBase implements Gyro, PIDSource, LiveWindowSendable {
   private static final double kSamplePeriod = 0.001;
   private static final double kCalibrationSampleTime = 5.0;
   private static final double kDegreePerSecondPerLSB = 0.0132; //Default 0.0125 //Best: 0.01317
@@ -50,7 +50,7 @@ private static final int kRateRegister = 0x00;
   /**
    * Constructor.  Uses the onboard CS0.
    */
-  public ADXRS450Supertronix() {
+  public GyroADXRS450() {
     this(SPI.Port.kOnboardCS0);
   }
 
@@ -59,7 +59,7 @@ private static final int kRateRegister = 0x00;
    *
    * @param port The SPI port that the gyro is connected to
    */
-  public ADXRS450Supertronix(SPI.Port port) {
+  public GyroADXRS450(SPI.Port port) {
     m_spi = new SPI(port);
     m_spi.setClockRate(3000000);
     m_spi.setMSBFirst();

@@ -2,7 +2,7 @@ package com.team5910.frc2017.robot.soussysteme;
 
 import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
-import com.team5910.frc2017.robot.outil.ADXRS450Supertronix;
+import com.team5910.frc2017.robot.soussysteme.materiel.GyroADXRS450;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
@@ -29,9 +29,10 @@ public class Roues extends Subsystem {
 		}
 	}	
 	
+	/*
     public enum DriveControlState {
         OPEN_LOOP, PATH_FOLLOWING_CONTROL
-    }
+    }*/
     
     // SP pour Speed Controller
     // http://wpilib.screenstepslive.com/s/4485/m/13809/l/599702-driving-motors-with-speed-controller-objects-victors-talons-and-jaguars 
@@ -40,11 +41,11 @@ public class Roues extends Subsystem {
 	VictorSP roueAvantDroite; 
 	VictorSP roueArriereDroite; 
 	
-	ADXRS450Supertronix gyro;
+	GyroADXRS450 gyro;
 	Encoder encodeurRoues;
 	
 	PIDController pidGyro;
-	SortiePID gyroPIDOut;
+	SortiePID gyroSortiePID;
 	
 	PIDController pidDistance;
 	SortiePID distanceSortiePID;
@@ -73,11 +74,11 @@ public class Roues extends Subsystem {
 		 pidDistance.setAbsoluteTolerance(RobotMap.DISTANCE_TOLERANCE);
 		 pidDistance.enable();
 
-		 gyro = new ADXRS450Supertronix();
+		 gyro = new GyroADXRS450();
 		 gyro.setPIDSourceType(PIDSourceType.kDisplacement);
-		 gyroPIDOut = new SortiePID();
+		 gyroSortiePID = new SortiePID();
 		 
-		 pidGyro = new PIDController(-RobotMap.GYRO_KP, RobotMap.GYRO_KI_ROTATION, 0, gyro, gyroPIDOut);
+		 pidGyro = new PIDController(-RobotMap.GYRO_KP, RobotMap.GYRO_KI_ROTATION, 0, gyro, gyroSortiePID);
 		 pidGyro.setSetpoint(0.0f);
 		 pidGyro.setAbsoluteTolerance(3);
 		 pidGyro.enable();
@@ -109,46 +110,46 @@ public class Roues extends Subsystem {
 	public void zeroSensors() {
 		gyro.reset();
 		encodeurRoues.reset();
-		resetPIDS();
+		initialiserPID();
 	}
 	
-	public void resetGyro() {
+	public void initialiserGyro() {
 		gyro.reset();
 	}
 	
-	public double gyroAngle() {
+	public double getAngleSelonGyro() {
 		return gyro.getAngle();
 	}
 	
-	public void resetEncoders() {
+	public void initialiserEncodeur() {
 		encodeurRoues.reset();
 	}
 
-	public void resetPIDS() {
+	public void initialiserPID() {
 		pidGyro.reset();
 		pidDistance.reset();
 		pidGyro.enable();
 		pidDistance.enable();
 	}
 
-	public double getEncoderDistance() {
+	public double getDistanceSelonEncodeur() {
 		return encodeurRoues.getDistance();
 	}
 
-	public void driveStraightWithGyro() {
+	public void conduireDroitAvecGyro() {
 		if (RobotMap.GYRO_INVERSE)
 		{
-			roueAvantGauche.set(distanceSortiePID.getPIDOut() + gyroPIDOut.getPIDOut());
-			roueAvantDroite.set(distanceSortiePID.getPIDOut() - gyroPIDOut.getPIDOut());
-			roueArriereGauche.set(distanceSortiePID.getPIDOut() +  gyroPIDOut.getPIDOut());
-			roueArriereDroite.set(distanceSortiePID.getPIDOut() - gyroPIDOut.getPIDOut());
+			roueAvantGauche.set(distanceSortiePID.getPIDOut() + gyroSortiePID.getPIDOut());
+			roueAvantDroite.set(distanceSortiePID.getPIDOut() - gyroSortiePID.getPIDOut());
+			roueArriereGauche.set(distanceSortiePID.getPIDOut() +  gyroSortiePID.getPIDOut());
+			roueArriereDroite.set(distanceSortiePID.getPIDOut() - gyroSortiePID.getPIDOut());
 		}
 		else
 		{
-			roueAvantGauche.set(distanceSortiePID.getPIDOut() - gyroPIDOut.getPIDOut());
-			roueAvantDroite.set(distanceSortiePID.getPIDOut() + gyroPIDOut.getPIDOut());
-			roueArriereGauche.set(distanceSortiePID.getPIDOut() -  gyroPIDOut.getPIDOut());
-			roueArriereDroite.set(distanceSortiePID.getPIDOut() + gyroPIDOut.getPIDOut());
+			roueAvantGauche.set(distanceSortiePID.getPIDOut() - gyroSortiePID.getPIDOut());
+			roueAvantDroite.set(distanceSortiePID.getPIDOut() + gyroSortiePID.getPIDOut());
+			roueArriereGauche.set(distanceSortiePID.getPIDOut() -  gyroSortiePID.getPIDOut());
+			roueArriereDroite.set(distanceSortiePID.getPIDOut() + gyroSortiePID.getPIDOut());
 		}
 		SmartDashboard.putNumber("ENCODER VALUE", encodeurRoues.getDistance());
 		/*roueAvantGauche.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  + gyroPIDOut.getPIDOut());
@@ -157,7 +158,7 @@ public class Roues extends Subsystem {
 		roueArriereDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  - gyroPIDOut.getPIDOut());*/
 	}
 	
-	public void driveStraight() {
+	public void conduireDroit() {
 		if (RobotMap.GYRO_INVERSE)
 		{
 			roueAvantGauche.set(distanceSortiePID.getPIDOut());
@@ -178,27 +179,27 @@ public class Roues extends Subsystem {
 		roueArriereDroite.set(0.4 * Utilities.clamp((1.5 - ((pidDistance.getSetpoint() - pidDistance.getError())/pidDistance.getSetpoint())),-1, 1)  - gyroPIDOut.getPIDOut());*/
 	}
 	
-	public void driveLateralWithGyro() {
-		roueAvantGauche.set(-distanceSortiePID.getPIDOut() - gyroPIDOut.getPIDOut());
-		roueAvantDroite.set(distanceSortiePID.getPIDOut() - gyroPIDOut.getPIDOut());
-	    roueArriereGauche.set(distanceSortiePID.getPIDOut() +  gyroPIDOut.getPIDOut());
-		roueArriereDroite.set(-distanceSortiePID.getPIDOut() + gyroPIDOut.getPIDOut());
+	public void conduireLateralementAvecGyro() {
+		roueAvantGauche.set(-distanceSortiePID.getPIDOut() - gyroSortiePID.getPIDOut());
+		roueAvantDroite.set(distanceSortiePID.getPIDOut() - gyroSortiePID.getPIDOut());
+	    roueArriereGauche.set(distanceSortiePID.getPIDOut() +  gyroSortiePID.getPIDOut());
+		roueArriereDroite.set(-distanceSortiePID.getPIDOut() + gyroSortiePID.getPIDOut());
 	}
 	
-	public void rotateWithGyro() {
+	public void tournerAvecGyro() {
 		if (RobotMap.GYRO_INVERSE)
 		{
-			roueAvantGauche.set(-gyroPIDOut.getPIDOut());
-			roueAvantDroite.set(gyroPIDOut.getPIDOut());
-		    roueArriereGauche.set(-gyroPIDOut.getPIDOut());
-			roueArriereDroite.set(gyroPIDOut.getPIDOut());
+			roueAvantGauche.set(-gyroSortiePID.getPIDOut());
+			roueAvantDroite.set(gyroSortiePID.getPIDOut());
+		    roueArriereGauche.set(-gyroSortiePID.getPIDOut());
+			roueArriereDroite.set(gyroSortiePID.getPIDOut());
 		}
 		else
 		{
-			roueAvantGauche.set(gyroPIDOut.getPIDOut());
-			roueAvantDroite.set(-gyroPIDOut.getPIDOut());
-		    roueArriereGauche.set(gyroPIDOut.getPIDOut());
-			roueArriereDroite.set(-gyroPIDOut.getPIDOut());
+			roueAvantGauche.set(gyroSortiePID.getPIDOut());
+			roueAvantDroite.set(-gyroSortiePID.getPIDOut());
+		    roueArriereGauche.set(gyroSortiePID.getPIDOut());
+			roueArriereDroite.set(-gyroSortiePID.getPIDOut());
 		}
 	}
 	
@@ -241,7 +242,7 @@ public class Roues extends Subsystem {
 		pidGyro.setPID(-RobotMap.GYRO_KP, RobotMap.GYRO_KI, 0);
 	}
 	
-	public void setGyroDefaultPIDRotate()
+	public void setRotationPIDStandard()
 	{
 		pidGyro.setPID(RobotMap.GYRO_KP_ROTATION, RobotMap.GYRO_KI_ROTATION, 0);
 	}
@@ -269,7 +270,7 @@ public class Roues extends Subsystem {
 	{
 		SmartDashboard.putNumber(AffichageStation.DRIVE_ENCODEUR_DISTANCE, encodeurRoues.getDistance());
 		SmartDashboard.putNumber(AffichageStation.DRIVE_GYRO, gyro.getAngle());
-		SmartDashboard.putNumber(AffichageStation.DRIVE_GYRO_PID, gyroPIDOut.getPIDOut());
+		SmartDashboard.putNumber(AffichageStation.DRIVE_GYRO_PID, gyroSortiePID.getPIDOut());
 		SmartDashboard.putNumber(AffichageStation.DRIVE_DISTANCE_PID, distanceSortiePID.getPIDOut());
 	}
 }

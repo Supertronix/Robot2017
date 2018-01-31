@@ -13,7 +13,7 @@ public class CommandeConduiteEncodeurZero extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.drive.resetEncoders();
+		 Robot.drive.initialiserEncodeur();
 	}
 	 
 	@Override
