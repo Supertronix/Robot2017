@@ -7,10 +7,10 @@ import com.team5910.frc2017.robot.outil.Calculateur;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 
-public class Lanceur extends Subsystem {
+public class Lanceur extends Subsystem implements RobotMap.Lanceur{
 	
-	CANTalon lanceurMoteurPrincipal = new CANTalon(RobotMap.LANCEUR_MOTEUR_PRINCIPAL);
-	CANTalon lanceurMoteurEsclave = new CANTalon(RobotMap.LANCEUR_MOTEUR_ESCLAVE);
+	CANTalon lanceurMoteurPrincipal = new CANTalon(LANCEUR_MOTEUR_PRINCIPAL);
+	CANTalon lanceurMoteurEsclave = new CANTalon(LANCEUR_MOTEUR_ESCLAVE);
 	
 	double vitesseLanceur = 1.0;
 	

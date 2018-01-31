@@ -62,10 +62,10 @@ public class Manette implements RobotMap.Manette{
     	actionLanceur.whenReleased(new CommandeLanceurArreter());    
     	
     	JoystickButton actionLanceurAcceleration = new JoystickButton(manetteAccessoire, BOUTON_LANCEUR_VITESSE_INCREMENTE);
-    	actionLanceurAcceleration.whenPressed(new CommandeLanceurAccelerer(RobotMap.LANCEUR_VITESSE_DELTA));
+    	actionLanceurAcceleration.whenPressed(new CommandeLanceurAccelerer(RobotMap.Lanceur.LANCEUR_VITESSE_DELTA));
     	
     	JoystickButton actionLanceurDeceleration = new JoystickButton(manetteAccessoire, BOUTON_LANCEUR_VITESSE_DECREMENTE);
-    	actionLanceurDeceleration.whenPressed(new CommandeLanceurAccelerer(-RobotMap.LANCEUR_VITESSE_DELTA));
+    	actionLanceurDeceleration.whenPressed(new CommandeLanceurAccelerer(-RobotMap.Lanceur.LANCEUR_VITESSE_DELTA));
 
     	JoystickButton turretToggleModeEnable = new JoystickButton(manetteAccessoire, BOUTON_TOURELLE_TOGGLE_AUTO_MANUEL);
     	turretToggleModeEnable.whenPressed(new CommandeTourelleChangerEtat(EtatControle.RECHERCHE));  

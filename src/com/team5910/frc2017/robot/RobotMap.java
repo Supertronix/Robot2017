@@ -66,9 +66,16 @@ public interface RobotMap {
 		public static final double MACHOIRE_DROITE_OUVERTE = 1.0;		
 	}
 	
+	public interface Lanceur
+	{
+		public static final double LANCEUR_VITESSE_DELTA = 0.1;
+		public static final int LANCEUR_MOTEUR_PRINCIPAL = 3;
+		public static final int LANCEUR_MOTEUR_ESCLAVE = 0;
+	}
+	
 	// CAN Bus
-	public static final int LANCEUR_MOTEUR_PRINCIPAL = 3;
-	public static final int LANCEUR_MOTEUR_ESCLAVE = 0;
+	//public static final int LANCEUR_MOTEUR_PRINCIPAL = 3;
+	//public static final int LANCEUR_MOTEUR_ESCLAVE = 0;
 	//public static final int TOURELLE_PAN_MOTEUR = 2;
 	//public static final int TOURELLE_TILT_MOTEUR = 5;
 	public static final int BRASSEUR_DROIT = 4;
@@ -133,9 +140,7 @@ public interface RobotMap {
 		public static final int TOURELLE_PAN_MOTEUR = 2; // can bus
 		public static final int TOURELLE_TILT_MOTEUR = 5; // can bus
 	}
-	
-	public static final double LANCEUR_VITESSE_DELTA = 0.1;
-	
+		
 	// DRIVE AUTO PID
 	
 	public interface Vision
