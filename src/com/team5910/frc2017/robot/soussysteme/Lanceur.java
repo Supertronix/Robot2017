@@ -18,18 +18,18 @@ public class Lanceur extends Subsystem {
 		lanceurMoteurEsclave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		lanceurMoteurEsclave.set(lanceurMoteurPrincipal.getDeviceID());
 		
-		/*ShooterDriveMain.changeControlMode(TalonControlMode.Speed);
-		ShooterDriveMain.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		ShooterDriveMain.reverseSensor(true);
-		ShooterDriveMain.configEncoderCodesPerRev(1024);
-		ShooterDriveMain.configNominalOutputVoltage(+0.0f, -0.0f);
-		ShooterDriveMain.configPeakOutputVoltage(+12.0f, -12.0f);
-		ShooterDriveMain.setProfile(0);
-		ShooterDriveMain.setF(0.1097);
-		ShooterDriveMain.setP(0.22);
-		ShooterDriveMain.setI(0); 
-		ShooterDriveMain.setD(0);
-		ShooterDriveMain.enable();*/			
+		/*lanceurMoteurPrincipal.changeControlMode(TalonControlMode.Speed);
+		lanceurMoteurPrincipal.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		lanceurMoteurPrincipal.reverseSensor(true);
+		lanceurMoteurPrincipal.configEncoderCodesPerRev(1024);
+		lanceurMoteurPrincipal.configNominalOutputVoltage(+0.0f, -0.0f);
+		lanceurMoteurPrincipal.configPeakOutputVoltage(+12.0f, -12.0f);
+		lanceurMoteurPrincipal.setProfile(0);
+		lanceurMoteurPrincipal.setF(0.1097);
+		lanceurMoteurPrincipal.setP(0.22);
+		lanceurMoteurPrincipal.setI(0); 
+		lanceurMoteurPrincipal.setD(0);
+		lanceurMoteurPrincipal.enable();*/			
 	}
 
     public void initDefaultCommand() {
