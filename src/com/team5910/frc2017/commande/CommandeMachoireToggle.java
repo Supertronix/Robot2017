@@ -13,7 +13,7 @@ public class CommandeMachoireToggle extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.machoire.toggleAsked();
+		 RobotControleur.robot.machoire.demanderBascule();
 	}
 	 
 	@Override

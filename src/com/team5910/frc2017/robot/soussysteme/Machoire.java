@@ -8,62 +8,64 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Machoire extends Subsystem {
 	
-	Servo LeftClampServo;
-	Servo RightClampServo;
-    
-    private enum ClampState {
-        CLOSED,
-        OPEN, 
-    }
-    double lastToggleTime;
-    
-    ClampState clampState;
-    
+	Servo verrouMachoireGauche;
+	Servo verrouMachoireDroite;
+        
 	public Machoire() {
-		LeftClampServo = new Servo(RobotMap.MACHOIRE_GAUCHE_SERVO);
-		RightClampServo = new Servo(RobotMap.MACHOIRE_DROITE_SERVO);
-		clampState = ClampState.CLOSED;
-		lastToggleTime = 0.0;
+		verrouMachoireGauche = new Servo(RobotMap.MACHOIRE_GAUCHE_SERVO);
+		verrouMachoireDroite = new Servo(RobotMap.MACHOIRE_DROITE_SERVO);
+		etatVerrou = EtatVerrou.FERME;
+		timestampDerniereBascule = 0.0;
 	}
 	
+	// sinon [javac] C:\supertronix\Supertronix5910\src\com\team5910\frc2017\robot\soussysteme\Machoire.java:9: error: Machoire is not abstract and does not override abstract method initDefaultCommand() in Subsystem
 	@Override
 	protected void initDefaultCommand() {
-		closeClamp();
+		fermer();
 	}
 
-	public void toggleAsked() {
-		if (Timer.getFPGATimestamp() > (lastToggleTime + 1))
+	public void demanderBascule() {
+		if (Timer.getFPGATimestamp() > (timestampDerniereBascule + 1))
 		{
-			toggle();
-			lastToggleTime = Timer.getFPGATimestamp();
+			basculer();
+			timestampDerniereBascule = Timer.getFPGATimestamp();
 		}
 	}
 	
-	private void toggle()
+	
+    private enum EtatVerrou {
+        FERME,
+        OUVERT, 
+    }
+    double timestampDerniereBascule;
+    
+    EtatVerrou etatVerrou;
+
+	private void basculer() // toggle
 	{
-		switch (clampState) {
-			case CLOSED:
-				openClamp();
+		switch (etatVerrou) {
+			case FERME:
+				ouvrir();
 				break;
-			case OPEN:
-				closeClamp();
+			case OUVERT:
+				fermer();
 				break;
 		}
 	}
 	
-	private void closeClamp()
+	private void fermer()
 	{
-		LeftClampServo.set(RobotMap.MACHOIRE_GAUCHE_FERMEE);
-		RightClampServo.set(RobotMap.MACHOIRE_DROITE_FERMEE);
-		clampState = ClampState.CLOSED;
+		verrouMachoireGauche.set(RobotMap.MACHOIRE_GAUCHE_FERMEE);
+		verrouMachoireDroite.set(RobotMap.MACHOIRE_DROITE_FERMEE);
+		etatVerrou = EtatVerrou.FERME;
 		
 	}
 	
-	private void openClamp()
+	private void ouvrir()
 	{
-		LeftClampServo.set(RobotMap.MACHOIRE_GAUCHE_OUVERTE);
-		RightClampServo.set(RobotMap.MACHOIRE_DROITE_OUVERTE);
-		clampState = ClampState.OPEN;
+		verrouMachoireGauche.set(RobotMap.MACHOIRE_GAUCHE_OUVERTE);
+		verrouMachoireDroite.set(RobotMap.MACHOIRE_DROITE_OUVERTE);
+		etatVerrou = EtatVerrou.OUVERT;
 	}
 	
 	

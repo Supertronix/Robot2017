@@ -65,7 +65,7 @@ public class Robot {
 	}
 
 	public void clampButtonEnabled() {
-		machoire.toggleAsked();
+		machoire.demanderBascule();
 		
 	}
 
