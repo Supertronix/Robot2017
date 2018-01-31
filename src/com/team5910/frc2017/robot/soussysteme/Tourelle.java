@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
-public class Tourelle extends Subsystem {
+public class Tourelle extends Subsystem implements RobotMap.Tourelle{
 	
     public VisionData visionData;	// TODO verifier concurrence
 	
@@ -73,11 +73,11 @@ public class Tourelle extends Subsystem {
 		tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
 		
 	}
-	public CANTalon tourellePan = new CANTalon(RobotMap.TOURELLE_PAN_MOTEUR);
-	public CANTalon tourelleTilt = new CANTalon(RobotMap.TOURELLE_TILT_MOTEUR);
+	public CANTalon tourellePan = new CANTalon(TOURELLE_PAN_MOTEUR);
+	public CANTalon tourelleTilt = new CANTalon(TOURELLE_TILT_MOTEUR);
 	
-	double panCible = RobotMap.TOURELLE_PAN_DEFAUT;
-	double cibleTilt = RobotMap.TOURELLE_TILT_DEFAUT;
+	double panCible = TOURELLE_PAN_DEFAUT;
+	double cibleTilt = TOURELLE_TILT_DEFAUT;
 	
 	double autoSPupdate = 0.0;
 
@@ -86,14 +86,14 @@ public class Tourelle extends Subsystem {
 		
 		//tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
 		tourellePan.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
-		tourellePan.setPID(RobotMap.PAN_KP, RobotMap.PAN_KI, 0);
+		tourellePan.setPID(PAN_KP, PAN_KI, 0);
 		
 		tourellePan.setControlMode(0);
 		tourellePan.setPosition(0);
 		tourellePan.enable();
-		tourellePan.setForwardSoftLimit(RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
+		tourellePan.setForwardSoftLimit(TOURELLE_PAN_LIMITE_MAXIMUM);
 		tourellePan.enableForwardSoftLimit(true);
-		tourellePan.setReverseSoftLimit(RobotMap.TOURELLE_PAN_LIMITE_MINIMUM);
+		tourellePan.setReverseSoftLimit(TOURELLE_PAN_LIMITE_MINIMUM);
 		tourellePan.enableReverseSoftLimit(true);
 		
 		tourellePan.reverseSensor(true);
@@ -101,12 +101,12 @@ public class Tourelle extends Subsystem {
 		//tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
 		tourelleTilt.setControlMode(0);
 		tourelleTilt.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
-		tourelleTilt.setPID(RobotMap.TILT_KP, RobotMap.TILT_KI, 0);
+		tourelleTilt.setPID(TILT_KP, TILT_KI, 0);
 		//tourelleTilt.setPosition(0);
-		tourelleTilt.setForwardSoftLimit(RobotMap.TOURELLE_TILT_LIMITE_MAXIMUM);
+		tourelleTilt.setForwardSoftLimit(TOURELLE_TILT_LIMITE_MAXIMUM);
 		tourelleTilt.enableForwardSoftLimit(true);
 		
-		tourelleTilt.setReverseSoftLimit(RobotMap.TOURELLE_TILT_LIMITE_MINIMUM);
+		tourelleTilt.setReverseSoftLimit(TOURELLE_TILT_LIMITE_MINIMUM);
 		tourelleTilt.enableReverseSoftLimit(true);
 		tourelleTilt.reverseSensor(true);
 		tourelleTilt.enable();	
@@ -117,7 +117,7 @@ public class Tourelle extends Subsystem {
 		 if (etatActuel == EtatControle.INACTIF)
 			 return;
 		 ciblePan = ciblePan;
-		 Calculateur.clamp(ciblePan, RobotMap.TOURELLE_PAN_LIMITE_MINIMUM, RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
+		 Calculateur.clamp(ciblePan, TOURELLE_PAN_LIMITE_MINIMUM, TOURELLE_PAN_LIMITE_MAXIMUM);
 		 tourellePan.set(ciblePan); 
 	    }
 	 
@@ -125,7 +125,7 @@ public class Tourelle extends Subsystem {
 		 if (etatActuel == EtatControle.INACTIF)
 			 return;
 		 cibleTilt = cibleTilt;
-		 Calculateur.clamp(cibleTilt, RobotMap.TOURELLE_TILT_LIMITE_MINIMUM, RobotMap.TOURELLE_TILT_LIMITE_MAXIMUM);
+		 Calculateur.clamp(cibleTilt, TOURELLE_TILT_LIMITE_MINIMUM, TOURELLE_TILT_LIMITE_MAXIMUM);
 		 tourelleTilt.set(cibleTilt);
 	    }
 	 
@@ -133,7 +133,7 @@ public class Tourelle extends Subsystem {
 		 if (etatActuel == EtatControle.INACTIF)
 			 return;
 		 panCible += deltaPan;
-		 Calculateur.clamp(panCible, RobotMap.TOURELLE_PAN_LIMITE_MINIMUM, RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
+		 Calculateur.clamp(panCible, TOURELLE_PAN_LIMITE_MINIMUM, TOURELLE_PAN_LIMITE_MAXIMUM);
 		 tourellePan.set(panCible);
 		 
 	    }
@@ -142,7 +142,7 @@ public class Tourelle extends Subsystem {
 		 if (etatActuel == EtatControle.INACTIF)
 			 return;
 		 cibleTilt += deltaTilt;
-		//Utilities.clamp(tiltSP, RobotMap.kTiltLowSPLimit, RobotMap.kTiltHighSPLimit);
+		//Utilities.clamp(tiltSP, kTiltLowSPLimit, kTiltHighSPLimit);
 		 //TurretTiltDrive.set(tiltSP);
 	    }
 
@@ -249,13 +249,13 @@ public class Tourelle extends Subsystem {
 	
 	public void gotoPanOppositeSP()
 	{
-		if (panCible == RobotMap.TOURELLE_PAN_LIMITE_MINIMUM)
+		if (panCible == TOURELLE_PAN_LIMITE_MINIMUM)
 		{
-			setPanCible(RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
+			setPanCible(TOURELLE_PAN_LIMITE_MAXIMUM);
 		}
 		else
 		{
-			setPanCible(RobotMap.TOURELLE_PAN_LIMITE_MINIMUM);
+			setPanCible(TOURELLE_PAN_LIMITE_MINIMUM);
 		}
 			
 	}

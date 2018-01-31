@@ -67,7 +67,7 @@ public class Manette implements RobotMap.Manette{
     	JoystickButton actionLanceurDeceleration = new JoystickButton(manetteAccessoire, BOUTON_LANCEUR_VITESSE_DECREMENTE);
     	actionLanceurDeceleration.whenPressed(new CommandeLanceurAccelerer(-RobotMap.LANCEUR_VITESSE_DELTA));
 
-    	JoystickButton turretToggleModeEnable = new JoystickButton(manetteAccessoire, RobotMap.TOURELLE_TOGGLE_AUTO_MANUEL);
+    	JoystickButton turretToggleModeEnable = new JoystickButton(manetteAccessoire, BOUTON_TOURELLE_TOGGLE_AUTO_MANUEL);
     	turretToggleModeEnable.whenPressed(new CommandeTourelleChangerEtat(EtatControle.RECHERCHE));  
     	turretToggleModeEnable.whenReleased(new CommandeTourelleChangerEtat(EtatControle.MANUEL)); 
     
@@ -103,10 +103,10 @@ public class Manette implements RobotMap.Manette{
     	return manetteConduitePrincipale.getRawButton(BOUTON_MACHOIRE);
     }
     public double getPanAxe() {
-        return RobotMap.INVERSION_TOURELLE_PAN_AXE ? -manetteAccessoire.getRawAxis(RobotMap.TOURELLE_PAN_AXE): manetteAccessoire.getRawAxis(RobotMap.TOURELLE_PAN_AXE);
+        return RobotMap.Tourelle.INVERSION_TOURELLE_PAN_AXE ? -manetteAccessoire.getRawAxis(com.team5910.frc2017.robot.RobotMap.Tourelle.TOURELLE_PAN_AXE): manetteAccessoire.getRawAxis(com.team5910.frc2017.robot.RobotMap.Tourelle.TOURELLE_PAN_AXE);
     }
     public double getTiltAxe() {
-        return RobotMap.INVERSION_TOURELLE_TILT_AXE ? -manetteAccessoire.getRawAxis(RobotMap.TOURELLE_TILT_AXE): manetteAccessoire.getRawAxis(RobotMap.TOURELLE_TILT_AXE);
+        return RobotMap.Tourelle.INVERSION_TOURELLE_TILT_AXE ? -manetteAccessoire.getRawAxis(RobotMap.Tourelle.TOURELLE_TILT_AXE): manetteAccessoire.getRawAxis(RobotMap.Tourelle.TOURELLE_TILT_AXE);
     }
     
 }

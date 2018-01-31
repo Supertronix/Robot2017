@@ -28,9 +28,9 @@ public class CommandeTourelleChercherCible extends Command {
 		if (Math.abs(pan) > 0.2)
 		{
 			if (pan > 0)
-				RobotControleur.robot.tourelle.setPanCible(RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
+				RobotControleur.robot.tourelle.setPanCible(RobotMap.Tourelle.TOURELLE_PAN_LIMITE_MAXIMUM);
 			else
-				RobotControleur.robot.tourelle.setPanCible(RobotMap.TOURELLE_PAN_LIMITE_MINIMUM);		
+				RobotControleur.robot.tourelle.setPanCible(RobotMap.Tourelle.TOURELLE_PAN_LIMITE_MINIMUM);		
 		}
 		
 		 SmartDashboard.putNumber("PANAXIS", RobotControleur.manette.getPanAxe());

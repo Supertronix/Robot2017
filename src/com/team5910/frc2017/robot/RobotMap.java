@@ -66,8 +66,8 @@ public interface RobotMap {
 	// CAN Bus
 	public static final int LANCEUR_MOTEUR_PRINCIPAL = 3;
 	public static final int LANCEUR_MOTEUR_ESCLAVE = 0;
-	public static final int TOURELLE_PAN_MOTEUR = 2;
-	public static final int TOURELLE_TILT_MOTEUR = 5;
+	//public static final int TOURELLE_PAN_MOTEUR = 2;
+	//public static final int TOURELLE_TILT_MOTEUR = 5;
 	public static final int BRASSEUR_DROIT = 4;
 	public static final boolean INVERSION_BRASSEUR_DROIT = false;
 		
@@ -97,36 +97,41 @@ public interface RobotMap {
 		public static final int BOUTON_LANCEUR = 2;	
 		public static final int BOUTON_LANCEUR_VITESSE_DECREMENTE = 7;
 		public static final int BOUTON_LANCEUR_VITESSE_INCREMENTE= 8;
+		public static final int BOUTON_TOURELLE_TOGGLE_AUTO_MANUEL = 11;
 		
 	}
 	
 	public static final int GRIMPEUR_MOTEUR = 12; // SP 5
 	public static final boolean INVERSION_GRIMPEUR_MOTEUR = false;	
 	
-	public static final int TOURELLE_PAN_AXE = 2;
-	public static final boolean INVERSION_TOURELLE_PAN_AXE = false;	
-	
-	public static final int TOURELLE_TILT_AXE = 1;
-	public static final boolean INVERSION_TOURELLE_TILT_AXE = false;
-	public static final int TOURELLE_TOGGLE_AUTO_MANUEL = 11;
+	public interface Tourelle
+	{
+
+		public static final int TOURELLE_PAN_AXE = 2;
+		public static final boolean INVERSION_TOURELLE_PAN_AXE = false;	
+		public static final int TOURELLE_TILT_AXE = 1;
+		public static final boolean INVERSION_TOURELLE_TILT_AXE = false;
 		
+		// Turret Settings
+		public static final double TOURELLE_PAN_LIMITE_MINIMUM = -995;
+		public static final double TOURELLE_PAN_LIMITE_MAXIMUM = -30;
+		public static final double TOURELLE_TILT_LIMITE_MINIMUM = -680;
+		public static final double TOURELLE_TILT_LIMITE_MAXIMUM = -450;
+		
+		public static final double TOURELLE_PAN_DEFAUT = -500;
+		public static final double TOURELLE_TILT_DEFAUT = -720;
+		
+		public static final double PAN_KP = 50;
+		public static final double PAN_KI = 0.0008;
+		
+		public static final double TILT_KP = 20;
+		public static final double TILT_KI = 0;
+		
+		public static final int TOURELLE_PAN_MOTEUR = 2; // can bus
+		public static final int TOURELLE_TILT_MOTEUR = 5; // can bus
+	}
+	
 	public static final double LANCEUR_VITESSE_DELTA = 0.1;
-		
-	// Turret Settings
-	public static final double TOURELLE_PAN_LIMITE_MINIMUM = -995;
-	public static final double TOURELLE_PAN_LIMITE_MAXIMUM = -30;
-	public static final double TOURELLE_TILT_LIMITE_MINIMUM = -680;
-	public static final double TOURELLE_TILT_LIMITE_MAXIMUM = -450;
-	
-	public static final double TOURELLE_PAN_DEFAUT = -500;
-	public static final double TOURELLE_TILT_DEFAUT = -720;
-	
-	public static final double PAN_KP = 50;
-	public static final double PAN_KI = 0.0008;
-	
-	public static final double TILT_KP = 20;
-	public static final double TILT_KI = 0;
-	
 	
 	// DRIVE AUTO PID
 	
