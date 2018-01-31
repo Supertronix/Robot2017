@@ -116,8 +116,11 @@ public interface RobotMap {
 		
 	}
 	
-	public static final int GRIMPEUR_MOTEUR = 12; // SP 5
-	public static final boolean INVERSION_GRIMPEUR_MOTEUR = false;	
+	public interface Grimpeur
+	{
+		public static final int GRIMPEUR_MOTEUR = 12; // SP 5
+		public static final boolean INVERSION_GRIMPEUR_MOTEUR = false;			
+	}
 	
 	public interface Tourelle
 	{
