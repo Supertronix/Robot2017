@@ -7,10 +7,10 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Grimpeur extends Subsystem {
 	
-	VictorSP Climbdrive;
+	VictorSP moteurGrimpeur;
     
 	public Grimpeur() {
-		Climbdrive = new VictorSP(RobotMap.GRIMPEUR_MOTEUR);
+		moteurGrimpeur = new VictorSP(RobotMap.GRIMPEUR_MOTEUR);
 	}
 	
 	@Override
@@ -20,13 +20,13 @@ public class Grimpeur extends Subsystem {
 	public void climb()
 	{
 		if (RobotMap.INVERSION_GRIMPEUR_MOTEUR) 
-			Climbdrive.set(-1);
+			moteurGrimpeur.set(-1);
 		else
-			Climbdrive.set(1);
+			moteurGrimpeur.set(1);
 	}
 	
 	public void stop() {
-		Climbdrive.set(0);
+		moteurGrimpeur.set(0);
 	}
 }
 
