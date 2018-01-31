@@ -10,6 +10,7 @@ import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerPan;
 import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerTilt;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
+import com.team5910.frc2017.robot.interaction.SelecteurModeAutonome;
 import com.team5910.frc2017.robot.interaction.vision.USBCamStreamer;
 import com.team5910.frc2017.robot.interaction.vision.VisionEcouteur;
 import com.team5910.frc2017.robot.outil.Calculateur;
@@ -41,13 +42,14 @@ public class RobotControleur extends IterativeRobot
 	public static Manette oi;
 	
     Command commandeAutonome;
-    SendableChooser selecteurModeAutonome;
     DigitalOutput RaspberryVisionMode = new DigitalOutput(25);
     
     DigitalInput autoSW0 = new DigitalInput(RobotMap.AUTO_DIP0);
     DigitalInput autoSW1 = new DigitalInput(RobotMap.AUTO_DIP1);
     DigitalInput autoSW2 = new DigitalInput(RobotMap.AUTO_DIP2);
     DigitalInput autoSW3 = new DigitalInput(RobotMap.AUTO_DIP3);
+    
+	SelecteurModeAutonome selecteurModeAutonome;
     
 	//public static double lastCommandReceived = 0.0f;
 	
@@ -75,18 +77,8 @@ public class RobotControleur extends IterativeRobot
 		
 		RaspberryVisionMode.disablePWM();
 		RaspberryVisionMode.set(false);
-		
-		// http://wpilib.screenstepslive.com/s/3120/m/7932/l/81109-choosing-an-autonomous-program-from-smartdashboard
-		selecteurModeAutonome = new SendableChooser();
-		selecteurModeAutonome.addDefault("No move", new CommandeImmobile());
-		selecteurModeAutonome.addObject("R1", new CommandeR1());
-		selecteurModeAutonome.addObject("R2", new CommandeR2());
-		selecteurModeAutonome.addObject("R3", new CommandeR3());	
-		selecteurModeAutonome.addObject("B1", new CommandeB1());
-		selecteurModeAutonome.addObject("B2", new CommandeB2());
-		selecteurModeAutonome.addObject("B3", new CommandeB3());	
-		selecteurModeAutonome.addObject("WTF",new CommandeWTF());
-		SmartDashboard.putData("Autonomous mode chooser", selecteurModeAutonome);
+
+		selecteurModeAutonome = new SelecteurModeAutonome();
 	}
 
 	@Override
@@ -271,7 +263,7 @@ public class RobotControleur extends IterativeRobot
 			
 		}
 		SmartDashboard.putString("AUTO SELECTED", autoSelect);
-		SmartDashboard.putData("Autonomous mode chooser", selecteurModeAutonome);
+		//SmartDashboard.putData("Autonomous mode chooser", selecteur);
 		Timer.delay(0.2);
 	}
 	
