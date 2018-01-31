@@ -41,7 +41,7 @@ public class RobotControleur extends IterativeRobot
 	public static Manette oi;
 	
     Command commandeAutonome;
-    SendableChooser autoChooser;
+    SendableChooser selecteurModeAutonome;
     DigitalOutput RaspberryVisionMode = new DigitalOutput(25);
     
     DigitalInput autoSW0 = new DigitalInput(RobotMap.AUTO_DIP0);
@@ -77,16 +77,16 @@ public class RobotControleur extends IterativeRobot
 		RaspberryVisionMode.set(false);
 		
 		// http://wpilib.screenstepslive.com/s/3120/m/7932/l/81109-choosing-an-autonomous-program-from-smartdashboard
-		autoChooser = new SendableChooser();
-		autoChooser.addDefault("No move", new CommandeImmobile());
-		autoChooser.addObject("R1", new CommandeR1());
-		autoChooser.addObject("R2", new CommandeR2());
-		autoChooser.addObject("R3", new CommandeR3());	
-		autoChooser.addObject("B1", new CommandeB1());
-		autoChooser.addObject("B2", new CommandeB2());
-		autoChooser.addObject("B3", new CommandeB3());	
-		autoChooser.addObject("WTF",new CommandeWTF());
-		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		selecteurModeAutonome = new SendableChooser();
+		selecteurModeAutonome.addDefault("No move", new CommandeImmobile());
+		selecteurModeAutonome.addObject("R1", new CommandeR1());
+		selecteurModeAutonome.addObject("R2", new CommandeR2());
+		selecteurModeAutonome.addObject("R3", new CommandeR3());	
+		selecteurModeAutonome.addObject("B1", new CommandeB1());
+		selecteurModeAutonome.addObject("B2", new CommandeB2());
+		selecteurModeAutonome.addObject("B3", new CommandeB3());	
+		selecteurModeAutonome.addObject("WTF",new CommandeWTF());
+		SmartDashboard.putData("Autonomous mode chooser", selecteurModeAutonome);
 	}
 
 	@Override
@@ -271,7 +271,7 @@ public class RobotControleur extends IterativeRobot
 			
 		}
 		SmartDashboard.putString("AUTO SELECTED", autoSelect);
-		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		SmartDashboard.putData("Autonomous mode chooser", selecteurModeAutonome);
 		Timer.delay(0.2);
 	}
 	
