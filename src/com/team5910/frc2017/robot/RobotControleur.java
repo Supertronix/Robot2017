@@ -192,7 +192,7 @@ public class RobotControleur extends IterativeRobot
         
         double x = (x1 + x2)/ 2;
         
-        Robot.drive.manualDrive(Calculateur.clamp(x + y1, -1, 1), Calculateur.clamp(y2 - x, -1, 1), Calculateur.clamp(y1 - x, -1, 1), Calculateur.clamp(x + y2, -1, 1));
+        Robot.drive.conduire(Calculateur.clamp(x + y1, -1, 1), Calculateur.clamp(y2 - x, -1, 1), Calculateur.clamp(y1 - x, -1, 1), Calculateur.clamp(x + y2, -1, 1));
         
         double pan = 0.0;
         double tilt = 0.0;

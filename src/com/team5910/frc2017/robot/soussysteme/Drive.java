@@ -19,10 +19,10 @@ public class Drive extends Subsystem {
     
     // SP pour Speed Controller
     // http://wpilib.screenstepslive.com/s/4485/m/13809/l/599702-driving-motors-with-speed-controller-objects-victors-talons-and-jaguars 
-    VictorSP roueAvantGauche; // Front left
-	VictorSP roueArriereGauche; // Rear Left
-	VictorSP roueAvantDroite; // Front right
-	VictorSP roueArriereDroite; // Rear right
+    VictorSP roueAvantGauche; 
+	VictorSP roueArriereGauche; 
+	VictorSP roueAvantDroite; 
+	VictorSP roueArriereDroite; 
 	
 	ADXRS450Supertronix gyro;
 	Encoder encodeurRoues;
@@ -36,15 +36,15 @@ public class Drive extends Subsystem {
 	//private DriveControlState driveControlState;
 	
 	public Drive() {
-		 roueAvantGauche = new VictorSP(RobotMap.DRIVE_AVANT_GAUCHE);
-		 roueArriereGauche = new VictorSP(RobotMap.DRIVE_ARRIERE_GAUCHE);
-		 roueAvantDroite = new VictorSP(RobotMap.DRIVE_AVANT_DROIT);
-		 roueArriereDroite = new VictorSP(RobotMap.DRIVE_ARRIERE_DROIT);
+		 roueAvantGauche = new VictorSP(RobotMap.ROUE_AVANT_GAUCHE);
+		 roueArriereGauche = new VictorSP(RobotMap.ROUE_ARRIERE_GAUCHE);
+		 roueAvantDroite = new VictorSP(RobotMap.ROUE_AVANT_DROIT);
+		 roueArriereDroite = new VictorSP(RobotMap.ROUE_ARRIERE_DROIT);
 		 	
-		 roueAvantGauche.setInverted(RobotMap.INVERSION_DRIVE_AVANT_GAUCHE); // TRUE
-		 roueArriereGauche.setInverted(RobotMap.INVERSION_DRIVE_ARRIERE_GAUCHE); // TRUE
-		 roueAvantDroite.setInverted(RobotMap.INVERSION_DRIVE_AVANT_DROIT);
-		 roueArriereDroite.setInverted(RobotMap.INVERSION_DRIVE_ARRIERE_DROIT);
+		 roueAvantGauche.setInverted(RobotMap.INVERSION_ROUE_AVANT_GAUCHE); // TRUE
+		 roueArriereGauche.setInverted(RobotMap.INVERSION_ROUE_ARRIERE_GAUCHE); // TRUE
+		 roueAvantDroite.setInverted(RobotMap.INVERSION_ROUE_AVANT_DROIT);
+		 roueArriereDroite.setInverted(RobotMap.INVERSION_ROUE_ARRIERE_DROIT);
 			
 		 encodeurRoues = new Encoder(RobotMap.ROUE_ENCODEUR_A, RobotMap.ROUE_ENCODEUR_B);
 		 encodeurRoues.setReverseDirection(RobotMap.INVERSION_ROUE_ENCODEUR);
@@ -73,7 +73,7 @@ public class Drive extends Subsystem {
 		
 	}
 
-	public void manualDrive(double vitesseAvantGauche, double vitesseAvantDroite, double vitesseArriereGauche, double vitesseArriereDroite) {
+	public void conduire(double vitesseAvantGauche, double vitesseAvantDroite, double vitesseArriereGauche, double vitesseArriereDroite) {
 		// PWMSpeedController.set 
 		// https://team2168.org/javadoc/edu/wpi/first/wpilibj/PWMSpeedController.html
 		// The PWM value is set using a range of -1.0 to 1.0, appropriately scaling the value for the FPGA

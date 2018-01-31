@@ -3,18 +3,16 @@ package com.team5910.frc2017.robot;
 public interface RobotMap {
 	
 	// PWM Outputs
-	public static final int DRIVE_AVANT_GAUCHE = 10; // SP 1
-	public static final int DRIVE_ARRIERE_GAUCHE = 14; // SP 2
-	public static final int DRIVE_AVANT_DROIT= 13; // SP 3
-	public static final int DRIVE_ARRIERE_DROIT = 17; // SP 4
+	public static final int ROUE_AVANT_GAUCHE = 10; // SP 1
+	public static final int ROUE_ARRIERE_GAUCHE = 14; // SP 2
+	public static final int ROUE_AVANT_DROIT= 13; // SP 3
+	public static final int ROUE_ARRIERE_DROIT = 17; // SP 4
 	
-	public static final boolean INVERSION_DRIVE_AVANT_GAUCHE = true;
-	public static final boolean INVERSION_DRIVE_ARRIERE_GAUCHE = true;
-	public static final boolean INVERSION_DRIVE_AVANT_DROIT = false;
-	public static final boolean INVERSION_DRIVE_ARRIERE_DROIT= false;
+	public static final boolean INVERSION_ROUE_AVANT_GAUCHE = true;
+	public static final boolean INVERSION_ROUE_ARRIERE_GAUCHE = true;
+	public static final boolean INVERSION_ROUE_AVANT_DROIT = false;
+	public static final boolean INVERSION_ROUE_ARRIERE_DROIT= false;
 	
-	public static final int GRIMPEUR_MOTEUR = 12; // SP 5
-	public static final boolean INVERSION_GRIMPEUR_MOTEUR = false;
 	
 	public static final int INTAKER_MOTEUR = 11; // SP 6
 	public static final boolean INVERSION_INTAKER_MOTEUR = false;
@@ -71,6 +69,8 @@ public interface RobotMap {
 	public static final boolean INVERSION_CONDUITE_X_DROITE = false;
 	public static final boolean INVERSION_CONDUITE_Y_DROITE = true;
 	
+	public static final int GRIMPEUR_MOTEUR = 12; // SP 5
+	public static final boolean INVERSION_GRIMPEUR_MOTEUR = false;
 	
 	// Accessories
 	public static final int MANETTE_ACCESSOIRE = 1;
