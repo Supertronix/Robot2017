@@ -43,8 +43,6 @@ public class RobotControleur extends IterativeRobot
 	public static Robot robot;
 	public static Manette manette;
 	
-    DigitalOutput RaspberryVisionMode = new DigitalOutput(25);
-        
 	//SelecteurModeAutonomeViaDashBoard selecteurModeAutonomeViaDashboard;
 	//SelecteurModeAutonomeViaInterrupteur selecteurModeAutonomeViaInterrupteur;
     SelecteurModeAutonome selecteurModeAutonome;
@@ -73,9 +71,6 @@ public class RobotControleur extends IterativeRobot
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
 		try { new VisionEcouteur(robot.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
-		RaspberryVisionMode.disablePWM();
-		RaspberryVisionMode.set(false);
-
 		//selecteurModeAutonomeViaDashboard = new SelecteurModeAutonomeViaDashBoard();
 		//selecteurModeAutonomeViaInterrupteur = new SelecteurModeAutonomeViaInterrupteur();
 		selecteurModeAutonome = new SelecteurModeAutonomeViaInterrupteur();

@@ -11,11 +11,15 @@ import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
 
+import edu.wpi.first.wpilibj.DigitalOutput;
 import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class VisionEcouteur extends Thread
 {
+	
+    DigitalOutput visionModeRaspberry = new DigitalOutput(25);
+	
 	public static String donneeRecue = "";
 	protected DatagramSocket socket = null;
 	protected BufferedReader in = null;
@@ -28,6 +32,8 @@ public class VisionEcouteur extends Thread
 	public VisionEcouteur(Tourelle tourelle) throws IOException {
 	    this("udpReciever");
 	    this.tourelle = tourelle; // TODO - voir s'il faut gerer une synchronisation
+		visionModeRaspberry.disablePWM();
+		visionModeRaspberry.set(false);
 	    }
 	
 	public VisionEcouteur(String name) throws IOException {
