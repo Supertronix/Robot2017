@@ -92,10 +92,7 @@ public interface RobotMap {
 	public static final int BOUTON_LANCEUR_VITESSE_INCREMENTE= 8;
 	
 	public static final double LANCEUR_VITESSE_DELTA = 0.1;
-	
-	// Experimentations
-	public static final int BOUTON_GYRO_RESET = 1;
-	
+		
 	// Turret Settings
 	public static final double TOURELLE_PAN_LIMITE_MINIMUM = -995;
 	public static final double TOURELLE_PAN_LIMITE_MAXIMUM = -30;
@@ -116,8 +113,11 @@ public interface RobotMap {
 	public static final double GYRO_KP = 0.02; //0.03
 	public static final double GYRO_KI = 0.0;
 	
-	public static final double GYRO_KP_ROTATEONLY = 0.00075; // + haut = plus aggressif
-	public static final double GYRO_KI_ROTATEONLY = 0.000085; // + bas = plus aggressif
+	public static final double GYRO_KP_ROTATION = 0.00075; // + haut = plus aggressif
+	public static final double GYRO_KI_ROTATION = 0.000085; // + bas = plus aggressif
+	public static final boolean GYRO_INVERSE = true;
+	
+	public static final int BOUTON_GYRO_RESET = 1;
 	
 	// Kp = Proportional gain
 	// Ki = Integral gain
@@ -128,9 +128,7 @@ public interface RobotMap {
 	
 	public static final int RASPBERRY_PORT = 5808;
 	public static final int RAYON_VERT_DIO = 12;
-	
-	public static final boolean GYRO_UPSIDEDOWN = true;
-	
+		
 	public static final double VISION_THS = 0.13;
 	
 	public static final int AUTO_DIP0 = 2;

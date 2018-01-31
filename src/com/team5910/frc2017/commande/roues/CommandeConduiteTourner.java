@@ -15,8 +15,8 @@ public class CommandeConduiteTourner extends Command {
 	public CommandeConduiteTourner(double angle) {
 		requires(Robot.drive);
 		angleDesire = angle; // Distance in feet
-		this.p = RobotMap.GYRO_KP_ROTATEONLY;
-		this.i = RobotMap.GYRO_KI_ROTATEONLY;
+		this.p = RobotMap.GYRO_KP_ROTATION;
+		this.i = RobotMap.GYRO_KI_ROTATION;
 		this.d = 0.0;
 	}
 	
@@ -42,7 +42,7 @@ public class CommandeConduiteTourner extends Command {
 		Robot.drive.resetEncoders();
 		Robot.drive.resetGyro();
 		Robot.drive.resetPIDS();
-		Robot.drive.setRotatePIDValues(this.p, this.i, this.d);
+		Robot.drive.setRotationPID(this.p, this.i, this.d);
 		Robot.drive.programmerCibleGyro(-angleDesire); // Invert angle so positive is clockwise
 	}
 	

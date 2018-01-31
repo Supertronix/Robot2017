@@ -42,8 +42,8 @@ public class CommandeConduiteAvancer extends Command {
 		Robot.drive.resetEncoders();
 		Robot.drive.resetGyro();
 		Robot.drive.resetPIDS();
-		Robot.drive.setGyroPIDStandardValues();
-		Robot.drive.setDistancePIDValues(this.p, this.i, this.d);
+		Robot.drive.setGyroPIDStandard();
+		Robot.drive.setDistancePID(this.p, this.i, this.d);
 		Robot.drive.programmerDistance(Robot.drive.getEncoderDistance() + distanceDesiree);
 		System.out.println("Valeur encodeur" + Robot.drive.getEncoderDistance());
 		Robot.drive.programmerCibleGyro(0.0);

@@ -77,7 +77,7 @@ public class Roues extends Subsystem {
 		 gyro.setPIDSourceType(PIDSourceType.kDisplacement);
 		 gyroPIDOut = new SortiePID();
 		 
-		 pidGyro = new PIDController(-RobotMap.GYRO_KP, RobotMap.GYRO_KI_ROTATEONLY, 0, gyro, gyroPIDOut);
+		 pidGyro = new PIDController(-RobotMap.GYRO_KP, RobotMap.GYRO_KI_ROTATION, 0, gyro, gyroPIDOut);
 		 pidGyro.setSetpoint(0.0f);
 		 pidGyro.setAbsoluteTolerance(3);
 		 pidGyro.enable();
@@ -136,7 +136,7 @@ public class Roues extends Subsystem {
 	}
 
 	public void driveStraightWithGyro() {
-		if (RobotMap.GYRO_UPSIDEDOWN)
+		if (RobotMap.GYRO_INVERSE)
 		{
 			roueAvantGauche.set(distanceSortiePID.getPIDOut() + gyroPIDOut.getPIDOut());
 			roueAvantDroite.set(distanceSortiePID.getPIDOut() - gyroPIDOut.getPIDOut());
@@ -158,7 +158,7 @@ public class Roues extends Subsystem {
 	}
 	
 	public void driveStraight() {
-		if (RobotMap.GYRO_UPSIDEDOWN)
+		if (RobotMap.GYRO_INVERSE)
 		{
 			roueAvantGauche.set(distanceSortiePID.getPIDOut());
 			roueAvantDroite.set(distanceSortiePID.getPIDOut());
@@ -186,7 +186,7 @@ public class Roues extends Subsystem {
 	}
 	
 	public void rotateWithGyro() {
-		if (RobotMap.GYRO_UPSIDEDOWN)
+		if (RobotMap.GYRO_INVERSE)
 		{
 			roueAvantGauche.set(-gyroPIDOut.getPIDOut());
 			roueAvantDroite.set(gyroPIDOut.getPIDOut());
@@ -226,43 +226,46 @@ public class Roues extends Subsystem {
 	public boolean estArriveSelonGyro() {
 		return pidGyro.onTarget();
 	}
-	public void setDistancePIDNormalValues()
+
+	public void setDistancePIDNormal()
 	{
 		pidDistance.setPID(RobotMap.DISTANCE_KP, RobotMap.DISTANCE_KI, 0);
 	}
 	
-	public void setDistancePIDPrecisionValues()
+	public void setDistancePIDPrecision()
 	{
 		pidDistance.setPID(RobotMap.DISTANCE_KP/2, RobotMap.DISTANCE_KI, 0);
 	}
-	public void setGyroPIDStandardValues()
+	public void setGyroPIDStandard()
 	{
 		pidGyro.setPID(-RobotMap.GYRO_KP, RobotMap.GYRO_KI, 0);
 	}
 	
-	public void setGyroDefaultPIDRotateValues()
+	public void setGyroDefaultPIDRotate()
 	{
-		pidGyro.setPID(RobotMap.GYRO_KP_ROTATEONLY, RobotMap.GYRO_KI_ROTATEONLY, 0);
+		pidGyro.setPID(RobotMap.GYRO_KP_ROTATION, RobotMap.GYRO_KI_ROTATION, 0);
 	}
 	
-	public void setDistancePIDValues(double P, double I)
+	public void setDistancePID(double P, double I)
 	{
 		pidDistance.setPID(P, I, 0);
 	}
-	public void setDistancePIDValues(double P, double I, double D)
+	public void setDistancePID(double P, double I, double D)
 	{
 		pidDistance.setPID(P, I, D);
 	}
 	
-	public void setRotatePIDValues(double P, double I)
+	public void setRotationPID(double P, double I)
 	{
 		pidGyro.setPID(P, I, 0);
 	}
-	public void setRotatePIDValues(double P, double I, double D)
+	public void setRotationPID(double P, double I, double D)
 	{
 		pidGyro.setPID(P, I, D);
 	}
-	public void updateDashboard()
+	
+	// todo refactor en-dehors de ce modele
+	public void afficherDashboard()
 	{
 		SmartDashboard.putNumber(AffichageStation.DRIVE_ENCODEUR_DISTANCE, encodeurRoues.getDistance());
 		SmartDashboard.putNumber(AffichageStation.DRIVE_GYRO, gyro.getAngle());

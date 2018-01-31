@@ -19,7 +19,7 @@ public class CommandeConduiteAvancerAvecPrecision extends Command {
 		Robot.drive.resetEncoders();
 		Robot.drive.resetGyro();
 		Robot.drive.resetPIDS();
-		Robot.drive.setDistancePIDPrecisionValues();
+		Robot.drive.setDistancePIDPrecision();
 		Robot.drive.programmerDistance(Robot.drive.getEncoderDistance() + mWantedDistance);
 		Robot.drive.programmerCibleGyro(0.0);
 	}
