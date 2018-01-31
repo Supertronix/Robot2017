@@ -80,10 +80,13 @@ public interface RobotMap {
 		public static final boolean INVERSION_AVALEUR_MOTEUR = false;		
 	}
 	
-	public static final int INDEXEUR_MOTEUR = 15; // SP 7
-	public static final boolean INVERSION_INDEXEUR_MOTEUR = true;
 	
-	
+	public interface Indexeur
+	{
+		public static final int INDEXEUR_MOTEUR = 15; // SP 7
+		public static final boolean INVERSION_INDEXEUR_MOTEUR = true;
+	}
+		
 	public interface Machoire
 	{
 		public static final int MACHOIRE_GAUCHE_SERVO = 1; // Servo 1
