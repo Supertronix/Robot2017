@@ -89,7 +89,7 @@ public interface RobotMap {
 		public static final int MANETTE_ACCESSOIRE = 1;
 		
 		public static final int BOUTON_GRIMPEUR = 6;
-		public static final int BOUTON_INTAKE = 5;
+		public static final int BOUTON_AVALEUR = 5;
 		public static final int BOUTON_MACHOIRE = 10;
 		public static final int BOUTON_INDEXEUR = 1;
 		public static final int BOUTON_GYRO_RESET = 1;

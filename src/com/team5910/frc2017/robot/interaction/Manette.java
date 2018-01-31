@@ -33,7 +33,7 @@ public class Manette implements RobotMap.Manette{
     	manetteAccessoire = new Joystick(MANETTE_ACCESSOIRE);
     	
     	// MAIN JOYSTICK
-    	JoystickButton actionIntaker = new JoystickButton(manetteConduitePrincipale, BOUTON_INTAKE);
+    	JoystickButton actionIntaker = new JoystickButton(manetteConduitePrincipale, BOUTON_AVALEUR);
     	actionIntaker.whenPressed(new CommandeIntakerDemarrer());
     	actionIntaker.whenPressed(new CommandeBrasseurDemarrer());
     	actionIntaker.whenReleased(new CommandeIntakerArreter());
@@ -91,8 +91,8 @@ public class Manette implements RobotMap.Manette{
     }
     
 // ACCESSORIES
-    public boolean getBoutonIntake() {
-    	return manetteConduitePrincipale.getRawButton(BOUTON_INTAKE);
+    public boolean getBoutonAvaleur() {
+    	return manetteConduitePrincipale.getRawButton(BOUTON_AVALEUR);
     }
     
     public boolean getBoutonGrimpeur() {
