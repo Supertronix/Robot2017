@@ -10,9 +10,9 @@ import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerTilt;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class CommandeWTF extends CommandGroup {
+public class CommandeTrajetWTF extends CommandGroup {
 
-public CommandeWTF() {
+public CommandeTrajetWTF() {
 	addSequential(new CommandeConduiteAvancer(12, 0.06, 0.00065));
 
 	

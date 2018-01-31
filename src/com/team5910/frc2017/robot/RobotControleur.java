@@ -17,14 +17,14 @@ import com.team5910.frc2017.robot.outil.Calculateur;
 import com.team5910.frc2017.robot.soussysteme.Roues;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
 import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
-import com.team5910.frc2017.robot.trajet.CommandeB1;
-import com.team5910.frc2017.robot.trajet.CommandeB2;
-import com.team5910.frc2017.robot.trajet.CommandeB3;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetB1;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetB2;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetB3;
 import com.team5910.frc2017.robot.trajet.CommandeImmobile;
-import com.team5910.frc2017.robot.trajet.CommandeR1;
-import com.team5910.frc2017.robot.trajet.CommandeR2;
-import com.team5910.frc2017.robot.trajet.CommandeR3;
-import com.team5910.frc2017.robot.trajet.CommandeWTF;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetR1;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetR2;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetR3;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetWTF;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
@@ -88,7 +88,7 @@ public class RobotControleur extends IterativeRobot
 		{
 			if (autoSW1.get() == true && autoSW2.get() == true && autoSW3.get() == true) //WTF
 			{
-				commandeAutonome = new CommandeWTF();
+				commandeAutonome = new CommandeTrajetWTF();
 			}
 			else if (autoSW1.get() == false && autoSW2.get() == false && autoSW3.get() == false) // No move
 			{
@@ -96,22 +96,22 @@ public class RobotControleur extends IterativeRobot
 			}
 			else if (autoSW1.get() == true) //R1
 			{
-				commandeAutonome = new CommandeR1();
+				commandeAutonome = new CommandeTrajetR1();
 			}
 			else if (autoSW2.get() == true) //R2
 			{
-				commandeAutonome = new CommandeR2();
+				commandeAutonome = new CommandeTrajetR2();
 			}
 			else if (autoSW3.get() == true) //R3
 			{
-				commandeAutonome = new CommandeR3();
+				commandeAutonome = new CommandeTrajetR3();
 			}
 		}
 		else // Blue
 		{
 			if (autoSW1.get() == true && autoSW2.get() == true && autoSW3.get() == true) //WTF
 			{
-				commandeAutonome = new CommandeWTF();
+				commandeAutonome = new CommandeTrajetWTF();
 			}
 			else if (autoSW1.get() == false && autoSW2.get() == false && autoSW3.get() == false) // No move
 			{
@@ -119,15 +119,15 @@ public class RobotControleur extends IterativeRobot
 			}
 			else if (autoSW1.get() == true) //B1
 			{
-				commandeAutonome = new CommandeB1();
+				commandeAutonome = new CommandeTrajetB1();
 			}
 			else if (autoSW2.get() == true) //B2
 			{
-				commandeAutonome = new CommandeB2();
+				commandeAutonome = new CommandeTrajetB2();
 			}
 			else if (autoSW3.get() == true) //B3
 			{
-				commandeAutonome = new CommandeB3();
+				commandeAutonome = new CommandeTrajetB3();
 			}
 			
 		}

@@ -10,9 +10,9 @@ import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerTilt;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
-public class CommandeB3 extends CommandGroup {
+public class CommandeTrajetB3 extends CommandGroup {
 
-public CommandeB3() {
+public CommandeTrajetB3() {
 	// public CommandeConduiteDistance(double distance, double driveP, double driveI)
 	// public CommandeConduiteTourner(double angle, double P, double I)
 	addSequential(new CommandeConduiteAvancer(5.7, 0.08, 0.00065));
