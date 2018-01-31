@@ -206,7 +206,7 @@ public class Roues extends Subsystem {
 		pidDistance.setSetpoint(distance);	
 	}
 	
-	public boolean estArriveSelonPID()
+	public boolean estArriveSelonEncodeur()
 	{
 		return pidDistance.onTarget();
 	}	
@@ -219,11 +219,11 @@ public class Roues extends Subsystem {
 		 encodeurRoues.setReverseDirection(RobotMap.INVERSION_ROUE_ENCODEUR);
 	}
 		
-	public void updateGyroSetpoint(double setPoint) {
-		pidGyro.setSetpoint(setPoint);	
+	public void programmerCibleGyro(double cible) {
+		pidGyro.setSetpoint(cible);	
 	}
 	
-	public boolean gyroPIDDone() {
+	public boolean estArriveSelonGyro() {
 		return pidGyro.onTarget();
 	}
 	public void setDistancePIDNormalValues()

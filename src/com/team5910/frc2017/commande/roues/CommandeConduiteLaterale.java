@@ -31,7 +31,7 @@ public class CommandeConduiteLaterale extends Command {
 		
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.estArriveSelonPID();
+		return Robot.drive.estArriveSelonEncodeur();
 	}
 	
 	@Override

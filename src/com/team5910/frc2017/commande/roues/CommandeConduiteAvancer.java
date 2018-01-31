@@ -46,7 +46,7 @@ public class CommandeConduiteAvancer extends Command {
 		Robot.drive.setDistancePIDValues(this.p, this.i, this.d);
 		Robot.drive.programmerDistance(Robot.drive.getEncoderDistance() + distanceDesiree);
 		System.out.println("Valeur encodeur" + Robot.drive.getEncoderDistance());
-		Robot.drive.updateGyroSetpoint(0.0);
+		Robot.drive.programmerCibleGyro(0.0);
 		startTime = Utility.getFPGATime();
 	}
 	
@@ -57,7 +57,7 @@ public class CommandeConduiteAvancer extends Command {
 		
 	@Override
 	protected boolean isFinished() {
-		return (Robot.drive.estArriveSelonPID() || (Utility.getFPGATime() >= startTime + RobotMap.AUTO_EXPIRE * 1000000));
+		return (Robot.drive.estArriveSelonEncodeur() || (Utility.getFPGATime() >= startTime + RobotMap.AUTO_EXPIRE * 1000000));
 	}
 	
 	@Override

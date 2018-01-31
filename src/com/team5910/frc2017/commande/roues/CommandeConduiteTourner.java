@@ -43,7 +43,7 @@ public class CommandeConduiteTourner extends Command {
 		Robot.drive.resetGyro();
 		Robot.drive.resetPIDS();
 		Robot.drive.setRotatePIDValues(this.p, this.i, this.d);
-		Robot.drive.updateGyroSetpoint(-angleDesire); // Invert angle so positive is clockwise
+		Robot.drive.programmerCibleGyro(-angleDesire); // Invert angle so positive is clockwise
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
@@ -54,7 +54,7 @@ public class CommandeConduiteTourner extends Command {
 		
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.gyroPIDDone();
+		return Robot.drive.estArriveSelonGyro();
 	}
 	
 	@Override

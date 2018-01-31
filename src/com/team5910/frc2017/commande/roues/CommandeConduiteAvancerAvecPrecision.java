@@ -21,7 +21,7 @@ public class CommandeConduiteAvancerAvecPrecision extends Command {
 		Robot.drive.resetPIDS();
 		Robot.drive.setDistancePIDPrecisionValues();
 		Robot.drive.programmerDistance(Robot.drive.getEncoderDistance() + mWantedDistance);
-		Robot.drive.updateGyroSetpoint(0.0);
+		Robot.drive.programmerCibleGyro(0.0);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
@@ -32,7 +32,7 @@ public class CommandeConduiteAvancerAvecPrecision extends Command {
 		
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.estArriveSelonPID();
+		return Robot.drive.estArriveSelonEncodeur();
 	}
 	
 	@Override
