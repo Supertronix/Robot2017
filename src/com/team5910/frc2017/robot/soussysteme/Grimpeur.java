@@ -17,7 +17,7 @@ public class Grimpeur extends Subsystem {
 	protected void initDefaultCommand() {
 	}
 	
-	public void climb()
+	public void grimper()
 	{
 		if (RobotMap.INVERSION_GRIMPEUR_MOTEUR) 
 			moteurGrimpeur.set(-1);
@@ -25,7 +25,7 @@ public class Grimpeur extends Subsystem {
 			moteurGrimpeur.set(1);
 	}
 	
-	public void stop() {
+	public void arreter() {
 		moteurGrimpeur.set(0);
 	}
 }

@@ -39,7 +39,7 @@ public class Robot {
 		tourelle.stop();
 		lanceur.stop();
 		intaker.stop();
-		grimpeur.stop();
+		grimpeur.arreter();
 		indexeur.stop();
 	}
 	
@@ -55,13 +55,13 @@ public class Robot {
 	}
 
 	public void climberButtonEnabled() {
-		grimpeur.climb();
+		grimpeur.grimper();
 		tourelle.stop();
 		intaker.stop();
 	}
 	
 	public void climberButtonDisabled() {
-		grimpeur.stop();
+		grimpeur.arreter();
 	}
 
 	public void clampButtonEnabled() {
