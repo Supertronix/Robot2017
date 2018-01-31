@@ -18,7 +18,7 @@ public class CommandeBrasseurDuree extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.brasseur.shuffle();
+		 RobotControleur.robot.brasseur.brasser();
 		 startTime = Utility.getFPGATime();
 
 	}

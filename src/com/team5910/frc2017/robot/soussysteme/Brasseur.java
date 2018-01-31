@@ -27,7 +27,7 @@ public class Brasseur extends Subsystem {
 	protected void initDefaultCommand() {
 	}
 	
-	public void shuffle()
+	public void brasser()
 	{
 		if (inversionSens)
 		{

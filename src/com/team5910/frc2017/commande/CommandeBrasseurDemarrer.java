@@ -13,7 +13,7 @@ public class CommandeBrasseurDemarrer extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.brasseur.shuffle();
+		 RobotControleur.robot.brasseur.brasser();
 	}
 	 
 	@Override
