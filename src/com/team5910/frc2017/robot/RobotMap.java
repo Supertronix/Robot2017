@@ -131,10 +131,10 @@ public interface RobotMap {
 		
 	public static final double VISION_THS = 0.13;
 	
-	public static final int AUTO_DIP0 = 2;
-	public static final int AUTO_DIP1 = 3;
-	public static final int AUTO_DIP2 = 4;
-	public static final int AUTO_DIP3 = 5;
+	public static final int INTERRUPTEUR_DIGITAL_0 = 2;
+	public static final int INTERRUPTEUR_DIGITAL_1 = 3;
+	public static final int INTERRUPTEUR_DIGITAL_2 = 4;
+	public static final int INTERRUPTEUR_DIGITAL_3 = 5;
 	
 	public static final int AUTO_EXPIRE = 5; // in seconds
 

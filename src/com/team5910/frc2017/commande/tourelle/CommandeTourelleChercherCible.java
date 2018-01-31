@@ -24,7 +24,7 @@ public class CommandeTourelleChercherCible extends Command {
 	protected void execute() {
 		if(RobotControleur.robot.tourelle.visionData.trouvee) return;
 		
-		double pan = RobotControleur.oi.getPanAxe();
+		double pan = RobotControleur.manette.getPanAxe();
 		if (Math.abs(pan) > 0.2)
 		{
 			if (pan > 0)
@@ -33,7 +33,7 @@ public class CommandeTourelleChercherCible extends Command {
 				RobotControleur.robot.tourelle.setPanSetpoint(RobotMap.TOURELLE_PAN_LIMITE_MINIMUM);		
 		}
 		
-		 SmartDashboard.putNumber("PANAXIS", RobotControleur.oi.getPanAxe());
+		 SmartDashboard.putNumber("PANAXIS", RobotControleur.manette.getPanAxe());
 		 
 		
 		if (RobotControleur.robot.tourelle.panSPdone())
