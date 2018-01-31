@@ -35,22 +35,22 @@ public class Lanceur extends Subsystem {
     public void initDefaultCommand() {
     }
     
-    public void shoot() {
+    public void lancer() {
     	lanceurMoteurPrincipal.set(vitesseLanceur);
     }
 
-	public void stop() {
+	public void arreter() {
 		lanceurMoteurPrincipal.set(0);
 	}
-	public void toggle() {
+	public void inverser() {
 		if (lanceurMoteurPrincipal.get() > 0)
 			lanceurMoteurPrincipal.set(0);
 		else
 			lanceurMoteurPrincipal.set(vitesseLanceur);
 	}
 	
-	public void incDecSpeed(double aChangeValue) {
-		vitesseLanceur = Calculateur.clamp(vitesseLanceur + aChangeValue, 0.0, 1.0);
+	public void ajusterVitesse(double delta) {
+		vitesseLanceur = Calculateur.clamp(vitesseLanceur + delta, 0.0, 1.0);
 		
 		if (lanceurMoteurPrincipal.get() > 0)
 			lanceurMoteurPrincipal.set(vitesseLanceur);

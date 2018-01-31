@@ -13,7 +13,7 @@ public class CommandeLanceurToggle extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.lanceur.toggle();
+		 RobotControleur.robot.lanceur.inverser();
 	}
 	 
 	@Override

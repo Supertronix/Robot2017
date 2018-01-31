@@ -37,7 +37,7 @@ public class Robot {
 
 	public void stopAll() {
 		tourelle.stop();
-		lanceur.stop();
+		lanceur.arreter();
 		intaker.stop();
 		grimpeur.arreter();
 		indexeur.stop();

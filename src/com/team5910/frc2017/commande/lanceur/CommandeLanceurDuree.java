@@ -18,7 +18,7 @@ public class CommandeLanceurDuree extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.lanceur.shoot();
+		 RobotControleur.robot.lanceur.lancer();
 		 startTime = Utility.getFPGATime();
 	}
 	 
@@ -26,7 +26,7 @@ public class CommandeLanceurDuree extends Command {
 	protected boolean isFinished() {
 		if (Utility.getFPGATime() >= startTime + dureeMicroSecondes)
 		{
-			RobotControleur.robot.lanceur.stop();
+			RobotControleur.robot.lanceur.arreter();
 			return true;
 		}
 		else
