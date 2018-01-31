@@ -16,21 +16,21 @@ public class CommandeConduiteAvancer extends Command {
 	
 	public CommandeConduiteAvancer(double distance) {
 		requires(Robot.drive);
-		distanceDesiree = distance; // Distance in feet
+		distanceDesiree = distance; // Distance en pied
 		this.p = RobotMap.DISTANCE_KP;
 		this.i = RobotMap.DISTANCE_KI;
 		this.d = 0.0;
 	}
 	public CommandeConduiteAvancer(double distance, double driveP, double driveI) {
 		requires(Robot.drive);
-		distanceDesiree = distance; // Distance in feet
+		distanceDesiree = distance; // Distance en pied
 		this.p = driveP;
 		this.i = driveI;
 		this.d = 0.0;
 	}
 	public CommandeConduiteAvancer(double distance, double driveP, double driveI, double driveD) {
 		requires(Robot.drive);
-		distanceDesiree = distance; // Distance in feet
+		distanceDesiree = distance; // Distance en pied
 		this.p = driveP;
 		this.i = driveI;
 		this.d = driveD;
@@ -44,7 +44,7 @@ public class CommandeConduiteAvancer extends Command {
 		Robot.drive.resetPIDS();
 		Robot.drive.setGyroPIDStandardValues();
 		Robot.drive.setDistancePIDValues(this.p, this.i, this.d);
-		Robot.drive.updateDistanceSetpoint(Robot.drive.getEncoderDistance() + distanceDesiree);
+		Robot.drive.programmerDistance(Robot.drive.getEncoderDistance() + distanceDesiree);
 		System.out.println("Valeur encodeur" + Robot.drive.getEncoderDistance());
 		Robot.drive.updateGyroSetpoint(0.0);
 		startTime = Utility.getFPGATime();
@@ -57,7 +57,7 @@ public class CommandeConduiteAvancer extends Command {
 		
 	@Override
 	protected boolean isFinished() {
-		return (Robot.drive.drivePIDDone() || (Utility.getFPGATime() >= startTime + RobotMap.AUTO_EXPIRE * 1000000));
+		return (Robot.drive.estArriveSelonPID() || (Utility.getFPGATime() >= startTime + RobotMap.AUTO_EXPIRE * 1000000));
 	}
 	
 	@Override

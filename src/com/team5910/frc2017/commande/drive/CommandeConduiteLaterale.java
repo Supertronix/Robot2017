@@ -19,8 +19,8 @@ public class CommandeConduiteLaterale extends Command {
 		Robot.drive.resetEncoders();
 		Robot.drive.resetGyro();
 		Robot.drive.resetPIDS();
-		Robot.drive.reverseEncoder();
-		Robot.drive.updateDistanceSetpoint(mWantedDistance);
+		Robot.drive.inverserEncodeur();
+		Robot.drive.programmerDistance(mWantedDistance);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
@@ -31,13 +31,13 @@ public class CommandeConduiteLaterale extends Command {
 		
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.drivePIDDone();
+		return Robot.drive.estArriveSelonPID();
 	}
 	
 	@Override
 	protected void end() {
 		Robot.drive.arreter();
-		Robot.drive.undoReverseEncoder();
+		Robot.drive.restaurerEncodeur();
 	}
 
 }

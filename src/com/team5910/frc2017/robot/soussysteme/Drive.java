@@ -6,12 +6,28 @@ import com.team5910.frc2017.robot.outil.ADXRS450Supertronix;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.PIDController;
+import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Drive extends Subsystem {
+	
+	// Pour Encodeur et Gyro
+	public class SortiePID implements PIDOutput {
+
+		double distanceSortiePID;
+		
+		@Override
+		public void pidWrite(double sortie) {
+			distanceSortiePID = sortie;
+		}
+		
+		public double getPIDOut() {
+			return distanceSortiePID;
+		}
+	}	
 	
     public enum DriveControlState {
         OPEN_LOOP, PATH_FOLLOWING_CONTROL
@@ -28,10 +44,10 @@ public class Drive extends Subsystem {
 	Encoder encodeurRoues;
 	
 	PIDController pidGyro;
-	CustomPIDOutput gyroPIDOut;
+	SortiePID gyroPIDOut;
 	
 	PIDController pidDistance;
-	CustomPIDOutput distancePIDOut;
+	SortiePID distancePIDOut;
 	
 	//private DriveControlState driveControlState;
 	
@@ -51,7 +67,7 @@ public class Drive extends Subsystem {
 		 encodeurRoues.setDistancePerPulse(RobotMap.ENCODEUR_ROUE_DISTANCE_PULSION);
 		 encodeurRoues.setPIDSourceType(PIDSourceType.kDisplacement);
 		 
-		 distancePIDOut = new CustomPIDOutput();
+		 distancePIDOut = new SortiePID();
 		 pidDistance = new PIDController(RobotMap.DISTANCE_KP, RobotMap.DISTANCE_KI, 0, encodeurRoues, distancePIDOut);
 		 pidDistance.setSetpoint(0);
 		 pidDistance.setAbsoluteTolerance(RobotMap.DISTANCE_TOLERANCE);
@@ -59,7 +75,7 @@ public class Drive extends Subsystem {
 
 		 gyro = new ADXRS450Supertronix();
 		 gyro.setPIDSourceType(PIDSourceType.kDisplacement);
-		 gyroPIDOut = new CustomPIDOutput();
+		 gyroPIDOut = new SortiePID();
 		 
 		 pidGyro = new PIDController(-RobotMap.GYRO_KP, RobotMap.GYRO_KI_ROTATEONLY, 0, gyro, gyroPIDOut);
 		 pidGyro.setSetpoint(0.0f);
@@ -186,25 +202,25 @@ public class Drive extends Subsystem {
 		}
 	}
 	
-	public void updateDistanceSetpoint(double setPoint) {
-		pidDistance.setSetpoint(setPoint);	
+	public void programmerDistance(double distance) {
+		pidDistance.setSetpoint(distance);	
 	}
 	
-	public void updateGyroSetpoint(double setPoint) {
-		pidGyro.setSetpoint(setPoint);	
-	}
+	public boolean estArriveSelonPID()
+	{
+		return pidDistance.onTarget();
+	}	
 	
-	public void reverseEncoder() {
+	public void inverserEncodeur() {
 		 encodeurRoues.setReverseDirection(!RobotMap.INVERSION_ROUE_ENCODEUR);
 	}
 	
-	public void undoReverseEncoder() {
+	public void restaurerEncodeur() {
 		 encodeurRoues.setReverseDirection(RobotMap.INVERSION_ROUE_ENCODEUR);
 	}
-	
-	public boolean drivePIDDone()
-	{
-		return pidDistance.onTarget();
+		
+	public void updateGyroSetpoint(double setPoint) {
+		pidGyro.setSetpoint(setPoint);	
 	}
 	
 	public boolean gyroPIDDone() {
