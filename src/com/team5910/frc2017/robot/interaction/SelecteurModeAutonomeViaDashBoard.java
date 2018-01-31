@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SelecteurModeAutonomeViaDashBoard {
+public class SelecteurModeAutonomeViaDashBoard extends SelecteurModeAutonome{
 
     SendableChooser selecteur;
     

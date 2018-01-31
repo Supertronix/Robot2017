@@ -44,8 +44,8 @@ public class RobotControleur extends IterativeRobot
 	
     DigitalOutput RaspberryVisionMode = new DigitalOutput(25);
         
-	SelecteurModeAutonomeViaDashBoard selecteurModeAutonome;
-	SelecteurModeAutonomeViaInterrupteur selecteurDigitalModeAutonome;
+	SelecteurModeAutonomeViaDashBoard selecteurModeAutonomeViaDashboard;
+	SelecteurModeAutonomeViaInterrupteur selecteurModeAutonomeViaInterrupteur;
     
 	//public static double lastCommandReceived = 0.0f;
 	
@@ -74,8 +74,8 @@ public class RobotControleur extends IterativeRobot
 		RaspberryVisionMode.disablePWM();
 		RaspberryVisionMode.set(false);
 
-		selecteurModeAutonome = new SelecteurModeAutonomeViaDashBoard();
-		selecteurDigitalModeAutonome = new SelecteurModeAutonomeViaInterrupteur();
+		selecteurModeAutonomeViaDashboard = new SelecteurModeAutonomeViaDashBoard();
+		selecteurModeAutonomeViaInterrupteur = new SelecteurModeAutonomeViaInterrupteur();
 	}
 
 	Command commandeAutonome;
@@ -86,7 +86,7 @@ public class RobotControleur extends IterativeRobot
 		Command stopMotors = new CommandeArreterBrasseurIndexeurLanceur();
 		stopMotors.start();
 		
-		commandeAutonome = selecteurDigitalModeAutonome.lireChoix();		
+		commandeAutonome = selecteurModeAutonomeViaInterrupteur.lireChoix();		
 		//commandeAutonome = selecteurModeAutonome.lireChoix();
 		commandeAutonome.start();
 	}
@@ -165,7 +165,7 @@ public class RobotControleur extends IterativeRobot
 	@Override
 	public void disabledPeriodic() 
 	{
-		selecteurDigitalModeAutonome.lireChoix();
+		selecteurModeAutonomeViaInterrupteur.lireChoix();
 	}
 	
 	
