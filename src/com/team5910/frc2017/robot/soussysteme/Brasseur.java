@@ -6,7 +6,7 @@ import com.team5910.frc2017.robot.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Brasseur extends Subsystem {
+public class Brasseur extends Subsystem implements RobotMap.Brasseur {
 	
 	VictorSP moteurBrasseurGauche;
 	CANTalon moteurBrasseurDroit;

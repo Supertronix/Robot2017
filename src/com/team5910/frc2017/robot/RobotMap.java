@@ -52,8 +52,6 @@ public interface RobotMap {
 	public static final int INDEXEUR_MOTEUR = 15; // SP 7
 	public static final boolean INVERSION_INDEXEUR_MOTEUR = true;
 	
-	public static final int BRASSEUR_GAUCHE = 16; // SP 8
-	public static final boolean INVERSION_BRASSEUR_GAUCHE = false;
 	
 	public interface Machoire
 	{
@@ -73,16 +71,17 @@ public interface RobotMap {
 		public static final int LANCEUR_MOTEUR_ESCLAVE = 0;
 	}
 	
-	// CAN Bus
-	//public static final int LANCEUR_MOTEUR_PRINCIPAL = 3;
-	//public static final int LANCEUR_MOTEUR_ESCLAVE = 0;
-	//public static final int TOURELLE_PAN_MOTEUR = 2;
-	//public static final int TOURELLE_TILT_MOTEUR = 5;
-	public static final int BRASSEUR_DROIT = 4;
-	public static final boolean INVERSION_BRASSEUR_DROIT = false;
-		
-
 	
+	public interface Brasseur
+	{
+		public static final int BRASSEUR_GAUCHE = 16; // SP 8
+		public static final boolean INVERSION_BRASSEUR_GAUCHE = false;
+		
+		public static final int BRASSEUR_DROIT = 4;
+		public static final boolean INVERSION_BRASSEUR_DROIT = false;
+		
+	}
+		
 	public interface Manette
 	{
 		// Joystick MAP
@@ -160,4 +159,12 @@ public interface RobotMap {
 
 
 }
+
+// CAN Bus
+//public static final int LANCEUR_MOTEUR_PRINCIPAL = 3;
+//public static final int LANCEUR_MOTEUR_ESCLAVE = 0;
+//public static final int TOURELLE_PAN_MOTEUR = 2;
+//public static final int TOURELLE_TILT_MOTEUR = 5;
+//public static final int BRASSEUR_DROIT = 4;
+//public static final boolean INVERSION_BRASSEUR_DROIT = false;
 
