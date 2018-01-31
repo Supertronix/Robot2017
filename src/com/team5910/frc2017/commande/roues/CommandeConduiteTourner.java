@@ -15,8 +15,8 @@ public class CommandeConduiteTourner extends Command {
 	public CommandeConduiteTourner(double angle) {
 		requires(Robot.roues);
 		angleDesire = angle; // Distance in feet
-		this.p = RobotMap.GYRO_KP_ROTATION;
-		this.i = RobotMap.GYRO_KI_ROTATION;
+		this.p = RobotMap.Roues.GYRO_KP_ROTATION;
+		this.i = RobotMap.Roues.GYRO_KI_ROTATION;
 		this.d = 0.0;
 	}
 	

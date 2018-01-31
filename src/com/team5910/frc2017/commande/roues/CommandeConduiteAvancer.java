@@ -17,8 +17,8 @@ public class CommandeConduiteAvancer extends Command {
 	public CommandeConduiteAvancer(double distance) {
 		requires(Robot.roues);
 		distanceDesiree = distance; // Distance en pied
-		this.p = RobotMap.DISTANCE_KP;
-		this.i = RobotMap.DISTANCE_KI;
+		this.p = RobotMap.Roues.DISTANCE_KP;
+		this.i = RobotMap.Roues.DISTANCE_KI;
 		this.d = 0.0;
 	}
 	public CommandeConduiteAvancer(double distance, double driveP, double driveI) {

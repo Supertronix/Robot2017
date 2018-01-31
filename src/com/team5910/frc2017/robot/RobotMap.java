@@ -2,17 +2,49 @@ package com.team5910.frc2017.robot;
 
 public interface RobotMap {
 	
-	// PWM Outputs
-	public static final int ROUE_AVANT_GAUCHE = 10; // SP 1
-	public static final int ROUE_ARRIERE_GAUCHE = 14; // SP 2
-	public static final int ROUE_AVANT_DROIT= 13; // SP 3
-	public static final int ROUE_ARRIERE_DROIT = 17; // SP 4
-	
-	public static final boolean INVERSION_ROUE_AVANT_GAUCHE = true;
-	public static final boolean INVERSION_ROUE_ARRIERE_GAUCHE = true;
-	public static final boolean INVERSION_ROUE_AVANT_DROIT = false;
-	public static final boolean INVERSION_ROUE_ARRIERE_DROIT= false;
-	
+	public interface Roues
+	{
+		// PWM Outputs
+		public static final int ROUE_AVANT_GAUCHE = 10; // SP 1
+		public static final int ROUE_ARRIERE_GAUCHE = 14; // SP 2
+		public static final int ROUE_AVANT_DROIT= 13; // SP 3
+		public static final int ROUE_ARRIERE_DROIT = 17; // SP 4
+		
+		public static final boolean INVERSION_ROUE_AVANT_GAUCHE = true;
+		public static final boolean INVERSION_ROUE_ARRIERE_GAUCHE = true;
+		public static final boolean INVERSION_ROUE_AVANT_DROIT = false;
+		public static final boolean INVERSION_ROUE_ARRIERE_DROIT= false;		
+		
+		// Encoders
+		//public static final int kFLWheelEncoderA = 16;
+		//public static final int kFLWheelEncoderB = 17;
+		
+		public static final int ROUE_ENCODEUR_A = 0;  // bleu
+		public static final int ROUE_ENCODEUR_B = 1;  // jaune
+		
+		public static final boolean INVERSION_ROUE_ENCODEUR = true;
+		public static final float ENCODEUR_ROUE_DISTANCE_PULSION = 0.0085f;
+		
+		/*public static final int kRLWheelEncoderA = 12;
+		public static final int kRLWheelEncoderB = 13;
+		
+		public static final int kFRWheelEncoderA = 14;
+		public static final int kFRWheelEncoderB = 15;*/
+		
+		// Kp = Proportional gain
+		// Ki = Integral gain
+		// Kd = Derivative gain
+		public static final double DISTANCE_KP = 0.18; //0.11;
+		public static final double DISTANCE_KI = 0.00045; //0.00045;
+		public static final float DISTANCE_TOLERANCE = 0.083f;
+		
+		public static final double GYRO_KP = 0.02; //0.03
+		public static final double GYRO_KI = 0.0;
+		
+		public static final double GYRO_KP_ROTATION = 0.00075; // + haut = plus aggressif
+		public static final double GYRO_KI_ROTATION = 0.000085; // + bas = plus aggressif
+		public static final boolean GYRO_INVERSE = true;		
+	}
 	
 	public static final int AVALEUR_MOTEUR = 11; // SP 6
 	public static final boolean INVERSION_AVALEUR_MOTEUR = false;
@@ -39,21 +71,6 @@ public interface RobotMap {
 	public static final int BRASSEUR_DROIT = 4;
 	public static final boolean INVERSION_BRASSEUR_DROIT = false;
 		
-	// Encoders
-	//public static final int kFLWheelEncoderA = 16;
-	//public static final int kFLWheelEncoderB = 17;
-	
-	public static final int ROUE_ENCODEUR_A = 0;  // bleu
-	public static final int ROUE_ENCODEUR_B = 1;  // jaune
-	
-	public static final boolean INVERSION_ROUE_ENCODEUR = true;
-	public static final float ENCODEUR_ROUE_DISTANCE_PULSION = 0.0085f;
-	
-	/*public static final int kRLWheelEncoderA = 12;
-	public static final int kRLWheelEncoderB = 13;
-	
-	public static final int kFRWheelEncoderA = 14;
-	public static final int kFRWheelEncoderB = 15;*/
 	
 	
 	// Joystick MAP
@@ -79,6 +96,7 @@ public interface RobotMap {
 	public static final int BOUTON_INTAKE = 5;
 	public static final int BOUTON_MACHOIRE = 10;
 	public static final int BOUTON_INDEXEUR = 1;
+	public static final int BOUTON_GYRO_RESET = 1;
 	
 	public static final int TOURELLE_PAN_AXE = 2;
 	public static final boolean INVERSION_TOURELLE_PAN_AXE = false;	
@@ -110,22 +128,7 @@ public interface RobotMap {
 	
 	
 	// DRIVE AUTO PID
-	public static final double GYRO_KP = 0.02; //0.03
-	public static final double GYRO_KI = 0.0;
-	
-	public static final double GYRO_KP_ROTATION = 0.00075; // + haut = plus aggressif
-	public static final double GYRO_KI_ROTATION = 0.000085; // + bas = plus aggressif
-	public static final boolean GYRO_INVERSE = true;
-	
-	public static final int BOUTON_GYRO_RESET = 1;
-	
-	// Kp = Proportional gain
-	// Ki = Integral gain
-	// Kd = Derivative gain
-	public static final double DISTANCE_KP = 0.18; //0.11;
-	public static final double DISTANCE_KI = 0.00045; //0.00045;
-	public static final float DISTANCE_TOLERANCE = 0.083f;
-	
+		
 	public static final int RASPBERRY_PORT = 5808;
 	public static final int RAYON_VERT_DIO = 12;
 		
