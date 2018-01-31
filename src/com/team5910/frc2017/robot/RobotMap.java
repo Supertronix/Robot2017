@@ -2,6 +2,34 @@ package com.team5910.frc2017.robot;
 
 public interface RobotMap {
 	
+	public interface Manette
+	{
+		// Joystick MAP
+		// Main 
+		public static final int MANETTE_CONDUITE_PRINCIPALE = 0;				
+		public static final int CONDUITE_X_GAUCHE = 0;
+		public static final int CONDUITE_Y_GAUCHE = 1;
+		public static final int CONDUITE_X_DROITE = 4;
+		public static final int CONDUITE_Y_DROITE = 5;
+		public static final boolean INVERSION_CONDUITE_X_GAUCHE = false;
+		public static final boolean INVERSION_CONDUITE_Y_GAUCHE = true;
+		public static final boolean INVERSION_CONDUITE_X_DROITE = false;
+		public static final boolean INVERSION_CONDUITE_Y_DROITE = true;		// Accessories
+		public static final int MANETTE_ACCESSOIRE = 1;
+		
+		public static final int BOUTON_GRIMPEUR = 6;
+		public static final int BOUTON_AVALEUR = 5;
+		public static final int BOUTON_MACHOIRE = 10;
+		public static final int BOUTON_INDEXEUR = 1;
+		public static final int BOUTON_GYRO_RESET = 1;
+		
+		public static final int BOUTON_LANCEUR = 2;	
+		public static final int BOUTON_LANCEUR_VITESSE_DECREMENTE = 7;
+		public static final int BOUTON_LANCEUR_VITESSE_INCREMENTE= 8;
+		public static final int BOUTON_TOURELLE_TOGGLE_AUTO_MANUEL = 11;
+		
+	}
+	
 	public interface Roues
 	{
 		// PWM Outputs
@@ -46,8 +74,11 @@ public interface RobotMap {
 		public static final boolean GYRO_INVERSE = true;		
 	}
 	
-	public static final int AVALEUR_MOTEUR = 11; // SP 6
-	public static final boolean INVERSION_AVALEUR_MOTEUR = false;
+	public interface Avaleur
+	{
+		public static final int AVALEUR_MOTEUR = 11; // SP 6
+		public static final boolean INVERSION_AVALEUR_MOTEUR = false;		
+	}
 	
 	public static final int INDEXEUR_MOTEUR = 15; // SP 7
 	public static final boolean INVERSION_INDEXEUR_MOTEUR = true;
@@ -79,34 +110,6 @@ public interface RobotMap {
 		
 		public static final int BRASSEUR_DROIT = 4;
 		public static final boolean INVERSION_BRASSEUR_DROIT = false;
-		
-	}
-		
-	public interface Manette
-	{
-		// Joystick MAP
-		// Main 
-		public static final int MANETTE_CONDUITE_PRINCIPALE = 0;				
-		public static final int CONDUITE_X_GAUCHE = 0;
-		public static final int CONDUITE_Y_GAUCHE = 1;
-		public static final int CONDUITE_X_DROITE = 4;
-		public static final int CONDUITE_Y_DROITE = 5;
-		public static final boolean INVERSION_CONDUITE_X_GAUCHE = false;
-		public static final boolean INVERSION_CONDUITE_Y_GAUCHE = true;
-		public static final boolean INVERSION_CONDUITE_X_DROITE = false;
-		public static final boolean INVERSION_CONDUITE_Y_DROITE = true;		// Accessories
-		public static final int MANETTE_ACCESSOIRE = 1;
-		
-		public static final int BOUTON_GRIMPEUR = 6;
-		public static final int BOUTON_AVALEUR = 5;
-		public static final int BOUTON_MACHOIRE = 10;
-		public static final int BOUTON_INDEXEUR = 1;
-		public static final int BOUTON_GYRO_RESET = 1;
-		
-		public static final int BOUTON_LANCEUR = 2;	
-		public static final int BOUTON_LANCEUR_VITESSE_DECREMENTE = 7;
-		public static final int BOUTON_LANCEUR_VITESSE_INCREMENTE= 8;
-		public static final int BOUTON_TOURELLE_TOGGLE_AUTO_MANUEL = 11;
 		
 	}
 	
