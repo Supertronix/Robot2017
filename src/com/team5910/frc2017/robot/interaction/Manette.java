@@ -91,15 +91,15 @@ public class Manette {
     }
     
 // ACCESSORIES
-    public boolean getIntakeButton() {
+    public boolean getBoutonIntake() {
     	return manetteConduitePrincipale.getRawButton(RobotMap.BOUTON_INTAKE);
     }
     
-    public boolean getClimberButton() {
+    public boolean getBoutonGrimpeur() {
     	return manetteConduitePrincipale.getRawButton(RobotMap.BOUTON_GRIMPEUR);
     }
     
-    public boolean getClampButton() {
+    public boolean getBoutonMachoire() {
     	return manetteConduitePrincipale.getRawButton(RobotMap.BOUTON_MACHOIRE);
     }
     public double getPanAxe() {
