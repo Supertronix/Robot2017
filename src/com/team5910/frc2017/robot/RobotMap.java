@@ -55,13 +55,16 @@ public interface RobotMap {
 	public static final int BRASSEUR_GAUCHE = 16; // SP 8
 	public static final boolean INVERSION_BRASSEUR_GAUCHE = false;
 	
-	public static final int MACHOIRE_GAUCHE_SERVO = 1; // Servo 1
-	public static final int MACHOIRE_DROITE_SERVO = 0; // Servo 2
-	
-	public static final double MACHOIRE_GAUCHE_FERMEE = 0.0;
-	public static final double MACHOIRE_DROITE_FERMEE = 0.0;
-	public static final double MACHOIRE_GAUCHE_OUVERTE = 1.0;
-	public static final double MACHOIRE_DROITE_OUVERTE = 1.0;
+	public interface Machoire
+	{
+		public static final int MACHOIRE_GAUCHE_SERVO = 1; // Servo 1
+		public static final int MACHOIRE_DROITE_SERVO = 0; // Servo 2
+		
+		public static final double MACHOIRE_GAUCHE_FERMEE = 0.0;
+		public static final double MACHOIRE_DROITE_FERMEE = 0.0;
+		public static final double MACHOIRE_GAUCHE_OUVERTE = 1.0;
+		public static final double MACHOIRE_DROITE_OUVERTE = 1.0;		
+	}
 	
 	// CAN Bus
 	public static final int LANCEUR_MOTEUR_PRINCIPAL = 3;

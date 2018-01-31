@@ -6,14 +6,14 @@ import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Machoire extends Subsystem {
+public class Machoire extends Subsystem implements RobotMap.Machoire{
 	
 	Servo verrouMachoireGauche;
 	Servo verrouMachoireDroite;
         
 	public Machoire() {
-		verrouMachoireGauche = new Servo(RobotMap.MACHOIRE_GAUCHE_SERVO);
-		verrouMachoireDroite = new Servo(RobotMap.MACHOIRE_DROITE_SERVO);
+		verrouMachoireGauche = new Servo(MACHOIRE_GAUCHE_SERVO);
+		verrouMachoireDroite = new Servo(MACHOIRE_DROITE_SERVO);
 		etatVerrou = EtatVerrou.FERME;
 		timestampDerniereBascule = 0.0;
 	}
@@ -55,16 +55,16 @@ public class Machoire extends Subsystem {
 	
 	private void fermer()
 	{
-		verrouMachoireGauche.set(RobotMap.MACHOIRE_GAUCHE_FERMEE);
-		verrouMachoireDroite.set(RobotMap.MACHOIRE_DROITE_FERMEE);
+		verrouMachoireGauche.set(MACHOIRE_GAUCHE_FERMEE);
+		verrouMachoireDroite.set(MACHOIRE_DROITE_FERMEE);
 		etatVerrou = EtatVerrou.FERME;
 		
 	}
 	
 	private void ouvrir()
 	{
-		verrouMachoireGauche.set(RobotMap.MACHOIRE_GAUCHE_OUVERTE);
-		verrouMachoireDroite.set(RobotMap.MACHOIRE_DROITE_OUVERTE);
+		verrouMachoireGauche.set(MACHOIRE_GAUCHE_OUVERTE);
+		verrouMachoireDroite.set(MACHOIRE_DROITE_OUVERTE);
 		etatVerrou = EtatVerrou.OUVERT;
 	}
 	
