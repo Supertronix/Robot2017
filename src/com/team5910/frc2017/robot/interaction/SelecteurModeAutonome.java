@@ -9,6 +9,7 @@ import com.team5910.frc2017.robot.trajet.CommandeTrajetR2;
 import com.team5910.frc2017.robot.trajet.CommandeTrajetR3;
 import com.team5910.frc2017.robot.trajet.CommandeTrajetWTF;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -30,5 +31,11 @@ public class SelecteurModeAutonome {
 		selecteur.addObject("WTF",new CommandeTrajetWTF());
 		SmartDashboard.putData("Autonomous mode chooser", selecteur);    	
     }
+    
+    public Command lireChoix()
+    {
+    	return (Command)selecteur.getSelected();
+    }
+
 
 }

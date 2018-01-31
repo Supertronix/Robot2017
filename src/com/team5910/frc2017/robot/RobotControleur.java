@@ -10,6 +10,7 @@ import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerPan;
 import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerTilt;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
+import com.team5910.frc2017.robot.interaction.SelecteurDigitalModeAutonome;
 import com.team5910.frc2017.robot.interaction.SelecteurModeAutonome;
 import com.team5910.frc2017.robot.interaction.vision.USBCamStreamer;
 import com.team5910.frc2017.robot.interaction.vision.VisionEcouteur;
@@ -41,15 +42,10 @@ public class RobotControleur extends IterativeRobot
 	public static Robot robot;
 	public static Manette manette;
 	
-    Command commandeAutonome;
     DigitalOutput RaspberryVisionMode = new DigitalOutput(25);
-    
-    DigitalInput interrupteur0 = new DigitalInput(RobotMap.INTERRUPTEUR_DIGITAL_0);
-    DigitalInput interrupteur1 = new DigitalInput(RobotMap.INTERRUPTEUR_DIGITAL_1);
-    DigitalInput interrupteur2 = new DigitalInput(RobotMap.INTERRUPTEUR_DIGITAL_2);
-    DigitalInput interrupteur3 = new DigitalInput(RobotMap.INTERRUPTEUR_DIGITAL_3);
-    
+        
 	SelecteurModeAutonome selecteurModeAutonome;
+	SelecteurDigitalModeAutonome selecteurDigitalModeAutonome;
     
 	//public static double lastCommandReceived = 0.0f;
 	
@@ -79,64 +75,19 @@ public class RobotControleur extends IterativeRobot
 		RaspberryVisionMode.set(false);
 
 		selecteurModeAutonome = new SelecteurModeAutonome();
+		selecteurDigitalModeAutonome = new SelecteurDigitalModeAutonome();
 	}
 
+	Command commandeAutonome;
 	@Override
 	public void autonomousInit() 
-	{
-		if (interrupteur0.get() == true) //RED
-		{
-			if (interrupteur1.get() == true && interrupteur2.get() == true && interrupteur3.get() == true) //WTF
-			{
-				commandeAutonome = new CommandeTrajetWTF();
-			}
-			else if (interrupteur1.get() == false && interrupteur2.get() == false && interrupteur3.get() == false) // No move
-			{
-				commandeAutonome = new CommandeImmobile();
-			}
-			else if (interrupteur1.get() == true) //R1
-			{
-				commandeAutonome = new CommandeTrajetR1();
-			}
-			else if (interrupteur2.get() == true) //R2
-			{
-				commandeAutonome = new CommandeTrajetR2();
-			}
-			else if (interrupteur3.get() == true) //R3
-			{
-				commandeAutonome = new CommandeTrajetR3();
-			}
-		}
-		else // Blue
-		{
-			if (interrupteur1.get() == true && interrupteur2.get() == true && interrupteur3.get() == true) //WTF
-			{
-				commandeAutonome = new CommandeTrajetWTF();
-			}
-			else if (interrupteur1.get() == false && interrupteur2.get() == false && interrupteur3.get() == false) // No move
-			{
-				commandeAutonome = new CommandeImmobile();
-			}
-			else if (interrupteur1.get() == true) //B1
-			{
-				commandeAutonome = new CommandeTrajetB1();
-			}
-			else if (interrupteur2.get() == true) //B2
-			{
-				commandeAutonome = new CommandeTrajetB2();
-			}
-			else if (interrupteur3.get() == true) //B3
-			{
-				commandeAutonome = new CommandeTrajetB3();
-			}
-			
-		}
-		
+	{		
 		Robot.drive.zeroSensors();
 		Command stopMotors = new CommandeArreterBrasseurIndexeurLanceur();
 		stopMotors.start();
 		
-		//commandeAutonome = (Command) autoChooser.getSelected();
+		commandeAutonome = selecteurDigitalModeAutonome.lireChoix();		
+		//commandeAutonome = selecteurModeAutonome.lireChoix();
 		commandeAutonome.start();
 	}
 
@@ -213,58 +164,8 @@ public class RobotControleur extends IterativeRobot
 	
 	@Override
 	public void disabledPeriodic() 
-	{	
-		String trajetChoisi = "no Command selected";
-		if (interrupteur0.get() == true) //RED
-		{
-			if (interrupteur1.get() == true && interrupteur2.get() == true && interrupteur3.get() == true) //WTF
-			{
-				trajetChoisi = " WTF";
-			}
-			else if (interrupteur1.get() == false && interrupteur2.get() == false && interrupteur3.get() == false) // No move
-			{
-				trajetChoisi = " No move";
-			}
-			else if (interrupteur1.get() == true) //R1
-			{
-				trajetChoisi = " R1";
-			}
-			else if (interrupteur2.get() == true) //R2
-			{
-				trajetChoisi = " R2";
-			}
-			else if (interrupteur3.get() == true) //R3
-			{
-				trajetChoisi = " R3";
-			}
-		}
-		else // Blue
-		{
-			if (interrupteur1.get() == true && interrupteur2.get() == true && interrupteur3.get() == true) //WTF
-			{
-				trajetChoisi = " WTF";
-			}
-			else if (interrupteur1.get() == false && interrupteur2.get() == false && interrupteur3.get() == false) // No move
-			{
-				trajetChoisi = " No move";
-			}
-			else if (interrupteur1.get() == true) //B1
-			{
-				trajetChoisi = " B1";
-			}
-			else if (interrupteur2.get() == true) //B2
-			{
-				trajetChoisi = "B2";
-			}
-			else if (interrupteur3.get() == true) //B3
-			{
-				trajetChoisi = " B3";	
-			}
-			
-		}
-		SmartDashboard.putString("AUTO SELECTED", trajetChoisi);
-		//SmartDashboard.putData("Autonomous mode chooser", selecteur);
-		Timer.delay(0.2);
+	{
+		selecteurDigitalModeAutonome.lireChoix();
 	}
 	
 	
