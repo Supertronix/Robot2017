@@ -4,7 +4,7 @@ import com.team5910.frc2017.robot.Robot;
 import com.team5910.frc2017.robot.RobotControleur;
 import com.team5910.frc2017.robot.RobotMap.Vision;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
-import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
+import com.team5910.frc2017.robot.soussysteme.Tourelle.EtatControle;
 
 import edu.wpi.first.wpilibj.Utility;
 import edu.wpi.first.wpilibj.command.Command;
@@ -48,7 +48,7 @@ public class CommandeTourelleChercherCibleAndHold extends Command {
 			return;
 		}
 			
-		if (RobotControleur.robot.tourelle.panSPdone())
+		if (RobotControleur.robot.tourelle.aFiniPanCible())
 		{
 			RobotControleur.robot.tourelle.gotoPanOppositeSP();
 		}
@@ -59,7 +59,7 @@ public class CommandeTourelleChercherCibleAndHold extends Command {
 	protected boolean isFinished() {
 		if(RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) <= Vision.VISION_THS && (Utility.getFPGATime() >= startDetectedTime + dureeMicroseconde))
 		{
-			RobotControleur.robot.tourelle.setState(SystemState.DISABLED);
+			RobotControleur.robot.tourelle.setEtatControle(EtatControle.INACTIF);
 			return true;
 
 		}

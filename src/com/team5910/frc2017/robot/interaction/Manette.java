@@ -18,7 +18,7 @@ import com.team5910.frc2017.commande.tourelle.CommandeTourelleToggleAutoMan;
 import com.team5910.frc2017.robot.RobotControleur;
 import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
-import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
+import com.team5910.frc2017.robot.soussysteme.Tourelle.EtatControle;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
@@ -68,8 +68,8 @@ public class Manette implements RobotMap.Manette{
     	actionLanceurDeceleration.whenPressed(new CommandeLanceurAccelerer(-RobotMap.LANCEUR_VITESSE_DELTA));
 
     	JoystickButton turretToggleModeEnable = new JoystickButton(manetteAccessoire, RobotMap.TOURELLE_TOGGLE_AUTO_MANUEL);
-    	turretToggleModeEnable.whenPressed(new CommandeTourelleChangerEtat(SystemState.AUTO_SCAN));  
-    	turretToggleModeEnable.whenReleased(new CommandeTourelleChangerEtat(SystemState.MANUAL_CONTROL)); 
+    	turretToggleModeEnable.whenPressed(new CommandeTourelleChangerEtat(EtatControle.RECHERCHE));  
+    	turretToggleModeEnable.whenReleased(new CommandeTourelleChangerEtat(EtatControle.MANUEL)); 
     
     }
     

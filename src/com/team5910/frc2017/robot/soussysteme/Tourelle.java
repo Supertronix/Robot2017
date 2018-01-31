@@ -19,41 +19,41 @@ public class Tourelle extends Subsystem {
 	
     public VisionData visionData;	// TODO verifier concurrence
 	
-	public enum SystemState {
-        DISABLED,
-		MANUAL_CONTROL, // The turret is manually controlled
-        AUTO_SCAN, // The turret is trying to find the target
-        AUTO_LOCK, // The turret is locked to target and listening raspberry pi to follow
+	public enum EtatControle {
+        INACTIF,
+		MANUEL, // The turret is manually controlled
+        RECHERCHE, // The turret is trying to find the target
+        VERROUILLE, // The turret is locked to target and listening raspberry pi to follow
     }
 	
-	private SystemState actualState;
+	private EtatControle etatActuel;
 	private CommandeTourelleChercherCible commandeChercherCible;
 	
-	public SystemState getState()
+	public EtatControle getState()
 	{
-		return actualState;
+		return etatActuel;
 	}
-	public void setState(SystemState aWantedState)
+	public void setEtatControle(EtatControle etatDesire)
 	{
 		if (commandeChercherCible == null) { commandeChercherCible = new CommandeTourelleChercherCible(); } 
 		
-		actualState = aWantedState;
-		if (aWantedState == SystemState.AUTO_SCAN)
+		etatActuel = etatDesire;
+		if (etatDesire == EtatControle.RECHERCHE)
 		{
 			//tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
 			tourelleTilt.setControlMode(0);
 			tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
 			commandeChercherCible.start();
 		}
-		else if (aWantedState == SystemState.AUTO_LOCK)
+		else if (etatDesire == EtatControle.VERROUILLE)
 		{
 			//tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
 			tourelleTilt.setControlMode(0);
 			commandeChercherCible.cancel();
-			setPanSetpoint(tourellePan.getPosition());
+			setPanCible(tourellePan.getPosition());
 			tourellePan.setControlMode(0); // DIRECT MOTOR DRIVE
 		}
-		else if (aWantedState == SystemState.MANUAL_CONTROL)
+		else if (etatDesire == EtatControle.MANUEL)
 		{
 			commandeChercherCible.cancel();
 			tourellePan.setControlMode(0);
@@ -68,7 +68,7 @@ public class Tourelle extends Subsystem {
 
 	public void setAutoState()
 	{
-		actualState = SystemState.AUTO_SCAN;
+		etatActuel = EtatControle.RECHERCHE;
 		tourelleTilt.changeControlMode(CANTalon.TalonControlMode.Position);
 		tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
 		
@@ -76,13 +76,13 @@ public class Tourelle extends Subsystem {
 	public CANTalon tourellePan = new CANTalon(RobotMap.TOURELLE_PAN_MOTEUR);
 	public CANTalon tourelleTilt = new CANTalon(RobotMap.TOURELLE_TILT_MOTEUR);
 	
-	double panSP = RobotMap.TOURELLE_PAN_DEFAUT;
-	double tiltSP = RobotMap.TOURELLE_TILT_DEFAUT;
+	double panCible = RobotMap.TOURELLE_PAN_DEFAUT;
+	double cibleTilt = RobotMap.TOURELLE_TILT_DEFAUT;
 	
 	double autoSPupdate = 0.0;
 
 	public Tourelle() {
-		actualState = SystemState.MANUAL_CONTROL;
+		etatActuel = EtatControle.MANUEL;
 		
 		//tourellePan.changeControlMode(CANTalon.TalonControlMode.Position);
 		tourellePan.setFeedbackDevice(CANTalon.FeedbackDevice.AnalogPot);
@@ -113,52 +113,52 @@ public class Tourelle extends Subsystem {
 		
 	}
 	
-	 public void setPanSetpoint(double aPanSP) {
-		 if (actualState == SystemState.DISABLED)
+	 public void setPanCible(double ciblePan) {
+		 if (etatActuel == EtatControle.INACTIF)
 			 return;
-		 panSP = aPanSP;
-		 Calculateur.clamp(panSP, RobotMap.TOURELLE_PAN_LIMITE_MINIMUM, RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
-		 tourellePan.set(panSP); 
+		 ciblePan = ciblePan;
+		 Calculateur.clamp(ciblePan, RobotMap.TOURELLE_PAN_LIMITE_MINIMUM, RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
+		 tourellePan.set(ciblePan); 
 	    }
 	 
-	 public void setTiltSetpoint(double aTiltSP) {
-		 if (actualState == SystemState.DISABLED)
+	 public void setTiltCible(double cibleTilt) {
+		 if (etatActuel == EtatControle.INACTIF)
 			 return;
-		 tiltSP = aTiltSP;
-		 Calculateur.clamp(tiltSP, RobotMap.TOURELLE_TILT_LIMITE_MINIMUM, RobotMap.TOURELLE_TILT_LIMITE_MAXIMUM);
-		 tourelleTilt.set(tiltSP);
+		 cibleTilt = cibleTilt;
+		 Calculateur.clamp(cibleTilt, RobotMap.TOURELLE_TILT_LIMITE_MINIMUM, RobotMap.TOURELLE_TILT_LIMITE_MAXIMUM);
+		 tourelleTilt.set(cibleTilt);
 	    }
 	 
-	 public void offsetPanSP(double aPanOffset) {
-		 if (actualState == SystemState.DISABLED)
+	 public void offsetPanSP(double deltaPan) {
+		 if (etatActuel == EtatControle.INACTIF)
 			 return;
-		 panSP += aPanOffset;
-		 Calculateur.clamp(panSP, RobotMap.TOURELLE_PAN_LIMITE_MINIMUM, RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
-		 tourellePan.set(panSP);
+		 panCible += deltaPan;
+		 Calculateur.clamp(panCible, RobotMap.TOURELLE_PAN_LIMITE_MINIMUM, RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
+		 tourellePan.set(panCible);
 		 
 	    }
 	 
-	 public void offsetTiltSP(double aTiltOffset) {
-		 if (actualState == SystemState.DISABLED)
+	 public void offsetTiltSP(double deltaTilt) {
+		 if (etatActuel == EtatControle.INACTIF)
 			 return;
-		 tiltSP += aTiltOffset;
+		 cibleTilt += deltaTilt;
 		//Utilities.clamp(tiltSP, RobotMap.kTiltLowSPLimit, RobotMap.kTiltHighSPLimit);
 		 //TurretTiltDrive.set(tiltSP);
 	    }
 
-	 public void toggleAutoMan() {
-		 switch (actualState) {
-			 case DISABLED:
-				 setState(SystemState.MANUAL_CONTROL);
+	 public void inverserControleAutoMan() {
+		 switch (etatActuel) {
+			 case INACTIF:
+				 setEtatControle(EtatControle.MANUEL);
 				 break;
-			 case MANUAL_CONTROL:
-				 setState(SystemState.AUTO_SCAN);
+			 case MANUEL:
+				 setEtatControle(EtatControle.RECHERCHE);
 				 break; 
-			 case AUTO_SCAN:
-				 setState(SystemState.MANUAL_CONTROL);
+			 case RECHERCHE:
+				 setEtatControle(EtatControle.MANUEL);
 				 break; 
-			 case AUTO_LOCK:
-				 setState(SystemState.MANUAL_CONTROL);
+			 case VERROUILLE:
+				 setEtatControle(EtatControle.MANUEL);
 				 break; 
 		 }
 	    }
@@ -166,17 +166,16 @@ public class Tourelle extends Subsystem {
 	public void arreter() {
 		tourellePan.disable();
 		tourelleTilt.disable();
-		actualState =  SystemState.DISABLED;
+		etatActuel = EtatControle.INACTIF;
 		
 	}
 	
-	public void manualDrive(double aPanValue, double aTiltValue) {
-		if (actualState == SystemState.DISABLED)
+	public void conduireManuellement(double ciblePan, double cibleTilt) {
+		if (etatActuel == EtatControle.INACTIF)
 			 return;
-		else if (actualState == SystemState.MANUAL_CONTROL)
-			//offsetPanSP(aPanValue);
-			tourellePan.set(aPanValue);
-			tourelleTilt.set(aTiltValue);	
+		else if (etatActuel == EtatControle.MANUEL)
+			tourellePan.set(ciblePan);
+			tourelleTilt.set(cibleTilt);	
 	}
 
 	@Override
@@ -184,11 +183,11 @@ public class Tourelle extends Subsystem {
 		
 	}
 	
-	public void ajusterPan(double aTargetX)
+	public void ajusterPan(double cible)
 	{
-		if (actualState == SystemState.AUTO_LOCK)
+		if (etatActuel == EtatControle.VERROUILLE)
 		{
-			tourellePan.set(aTargetX); // DIrect drive
+			tourellePan.set(cible); // DIrect drive
 		}
 			
 	}
@@ -221,62 +220,52 @@ public class Tourelle extends Subsystem {
 			
 	}
 	
-	public void gripUpdateState(boolean targetSeen)
+	public void setEtat(boolean cibleEnVue)
 	{
-		if (targetSeen && actualState == SystemState.AUTO_SCAN)
+		if (cibleEnVue && etatActuel == EtatControle.RECHERCHE)
 		{
-			setState(SystemState.AUTO_LOCK);
+			setEtatControle(EtatControle.VERROUILLE);
 		}
-		else if (!targetSeen && actualState == SystemState.AUTO_LOCK)
+		else if (!cibleEnVue && etatActuel == EtatControle.VERROUILLE)
 		{
-			setState(SystemState.AUTO_SCAN);
+			setEtatControle(EtatControle.RECHERCHE);
 		}
 	}
 	
 	
-	public boolean panSPdone()
+	public boolean aFiniPanCible()
 	{
 		return (Math.abs(tourellePan.getClosedLoopError()) <= 5);
 	}
 	
-	public boolean tiltSPdone()
+	public boolean aFiniTiltCible()
 	{
 		return (Math.abs(tourelleTilt.getClosedLoopError()) <= 5);
 	}
-	public boolean isPanMotorDone()
+	public boolean aFiniPanMoteur()
 	{
 		return (Math.abs(tourellePan.get()) <= 0.2);
 	}
 	
 	public void gotoPanOppositeSP()
 	{
-		if (panSP == RobotMap.TOURELLE_PAN_LIMITE_MINIMUM)
+		if (panCible == RobotMap.TOURELLE_PAN_LIMITE_MINIMUM)
 		{
-			setPanSetpoint(RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
+			setPanCible(RobotMap.TOURELLE_PAN_LIMITE_MAXIMUM);
 		}
 		else
 		{
-			setPanSetpoint(RobotMap.TOURELLE_PAN_LIMITE_MINIMUM);
+			setPanCible(RobotMap.TOURELLE_PAN_LIMITE_MINIMUM);
 		}
 			
 	}
 	
-	public void debuginit()
+	public void journaliser()
 	{
 		SmartDashboard.putNumber("TILT P", tourelleTilt.getP());
 		SmartDashboard.putNumber("TILT I", tourelleTilt.getI());
-		
-		SmartDashboard.putNumber("TILT SP", tiltSP);
-	}
-	
-	public void debugPeriodic()
-	{
-		tourelleTilt.setP(SmartDashboard.getNumber("TILT P", tourelleTilt.getP()));
-		tourelleTilt.setI(SmartDashboard.getNumber("TILT I", tourelleTilt.getI()));
-		
-		setTiltSetpoint(SmartDashboard.getNumber("TILT SP", 0.0));
-	}
-	
+		SmartDashboard.putNumber("TILT SP", cibleTilt);
+	}	
 
 }
 

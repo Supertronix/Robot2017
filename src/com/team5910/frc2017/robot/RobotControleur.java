@@ -18,7 +18,7 @@ import com.team5910.frc2017.robot.interaction.vision.VisionEcouteur;
 import com.team5910.frc2017.robot.outil.Calculateur;
 import com.team5910.frc2017.robot.soussysteme.Roues;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
-import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
+import com.team5910.frc2017.robot.soussysteme.Tourelle.EtatControle;
 import com.team5910.frc2017.robot.trajet.CommandeTrajetB1;
 import com.team5910.frc2017.robot.trajet.CommandeTrajetB2;
 import com.team5910.frc2017.robot.trajet.CommandeTrajetB3;
@@ -104,7 +104,7 @@ public class RobotControleur extends IterativeRobot
 		Command stopMotors = new CommandeArreterBrasseurIndexeurLanceur();
 		stopMotors.start();
 		
-		RobotControleur.robot.tourelle.setState(SystemState.MANUAL_CONTROL);
+		RobotControleur.robot.tourelle.setEtatControle(EtatControle.MANUEL);
 		Scheduler.getInstance().run();
 	}
 	
@@ -146,10 +146,10 @@ public class RobotControleur extends IterativeRobot
         
        // Robot.drive.updateDashboard();
         //robot.tourelle.debugPeriodic();
-        if (robot.tourelle.getState() == SystemState.AUTO_LOCK || robot.tourelle.getState() == SystemState.AUTO_SCAN)
-        	robot.tourelle.manualDrive(pan*5, tilt*0.5);
+        if (robot.tourelle.getState() == EtatControle.VERROUILLE || robot.tourelle.getState() == EtatControle.RECHERCHE)
+        	robot.tourelle.conduireManuellement(pan*5, tilt*0.5);
         else
-        	robot.tourelle.manualDrive(pan*5, tilt);
+        	robot.tourelle.conduireManuellement(pan*5, tilt);
         
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
 	}

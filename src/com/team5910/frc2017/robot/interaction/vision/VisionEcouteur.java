@@ -58,16 +58,15 @@ public class VisionEcouteur extends Thread implements RobotMap.Vision
                 byte[] data = packet.getData();
                 donneeRecue = new String(data, 0, packet.getLength());
                 SmartDashboard.putString(AffichageStation.VISION_DONNEE, donneeRecue);
-                //Robot.lastCommandReceived = Double.parseDouble(lastDataReceived);
                 //System.out.println ("'" + donneeRecue + "'");
                 
                 //tourelle.setPanSetpoint(Double.parseDouble(lastDataReceived));
-                //tourelle.TurretPanDrive.set(Double.parseDouble(lastDataReceived)*5);
-                //tourelle.gripUpdatePan(Double.parseDouble(lastDataReceived)*5);
+                //tourelle.tourellePan.set(Double.parseDouble(lastDataReceived)*5);
+                //tourelle.ajusterPan(Double.parseDouble(lastDataReceived)*5);
                 
                 tourelle.visionData = gson.fromJson(donneeRecue, VisionData.class);
                 tourelle.visionData.whenRecieved = System.currentTimeMillis();
-                tourelle.gripUpdateState(tourelle.visionData.trouvee);
+                tourelle.setEtat(tourelle.visionData.trouvee);
                 //if(!tourelle.visionData.trouvee && Math.abs(tourelle.visionData.positionX) >= 0.1)
                // {
             	tourelle.ajusterPan(tourelle.visionData.positionX*0.75); //15

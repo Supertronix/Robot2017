@@ -12,7 +12,7 @@ import com.team5910.frc2017.commande.tourelle.CommandeTourelleChercherCible;
 import com.team5910.frc2017.commande.tourelle.CommandeTourelleChercherCibleAndHold;
 import com.team5910.frc2017.commande.tourelle.CommandeTourelleChercherCibleAuto;
 import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerTilt;
-import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
+import com.team5910.frc2017.robot.soussysteme.Tourelle.EtatControle;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 

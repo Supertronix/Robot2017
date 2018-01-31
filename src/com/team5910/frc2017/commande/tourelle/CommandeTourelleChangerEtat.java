@@ -7,15 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class CommandeTourelleChangerEtat extends Command {
 
-	Tourelle.SystemState state;
-	public CommandeTourelleChangerEtat(Tourelle.SystemState aState) {
+	Tourelle.EtatControle state;
+	public CommandeTourelleChangerEtat(Tourelle.EtatControle aState) {
 		requires(RobotControleur.robot.tourelle);
 		state = aState;
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.tourelle.setState(state);
+		 RobotControleur.robot.tourelle.setEtatControle(state);
 	}
 	 
 	@Override
