@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SelecteurDigitalModeAutonome {
+public class SelecteurModeAutonomeViaInterrupteur {
 
     DigitalInput interrupteur0 = new DigitalInput(RobotMap.INTERRUPTEUR_DIGITAL_0);
     DigitalInput interrupteur1 = new DigitalInput(RobotMap.INTERRUPTEUR_DIGITAL_1);

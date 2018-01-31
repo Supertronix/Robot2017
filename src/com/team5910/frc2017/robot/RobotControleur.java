@@ -10,8 +10,8 @@ import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerPan;
 import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerTilt;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
-import com.team5910.frc2017.robot.interaction.SelecteurDigitalModeAutonome;
-import com.team5910.frc2017.robot.interaction.SelecteurModeAutonome;
+import com.team5910.frc2017.robot.interaction.SelecteurModeAutonomeViaInterrupteur;
+import com.team5910.frc2017.robot.interaction.SelecteurModeAutonomeViaDashBoard;
 import com.team5910.frc2017.robot.interaction.vision.USBCamStreamer;
 import com.team5910.frc2017.robot.interaction.vision.VisionEcouteur;
 import com.team5910.frc2017.robot.outil.Calculateur;
@@ -44,8 +44,8 @@ public class RobotControleur extends IterativeRobot
 	
     DigitalOutput RaspberryVisionMode = new DigitalOutput(25);
         
-	SelecteurModeAutonome selecteurModeAutonome;
-	SelecteurDigitalModeAutonome selecteurDigitalModeAutonome;
+	SelecteurModeAutonomeViaDashBoard selecteurModeAutonome;
+	SelecteurModeAutonomeViaInterrupteur selecteurDigitalModeAutonome;
     
 	//public static double lastCommandReceived = 0.0f;
 	
@@ -74,8 +74,8 @@ public class RobotControleur extends IterativeRobot
 		RaspberryVisionMode.disablePWM();
 		RaspberryVisionMode.set(false);
 
-		selecteurModeAutonome = new SelecteurModeAutonome();
-		selecteurDigitalModeAutonome = new SelecteurDigitalModeAutonome();
+		selecteurModeAutonome = new SelecteurModeAutonomeViaDashBoard();
+		selecteurDigitalModeAutonome = new SelecteurModeAutonomeViaInterrupteur();
 	}
 
 	Command commandeAutonome;

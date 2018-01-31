@@ -13,11 +13,11 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class SelecteurModeAutonome {
+public class SelecteurModeAutonomeViaDashBoard {
 
     SendableChooser selecteur;
     
-    public SelecteurModeAutonome()
+    public SelecteurModeAutonomeViaDashBoard()
     {
 		// http://wpilib.screenstepslive.com/s/3120/m/7932/l/81109-choosing-an-autonomous-program-from-smartdashboard
 		selecteur = new SendableChooser();
