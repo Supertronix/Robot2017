@@ -9,14 +9,14 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class Lanceur extends Subsystem {
 	
-	CANTalon ShooterDriveMain = new CANTalon(RobotMap.LANCEUR_MOTEUR_PRINCIPAL);
-	CANTalon ShooterDriveSlave = new CANTalon(RobotMap.LANCEUR_MOTEUR_ESCLAVE);
+	CANTalon lanceurMoteurPrincipal = new CANTalon(RobotMap.LANCEUR_MOTEUR_PRINCIPAL);
+	CANTalon lanceurMoteurEsclave = new CANTalon(RobotMap.LANCEUR_MOTEUR_ESCLAVE);
 	
-	double shooterSpeed = 1.0;
+	double vitesseLanceur = 1.0;
 	
 	public Lanceur() {
-		ShooterDriveSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
-		ShooterDriveSlave.set(ShooterDriveMain.getDeviceID());
+		lanceurMoteurEsclave.changeControlMode(CANTalon.TalonControlMode.Follower);
+		lanceurMoteurEsclave.set(lanceurMoteurPrincipal.getDeviceID());
 		
 		/*ShooterDriveMain.changeControlMode(TalonControlMode.Speed);
 		ShooterDriveMain.setFeedbackDevice(FeedbackDevice.QuadEncoder);
@@ -36,24 +36,24 @@ public class Lanceur extends Subsystem {
     }
     
     public void shoot() {
-    	ShooterDriveMain.set(shooterSpeed);
+    	lanceurMoteurPrincipal.set(vitesseLanceur);
     }
 
 	public void stop() {
-		ShooterDriveMain.set(0);
+		lanceurMoteurPrincipal.set(0);
 	}
 	public void toggle() {
-		if (ShooterDriveMain.get() > 0)
-			ShooterDriveMain.set(0);
+		if (lanceurMoteurPrincipal.get() > 0)
+			lanceurMoteurPrincipal.set(0);
 		else
-			ShooterDriveMain.set(shooterSpeed);
+			lanceurMoteurPrincipal.set(vitesseLanceur);
 	}
 	
 	public void incDecSpeed(double aChangeValue) {
-		shooterSpeed = Calculateur.clamp(shooterSpeed + aChangeValue, 0.0, 1.0);
+		vitesseLanceur = Calculateur.clamp(vitesseLanceur + aChangeValue, 0.0, 1.0);
 		
-		if (ShooterDriveMain.get() > 0)
-			ShooterDriveMain.set(shooterSpeed);
+		if (lanceurMoteurPrincipal.get() > 0)
+			lanceurMoteurPrincipal.set(vitesseLanceur);
 	}
 	
 }
