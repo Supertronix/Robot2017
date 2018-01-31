@@ -129,12 +129,15 @@ public interface RobotMap {
 	
 	
 	// DRIVE AUTO PID
-		
-	public static final int RASPBERRY_PORT = 5808;
-	public static final int RAYON_VERT_DIO = 12;
-		
-	public static final double VISION_THS = 0.13;
 	
+	public interface Vision
+	{
+		public static final int RASPBERRY_PORT = 5808;
+		public static final int RASPBERRY_PIN = 25;
+		double VISION_THS = 0.13;
+	}
+	public static final int RAYON_VERT_DIO = 12;
+			
 	public static final int INTERRUPTEUR_DIGITAL_0 = 2;
 	public static final int INTERRUPTEUR_DIGITAL_1 = 3;
 	public static final int INTERRUPTEUR_DIGITAL_2 = 4;

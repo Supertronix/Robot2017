@@ -184,7 +184,7 @@ public class Tourelle extends Subsystem {
 		
 	}
 	
-	public void gripUpdatePan(double aTargetX)
+	public void ajusterPan(double aTargetX)
 	{
 		if (actualState == SystemState.AUTO_LOCK)
 		{
@@ -193,7 +193,7 @@ public class Tourelle extends Subsystem {
 			
 	}
 	
-	public void gripUpdateTilt(double aDistance)
+	public void ajusterTilt(double aDistance)
 	{
 		/*SmartDashboard.putNumber("DISTANCE DETECTED", aDistance);
 		

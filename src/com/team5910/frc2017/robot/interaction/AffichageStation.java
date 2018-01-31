@@ -3,6 +3,7 @@ package com.team5910.frc2017.robot.interaction;
 public interface AffichageStation {
 	
 	public static final String VISION_STATUT = "VisionStatus";
+	public static final String VISION_DONNEE = "last Data Received";
 	
 	public static final String DRIVE_ENCODEUR_DISTANCE = "Encoder distance";
 	public static final String DRIVE_GYRO = "Gyro";
