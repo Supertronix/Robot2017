@@ -71,32 +71,37 @@ public interface RobotMap {
 	public static final int BRASSEUR_DROIT = 4;
 	public static final boolean INVERSION_BRASSEUR_DROIT = false;
 		
+
 	
-	
-	// Joystick MAP
-	// Main 
-	public static final int MANETTE_CONDUITE_PRINCIPALE = 0;
-	public static final int CONDUITE_X_GAUCHE = 0;
-	public static final int CONDUITE_Y_GAUCHE = 1;
-	public static final int CONDUITE_X_DROITE = 4;
-	public static final int CONDUITE_Y_DROITE = 5;
-	
-	public static final boolean INVERSION_CONDUITE_X_GAUCHE = false;
-	public static final boolean INVERSION_CONDUITE_Y_GAUCHE = true;
-	public static final boolean INVERSION_CONDUITE_X_DROITE = false;
-	public static final boolean INVERSION_CONDUITE_Y_DROITE = true;
+	public interface Manette
+	{
+		// Joystick MAP
+		// Main 
+		public static final int MANETTE_CONDUITE_PRINCIPALE = 0;				
+		public static final int CONDUITE_X_GAUCHE = 0;
+		public static final int CONDUITE_Y_GAUCHE = 1;
+		public static final int CONDUITE_X_DROITE = 4;
+		public static final int CONDUITE_Y_DROITE = 5;
+		public static final boolean INVERSION_CONDUITE_X_GAUCHE = false;
+		public static final boolean INVERSION_CONDUITE_Y_GAUCHE = true;
+		public static final boolean INVERSION_CONDUITE_X_DROITE = false;
+		public static final boolean INVERSION_CONDUITE_Y_DROITE = true;		// Accessories
+		public static final int MANETTE_ACCESSOIRE = 1;
+		
+		public static final int BOUTON_GRIMPEUR = 6;
+		public static final int BOUTON_INTAKE = 5;
+		public static final int BOUTON_MACHOIRE = 10;
+		public static final int BOUTON_INDEXEUR = 1;
+		public static final int BOUTON_GYRO_RESET = 1;
+		
+		public static final int BOUTON_LANCEUR = 2;	
+		public static final int BOUTON_LANCEUR_VITESSE_DECREMENTE = 7;
+		public static final int BOUTON_LANCEUR_VITESSE_INCREMENTE= 8;
+		
+	}
 	
 	public static final int GRIMPEUR_MOTEUR = 12; // SP 5
-	public static final boolean INVERSION_GRIMPEUR_MOTEUR = false;
-	
-	// Accessories
-	public static final int MANETTE_ACCESSOIRE = 1;
-	
-	public static final int BOUTON_GRIMPEUR = 6;
-	public static final int BOUTON_INTAKE = 5;
-	public static final int BOUTON_MACHOIRE = 10;
-	public static final int BOUTON_INDEXEUR = 1;
-	public static final int BOUTON_GYRO_RESET = 1;
+	public static final boolean INVERSION_GRIMPEUR_MOTEUR = false;	
 	
 	public static final int TOURELLE_PAN_AXE = 2;
 	public static final boolean INVERSION_TOURELLE_PAN_AXE = false;	
@@ -104,11 +109,7 @@ public interface RobotMap {
 	public static final int TOURELLE_TILT_AXE = 1;
 	public static final boolean INVERSION_TOURELLE_TILT_AXE = false;
 	public static final int TOURELLE_TOGGLE_AUTO_MANUEL = 11;
-	
-	public static final int BOUTON_LANCEUR = 2;	
-	public static final int BOUTON_LANCEUR_VITESSE_DECREMENTE = 7;
-	public static final int BOUTON_LANCEUR_VITESSE_INCREMENTE= 8;
-	
+		
 	public static final double LANCEUR_VITESSE_DELTA = 0.1;
 		
 	// Turret Settings

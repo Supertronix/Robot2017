@@ -23,48 +23,48 @@ import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-public class Manette {
+public class Manette implements RobotMap.Manette{
     
     private final Joystick manetteConduitePrincipale;
     private final Joystick manetteAccessoire;
     
     public Manette() {
-    	manetteConduitePrincipale = new Joystick(RobotMap.MANETTE_CONDUITE_PRINCIPALE);
-    	manetteAccessoire = new Joystick(RobotMap.MANETTE_ACCESSOIRE);
+    	manetteConduitePrincipale = new Joystick(MANETTE_CONDUITE_PRINCIPALE);
+    	manetteAccessoire = new Joystick(MANETTE_ACCESSOIRE);
     	
     	// MAIN JOYSTICK
-    	JoystickButton actionIntaker = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_INTAKE);
+    	JoystickButton actionIntaker = new JoystickButton(manetteConduitePrincipale, BOUTON_INTAKE);
     	actionIntaker.whenPressed(new CommandeIntakerDemarrer());
     	actionIntaker.whenPressed(new CommandeBrasseurDemarrer());
     	actionIntaker.whenReleased(new CommandeIntakerArreter());
     	actionIntaker.whenReleased(new CommandeBrasseurArreter());
     	
-    	JoystickButton actionGrimpeur = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GRIMPEUR);
+    	JoystickButton actionGrimpeur = new JoystickButton(manetteConduitePrincipale, BOUTON_GRIMPEUR);
     	actionGrimpeur.whenPressed(new CommandeGrimpeurDemarrer());
     	actionGrimpeur.whenReleased(new CommandeGrimpeurArreter());
     	
-    	JoystickButton actionMachoire = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_MACHOIRE);
+    	JoystickButton actionMachoire = new JoystickButton(manetteConduitePrincipale, BOUTON_MACHOIRE);
     	actionMachoire.whenPressed(new CommandeMachoireToggle());
     	
-    	JoystickButton actionGyroReset = new JoystickButton(manetteConduitePrincipale, RobotMap.BOUTON_GYRO_RESET);
+    	JoystickButton actionGyroReset = new JoystickButton(manetteConduitePrincipale, BOUTON_GYRO_RESET);
     	actionGyroReset.whenPressed(new CommandeConduiteEncodeurZero());
     	
     	// ACCESSORIES JOYSTICK
-    	JoystickButton actionIndexeur = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_INDEXEUR);
+    	JoystickButton actionIndexeur = new JoystickButton(manetteAccessoire, BOUTON_INDEXEUR);
     	actionIndexeur.whenPressed(new CommandeIndexeurDemarrer());
     	actionIndexeur.whenPressed(new CommandeBrasseurDemarrer());
     	
     	actionIndexeur.whenReleased(new CommandeIndexeurArreter());    	
     	actionIndexeur.whenReleased(new CommandeBrasseurArreter());
     	
-    	JoystickButton actionLanceur = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR);
+    	JoystickButton actionLanceur = new JoystickButton(manetteAccessoire, BOUTON_LANCEUR);
     	actionLanceur.whenPressed(new CommandeLanceurDemarrer());
     	actionLanceur.whenReleased(new CommandeLanceurArreter());    
     	
-    	JoystickButton actionLanceurAcceleration = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_INCREMENTE);
+    	JoystickButton actionLanceurAcceleration = new JoystickButton(manetteAccessoire, BOUTON_LANCEUR_VITESSE_INCREMENTE);
     	actionLanceurAcceleration.whenPressed(new CommandeLanceurAccelerer(RobotMap.LANCEUR_VITESSE_DELTA));
     	
-    	JoystickButton actionLanceurDeceleration = new JoystickButton(manetteAccessoire, RobotMap.BOUTON_LANCEUR_VITESSE_DECREMENTE);
+    	JoystickButton actionLanceurDeceleration = new JoystickButton(manetteAccessoire, BOUTON_LANCEUR_VITESSE_DECREMENTE);
     	actionLanceurDeceleration.whenPressed(new CommandeLanceurAccelerer(-RobotMap.LANCEUR_VITESSE_DELTA));
 
     	JoystickButton turretToggleModeEnable = new JoystickButton(manetteAccessoire, RobotMap.TOURELLE_TOGGLE_AUTO_MANUEL);
@@ -75,32 +75,32 @@ public class Manette {
     
  // DRIVER CONTROLS
     public double getConduiteGaucheX() {
-        return RobotMap.INVERSION_CONDUITE_X_GAUCHE ? -manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_X_GAUCHE): manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_X_GAUCHE);
+        return INVERSION_CONDUITE_X_GAUCHE ? -manetteConduitePrincipale.getRawAxis(CONDUITE_X_GAUCHE): manetteConduitePrincipale.getRawAxis(CONDUITE_X_GAUCHE);
     }
     
     public double getConduiteGaucheY() {
-        return RobotMap.INVERSION_CONDUITE_Y_GAUCHE ? -manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_Y_GAUCHE): manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_Y_GAUCHE);
+        return INVERSION_CONDUITE_Y_GAUCHE ? -manetteConduitePrincipale.getRawAxis(CONDUITE_Y_GAUCHE): manetteConduitePrincipale.getRawAxis(CONDUITE_Y_GAUCHE);
     }
     
     public double getConduiteDroiteX() {
-        return RobotMap.INVERSION_CONDUITE_X_DROITE ? -manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_X_DROITE): manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_X_DROITE);
+        return INVERSION_CONDUITE_X_DROITE ? -manetteConduitePrincipale.getRawAxis(CONDUITE_X_DROITE): manetteConduitePrincipale.getRawAxis(CONDUITE_X_DROITE);
     }
     
     public double getConduiteDroiteY() {
-        return RobotMap.INVERSION_CONDUITE_Y_DROITE ? -manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_Y_DROITE): manetteConduitePrincipale.getRawAxis(RobotMap.CONDUITE_Y_DROITE);
+        return INVERSION_CONDUITE_Y_DROITE ? -manetteConduitePrincipale.getRawAxis(CONDUITE_Y_DROITE): manetteConduitePrincipale.getRawAxis(CONDUITE_Y_DROITE);
     }
     
 // ACCESSORIES
     public boolean getBoutonIntake() {
-    	return manetteConduitePrincipale.getRawButton(RobotMap.BOUTON_INTAKE);
+    	return manetteConduitePrincipale.getRawButton(BOUTON_INTAKE);
     }
     
     public boolean getBoutonGrimpeur() {
-    	return manetteConduitePrincipale.getRawButton(RobotMap.BOUTON_GRIMPEUR);
+    	return manetteConduitePrincipale.getRawButton(BOUTON_GRIMPEUR);
     }
     
     public boolean getBoutonMachoire() {
-    	return manetteConduitePrincipale.getRawButton(RobotMap.BOUTON_MACHOIRE);
+    	return manetteConduitePrincipale.getRawButton(BOUTON_MACHOIRE);
     }
     public double getPanAxe() {
         return RobotMap.INVERSION_TOURELLE_PAN_AXE ? -manetteAccessoire.getRawAxis(RobotMap.TOURELLE_PAN_AXE): manetteAccessoire.getRawAxis(RobotMap.TOURELLE_PAN_AXE);
