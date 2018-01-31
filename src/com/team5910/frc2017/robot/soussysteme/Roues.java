@@ -220,7 +220,7 @@ public class Roues extends Subsystem {
 		 encodeurRoues.setReverseDirection(RobotMap.INVERSION_ROUE_ENCODEUR);
 	}
 		
-	public void programmerCibleGyro(double cible) {
+	public void programmerCibleAvecGyro(double cible) {
 		pidGyro.setSetpoint(cible);	
 	}
 	

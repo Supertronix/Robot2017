@@ -21,7 +21,7 @@ public class CommandeConduiteAvancerAvecPrecision extends Command {
 		Robot.drive.initialiserPID();
 		Robot.drive.setDistancePIDPrecision();
 		Robot.drive.programmerDistance(Robot.drive.getDistanceSelonEncodeur() + mWantedDistance);
-		Robot.drive.programmerCibleGyro(0.0);
+		Robot.drive.programmerCibleAvecGyro(0.0);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run

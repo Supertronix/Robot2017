@@ -46,7 +46,7 @@ public class CommandeConduiteAvancer extends Command {
 		Robot.drive.setDistancePID(this.p, this.i, this.d);
 		Robot.drive.programmerDistance(Robot.drive.getDistanceSelonEncodeur() + distanceDesiree);
 		System.out.println("Valeur encodeur" + Robot.drive.getDistanceSelonEncodeur());
-		Robot.drive.programmerCibleGyro(0.0);
+		Robot.drive.programmerCibleAvecGyro(0.0);
 		startTime = Utility.getFPGATime();
 	}
 	
