@@ -10,6 +10,7 @@ import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerPan;
 import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerTilt;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
+import com.team5910.frc2017.robot.interaction.SelecteurModeAutonome;
 import com.team5910.frc2017.robot.interaction.SelecteurModeAutonomeViaInterrupteur;
 import com.team5910.frc2017.robot.interaction.SelecteurModeAutonomeViaDashBoard;
 import com.team5910.frc2017.robot.interaction.vision.USBCamStreamer;
@@ -44,8 +45,9 @@ public class RobotControleur extends IterativeRobot
 	
     DigitalOutput RaspberryVisionMode = new DigitalOutput(25);
         
-	SelecteurModeAutonomeViaDashBoard selecteurModeAutonomeViaDashboard;
-	SelecteurModeAutonomeViaInterrupteur selecteurModeAutonomeViaInterrupteur;
+	//SelecteurModeAutonomeViaDashBoard selecteurModeAutonomeViaDashboard;
+	//SelecteurModeAutonomeViaInterrupteur selecteurModeAutonomeViaInterrupteur;
+    SelecteurModeAutonome selecteurModeAutonome;
     
 	//public static double lastCommandReceived = 0.0f;
 	
@@ -74,8 +76,9 @@ public class RobotControleur extends IterativeRobot
 		RaspberryVisionMode.disablePWM();
 		RaspberryVisionMode.set(false);
 
-		selecteurModeAutonomeViaDashboard = new SelecteurModeAutonomeViaDashBoard();
-		selecteurModeAutonomeViaInterrupteur = new SelecteurModeAutonomeViaInterrupteur();
+		//selecteurModeAutonomeViaDashboard = new SelecteurModeAutonomeViaDashBoard();
+		//selecteurModeAutonomeViaInterrupteur = new SelecteurModeAutonomeViaInterrupteur();
+		selecteurModeAutonome = new SelecteurModeAutonomeViaInterrupteur();
 	}
 
 	Command commandeAutonome;
@@ -86,7 +89,7 @@ public class RobotControleur extends IterativeRobot
 		Command stopMotors = new CommandeArreterBrasseurIndexeurLanceur();
 		stopMotors.start();
 		
-		commandeAutonome = selecteurModeAutonomeViaInterrupteur.lireChoix();		
+		commandeAutonome = selecteurModeAutonome.lireChoix();		
 		//commandeAutonome = selecteurModeAutonome.lireChoix();
 		commandeAutonome.start();
 	}
@@ -165,7 +168,7 @@ public class RobotControleur extends IterativeRobot
 	@Override
 	public void disabledPeriodic() 
 	{
-		selecteurModeAutonomeViaInterrupteur.lireChoix();
+		selecteurModeAutonome.afficherChoix();
 	}
 	
 	

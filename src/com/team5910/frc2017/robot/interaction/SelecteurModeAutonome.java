@@ -5,5 +5,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public abstract class SelecteurModeAutonome {
 
     abstract public Command lireChoix();
-	
+	public void afficherChoix() { }
+
 }
