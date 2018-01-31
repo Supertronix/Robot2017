@@ -15,11 +15,11 @@ public class Brasseur extends Subsystem implements RobotMap.Brasseur {
 	boolean sensHoraire = true;
     
 	public Brasseur() {
-		moteurBrasseurGauche = new VictorSP(RobotMap.BRASSEUR_GAUCHE);
-		moteurBrasseurGauche.setInverted(RobotMap.INVERSION_BRASSEUR_GAUCHE);
+		moteurBrasseurGauche = new VictorSP(BRASSEUR_GAUCHE);
+		moteurBrasseurGauche.setInverted(INVERSION_BRASSEUR_GAUCHE);
 		
-		moteurBrasseurDroit = new CANTalon(RobotMap.BRASSEUR_DROIT);
-		moteurBrasseurDroit.setInverted(RobotMap.INVERSION_BRASSEUR_DROIT);
+		moteurBrasseurDroit = new CANTalon(BRASSEUR_DROIT);
+		moteurBrasseurDroit.setInverted(INVERSION_BRASSEUR_DROIT);
 		
 	}
 	
