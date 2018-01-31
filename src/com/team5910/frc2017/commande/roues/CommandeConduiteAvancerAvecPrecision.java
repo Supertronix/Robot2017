@@ -9,35 +9,35 @@ public class CommandeConduiteAvancerAvecPrecision extends Command {
 	double mWantedDistance;
 	
 	public CommandeConduiteAvancerAvecPrecision(double distance) {
-		requires(Robot.drive);
+		requires(Robot.roues);
 		mWantedDistance = distance; // Distance in feet
 	}
 	
 
 	@Override
 	protected void initialize() {
-		Robot.drive.initialiserEncodeur();
-		Robot.drive.initialiserGyro();
-		Robot.drive.initialiserPID();
-		Robot.drive.setDistancePIDPrecision();
-		Robot.drive.programmerDistance(Robot.drive.getDistanceSelonEncodeur() + mWantedDistance);
-		Robot.drive.programmerCibleAvecGyro(0.0);
+		Robot.roues.initialiserEncodeur();
+		Robot.roues.initialiserGyro();
+		Robot.roues.initialiserPID();
+		Robot.roues.setDistancePIDPrecision();
+		Robot.roues.programmerDistance(Robot.roues.getDistanceSelonEncodeur() + mWantedDistance);
+		Robot.roues.programmerCibleAvecGyro(0.0);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.drive.conduireDroitAvecGyro();
+		Robot.roues.conduireDroitAvecGyro();
 	}
 		
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.estArriveSelonEncodeur();
+		return Robot.roues.estArriveSelonEncodeur();
 	}
 	
 	@Override
 	protected void end() {
-		Robot.drive.arreter();
+		Robot.roues.arreter();
 	}
 
 }

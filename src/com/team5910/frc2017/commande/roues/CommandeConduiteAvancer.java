@@ -15,21 +15,21 @@ public class CommandeConduiteAvancer extends Command {
 	private double startTime;
 	
 	public CommandeConduiteAvancer(double distance) {
-		requires(Robot.drive);
+		requires(Robot.roues);
 		distanceDesiree = distance; // Distance en pied
 		this.p = RobotMap.DISTANCE_KP;
 		this.i = RobotMap.DISTANCE_KI;
 		this.d = 0.0;
 	}
 	public CommandeConduiteAvancer(double distance, double driveP, double driveI) {
-		requires(Robot.drive);
+		requires(Robot.roues);
 		distanceDesiree = distance; // Distance en pied
 		this.p = driveP;
 		this.i = driveI;
 		this.d = 0.0;
 	}
 	public CommandeConduiteAvancer(double distance, double driveP, double driveI, double driveD) {
-		requires(Robot.drive);
+		requires(Robot.roues);
 		distanceDesiree = distance; // Distance en pied
 		this.p = driveP;
 		this.i = driveI;
@@ -39,29 +39,29 @@ public class CommandeConduiteAvancer extends Command {
 
 	@Override
 	protected void initialize() {
-		Robot.drive.initialiserEncodeur();
-		Robot.drive.initialiserGyro();
-		Robot.drive.initialiserPID();
-		Robot.drive.setGyroPIDStandard();
-		Robot.drive.setDistancePID(this.p, this.i, this.d);
-		Robot.drive.programmerDistance(Robot.drive.getDistanceSelonEncodeur() + distanceDesiree);
-		System.out.println("Valeur encodeur" + Robot.drive.getDistanceSelonEncodeur());
-		Robot.drive.programmerCibleAvecGyro(0.0);
+		Robot.roues.initialiserEncodeur();
+		Robot.roues.initialiserGyro();
+		Robot.roues.initialiserPID();
+		Robot.roues.setGyroPIDStandard();
+		Robot.roues.setDistancePID(this.p, this.i, this.d);
+		Robot.roues.programmerDistance(Robot.roues.getDistanceSelonEncodeur() + distanceDesiree);
+		System.out.println("Valeur encodeur" + Robot.roues.getDistanceSelonEncodeur());
+		Robot.roues.programmerCibleAvecGyro(0.0);
 		startTime = Utility.getFPGATime();
 	}
 	
 	@Override
 	protected void execute() {
-		Robot.drive.conduireDroitAvecGyro();
+		Robot.roues.conduireDroitAvecGyro();
 	}
 		
 	@Override
 	protected boolean isFinished() {
-		return (Robot.drive.estArriveSelonEncodeur() || (Utility.getFPGATime() >= startTime + RobotMap.AUTO_EXPIRE * 1000000));
+		return (Robot.roues.estArriveSelonEncodeur() || (Utility.getFPGATime() >= startTime + RobotMap.AUTO_EXPIRE * 1000000));
 	}
 	
 	@Override
 	protected void end() {
-		Robot.drive.arreter();
+		Robot.roues.arreter();
 	}
 }

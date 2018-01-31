@@ -25,7 +25,7 @@ public class Intaker extends Subsystem {
 			IntakerDrive.set(1);
 	}
 	
-	public void stop() {
+	public void arreter() {
 		IntakerDrive.set(0);
 	}
 	

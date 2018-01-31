@@ -50,13 +50,13 @@ public class RobotControleur extends IterativeRobot
 	//public static double lastCommandReceived = 0.0f;
 	
 	public void stopAll() {
-        Robot.drive.arreter();
-        robot.stopAll();
+        Robot.roues.arreter();
+        robot.arreter();
     }
 	
 	 public void zeroAllSensors() {
-	        Robot.drive.zeroSensors();
-	        robot.zeroSensors();
+	        Robot.roues.zeroSensors();
+	        robot.initialiserCapteurs();
 	 }
 	
 	@Override
@@ -80,7 +80,7 @@ public class RobotControleur extends IterativeRobot
 	@Override
 	public void autonomousInit() 
 	{		
-		Robot.drive.zeroSensors();
+		Robot.roues.zeroSensors();
 		Command stopMotors = new CommandeArreterBrasseurIndexeurLanceur();
 		stopMotors.start();
 		
@@ -133,7 +133,7 @@ public class RobotControleur extends IterativeRobot
         
         double x = (x1 + x2)/ 2;
         
-        Robot.drive.conduire(Calculateur.clamp(x + y1, -1, 1), Calculateur.clamp(y2 - x, -1, 1), Calculateur.clamp(y1 - x, -1, 1), Calculateur.clamp(x + y2, -1, 1));
+        Robot.roues.conduire(Calculateur.clamp(x + y1, -1, 1), Calculateur.clamp(y2 - x, -1, 1), Calculateur.clamp(y1 - x, -1, 1), Calculateur.clamp(x + y2, -1, 1));
         
         double pan = 0.0;
         double tilt = 0.0;

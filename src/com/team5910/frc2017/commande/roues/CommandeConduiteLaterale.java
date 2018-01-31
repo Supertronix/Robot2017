@@ -9,35 +9,35 @@ public class CommandeConduiteLaterale extends Command {
 	double mWantedDistance;
 
 	public CommandeConduiteLaterale(double distance) {
-		requires(Robot.drive);
+		requires(Robot.roues);
 		mWantedDistance = distance; // Distance in feet
 	}
 	
 
 	@Override
 	protected void initialize() {
-		Robot.drive.initialiserEncodeur();
-		Robot.drive.initialiserGyro();
-		Robot.drive.initialiserPID();
-		Robot.drive.inverserEncodeur();
-		Robot.drive.programmerDistance(mWantedDistance);
+		Robot.roues.initialiserEncodeur();
+		Robot.roues.initialiserGyro();
+		Robot.roues.initialiserPID();
+		Robot.roues.inverserEncodeur();
+		Robot.roues.programmerDistance(mWantedDistance);
 	}
 	
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		Robot.drive.conduireLateralementAvecGyro();
+		Robot.roues.conduireLateralementAvecGyro();
 	}
 		
 	@Override
 	protected boolean isFinished() {
-		return Robot.drive.estArriveSelonEncodeur();
+		return Robot.roues.estArriveSelonEncodeur();
 	}
 	
 	@Override
 	protected void end() {
-		Robot.drive.arreter();
-		Robot.drive.restaurerEncodeur();
+		Robot.roues.arreter();
+		Robot.roues.restaurerEncodeur();
 	}
 
 }

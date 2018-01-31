@@ -20,12 +20,11 @@ public class Robot {
     public Machoire machoire;
     public Indexeur indexeur;
     public Brasseur brasseur;
-	// Subsystems
-	public static Roues drive;
+	public static Roues roues; // static pour les requires
     
     public Robot()
     {
-		this.drive = new Roues();    	
+		Robot.roues = new Roues(); // static	
 		this.tourelle = new Tourelle();
 		this.lanceur = new Lanceur();
 		this.intaker = new Intaker();
@@ -35,39 +34,15 @@ public class Robot {
 		this.brasseur = new Brasseur();
     }
 
-	public void stopAll() {
-		tourelle.stop();
+	public void arreter() {
+		tourelle.arreter();
 		lanceur.arreter();
-		intaker.stop();
+		intaker.arreter();
 		grimpeur.arreter();
-		indexeur.stop();
+		indexeur.arreter();
 	}
 	
-	public void zeroSensors() {
+	public void initialiserCapteurs() {
 	}
-	
-	public void intakeButtonEnabled() {
-		intaker.intake();
-	}
-	
-	public void intakeButtonDisabled() {
-		intaker.stop();
-	}
-
-	public void climberButtonEnabled() {
-		grimpeur.grimper();
-		tourelle.stop();
-		intaker.stop();
-	}
-	
-	public void climberButtonDisabled() {
-		grimpeur.arreter();
-	}
-
-	public void clampButtonEnabled() {
-		machoire.demanderBascule();
-		
-	}
-
 }
 

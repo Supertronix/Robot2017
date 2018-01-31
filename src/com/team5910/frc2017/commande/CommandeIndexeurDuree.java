@@ -26,7 +26,7 @@ public class CommandeIndexeurDuree extends Command {
 	@Override
 	protected boolean isFinished() {
 		if(Utility.getFPGATime() >= startTime + dureeMicroseconde){
-			RobotControleur.robot.indexeur.stop();
+			RobotControleur.robot.indexeur.arreter();
 			return true;
 
 		}

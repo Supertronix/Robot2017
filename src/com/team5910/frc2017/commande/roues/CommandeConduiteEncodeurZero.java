@@ -7,13 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 public class CommandeConduiteEncodeurZero extends Command {
 
 	public CommandeConduiteEncodeurZero() {
-		requires(Robot.drive);
+		requires(Robot.roues);
 		 
 	 }
 	 
 	 @Override
 	protected void initialize() {
-		 Robot.drive.initialiserEncodeur();
+		 Robot.roues.initialiserEncodeur();
 	}
 	 
 	@Override

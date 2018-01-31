@@ -163,7 +163,7 @@ public class Tourelle extends Subsystem {
 		 }
 	    }
 
-	public void stop() {
+	public void arreter() {
 		tourellePan.disable();
 		tourelleTilt.disable();
 		actualState =  SystemState.DISABLED;

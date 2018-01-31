@@ -23,7 +23,7 @@ public class Indexeur extends Subsystem {
 		IndexerDrive.set(1);
 	}
 	
-	public void stop() {
+	public void arreter() {
 		IndexerDrive.set(0);
 	}
 	
