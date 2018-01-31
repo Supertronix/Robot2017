@@ -4,7 +4,7 @@ import com.team5910.frc2017.robot.soussysteme.Brasseur;
 import com.team5910.frc2017.robot.soussysteme.Roues;
 import com.team5910.frc2017.robot.soussysteme.Grimpeur;
 import com.team5910.frc2017.robot.soussysteme.Indexeur;
-import com.team5910.frc2017.robot.soussysteme.Intaker;
+import com.team5910.frc2017.robot.soussysteme.Avaleur;
 import com.team5910.frc2017.robot.soussysteme.Lanceur;
 import com.team5910.frc2017.robot.soussysteme.Machoire;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
@@ -15,7 +15,7 @@ public class Robot {
 	    
     public Tourelle tourelle;
     public Lanceur lanceur;
-    public Intaker intaker;
+    public Avaleur intaker;
     public Grimpeur grimpeur;
     public Machoire machoire;
     public Indexeur indexeur;
@@ -27,7 +27,7 @@ public class Robot {
 		Robot.roues = new Roues(); // static	
 		this.tourelle = new Tourelle();
 		this.lanceur = new Lanceur();
-		this.intaker = new Intaker();
+		this.intaker = new Avaleur();
 		this.grimpeur = new Grimpeur();
 		this.machoire = new Machoire();
 		this.indexeur = new Indexeur();

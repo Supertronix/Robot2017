@@ -5,28 +5,28 @@ import com.team5910.frc2017.robot.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Intaker extends Subsystem {
+public class Avaleur extends Subsystem {
 	
-	VictorSP IntakerDrive;
+	VictorSP avaleurBalles;
     
-	public Intaker() {
-		IntakerDrive = new VictorSP(RobotMap.INTAKER_MOTEUR);
+	public Avaleur() {
+		avaleurBalles = new VictorSP(RobotMap.AVALEUR_MOTEUR);
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
 	}
 	
-	public void intake()
+	public void avaler()
 	{
-		if (RobotMap.INVERSION_INTAKER_MOTEUR) 
-			IntakerDrive.set(-1);
+		if (RobotMap.INVERSION_AVALEUR_MOTEUR) 
+			avaleurBalles.set(-1);
 		else
-			IntakerDrive.set(1);
+			avaleurBalles.set(1);
 	}
 	
 	public void arreter() {
-		IntakerDrive.set(0);
+		avaleurBalles.set(0);
 	}
 	
 }

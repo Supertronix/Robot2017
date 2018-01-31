@@ -14,8 +14,8 @@ public interface RobotMap {
 	public static final boolean INVERSION_ROUE_ARRIERE_DROIT= false;
 	
 	
-	public static final int INTAKER_MOTEUR = 11; // SP 6
-	public static final boolean INVERSION_INTAKER_MOTEUR = false;
+	public static final int AVALEUR_MOTEUR = 11; // SP 6
+	public static final boolean INVERSION_AVALEUR_MOTEUR = false;
 	
 	public static final int INDEXEUR_MOTEUR = 15; // SP 7
 	public static final boolean INVERSION_INDEXEUR_MOTEUR = true;
