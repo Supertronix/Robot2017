@@ -13,7 +13,7 @@ public class CommandeIndexeurArreter extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.indexeur.stop();
+		 RobotControleur.robot.indexeur.arreter();
 	}
 	 
 	@Override

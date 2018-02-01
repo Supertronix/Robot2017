@@ -13,7 +13,7 @@ public class CommandeLanceurArreter extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.lanceur.stop();
+		 RobotControleur.robot.lanceur.arreter();
 	}
 	 
 	@Override

@@ -1,10 +1,10 @@
 package com.team5910.frc2017.robot;
 
 import com.team5910.frc2017.robot.soussysteme.Brasseur;
-import com.team5910.frc2017.robot.soussysteme.Drive;
+import com.team5910.frc2017.robot.soussysteme.Roues;
 import com.team5910.frc2017.robot.soussysteme.Grimpeur;
 import com.team5910.frc2017.robot.soussysteme.Indexeur;
-import com.team5910.frc2017.robot.soussysteme.Intaker;
+import com.team5910.frc2017.robot.soussysteme.Avaleur;
 import com.team5910.frc2017.robot.soussysteme.Lanceur;
 import com.team5910.frc2017.robot.soussysteme.Machoire;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
@@ -15,59 +15,34 @@ public class Robot {
 	    
     public Tourelle tourelle;
     public Lanceur lanceur;
-    public Intaker intaker;
+    public Avaleur intaker;
     public Grimpeur grimpeur;
     public Machoire machoire;
     public Indexeur indexeur;
     public Brasseur brasseur;
-	// Subsystems
-	public static Drive drive;
+	public static Roues roues; // static pour les requires
     
     public Robot()
     {
-		this.drive = new Drive();    	
+		Robot.roues = new Roues(); // static	
 		this.tourelle = new Tourelle();
 		this.lanceur = new Lanceur();
-		this.intaker = new Intaker();
+		this.intaker = new Avaleur();
 		this.grimpeur = new Grimpeur();
 		this.machoire = new Machoire();
 		this.indexeur = new Indexeur();
 		this.brasseur = new Brasseur();
     }
 
-	public void stopAll() {
-		tourelle.stop();
-		lanceur.stop();
-		intaker.stop();
-		grimpeur.stop();
-		indexeur.stop();
+	public void arreter() {
+		tourelle.arreter();
+		lanceur.arreter();
+		intaker.arreter();
+		grimpeur.arreter();
+		indexeur.arreter();
 	}
 	
-	public void zeroSensors() {
+	public void initialiserCapteurs() {
 	}
-	
-	public void intakeButtonEnabled() {
-		intaker.intake();
-	}
-	
-	public void intakeButtonDisabled() {
-		intaker.stop();
-	}
-
-	public void climberButtonEnabled() {
-		grimpeur.climb();
-		tourelle.stop();
-		intaker.stop();
-	}
-	
-	public void climberButtonDisabled() {
-		grimpeur.stop();
-	}
-
-	public void clampButtonEnabled() {
-		machoire.toggleAsked();
-		
-	}
-
 }
 

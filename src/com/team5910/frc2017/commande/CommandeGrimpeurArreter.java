@@ -13,7 +13,7 @@ public class CommandeGrimpeurArreter extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.grimpeur.stop();
+		 RobotControleur.robot.grimpeur.arreter();
 	}
 	 
 	@Override

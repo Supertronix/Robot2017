@@ -13,7 +13,7 @@ public class CommandeIntakerArreter extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.intaker.stop();
+		 RobotControleur.robot.intaker.arreter();
 		 new CommandeBrasseurArreter();
 	}
 	 

@@ -13,7 +13,7 @@ public class CommandeGrimpeurDemarrer extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.grimpeur.climb();
+		 RobotControleur.robot.grimpeur.grimper();
 	}
 	 
 	@Override

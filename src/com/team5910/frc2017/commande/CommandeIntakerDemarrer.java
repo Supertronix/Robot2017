@@ -13,7 +13,7 @@ public class CommandeIntakerDemarrer extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.intaker.intake();
+		 RobotControleur.robot.intaker.avaler();
 		 new CommandeBrasseurDemarrer();
 	}
 	 

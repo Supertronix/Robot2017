@@ -10,20 +10,23 @@ import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerPan;
 import com.team5910.frc2017.commande.tourelle.CommandeTourellePositionnerTilt;
 import com.team5910.frc2017.robot.interaction.AffichageStation;
 import com.team5910.frc2017.robot.interaction.Manette;
+import com.team5910.frc2017.robot.interaction.SelecteurModeAutonome;
+import com.team5910.frc2017.robot.interaction.SelecteurModeAutonomeViaInterrupteur;
+import com.team5910.frc2017.robot.interaction.SelecteurModeAutonomeViaDashBoard;
 import com.team5910.frc2017.robot.interaction.vision.USBCamStreamer;
 import com.team5910.frc2017.robot.interaction.vision.VisionEcouteur;
 import com.team5910.frc2017.robot.outil.Calculateur;
-import com.team5910.frc2017.robot.soussysteme.Drive;
+import com.team5910.frc2017.robot.soussysteme.Roues;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
-import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
-import com.team5910.frc2017.robot.trajet.CommandeB1;
-import com.team5910.frc2017.robot.trajet.CommandeB2;
-import com.team5910.frc2017.robot.trajet.CommandeB3;
+import com.team5910.frc2017.robot.soussysteme.Tourelle.EtatControle;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetB1;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetB2;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetB3;
 import com.team5910.frc2017.robot.trajet.CommandeImmobile;
-import com.team5910.frc2017.robot.trajet.CommandeR1;
-import com.team5910.frc2017.robot.trajet.CommandeR2;
-import com.team5910.frc2017.robot.trajet.CommandeR3;
-import com.team5910.frc2017.robot.trajet.CommandeWTF;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetR1;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetR2;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetR3;
+import com.team5910.frc2017.robot.trajet.CommandeTrajetWTF;
 
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DigitalOutput;
@@ -38,34 +41,29 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class RobotControleur extends IterativeRobot 
 {
 	public static Robot robot;
-	public static Manette oi;
+	public static Manette manette;
 	
-    Command commandeAutonome;
-    SendableChooser autoChooser;
-    DigitalOutput RaspberryVisionMode = new DigitalOutput(25);
-    
-    DigitalInput autoSW0 = new DigitalInput(RobotMap.AUTO_DIP0);
-    DigitalInput autoSW1 = new DigitalInput(RobotMap.AUTO_DIP1);
-    DigitalInput autoSW2 = new DigitalInput(RobotMap.AUTO_DIP2);
-    DigitalInput autoSW3 = new DigitalInput(RobotMap.AUTO_DIP3);
+	//SelecteurModeAutonomeViaDashBoard selecteurModeAutonomeViaDashboard;
+	//SelecteurModeAutonomeViaInterrupteur selecteurModeAutonomeViaInterrupteur;
+    SelecteurModeAutonome selecteurModeAutonome;
     
 	//public static double lastCommandReceived = 0.0f;
 	
 	public void stopAll() {
-        Robot.drive.arreter();
-        robot.stopAll();
+        Robot.roues.arreter();
+        robot.arreter();
     }
 	
 	 public void zeroAllSensors() {
-	        Robot.drive.zeroSensors();
-	        robot.zeroSensors();
+	        Robot.roues.zeroSensors();
+	        robot.initialiserCapteurs();
 	 }
 	
 	@Override
 	public void robotInit() 
 	{		
 		robot = new Robot();
-		oi = new Manette();
+		manette = new Manette();
 		
 		// Reset all state
         zeroAllSensors();
@@ -73,78 +71,21 @@ public class RobotControleur extends IterativeRobot
 		try { new USBCamStreamer().start(); } catch (IOException e) { e.printStackTrace(); }
 		try { new VisionEcouteur(robot.tourelle).start(); } catch (IOException e) { e.printStackTrace(); }
 		
-		RaspberryVisionMode.disablePWM();
-		RaspberryVisionMode.set(false);
-		
-		// http://wpilib.screenstepslive.com/s/3120/m/7932/l/81109-choosing-an-autonomous-program-from-smartdashboard
-		autoChooser = new SendableChooser();
-		autoChooser.addDefault("No move", new CommandeImmobile());
-		autoChooser.addObject("R1", new CommandeR1());
-		autoChooser.addObject("R2", new CommandeR2());
-		autoChooser.addObject("R3", new CommandeR3());	
-		autoChooser.addObject("B1", new CommandeB1());
-		autoChooser.addObject("B2", new CommandeB2());
-		autoChooser.addObject("B3", new CommandeB3());	
-		autoChooser.addObject("WTF",new CommandeWTF());
-		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
+		//selecteurModeAutonomeViaDashboard = new SelecteurModeAutonomeViaDashBoard();
+		//selecteurModeAutonomeViaInterrupteur = new SelecteurModeAutonomeViaInterrupteur();
+		selecteurModeAutonome = new SelecteurModeAutonomeViaInterrupteur();
 	}
 
+	Command commandeAutonome;
 	@Override
 	public void autonomousInit() 
-	{
-		if (autoSW0.get() == true) //RED
-		{
-			if (autoSW1.get() == true && autoSW2.get() == true && autoSW3.get() == true) //WTF
-			{
-				commandeAutonome = new CommandeWTF();
-			}
-			else if (autoSW1.get() == false && autoSW2.get() == false && autoSW3.get() == false) // No move
-			{
-				commandeAutonome = new CommandeImmobile();
-			}
-			else if (autoSW1.get() == true) //R1
-			{
-				commandeAutonome = new CommandeR1();
-			}
-			else if (autoSW2.get() == true) //R2
-			{
-				commandeAutonome = new CommandeR2();
-			}
-			else if (autoSW3.get() == true) //R3
-			{
-				commandeAutonome = new CommandeR3();
-			}
-		}
-		else // Blue
-		{
-			if (autoSW1.get() == true && autoSW2.get() == true && autoSW3.get() == true) //WTF
-			{
-				commandeAutonome = new CommandeWTF();
-			}
-			else if (autoSW1.get() == false && autoSW2.get() == false && autoSW3.get() == false) // No move
-			{
-				commandeAutonome = new CommandeImmobile();
-			}
-			else if (autoSW1.get() == true) //B1
-			{
-				commandeAutonome = new CommandeB1();
-			}
-			else if (autoSW2.get() == true) //B2
-			{
-				commandeAutonome = new CommandeB2();
-			}
-			else if (autoSW3.get() == true) //B3
-			{
-				commandeAutonome = new CommandeB3();
-			}
-			
-		}
-		
-		Robot.drive.zeroSensors();
+	{		
+		Robot.roues.zeroSensors();
 		Command stopMotors = new CommandeArreterBrasseurIndexeurLanceur();
 		stopMotors.start();
 		
-		//commandeAutonome = (Command) autoChooser.getSelected();
+		commandeAutonome = selecteurModeAutonome.lireChoix();		
+		//commandeAutonome = selecteurModeAutonome.lireChoix();
 		commandeAutonome.start();
 	}
 
@@ -163,7 +104,7 @@ public class RobotControleur extends IterativeRobot
 		Command stopMotors = new CommandeArreterBrasseurIndexeurLanceur();
 		stopMotors.start();
 		
-		RobotControleur.robot.tourelle.setState(SystemState.MANUAL_CONTROL);
+		RobotControleur.robot.tourelle.setEtatControle(EtatControle.MANUEL);
 		Scheduler.getInstance().run();
 	}
 	
@@ -178,37 +119,37 @@ public class RobotControleur extends IterativeRobot
 		double y2 = 0;
 		
 		
-		if (Math.abs(oi.getConduiteGaucheX()) > .2)
-			x1 = oi.getConduiteGaucheX();
+		if (Math.abs(manette.getConduiteGaucheX()) > .2)
+			x1 = manette.getConduiteGaucheX();
        
-        if (Math.abs(oi.getConduiteGaucheY()) > .2)
-        	y1 = oi.getConduiteGaucheY();
+        if (Math.abs(manette.getConduiteGaucheY()) > .2)
+        	y1 = manette.getConduiteGaucheY();
        
-        if (Math.abs(oi.getConduiteDroiteX()) > .2)
-            x2 = oi.getConduiteDroiteX();
+        if (Math.abs(manette.getConduiteDroiteX()) > .2)
+            x2 = manette.getConduiteDroiteX();
         
-        if (Math.abs(oi.getConduiteDroiteY()) > .2)
-            y2 = oi.getConduiteDroiteY();
+        if (Math.abs(manette.getConduiteDroiteY()) > .2)
+            y2 = manette.getConduiteDroiteY();
         
         double x = (x1 + x2)/ 2;
         
-        Robot.drive.manualDrive(Calculateur.clamp(x + y1, -1, 1), Calculateur.clamp(y2 - x, -1, 1), Calculateur.clamp(y1 - x, -1, 1), Calculateur.clamp(x + y2, -1, 1));
+        Robot.roues.conduire(Calculateur.clamp(x + y1, -1, 1), Calculateur.clamp(y2 - x, -1, 1), Calculateur.clamp(y1 - x, -1, 1), Calculateur.clamp(x + y2, -1, 1));
         
         double pan = 0.0;
         double tilt = 0.0;
      
-        if (Math.abs(oi.getPanAxe()) > .2)
-            pan = oi.getPanAxe();
+        if (Math.abs(manette.getPanAxe()) > .2)
+            pan = manette.getPanAxe();
         
-        if (Math.abs(oi.getTiltAxe()) > .2)
-            tilt = oi.getTiltAxe();
+        if (Math.abs(manette.getTiltAxe()) > .2)
+            tilt = manette.getTiltAxe();
         
        // Robot.drive.updateDashboard();
         //robot.tourelle.debugPeriodic();
-        if (robot.tourelle.getState() == SystemState.AUTO_LOCK || robot.tourelle.getState() == SystemState.AUTO_SCAN)
-        	robot.tourelle.manualDrive(pan*5, tilt*0.5);
+        if (robot.tourelle.getState() == EtatControle.VERROUILLE || robot.tourelle.getState() == EtatControle.RECHERCHE)
+        	robot.tourelle.conduireManuellement(pan*5, tilt*0.5);
         else
-        	robot.tourelle.manualDrive(pan*5, tilt);
+        	robot.tourelle.conduireManuellement(pan*5, tilt);
         
         Timer.delay(0.005);	// wait 5ms to avoid hogging CPU cycles
 	}
@@ -221,58 +162,8 @@ public class RobotControleur extends IterativeRobot
 	
 	@Override
 	public void disabledPeriodic() 
-	{	
-		String autoSelect = "no Command selected";
-		if (autoSW0.get() == true) //RED
-		{
-			if (autoSW1.get() == true && autoSW2.get() == true && autoSW3.get() == true) //WTF
-			{
-				autoSelect = " WTF";
-			}
-			else if (autoSW1.get() == false && autoSW2.get() == false && autoSW3.get() == false) // No move
-			{
-				autoSelect = " No move";
-			}
-			else if (autoSW1.get() == true) //R1
-			{
-				autoSelect = " R1";
-			}
-			else if (autoSW2.get() == true) //R2
-			{
-				autoSelect = " R2";
-			}
-			else if (autoSW3.get() == true) //R3
-			{
-				autoSelect = " R3";
-			}
-		}
-		else // Blue
-		{
-			if (autoSW1.get() == true && autoSW2.get() == true && autoSW3.get() == true) //WTF
-			{
-				autoSelect = " WTF";
-			}
-			else if (autoSW1.get() == false && autoSW2.get() == false && autoSW3.get() == false) // No move
-			{
-				autoSelect = " No move";
-			}
-			else if (autoSW1.get() == true) //B1
-			{
-				autoSelect = " B1";
-			}
-			else if (autoSW2.get() == true) //B2
-			{
-				autoSelect = "B2";
-			}
-			else if (autoSW3.get() == true) //B3
-			{
-				autoSelect = " B3";	
-			}
-			
-		}
-		SmartDashboard.putString("AUTO SELECTED", autoSelect);
-		SmartDashboard.putData("Autonomous mode chooser", autoChooser);
-		Timer.delay(0.2);
+	{
+		selecteurModeAutonome.afficherChoix();
 	}
 	
 	

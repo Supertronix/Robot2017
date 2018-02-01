@@ -5,28 +5,28 @@ import com.team5910.frc2017.robot.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Grimpeur extends Subsystem {
+public class Grimpeur extends Subsystem implements RobotMap.Grimpeur{
 	
-	VictorSP Climbdrive;
+	VictorSP moteurGrimpeur;
     
 	public Grimpeur() {
-		Climbdrive = new VictorSP(RobotMap.GRIMPEUR_MOTEUR);
+		moteurGrimpeur = new VictorSP(GRIMPEUR_MOTEUR);
 	}
 	
 	@Override
 	protected void initDefaultCommand() {
 	}
 	
-	public void climb()
+	public void grimper()
 	{
-		if (RobotMap.INVERSION_GRIMPEUR_MOTEUR) 
-			Climbdrive.set(-1);
+		if (INVERSION_GRIMPEUR_MOTEUR) 
+			moteurGrimpeur.set(-1);
 		else
-			Climbdrive.set(1);
+			moteurGrimpeur.set(1);
 	}
 	
-	public void stop() {
-		Climbdrive.set(0);
+	public void arreter() {
+		moteurGrimpeur.set(0);
 	}
 }
 

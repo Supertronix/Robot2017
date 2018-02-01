@@ -4,7 +4,7 @@ import com.team5910.frc2017.robot.Robot;
 import com.team5910.frc2017.robot.RobotControleur;
 import com.team5910.frc2017.robot.RobotMap;
 import com.team5910.frc2017.robot.soussysteme.Tourelle;
-import com.team5910.frc2017.robot.soussysteme.Tourelle.SystemState;
+import com.team5910.frc2017.robot.soussysteme.Tourelle.EtatControle;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -26,7 +26,7 @@ public class CommandeTourelleChercherCibleAuto extends Command {
 	protected void execute() {
 		if(RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) <= 0.1) return;
 		
-		if (RobotControleur.robot.tourelle.panSPdone())
+		if (RobotControleur.robot.tourelle.aFiniPanCible())
 		{
 			RobotControleur.robot.tourelle.gotoPanOppositeSP();
 		}
@@ -38,7 +38,7 @@ public class CommandeTourelleChercherCibleAuto extends Command {
 		if(RobotControleur.robot.tourelle.visionData.trouvee && Math.abs(RobotControleur.robot.tourelle.visionData.positionX) <= 0.1)
 		{
 			SmartDashboard.putString("AUTOSTATE", "FINISH");
-			RobotControleur.robot.tourelle.setState(SystemState.AUTO_LOCK);
+			RobotControleur.robot.tourelle.setEtatControle(EtatControle.VERROUILLE);
 			return true;
 		}
 		else

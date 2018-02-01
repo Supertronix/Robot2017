@@ -14,12 +14,12 @@ public class CommandeTourellePositionnerPan extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.tourelle.setPanSetpoint(panSP);
+		 RobotControleur.robot.tourelle.setPanCible(panSP);
 	}
 	 
 	@Override
 	protected boolean isFinished() {
-		return RobotControleur.robot.tourelle.panSPdone();
+		return RobotControleur.robot.tourelle.aFiniPanCible();
 	}
 
 }

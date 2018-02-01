@@ -16,8 +16,8 @@ public class CommandeArreterBrasseurIndexeurLanceur extends Command {
 	 @Override
 	protected void initialize() {
 		 RobotControleur.robot.brasseur.stop();
-		 RobotControleur.robot.indexeur.stop();
-		 RobotControleur.robot.lanceur.stop();
+		 RobotControleur.robot.indexeur.arreter();
+		 RobotControleur.robot.lanceur.arreter();
 	}
 	 
 	@Override

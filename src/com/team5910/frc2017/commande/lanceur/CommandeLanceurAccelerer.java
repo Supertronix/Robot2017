@@ -14,7 +14,7 @@ public class CommandeLanceurAccelerer extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.lanceur.incDecSpeed(changeValue);
+		 RobotControleur.robot.lanceur.ajusterVitesse(changeValue);
 	}
 	 
 	@Override

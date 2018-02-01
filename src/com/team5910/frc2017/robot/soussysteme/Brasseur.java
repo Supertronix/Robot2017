@@ -6,20 +6,20 @@ import com.team5910.frc2017.robot.RobotMap;
 import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-public class Brasseur extends Subsystem {
+public class Brasseur extends Subsystem implements RobotMap.Brasseur {
 	
-	VictorSP IndexerShuffleDrive1;
-	CANTalon IndexerShuffleDrive2;
+	VictorSP moteurBrasseurGauche;
+	CANTalon moteurBrasseurDroit;
 	
-	boolean reverseEachTime = false;
-	boolean lastClockwise = true;
+	boolean inversionSens = false;
+	boolean sensHoraire = true;
     
 	public Brasseur() {
-		IndexerShuffleDrive1 = new VictorSP(RobotMap.BRASSEUR_GAUCHE);
-		IndexerShuffleDrive1.setInverted(RobotMap.INVERSION_BRASSEUR_GAUCHE);
+		moteurBrasseurGauche = new VictorSP(BRASSEUR_GAUCHE);
+		moteurBrasseurGauche.setInverted(INVERSION_BRASSEUR_GAUCHE);
 		
-		IndexerShuffleDrive2 = new CANTalon(RobotMap.BRASSEUR_DROIT);
-		IndexerShuffleDrive2.setInverted(RobotMap.INVERSION_BRASSEUR_DROIT);
+		moteurBrasseurDroit = new CANTalon(BRASSEUR_DROIT);
+		moteurBrasseurDroit.setInverted(INVERSION_BRASSEUR_DROIT);
 		
 	}
 	
@@ -27,33 +27,33 @@ public class Brasseur extends Subsystem {
 	protected void initDefaultCommand() {
 	}
 	
-	public void shuffle()
+	public void brasser()
 	{
-		if (reverseEachTime)
+		if (inversionSens)
 		{
-			if (lastClockwise)
+			if (sensHoraire)
 			{
-				IndexerShuffleDrive1.set(-1);
-				IndexerShuffleDrive2.set(-1);
-				lastClockwise = false;
+				moteurBrasseurGauche.set(-1);
+				moteurBrasseurDroit.set(-1);
+				sensHoraire = false;
 			}
 			else
 			{
-				IndexerShuffleDrive1.set(1);
-				IndexerShuffleDrive2.set(1);
-				lastClockwise = true;
+				moteurBrasseurGauche.set(1);
+				moteurBrasseurDroit.set(1);
+				sensHoraire = true;
 			}
 		}
 		else
 		{
-			IndexerShuffleDrive1.set(1);
-			IndexerShuffleDrive2.set(1);
+			moteurBrasseurGauche.set(1);
+			moteurBrasseurDroit.set(1);
 		}
 	}
 	
 	public void stop() {
-		IndexerShuffleDrive1.set(0);
-		IndexerShuffleDrive2.set(0);
+		moteurBrasseurGauche.set(0);
+		moteurBrasseurDroit.set(0);
 	}
 	
 }

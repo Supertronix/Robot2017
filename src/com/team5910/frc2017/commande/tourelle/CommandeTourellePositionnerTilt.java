@@ -15,12 +15,12 @@ public class CommandeTourellePositionnerTilt extends Command {
 	 @Override
 	protected void initialize() {
 		 RobotControleur.robot.tourelle.setTiltPositionMode();
-		 RobotControleur.robot.tourelle.setTiltSetpoint(tiltSP);
+		 RobotControleur.robot.tourelle.setTiltCible(tiltSP);
 	}
 	 
 	@Override
 	protected boolean isFinished() {
-		return RobotControleur.robot.tourelle.tiltSPdone();
+		return RobotControleur.robot.tourelle.aFiniTiltCible();
 	}
 
 

@@ -12,7 +12,7 @@ public class CommandeTourelleToggleAutoMan extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.tourelle.toggleAutoMan();
+		 RobotControleur.robot.tourelle.inverserControleAutoMan();
 	}
 	 
 	@Override

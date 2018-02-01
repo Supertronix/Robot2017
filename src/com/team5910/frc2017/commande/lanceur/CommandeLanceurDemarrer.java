@@ -13,7 +13,7 @@ public class CommandeLanceurDemarrer extends Command {
 	 
 	 @Override
 	protected void initialize() {
-		 RobotControleur.robot.lanceur.shoot();
+		 RobotControleur.robot.lanceur.lancer();
 	}
 	 
 	@Override
